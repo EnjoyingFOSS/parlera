@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'package:zgadula/store/category.dart';
-import 'package:zgadula/store/question.dart';
-import 'package:zgadula/store/tutorial.dart';
-import 'package:zgadula/ui/screens/category_list.dart';
-import 'package:zgadula/ui/screens/category_favorites.dart';
-import 'package:zgadula/ui/screens/settings.dart';
-import 'package:zgadula/ui/templates/screen.dart';
+import 'package:parlera/store/category.dart';
+import 'package:parlera/store/question.dart';
+import 'package:parlera/store/tutorial.dart';
+import 'package:parlera/ui/screens/category_list.dart';
+import 'package:parlera/ui/screens/category_favorites.dart';
+import 'package:parlera/ui/screens/settings.dart';
+import 'package:parlera/ui/templates/screen.dart';
 import '../shared/widgets.dart';
 import '../theme.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   HomeScreenState createState() {
     return HomeScreenState();
@@ -24,7 +26,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     Tab(icon: Icon(Icons.favorite)),
     Tab(icon: Icon(Icons.settings)),
   ];
-  TabController _tabController;
+  TabController? _tabController;
 
   @override
   void initState() {
@@ -32,7 +34,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _tabController = TabController(vsync: this, length: tabs.length);
 
     if (!isTutorialWatched()) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushNamed(
+      WidgetsBinding.instance!.addPostFrameCallback((_) => Navigator.pushNamed(
             context,
             '/tutorial',
           ));
@@ -41,7 +43,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 

@@ -1,4 +1,41 @@
+// This file is part of Parlera.
+//
+// Parlera is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version. As an additional permission under
+// section 7, you are allowed to distribute the software through an app
+// store, even if that store has restrictive terms and conditions that
+// are incompatible with the AGPL, provided that the source is also
+// available under the AGPL with or without this permission through a
+// channel without those restrictive terms and conditions.
+//
+// Parlera is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
+//
+// This file is derived from work covered by the following license notice:
+//
+//   Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and "ewaosie"
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,24 +44,23 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:pedantic/pedantic.dart';
 
-import 'package:zgadula/localizations.dart';
-import 'package:zgadula/services/audio.dart';
-import 'package:zgadula/services/vibration.dart';
-import 'package:zgadula/services/analytics.dart';
-import 'package:zgadula/store/category.dart';
-import 'package:zgadula/models/category.dart';
-import 'package:zgadula/store/question.dart';
-import 'package:zgadula/store/settings.dart';
-import 'package:zgadula/store/gallery.dart';
-import 'package:zgadula/ui/screens/camera_preview.dart';
-import 'package:zgadula/ui/templates/screen.dart';
-import 'package:zgadula/ui/theme.dart';
-import 'package:zgadula/services/pictures.dart';
-import 'package:zgadula/services/ads.dart';
+import 'package:parlera/localizations.dart';
+import 'package:parlera/services/audio.dart';
+import 'package:parlera/services/vibration.dart';
+
+import 'package:parlera/store/category.dart';
+import 'package:parlera/models/category.dart';
+import 'package:parlera/store/question.dart';
+import 'package:parlera/store/settings.dart';
+import 'package:parlera/store/gallery.dart';
+import 'package:parlera/ui/screens/camera_preview.dart';
+import 'package:parlera/ui/templates/screen.dart';
+import 'package:parlera/ui/theme.dart';
+import 'package:parlera/services/pictures.dart';
 import '../shared/widgets.dart';
 
 class GamePlayScreen extends StatefulWidget {
-  GamePlayScreen({Key key}) : super(key: key);
+  GamePlayScreen({Key? key}) : super(key: key);
 
   @override
   GamePlayScreenState createState() => GamePlayScreenState();
@@ -32,42 +68,42 @@ class GamePlayScreen extends StatefulWidget {
 
 class GamePlayScreenState extends State<GamePlayScreen>
     with TickerProviderStateMixin {
-  static const _rotationChannel = MethodChannel('zgadula/orientation');
+  static const _rotationChannel = MethodChannel('parlera/orientation');
   static const backgroundOpacity = 0.9;
 
-  Timer gameTimer;
-  int secondsMax;
+  Timer? gameTimer;
+  int secondsMax = -1;
   int secondsLeft = 5;
   bool isStarted = false;
   bool isPaused = false;
-  bool isCameraEnabled = false;
+  bool? isCameraEnabled = false;
   bool showAd = false;
-  StreamSubscription<dynamic> _rotateSubscription;
-  Category category;
+  StreamSubscription<dynamic>? _rotateSubscription;
+  Category? category;
 
-  AnimationController invalidAC;
-  Animation<double> invalidAnimation;
-  AnimationController validAC;
-  Animation<double> validAnimation;
+  AnimationController? invalidAC;
+  late Animation<double> invalidAnimation;
+  AnimationController? validAC;
+  late Animation<double> validAnimation;
 
   @override
   void initState() {
     super.initState();
     startTimer();
     category = CategoryModel.of(context).currentCategory;
-    QuestionModel.of(context).generateCurrentQuestions(category.id);
+    QuestionModel.of(context).generateCurrentQuestions(category!.id);
 
     SettingsModel settings = SettingsModel.of(context);
-    secondsMax = settings.roundTime;
+    secondsMax = settings.roundTime ?? -1;
     isCameraEnabled = settings.isCameraEnabled;
-    if (settings.isRotationControlEnabled) {
+    if (settings.isRotationControlEnabled!) {
       enableRotationControl();
     }
-    var gamesCount = settings.gamesFinished + 1;
-    showAd = gamesCount % 2 == 0;
-    if (showAd) {
-      AdsService.loadInterstitialAd();
-    }
+    // var gamesCount = settings.gamesFinished + 1;
+    // showAd = gamesCount % 2 == 0;
+    // if (showAd) {
+    //   AdsService.loadInterstitialAd();
+    // }
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
@@ -75,14 +111,16 @@ class GamePlayScreenState extends State<GamePlayScreen>
     // TODO: Remove it when fixed in Flutter
     // https://github.com/flutter/flutter/issues/13238
     try {
-      _rotationChannel.invokeMethod('setLandscape');
+      if (Platform.isAndroid || Platform.isIOS) {
+        _rotationChannel.invokeMethod('setLandscape');
+      }
     } catch (error) {
       print("Error on landscape");
     }
 
     initAnimations();
 
-    AnalyticsService.logEvent('play_game', {'category': category.name});
+    
   }
 
   AnimationController createAnswerAnimationController() {
@@ -102,10 +140,10 @@ class GamePlayScreenState extends State<GamePlayScreen>
   initAnimations() {
     invalidAC = createAnswerAnimationController();
     invalidAnimation =
-        CurvedAnimation(parent: invalidAC, curve: Curves.elasticOut);
+        CurvedAnimation(parent: invalidAC!, curve: Curves.elasticOut);
 
     validAC = createAnswerAnimationController();
-    validAnimation = CurvedAnimation(parent: validAC, curve: Curves.elasticOut);
+    validAnimation = CurvedAnimation(parent: validAC!, curve: Curves.elasticOut);
   }
 
   @protected
@@ -117,13 +155,15 @@ class GamePlayScreenState extends State<GamePlayScreen>
     // TODO: Remove it when fixed in Flutter
     // https://github.com/flutter/flutter/issues/13238
     try {
-      _rotationChannel.invokeMethod('setPortrait');
+      if (Platform.isAndroid || Platform.isIOS) {
+        _rotationChannel.invokeMethod('setPortrait');
+      }
     } catch (error) {
       print("Error on portrait");
     }
 
     if (_rotateSubscription != null) {
-      _rotateSubscription.cancel();
+      _rotateSubscription!.cancel();
     }
 
     validAC?.dispose();
@@ -187,13 +227,13 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   showScore() {
     SettingsModel.of(context).increaseGamesFinished();
-    CategoryModel.of(context).increasePlayedCount(category);
-    AnalyticsService.logEvent('game_score', {
-      'valid': QuestionModel.of(context).questionsPassed.length,
-      'invalid': QuestionModel.of(context).questionsFailed.length,
-    });
+    CategoryModel.of(context).increasePlayedCount(category!);
+    
+    //   'valid': QuestionModel.of(context).questionsPassed.length,
+    //   'invalid': QuestionModel.of(context).questionsFailed.length,
+    // });
     Navigator.pushReplacementNamed(context, '/game-summary');
-    AdsService.showInterstitialAd();
+    // AdsService.showInterstitialAd();
   }
 
   Future<bool> confirmBack() async {
@@ -203,7 +243,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
       Alert(
         context: context,
         type: AlertType.warning,
-        title: 'Zgadula',
+        title: 'Parlera',
         style: AlertStyle(
           isCloseButton: false,
           isOverlayTapDismiss: false,
@@ -234,7 +274,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
       ).show(),
     );
 
-    return completer.future;
+    return completer.future as FutureOr<bool>;
   }
 
   void gameOver() {
@@ -260,19 +300,21 @@ class GamePlayScreenState extends State<GamePlayScreen>
     startTimer();
   }
 
-  postAnswer({@required bool isValid}) {
+  postAnswer({required bool isValid}) {
+    if (Platform.isAndroid || Platform.isIOS) {
     VibrationService.vibrate();
+    }
     QuestionModel.of(context).answerQuestion(isValid);
 
     setState(() {
       isPaused = true;
     });
 
-    AnalyticsService.logEvent('answer_question', {
-      'valid': isValid,
-      'question': QuestionModel.of(context).currentQuestion.name,
-      'category': category.name,
-    });
+    
+    //   'valid': isValid,
+    //   'question': QuestionModel.of(context).currentQuestion.name,
+    //   'category': category.name,
+    // });
   }
 
   handleValid() {
@@ -281,7 +323,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
 
     AudioService.valid(context);
-    validAC.forward();
+    validAC!.forward();
     postAnswer(isValid: true);
   }
 
@@ -291,7 +333,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
 
     AudioService.invalid(context);
-    invalidAC.forward();
+    invalidAC!.forward();
     postAnswer(isValid: false);
   }
 
@@ -326,12 +368,12 @@ class GamePlayScreenState extends State<GamePlayScreen>
       child: Icon(
         icon,
         size: ThemeConfig.fullScreenIconSize,
-        color: Theme.of(context).textTheme.body1.color,
+        color: Theme.of(context).textTheme.bodyText1!.color,
       ),
     );
   }
 
-  Widget buildSplashContent(Widget child, Color background, [IconData icon]) {
+  Widget buildSplashContent(Widget child, Color background, [IconData? icon]) {
     return Container(
       decoration: BoxDecoration(color: background),
       child: Column(
@@ -354,8 +396,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
                     ),
                   ),
                 )
-              : null,
-        ].where((o) => o != null).toList(),
+              : Container(),
+        ].where((o) => o != null).toList() as List<Widget>,
       ),
     );
   }
@@ -391,12 +433,12 @@ class GamePlayScreenState extends State<GamePlayScreen>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     currentQuestion == null
-                        ? null
+                        ? Container()
                         : Padding(
                             padding: EdgeInsets.only(top: 8.0),
                             child: SafeArea(
                               child: Text(
-                                currentQuestion.categoryName,
+                                currentQuestion.categoryName!,
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
@@ -406,7 +448,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
                             ),
                           ),
                     currentQuestion == null
-                        ? null
+                        ? Container()
                         : Expanded(
                             child: Center(
                               child: buildHeader(currentQuestion.name),
@@ -423,7 +465,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
                         ),
                       ),
                     ),
-                  ].where((o) => o != null).toList(),
+                  ].where((o) => o != null).toList() as List<Widget>,
                 ),
               ),
             ),
@@ -480,7 +522,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   @override
   Widget build(BuildContext context) {
-    bool showCamera = isCameraEnabled && isStarted;
+    bool showCamera = isCameraEnabled! && isStarted;
 
     return ScreenTemplate(
       onBack: () async {
@@ -494,9 +536,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
         },
         child: Stack(
           children: [
-            showCamera ? CameraPreviewScreen() : null,
+            showCamera ? CameraPreviewScreen() : Container(),
             buildContent(),
-          ].where((o) => o != null).toList(),
+          ].where((o) => o != null).toList() as List<Widget>,
         ),
       ),
     );

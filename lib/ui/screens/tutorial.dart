@@ -2,28 +2,31 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:zgadula/localizations.dart';
-import 'package:zgadula/store/tutorial.dart';
+import 'package:parlera/localizations.dart';
+import 'package:parlera/store/tutorial.dart';
 import '../shared/reveal/widgets.dart';
+import "package:parlera/ui/shared/reveal/pages.dart" as Zg;
 
 class TutorialScreen extends StatefulWidget {
+  const TutorialScreen({Key? key}) : super(key: key);
+
   @override
   TutorialScreenState createState() => TutorialScreenState();
 }
 
 class TutorialScreenState extends State<TutorialScreen>
     with TickerProviderStateMixin {
-  StreamController<SlideUpdate> slideUpdateStream;
-  AnimatedPageDragger animatedPageDragger;
+  StreamController<SlideUpdate>? slideUpdateStream;
+  late AnimatedPageDragger animatedPageDragger;
 
   int activeIndex = 0;
   int nextPageIndex = 0;
-  SlideDirection slideDirection = SlideDirection.none;
-  double slidePercent = 0.0;
+  SlideDirection? slideDirection = SlideDirection.none;
+  double? slidePercent = 0.0;
 
   TutorialScreenState() {
     slideUpdateStream = StreamController<SlideUpdate>();
-    slideUpdateStream.stream.listen((SlideUpdate event) {
+    slideUpdateStream!.stream.listen((SlideUpdate event) {
       setState(() {
         if (event.updateType == UpdateType.dragging) {
           slideDirection = event.direction;
@@ -37,7 +40,7 @@ class TutorialScreenState extends State<TutorialScreen>
             nextPageIndex = activeIndex;
           }
         } else if (event.updateType == UpdateType.doneDragging) {
-          if (slidePercent > 0.2) {
+          if (slidePercent! > 0.2) {
             animatedPageDragger = AnimatedPageDragger(
               slideDirection: slideDirection,
               transitionGoal: TransitionGoal.open,
@@ -83,7 +86,7 @@ class TutorialScreenState extends State<TutorialScreen>
   dispose() {
     super.dispose();
 
-    slideUpdateStream.close();
+    slideUpdateStream!.close();
   }
 
   skipTutorial() {
@@ -132,14 +135,14 @@ class TutorialScreenState extends State<TutorialScreen>
     return Scaffold(
       body: Stack(
         children: [
-          Page(
+          Zg.Page(
             viewModel: pages[activeIndex],
             percentVisible: 1.0,
             onSkip: skipTutorial,
           ),
           PageReveal(
             revealPercent: slidePercent,
-            child: Page(
+            child: Zg.Page(
               viewModel: pages[nextPageIndex],
               percentVisible: slidePercent,
               onSkip: skipTutorial,

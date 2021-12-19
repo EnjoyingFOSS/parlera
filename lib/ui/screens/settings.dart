@@ -4,35 +4,34 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:package_info/package_info.dart';
 
-import 'package:zgadula/localizations.dart';
-import 'package:zgadula/services/analytics.dart';
-import 'package:zgadula/services/language.dart';
-import 'package:zgadula/store/settings.dart';
-import 'package:zgadula/store/language.dart';
+import 'package:parlera/localizations.dart';
+
+import 'package:parlera/services/language.dart';
+import 'package:parlera/store/settings.dart';
+import 'package:parlera/store/language.dart';
 import '../shared/widgets.dart';
-import 'package:zgadula/ui/templates/screen.dart';
+import 'package:parlera/ui/templates/screen.dart';
 
 class SettingsScreen extends StatelessWidget {
-  Future<bool> _requestPermissions(
-      List<PermissionGroup> permissionGroups) async {
-    Map<PermissionGroup, PermissionStatus> permissions =
-        await PermissionHandler().requestPermissions(permissionGroups);
-
-    return permissions.values
-        .where((status) => status != PermissionStatus.granted)
-        .isEmpty;
-  }
+  const SettingsScreen({Key? key}) : super(key: key);
 
   Future<bool> requestCameraPermissions() async {
-    return _requestPermissions([
-      PermissionGroup.camera,
-      PermissionGroup.microphone,
-    ]);
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+      Permission.microphone,
+    ].request();
+    var res = true;
+    for (var status in statuses.values) {
+      if (status != PermissionStatus.granted) {
+        res = false;
+      }
+    }
+    return res;
   }
 
-  void logChange(String field, dynamic value) {
-    AnalyticsService.logEvent(field, {"value": value});
-  }
+  // void logChange(String field, dynamic value) {
+  //   AnalyticsService.logEvent(field, {"value": value});
+  // }
 
   Widget buildContent(context) {
     return Container(
@@ -43,13 +42,13 @@ class SettingsScreen extends StatelessWidget {
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsCamera),
                 subtitle: Text(AppLocalizations.of(context).settingsCameraHint),
-                value: model.isCameraEnabled,
+                value: model.isCameraEnabled!,
                 onChanged: (bool value) async {
                   if (value && !await requestCameraPermissions()) {
                     return;
                   }
 
-                  logChange('settings_camera', value);
+                  // logChange('settings_camera', value);
                   model.toggleCamera();
                 },
                 secondary: Icon(Icons.camera_alt),
@@ -58,18 +57,18 @@ class SettingsScreen extends StatelessWidget {
                 title: Text(AppLocalizations.of(context).settingsAccelerometer),
                 subtitle: Text(
                     AppLocalizations.of(context).settingsAccelerometerHint),
-                value: model.isRotationControlEnabled,
+                value: model.isRotationControlEnabled!,
                 onChanged: (bool value) {
-                  logChange('settings_accelerometer', value);
+                  // logChange('settings_accelerometer', value);
                   model.toggleRotationControl();
                 },
                 secondary: Icon(Icons.screen_rotation),
               ),
               SwitchListTile(
                 title: Text(AppLocalizations.of(context).settingsAudio),
-                value: model.isAudioEnabled,
+                value: model.isAudioEnabled!,
                 onChanged: (bool value) {
-                  logChange('settings_audio', value);
+                  // logChange('settings_audio', value);
                   model.toggleAudio();
                 },
                 secondary: Icon(Icons.music_note),
@@ -99,8 +98,8 @@ class SettingsScreen extends StatelessWidget {
                                 ),
                               )
                               .toList(),
-                          onChanged: (String language) {
-                            logChange('settings_language', language);
+                          onChanged: (String? language) {
+                            // logChange('settings_language', language);
                             model.changeLanguage(language);
                           },
                         ),
@@ -141,7 +140,7 @@ class SettingsScreen extends StatelessWidget {
                     onTap: () => openCredits(context),
                     child: Padding(
                       padding: EdgeInsets.only(bottom: 8),
-                      child: Text('v ${snapshot.data.version}'),
+                      child: Text('v ${snapshot.data!.version}'),
                     ),
                   );
                 }
@@ -156,7 +155,6 @@ class SettingsScreen extends StatelessWidget {
   }
 
   openTutorial(BuildContext context) {
-    AnalyticsService.logEvent('settings_tutorial', {});
     Navigator.pushNamed(
       context,
       '/tutorial',
@@ -171,8 +169,6 @@ class SettingsScreen extends StatelessWidget {
   }
 
   openPrivacyPolicy() async {
-    AnalyticsService.logEvent('settings_privacy', {});
-
     const url = SettingsModel.privacyPolicyUrl;
     if (await canLaunch(url)) {
       await launch(url);

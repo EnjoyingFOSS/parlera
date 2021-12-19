@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:quiver/iterables.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'package:zgadula/localizations.dart';
-import 'package:zgadula/models/question.dart';
-import 'package:zgadula/store/gallery.dart';
-import 'package:zgadula/store/question.dart';
-import 'package:zgadula/store/settings.dart';
-import 'package:zgadula/ui/theme.dart';
+import 'package:parlera/localizations.dart';
+import 'package:parlera/models/question.dart';
+import 'package:parlera/store/gallery.dart';
+import 'package:parlera/store/question.dart';
+import 'package:parlera/ui/theme.dart';
 import '../shared/widgets.dart';
-import 'package:zgadula/ui/templates/screen.dart';
+import 'package:parlera/ui/templates/screen.dart';
 
 class GameSummaryScreen extends StatelessWidget {
-  Widget buildQuestionItem(BuildContext context, Question question) {
+  const GameSummaryScreen({Key? key}) : super(key: key);
+
+  Widget buildQuestionItem(BuildContext context, Question? question) {
     if (question == null) {
       return Container();
     }
@@ -25,16 +26,16 @@ class GameSummaryScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Icon(
-            question.isPassed ? Icons.check : Icons.close,
+            question.isPassed! ? Icons.check : Icons.close,
             size: 20.0,
-            color: question.isPassed ? successColor : Colors.white,
+            color: question.isPassed! ? successColor : Colors.white,
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
                 question.name,
-                style: Theme.of(context).textTheme.body1,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
           ),
@@ -45,7 +46,7 @@ class GameSummaryScreen extends StatelessWidget {
 
   List<Widget> buildQuestionsList(
     BuildContext context,
-    List<Question> questions,
+    List<Question?> questions,
   ) {
     var chunks = partition(questions, 2).toList();
     return List.generate(
@@ -68,7 +69,7 @@ class GameSummaryScreen extends StatelessWidget {
             )).toList();
   }
 
-  openGallery(BuildContext context, FileSystemEntity item) {
+  void openGallery(BuildContext context, FileSystemEntity item) {
     GalleryModel.of(context).setActive(item);
 
     Navigator.pushNamed(
@@ -107,9 +108,13 @@ class GameSummaryScreen extends StatelessWidget {
                         ),
                         child: Text(
                           model.questionsPassed.length.toString(),
-                          style: Theme.of(context).textTheme.display2.copyWith(
-                                color: Theme.of(context).textTheme.body1.color,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.headline2!.copyWith(
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline1!
+                                        .color,
+                                  ),
                         ),
                       ),
                     ),
@@ -125,7 +130,9 @@ class GameSummaryScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 16.0),
                       child: GalleryHorizontal(
                         items: model.images,
-                        onTap: (item) => openGallery(context, item),
+                        onTap: (item) {
+                          if (item != null) openGallery(context, item);
+                        },
                       ),
                     );
                   },
@@ -147,9 +154,9 @@ class GameSummaryScreen extends StatelessWidget {
                   label: Text(AppLocalizations.of(context).summaryBack),
                   icon: Icon(Icons.play_circle_outline),
                   onPressed: () {
-                    if (!SettingsModel.of(context).isNotificationsEnabled) {
-                      SettingsModel.of(context).enableNotifications();
-                    }
+                    // if (!SettingsModel.of(context).isNotificationsEnabled!) {
+                    //   SettingsModel.of(context).enableNotifications();
+                    // }
                     Navigator.popUntil(context, ModalRoute.withName('/'));
                   },
                 ),
