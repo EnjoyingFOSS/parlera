@@ -44,7 +44,7 @@ import 'package:parlera/models/category.dart';
 import 'category_list_item.dart';
 
 class CategoryList extends StatelessWidget {
-  CategoryList({
+  const CategoryList({
     Key? key,
     this.categories,
   }) : super(key: key);
@@ -55,37 +55,28 @@ class CategoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<CategoryModel>(
         builder: (context, child, model) {
-      return ListView(
-        children: [
-          GridView.count(
-            shrinkWrap: true,
-            primary: false,
-            padding: EdgeInsets.all(8),
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            crossAxisCount: ThemeConfig.categoriesGridCount,
-            children: categories!.asMap().keys.map((index) {
-              var category = categories![index];
-
-              return CategoryListItem(
-                category: category,
-                onTap: () {
-                  model.setCurrent(category);
-
-                  
-                  //   'category_select',
-                  //   {'category': category.name},
-                  // );
-
-                  Navigator.pushNamed(
-                    context,
-                    '/category',
-                  );
-                },
+      return GridView.count(
+        shrinkWrap: true,
+        primary: false,
+        padding: const EdgeInsets.all(8),
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        crossAxisCount: ThemeConfig.categoriesGridCount,
+        children: categories!.map((category) {
+          return CategoryListItem(
+            category: category,
+            onTap: () {
+              model.setCurrent(category);
+              //   'category_select',
+              //   {'category': category.name},
+              // );
+              Navigator.pushNamed(
+                context,
+                '/category',
               );
-            }).toList(),
-          ),
-        ],
+            },
+          );
+        }).toList(),
       );
     });
   }

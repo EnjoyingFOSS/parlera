@@ -35,16 +35,17 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/localizations.dart';
 import 'package:parlera/store/category.dart';
 import 'package:parlera/ui/theme.dart';
 import 'package:parlera/models/category.dart';
-import 'category_image.dart';
 
 class CategoryListItem extends StatefulWidget {
-  const CategoryListItem({Key? key, 
+  const CategoryListItem({
+    Key? key,
     this.category,
     this.onTap,
   }) : super(key: key);
@@ -62,12 +63,10 @@ class _CategoryListItemState extends State<CategoryListItem> {
       opacity: 0.7,
       child: Row(
         children: [
-          icon != null
-              ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: Icon(icon, size: 14),
-                )
-              : Container(),
+          if (icon != null)
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: Icon(icon, size: 14)),
           Text(
             text,
             style: TextStyle(
@@ -75,7 +74,7 @@ class _CategoryListItemState extends State<CategoryListItem> {
               fontSize: ThemeConfig.categoriesMetaSize,
             ),
           ),
-        ].where((o) => o != null).toList() as List<Widget>,
+        ],
       ),
     );
   }
@@ -86,75 +85,63 @@ class _CategoryListItemState extends State<CategoryListItem> {
 
     return GestureDetector(
       onTap: widget.onTap,
-      child: Stack(
-        children: [
-          Hero(
-            tag: 'categoryImage-${widget.category!.name}',
-            child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                child: CategoryImage(photo: widget.category!.getImagePath())),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(8),
-                topRight: Radius.circular(8),
-              ),
-              child: Container(
-                color: Theme.of(context).primaryColor.withOpacity(0.5),
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                child: Text(
-                  widget.category!.name!,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: ThemeConfig.categoriesTextSize,
-                  ),
-                ),
-              ),
+      behavior: HitTestBehavior.opaque,
+      child: Stack(children: [
+        Hero(
+          tag: 'categoryImage-${widget.category!.name}',
+          child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              child: SvgPicture.asset(widget.category!.getImagePath(),
+                  fit: BoxFit.contain)),
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: Text(
+            widget.category!.name!,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 18,
             ),
           ),
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 30,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(8),
+              bottomRight: Radius.circular(8),
+            ),
+            child: Container(
+              height: double.infinity,
+              color: Theme.of(context).primaryColor.withOpacity(0.5),
+            ),
+          ),
+        ),
+        ScopedModelDescendant<CategoryModel>(
+          builder: (context, child, model) {
+            return Positioned(
+              bottom: 10,
+              left: 10,
+              child: buildMetaItem(
+                model.getPlayedCount(widget.category!).toString(),
+                Icons.play_arrow,
+              ),
+            );
+          },
+        ),
+        if (questionCount > 0)
           Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 30,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(8),
-                bottomRight: Radius.circular(8),
-              ),
-              child: Container(
-                height: double.infinity,
-                color: Theme.of(context).primaryColor.withOpacity(0.5),
-              ),
+            bottom: 10,
+            right: 10,
+            child: buildMetaItem(
+              AppLocalizations.of(context)
+                  .categoryItemQuestionsCount(questionCount),
             ),
-          ),
-          ScopedModelDescendant<CategoryModel>(
-            builder: (context, child, model) {
-              return Positioned(
-                bottom: 10,
-                left: 10,
-                child: buildMetaItem(
-                  model.getPlayedCount(widget.category!).toString(),
-                  Icons.play_arrow,
-                ),
-              );
-            },
-          ),
-          questionCount > 0
-              ? Positioned(
-                  bottom: 10,
-                  right: 10,
-                  child: buildMetaItem(
-                    AppLocalizations.of(context)
-                        .categoryItemQuestionsCount(questionCount),
-                  ),
-                )
-              : Container(),
-        ].where((o) => o != null).toList() as List<Widget>,
-      ),
+          )
+      ]),
     );
   }
 }

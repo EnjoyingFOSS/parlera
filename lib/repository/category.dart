@@ -51,33 +51,33 @@ class CategoryRepository {
 
   Future<List<Category>> getAll(String languageCode) async {
     languageCode = languageCode.toLowerCase();
-    
+
     var categoryList = json.decode(await rootBundle
         .loadString('assets/data/categories_$languageCode.json'));
-    print(categoryList);
 
     List<Category> categories = [];
-    for (Map<String, dynamic> categoryMap
-        in categoryList) {
+    for (Map<String, dynamic> categoryMap in categoryList) {
       categories.add(Category.fromJson(categoryMap));
     }
 
     return categories;
   }
 
-  List<String?> toggleFavorite(List<String?> favourites, Category selected) {
-    if (favourites.contains(selected.id)) {
-      favourites.remove(selected.id);
-    } else {
-      favourites.add(selected.id);
-    }
+  List<String> toggleFavorite(List<String> favourites, Category selected) {
+    if (selected.id != null) {
+      if (favourites.contains(selected.id)) {
+        favourites.remove(selected.id);
+      } else {
+        favourites.add(selected.id!);
+      }
 
-    storage!.setStringList(storageFavoriteListKey, favourites as List<String>);
+      storage!.setStringList(storageFavoriteListKey, favourites);
+    }
 
     return favourites;
   }
 
-  List<String?> getFavorites() {
+  List<String> getFavorites() {
     return storage!.getStringList(storageFavoriteListKey) ?? [];
   }
 

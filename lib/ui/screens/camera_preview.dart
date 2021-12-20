@@ -198,8 +198,8 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
         child: Stack(
           children: [
             CameraPreview(controller!),
-            lastImage != null ? buildImageTaken() : null,
-          ].where((w) => w != null).toList() as List<Widget>,
+            if (lastImage != null) buildImageTaken(),
+          ],
         ),
       ),
     );

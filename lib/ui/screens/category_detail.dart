@@ -36,15 +36,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:scoped_model/scoped_model.dart';
-
 
 import 'package:parlera/localizations.dart';
 import 'package:parlera/store/category.dart';
 import 'package:parlera/store/settings.dart';
 import 'package:parlera/ui/templates/screen.dart';
 import 'package:parlera/ui/theme.dart';
-import '../shared/widgets.dart';
 
 class CategoryDetailScreen extends StatelessWidget {
   const CategoryDetailScreen({Key? key}) : super(key: key);
@@ -80,26 +79,25 @@ class CategoryDetailScreen extends StatelessWidget {
           return SafeArea(
             child: Stack(
               children: [
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
-                        child: Container(
+                        child: SizedBox(
                           width: ThemeConfig.categoryImageSize,
                           height: ThemeConfig.categoryImageSize,
                           child: Hero(
                             tag: 'categoryImage-${category.name}',
-                            child: ClipOval(
-                              child: CategoryImage(
-                                photo: category.getImagePath(),
-                              ),
+                            child: SvgPicture.asset(
+                              category.getImagePath(),
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 320,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 32),
@@ -125,9 +123,9 @@ class CategoryDetailScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(bottom: 8),
                                 child: RichText(
                                   text: TextSpan(
-                                    text:
-                                        AppLocalizations.of(context).gameTime,
-                                    style: Theme.of(context).textTheme.bodyText1,
+                                    text: AppLocalizations.of(context).gameTime,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                   ),
                                 ),
                               ),
@@ -145,7 +143,6 @@ class CategoryDetailScreen extends StatelessWidget {
                                 },
                                 groupValue: settingsModel.roundTime!.toDouble(),
                                 onValueChanged: (dynamic value) {
-                                  
                                   //     "settings_round_time", {"value": value});
                                   settingsModel.changeRoundTime(value.toInt());
                                 },
@@ -156,7 +153,7 @@ class CategoryDetailScreen extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 32),
-                        child: RaisedButton.icon(
+                        child: ElevatedButton.icon(
                           label: Text(
                               AppLocalizations.of(context).preparationPlay),
                           icon: const Icon(Icons.play_circle_outline),

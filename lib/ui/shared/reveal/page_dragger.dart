@@ -56,7 +56,7 @@ class PageDragger extends StatefulWidget {
 }
 
 class _PageDraggerState extends State<PageDragger> {
-  static const FULL_TRANSITION_PX = 300.0;
+  static const fullTransitionPx = 300.0;
 
   Offset? dragStart;
   SlideDirection? slideDirection;
@@ -79,7 +79,7 @@ class _PageDraggerState extends State<PageDragger> {
       }
 
       if (slideDirection != SlideDirection.none) {
-        slidePercent = (dx / FULL_TRANSITION_PX).abs().clamp(0.0, 1.0);
+        slidePercent = (dx / fullTransitionPx).abs().clamp(0.0, 1.0);
       } else {
         slidePercent = 0.0;
       }
@@ -110,33 +110,34 @@ class _PageDraggerState extends State<PageDragger> {
 }
 
 class AnimatedPageDragger {
-  static const PERCENT_PER_MILLISECOND = 0.005;
+  static const percentPerMillisecond = 0.005;
 
-  final slideDirection;
-  final transitionGoal;
+  final SlideDirection? slideDirection;
+  final TransitionGoal? transitionGoal;
 
   late AnimationController completionAnimationController;
 
   AnimatedPageDragger({
-    this.slideDirection,
-    this.transitionGoal,
+    required this.slideDirection,
+    required this.transitionGoal,
     slidePercent,
     StreamController<SlideUpdate>? slideUpdateStream,
     required TickerProvider vsync,
   }) {
     final startSlidePercent = slidePercent;
-    var endSlidePercent;
-    var duration;
+
+    late double endSlidePercent;
+    late Duration duration;
 
     if (transitionGoal == TransitionGoal.open) {
       endSlidePercent = 1.0;
       final slideRemaining = 1.0 - slidePercent;
       duration = Duration(
-          milliseconds: (slideRemaining / PERCENT_PER_MILLISECOND).round());
+          milliseconds: (slideRemaining / percentPerMillisecond).round());
     } else {
       endSlidePercent = 0.0;
       duration = Duration(
-          milliseconds: (slidePercent / PERCENT_PER_MILLISECOND).round());
+          milliseconds: (slidePercent / percentPerMillisecond).round());
     }
 
     completionAnimationController =
@@ -187,9 +188,9 @@ enum UpdateType {
 }
 
 class SlideUpdate {
-  final updateType;
-  final direction;
-  final slidePercent;
+  final UpdateType updateType;
+  final SlideDirection? direction;
+  final double slidePercent;
 
   SlideUpdate(
     this.updateType,

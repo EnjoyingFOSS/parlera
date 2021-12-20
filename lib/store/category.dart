@@ -50,14 +50,14 @@ class CategoryModel extends StoreModel {
   Map<String?, Category?> _categories = {};
   List<Category?> get categories => _categories.values.toList();
 
-  List<String?> _favourites = [];
+  List<String> _favourites = [];
   List<Category?> get favourites =>
       _favourites.map((id) => _categories[id]).where((c) => c != null).toList();
 
   Category? _currentCategory;
   Category? get currentCategory => _currentCategory;
 
-  Map<String?, int> _playedCount = {};
+  final Map<String?, int> _playedCount = {};
   Map<String?, int> get playedCount => _playedCount;
 
   CategoryModel(this.repository);
@@ -66,11 +66,9 @@ class CategoryModel extends StoreModel {
     _isLoading = true;
     notifyListeners();
 
-    _categories = Map.fromIterable(
-      await repository.getAll(languageCode),
-      key: (c) => c.id,
-      value: (c) => c,
-    );
+    _categories = {
+      for (var c in await repository.getAll(languageCode)) c.id: c
+    };
     _favourites = repository.getFavorites();
     _isLoading = false;
     notifyListeners();

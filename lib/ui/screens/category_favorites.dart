@@ -35,11 +35,11 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:parlera/ui/shared/category_list.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
 import 'package:parlera/localizations.dart';
-import '../shared/widgets.dart';
 import 'package:parlera/ui/templates/screen.dart';
 
 class CategoryFavoritesScreen extends StatelessWidget {
@@ -59,7 +59,7 @@ class CategoryFavoritesScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Icon(Icons.favorite_border, size: 96),
-                  Container(
+                  SizedBox(
                     width: 160,
                     child: Text(
                       AppLocalizations.of(context).emptyFavorites,

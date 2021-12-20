@@ -41,9 +41,9 @@ import 'package:parlera/models/question.dart';
 import 'package:parlera/repository/question.dart';
 import 'package:parlera/store/store.dart';
 
-const QUESTIONS_PER_GAME = 10;
-
 class QuestionModel extends StoreModel {
+  static const questionsPerGame = 10;
+  
   QuestionRepository repository;
 
   bool _isLoading = true;
@@ -60,7 +60,7 @@ class QuestionModel extends StoreModel {
       questionsAnswered.where((q) => q!.isPassed!).toList();
   List<Question?> get questionsFailed =>
       questionsAnswered.where((q) => !q!.isPassed!).toList();
-  List<Question?> _latestQuestions = [];
+  final List<Question?> _latestQuestions = [];
   List<Question?> get latestQuestions => _latestQuestions;
 
   Question? _currentQuestion;
@@ -81,7 +81,7 @@ class QuestionModel extends StoreModel {
     _currentQuestions = repository.getRandom(
       _questions,
       categoryId,
-      QUESTIONS_PER_GAME,
+      questionsPerGame,
       excluded: _latestQuestions,
     );
     for (var q in _currentQuestions) {

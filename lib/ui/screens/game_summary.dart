@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:parlera/ui/shared/gallery_horizontal.dart';
 import 'package:quiver/iterables.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -9,7 +10,6 @@ import 'package:parlera/models/question.dart';
 import 'package:parlera/store/gallery.dart';
 import 'package:parlera/store/question.dart';
 import 'package:parlera/ui/theme.dart';
-import '../shared/widgets.dart';
 import 'package:parlera/ui/templates/screen.dart';
 
 class GameSummaryScreen extends StatelessWidget {
@@ -99,7 +99,7 @@ class GameSummaryScreen extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -138,21 +138,21 @@ class GameSummaryScreen extends StatelessWidget {
                   },
                 ),
                 ListView(
-                  padding: EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(top: 16),
                   shrinkWrap: true,
                   children:
                       buildQuestionsList(context, model.questionsAnswered),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
                   child: Divider(
                     indent: 32,
                     endIndent: 32,
                   ),
                 ),
-                RaisedButton.icon(
+                ElevatedButton.icon(
                   label: Text(AppLocalizations.of(context).summaryBack),
-                  icon: Icon(Icons.play_circle_outline),
+                  icon: const Icon(Icons.play_circle_outline),
                   onPressed: () {
                     // if (!SettingsModel.of(context).isNotificationsEnabled!) {
                     //   SettingsModel.of(context).enableNotifications();

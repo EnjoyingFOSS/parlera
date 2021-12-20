@@ -38,13 +38,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
+import 'package:parlera/ui/shared/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'localizations.dart';
 import 'ui/theme.dart';
-import 'ui/shared/widgets.dart';
 import 'ui/screens/category_detail.dart';
 import 'ui/screens/game_play.dart';
 import 'ui/screens/game_summary.dart';
@@ -173,7 +173,7 @@ class App extends StatelessWidget {
           home: const HomeScreen(),
           routes: {
             '/category': (context) => const CategoryDetailScreen(),
-            '/game-play': (context) => GamePlayScreen(),
+            '/game-play': (context) => const GamePlayScreen(),
             '/game-summary': (context) => const GameSummaryScreen(),
             '/game-gallery': (context) => const GameGalleryScreen(),
             '/settings': (context) => const SettingsScreen(),

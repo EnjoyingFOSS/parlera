@@ -66,7 +66,7 @@ class Page extends StatelessWidget {
                   0.0,
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 25.0),
+                  padding: const EdgeInsets.only(bottom: 25.0),
                   child: Image.asset(
                     viewModel!.heroAssetPath,
                     width: 200.0,
@@ -116,9 +116,9 @@ class Page extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 35.0, bottom: 75.0),
-                  child: RaisedButton.icon(
+                  child: ElevatedButton.icon(
                     label: Text(viewModel!.skip),
-                    icon: Icon(Icons.play_circle_outline),
+                    icon: const Icon(Icons.play_circle_outline),
                     onPressed: onSkip,
                   ),
                 ),

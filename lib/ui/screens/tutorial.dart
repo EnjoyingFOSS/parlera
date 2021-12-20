@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:parlera/localizations.dart';
 import 'package:parlera/store/tutorial.dart';
 import '../shared/reveal/widgets.dart';
-import "package:parlera/ui/shared/reveal/pages.dart" as Zg;
+import "package:parlera/ui/shared/reveal/pages.dart" as zg;
 
 class TutorialScreen extends StatefulWidget {
   const TutorialScreen({Key? key}) : super(key: key);
@@ -97,28 +97,28 @@ class TutorialScreenState extends State<TutorialScreen>
     final pages = [
       PageViewModel(
         Theme.of(context).primaryColor,
-        'assets/images/tutorial_1.png',
+        'assets/images/tutorial/1.png',
         AppLocalizations.of(context).tutorialFirstSectionHeader,
         AppLocalizations.of(context).tutorialFirstSectionDescription,
         AppLocalizations.of(context).tutorialSkip,
       ),
       PageViewModel(
         Theme.of(context).primaryColorDark,
-        'assets/images/tutorial_2.png',
+        'assets/images/tutorial/2.png',
         AppLocalizations.of(context).tutorialSecondSectionHeader,
         AppLocalizations.of(context).tutorialSecondSectionDescription,
         AppLocalizations.of(context).tutorialSkip,
       ),
       PageViewModel(
         Theme.of(context).primaryColor,
-        'assets/images/tutorial_3.png',
+        'assets/images/tutorial/3.png',
         AppLocalizations.of(context).tutorialThirdSectionHeader,
         AppLocalizations.of(context).tutorialThirdSectionDescription,
         AppLocalizations.of(context).tutorialSkip,
       ),
       PageViewModel(
         Theme.of(context).primaryColorDark,
-        'assets/images/tutorial_4.png',
+        'assets/images/tutorial/4.png',
         AppLocalizations.of(context).tutorialFourthSectionHeader,
         AppLocalizations.of(context).tutorialFourthSectionDescription,
         AppLocalizations.of(context).tutorialSkip,
@@ -135,14 +135,14 @@ class TutorialScreenState extends State<TutorialScreen>
     return Scaffold(
       body: Stack(
         children: [
-          Zg.Page(
+          zg.Page(
             viewModel: pages[activeIndex],
             percentVisible: 1.0,
             onSkip: skipTutorial,
           ),
           PageReveal(
             revealPercent: slidePercent,
-            child: Zg.Page(
+            child: zg.Page(
               viewModel: pages[nextPageIndex],
               percentVisible: slidePercent,
               onSkip: skipTutorial,
@@ -159,7 +159,7 @@ class TutorialScreenState extends State<TutorialScreen>
           PageDragger(
             canDragLeftToRight: activeIndex > 0,
             canDragRightToLeft: activeIndex < pages.length - 1,
-            slideUpdateStream: this.slideUpdateStream,
+            slideUpdateStream: slideUpdateStream,
           ),
         ],
       ),

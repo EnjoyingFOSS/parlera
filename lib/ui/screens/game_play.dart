@@ -39,7 +39,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sensors/sensors.dart';
+import 'package:parlera/ui/shared/game_controller.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:pedantic/pedantic.dart';
@@ -57,10 +57,10 @@ import 'package:parlera/ui/screens/camera_preview.dart';
 import 'package:parlera/ui/templates/screen.dart';
 import 'package:parlera/ui/theme.dart';
 import 'package:parlera/services/pictures.dart';
-import '../shared/widgets.dart';
+import 'package:sensors_plus/sensors_plus.dart';
 
 class GamePlayScreen extends StatefulWidget {
-  GamePlayScreen({Key? key}) : super(key: key);
+  const GamePlayScreen({Key? key}) : super(key: key);
 
   @override
   GamePlayScreenState createState() => GamePlayScreenState();
@@ -119,20 +119,17 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
 
     initAnimations();
-
-    
   }
 
   AnimationController createAnswerAnimationController() {
     const duration = Duration(milliseconds: 1500);
     var controller = AnimationController(vsync: this, duration: duration);
-    controller
-      ..addStatusListener((listener) {
-        if (listener == AnimationStatus.completed) {
-          controller.reset();
-          nextQuestion();
-        }
-      });
+    controller.addStatusListener((listener) {
+      if (listener == AnimationStatus.completed) {
+        controller.reset();
+        nextQuestion();
+      }
+    });
 
     return controller;
   }
@@ -143,9 +140,11 @@ class GamePlayScreenState extends State<GamePlayScreen>
         CurvedAnimation(parent: invalidAC!, curve: Curves.elasticOut);
 
     validAC = createAnswerAnimationController();
-    validAnimation = CurvedAnimation(parent: validAC!, curve: Curves.elasticOut);
+    validAnimation =
+        CurvedAnimation(parent: validAC!, curve: Curves.elasticOut);
   }
 
+  @override
   @protected
   @mustCallSuper
   void dispose() {
@@ -228,7 +227,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   showScore() {
     SettingsModel.of(context).increaseGamesFinished();
     CategoryModel.of(context).increasePlayedCount(category!);
-    
+
     //   'valid': QuestionModel.of(context).questionsPassed.length,
     //   'invalid': QuestionModel.of(context).questionsFailed.length,
     // });
@@ -244,7 +243,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
         context: context,
         type: AlertType.warning,
         title: 'Parlera',
-        style: AlertStyle(
+        style: const AlertStyle(
           isCloseButton: false,
           isOverlayTapDismiss: false,
           alertBorder: Border(),
@@ -268,7 +267,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
               Navigator.pop(context);
               completer.complete(true);
             },
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ],
       ).show(),
@@ -302,7 +301,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   postAnswer({required bool isValid}) {
     if (Platform.isAndroid || Platform.isIOS) {
-    VibrationService.vibrate();
+      VibrationService.vibrate();
     }
     QuestionModel.of(context).answerQuestion(isValid);
 
@@ -310,7 +309,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
       isPaused = true;
     });
 
-    
     //   'valid': isValid,
     //   'question': QuestionModel.of(context).currentQuestion.name,
     //   'category': category.name,
@@ -354,7 +352,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 64.0,
           fontWeight: FontWeight.bold,
         ),
@@ -376,29 +374,25 @@ class GamePlayScreenState extends State<GamePlayScreen>
   Widget buildSplashContent(Widget child, Color background, [IconData? icon]) {
     return Container(
       decoration: BoxDecoration(color: background),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Center(
-              child: child,
-            ),
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Expanded(
+          child: Center(
+            child: child,
           ),
-          QuestionModel.of(context).isPreLastQuestion()
-              ? Padding(
-                  padding: EdgeInsets.only(bottom: 16),
-                  child: Text(
-                    AppLocalizations.of(context).lastQuestion,
-                    style: TextStyle(
-                      fontSize: 36.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              : Container(),
-        ].where((o) => o != null).toList() as List<Widget>,
-      ),
+        ),
+        if (QuestionModel.of(context).isPreLastQuestion())
+          Padding(
+            padding:const  EdgeInsets.only(bottom: 16),
+            child: Text(
+              AppLocalizations.of(context).lastQuestion,
+              style: const TextStyle(
+                fontSize: 36.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          )
+      ]),
     );
   }
 
@@ -432,40 +426,38 @@ class GamePlayScreenState extends State<GamePlayScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    currentQuestion == null
-                        ? Container()
-                        : Padding(
-                            padding: EdgeInsets.only(top: 8.0),
-                            child: SafeArea(
-                              child: Text(
-                                currentQuestion.categoryName!,
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
+                    if (currentQuestion != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: SafeArea(
+                          child: Text(
+                            currentQuestion.categoryName!,
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
-                    currentQuestion == null
-                        ? Container()
-                        : Expanded(
-                            child: Center(
-                              child: buildHeader(currentQuestion.name),
-                            ),
-                          ),
+                        ),
+                      ),
+                    if (currentQuestion != null)
+                      Expanded(
+                        child: Center(
+                          child: buildHeader(currentQuestion.name),
+                        ),
+                      ),
                     Padding(
-                      padding: EdgeInsets.only(bottom: 20.0),
+                      padding: const EdgeInsets.only(bottom: 20.0),
                       child: Text(
                         secondsLeft.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
                     ),
-                  ].where((o) => o != null).toList() as List<Widget>,
+                  ],
                 ),
               ),
             ),
@@ -507,7 +499,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
             child: Text(
               AppLocalizations.of(context).preparationOrientationDescription,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 40.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -534,12 +526,10 @@ class GamePlayScreenState extends State<GamePlayScreen>
         onWillPop: () async {
           return await confirmBack();
         },
-        child: Stack(
-          children: [
-            showCamera ? CameraPreviewScreen() : Container(),
-            buildContent(),
-          ].where((o) => o != null).toList() as List<Widget>,
-        ),
+        child: Stack(children: [
+          if (showCamera) const CameraPreviewScreen(),
+          buildContent(),
+        ]),
       ),
     );
   }

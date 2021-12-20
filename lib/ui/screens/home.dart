@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parlera/ui/shared/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
@@ -8,7 +9,6 @@ import 'package:parlera/ui/screens/category_list.dart';
 import 'package:parlera/ui/screens/category_favorites.dart';
 import 'package:parlera/ui/screens/settings.dart';
 import 'package:parlera/ui/templates/screen.dart';
-import '../shared/widgets.dart';
 import '../theme.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,9 +22,9 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   final List<Tab> tabs = <Tab>[
-    Tab(icon: Icon(Icons.play_circle_filled)),
-    Tab(icon: Icon(Icons.favorite)),
-    Tab(icon: Icon(Icons.settings)),
+    const Tab(icon: Icon(Icons.play_circle_filled)),
+    const Tab(icon: Icon(Icons.favorite)),
+    const Tab(icon: Icon(Icons.settings)),
   ];
   TabController? _tabController;
 
@@ -57,7 +57,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       builder: (context, child, model) => ScopedModelDescendant<QuestionModel>(
         builder: (context, child, qModel) {
           if (model.isLoading || qModel.isLoading || !isTutorialWatched()) {
-            return ScreenLoader();
+            return const ScreenLoader();
           }
 
           return ScreenTemplate(
@@ -66,7 +66,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 color: primaryDarkColor,
                 height: 55,
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       top: BorderSide(
                         color: primaryColor,
@@ -76,7 +76,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                   child: TabBar(
                     controller: _tabController,
-                    labelColor: Theme.of(context).buttonColor,
+                    labelColor: Theme.of(context).colorScheme.secondary,
                     unselectedLabelColor: primaryLightColor,
                     indicatorColor: primaryDarkColor,
                     indicatorSize: TabBarIndicatorSize.label,
@@ -86,7 +86,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               body: TabBarView(
                 controller: _tabController,
-                children: [
+                children: const [
                   CategoryListScreen(),
                   CategoryFavoritesScreen(),
                   SettingsScreen(),

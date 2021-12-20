@@ -37,7 +37,7 @@
 import 'package:flutter/material.dart';
 
 class GameController extends StatefulWidget {
-  GameController({
+  const GameController({
     Key? key,
     this.child,
     this.alignment,
@@ -55,6 +55,7 @@ class GameController extends StatefulWidget {
 }
 
 class _GameControllerState extends State<GameController> {
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(

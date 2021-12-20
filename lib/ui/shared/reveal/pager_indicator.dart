@@ -54,7 +54,7 @@ class PagerIndicator extends StatelessWidget {
     for (var i = 0; i < viewModel!.pages.length; ++i) {
       final page = viewModel!.pages[i];
 
-      var percentActive;
+      double? percentActive;
       if (i == viewModel!.activeIndex) {
         percentActive = 1.0 - viewModel!.slidePercent!;
       } else if (i == viewModel!.activeIndex - 1 &&
@@ -125,7 +125,7 @@ class PageBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     Color color = secondaryDarkColor;
 
-    return Container(
+    return SizedBox(
       width: 25.0,
       height: 55.0,
       child: Center(

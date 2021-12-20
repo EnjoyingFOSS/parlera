@@ -53,21 +53,21 @@ final isTablet = Device.get().isTablet;
 
 ThemeData createTheme(BuildContext context) {
   ThemeData theme = ThemeData(
+    fontFamily: 'MontserratAlternates',
     brightness: Brightness.dark,
-    buttonColor: secondaryColor,
     backgroundColor: primaryDarkColor,
     indicatorColor: secondaryColor,
     scaffoldBackgroundColor: Colors.transparent,
     primaryColorDark: primaryDarkColor,
     primaryColorLight: primaryLightColor,
     primaryColor: primaryColor,
-    accentColor: secondaryColor,
     toggleableActiveColor: secondaryLightColor,
     iconTheme: const IconThemeData(
       color: Color(0xFFFFFFFF),
     ),
     dividerColor: Colors.white30,
     textTheme: Theme.of(context).textTheme.apply(
+      fontFamily: 'MontserratAlternates',
           bodyColor: textColor,
           displayColor: const Color(0xFF757575),
           fontSizeFactor: isTablet ? 1.75 : 1.0,
@@ -88,6 +88,8 @@ ThemeData createTheme(BuildContext context) {
       inactiveTrackColor: primaryDarkColor,
       overlayColor: secondaryLightColor.withOpacity(0.5),
     ),
+    colorScheme: ColorScheme.fromSwatch()
+        .copyWith(secondary: secondaryColor, brightness: Brightness.dark),
   );
 
   return theme;
@@ -102,7 +104,6 @@ class ThemeConfig {
 
   static final categoriesGridCount = isTablet ? 3 : 2;
   static final categoriesTextHeight = isTablet ? 55.0 : 35.0;
-  static final categoriesTextSize = isTablet ? 22.0 : 14.0;
   static final categoriesMetaSize = isTablet ? 14.0 : 10.0;
   static final categoryImageSize = isTablet ? 280.0 : 170.0;
 

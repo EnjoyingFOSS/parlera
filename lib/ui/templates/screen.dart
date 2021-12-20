@@ -37,7 +37,8 @@
 import 'package:flutter/material.dart';
 
 class ScreenTemplate extends StatelessWidget {
-  const ScreenTemplate({Key? key, 
+  const ScreenTemplate({
+    Key? key,
     required this.child,
     this.showBack = false,
     this.onBack,
@@ -65,20 +66,19 @@ class ScreenTemplate extends StatelessWidget {
         child: Stack(
           children: [
             child,
-            showBack || onBack != null
-                ? Positioned(
-                    top: 0,
-                    left: 0,
-                    child: SafeArea(
-                      child: IconButton(
-                        onPressed: () =>
-                            onBack != null ? onBack!() : Navigator.pop(context),
-                        icon: const Icon(Icons.arrow_back_ios),
-                      ),
-                    ),
-                  )
-                : Container(),
-          ].where((o) => o != null).toList() as List<Widget>,
+            if (showBack || onBack != null)
+              Positioned(
+                top: 0,
+                left: 0,
+                child: SafeArea(
+                  child: IconButton(
+                    onPressed: () =>
+                        onBack != null ? onBack!() : Navigator.pop(context),
+                    icon: const Icon(Icons.arrow_back_ios),
+                  ),
+                ),
+              )
+          ],
         ),
       ),
     );

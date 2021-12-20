@@ -9,7 +9,6 @@ import 'package:parlera/localizations.dart';
 import 'package:parlera/services/language.dart';
 import 'package:parlera/store/settings.dart';
 import 'package:parlera/store/language.dart';
-import '../shared/widgets.dart';
 import 'package:parlera/ui/templates/screen.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -34,92 +33,82 @@ class SettingsScreen extends StatelessWidget {
   // }
 
   Widget buildContent(context) {
-    return Container(
-      child: ScopedModelDescendant<SettingsModel>(
-        builder: (context, child, model) {
-          return ListView(
-            children: [
-              SwitchListTile(
-                title: Text(AppLocalizations.of(context).settingsCamera),
-                subtitle: Text(AppLocalizations.of(context).settingsCameraHint),
-                value: model.isCameraEnabled!,
-                onChanged: (bool value) async {
-                  if (value && !await requestCameraPermissions()) {
-                    return;
-                  }
+    return ScopedModelDescendant<SettingsModel>(
+      builder: (context, child, model) {
+        return ListView(
+          children: [
+            SwitchListTile(
+              title: Text(AppLocalizations.of(context).settingsCamera),
+              subtitle: Text(AppLocalizations.of(context).settingsCameraHint),
+              value: model.isCameraEnabled!,
+              onChanged: (bool value) async {
+                if (value && !await requestCameraPermissions()) {
+                  return;
+                }
 
-                  // logChange('settings_camera', value);
-                  model.toggleCamera();
-                },
-                secondary: Icon(Icons.camera_alt),
-              ),
-              SwitchListTile(
-                title: Text(AppLocalizations.of(context).settingsAccelerometer),
-                subtitle: Text(
-                    AppLocalizations.of(context).settingsAccelerometerHint),
-                value: model.isRotationControlEnabled!,
-                onChanged: (bool value) {
-                  // logChange('settings_accelerometer', value);
-                  model.toggleRotationControl();
-                },
-                secondary: Icon(Icons.screen_rotation),
-              ),
-              SwitchListTile(
-                title: Text(AppLocalizations.of(context).settingsAudio),
-                value: model.isAudioEnabled!,
-                onChanged: (bool value) {
-                  // logChange('settings_audio', value);
-                  model.toggleAudio();
-                },
-                secondary: Icon(Icons.music_note),
-              ),
-              ScopedModelDescendant<LanguageModel>(
-                builder: (context, child, model) {
-                  return ListTile(
-                      title:
-                          Text(AppLocalizations.of(context).settingsLanguage),
-                      leading: Icon(Icons.flag),
-                      trailing: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                          value: model.language,
-                          items: LanguageService.getCodes()
-                              .map(
-                                (code) => DropdownMenuItem(
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 8.0),
-                                        child: FlagImage(country: code),
-                                      ),
-                                      Text(code.toUpperCase()),
-                                    ],
-                                  ),
-                                  value: code,
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (String? language) {
-                            // logChange('settings_language', language);
-                            model.changeLanguage(language);
-                          },
-                        ),
-                      ));
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.open_in_browser),
-                title: Text(AppLocalizations.of(context).settingsPrivacyPolicy),
-                onTap: openPrivacyPolicy,
-              ),
-              ListTile(
-                leading: Icon(Icons.help),
-                title: Text(AppLocalizations.of(context).settingsStartTutorial),
-                onTap: () => openTutorial(context),
-              ),
-            ],
-          );
-        },
-      ),
+                // logChange('settings_camera', value);
+                model.toggleCamera();
+              },
+              secondary: const Icon(Icons.camera_alt),
+            ),
+            SwitchListTile(
+              title: Text(AppLocalizations.of(context).settingsAccelerometer),
+              subtitle: Text(
+                  AppLocalizations.of(context).settingsAccelerometerHint),
+              value: model.isRotationControlEnabled!,
+              onChanged: (bool value) {
+                // logChange('settings_accelerometer', value);
+                model.toggleRotationControl();
+              },
+              secondary: const Icon(Icons.screen_rotation),
+            ),
+            SwitchListTile(
+              title: Text(AppLocalizations.of(context).settingsAudio),
+              value: model.isAudioEnabled!,
+              onChanged: (bool value) {
+                // logChange('settings_audio', value);
+                model.toggleAudio();
+              },
+              secondary: const Icon(Icons.music_note),
+            ),
+            ScopedModelDescendant<LanguageModel>(
+              builder: (context, child, model) {
+                return ListTile(
+                    title:
+                        Text(AppLocalizations.of(context).settingsLanguage),
+                    leading: const Icon(Icons.flag),
+                    trailing: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        value: model.language,
+                        items: LanguageService.getCodes()
+                            .map(
+                              (code) => DropdownMenuItem(
+                                child: Text(code.toUpperCase()),
+                                value: code,
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (String? language) {
+                          // logChange('settings_language', language);
+                          model.changeLanguage(language);
+                        },
+                      ),
+                    ));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.open_in_browser),
+              title: Text(AppLocalizations.of(context).settingsPrivacyPolicy),
+              onTap: openPrivacyPolicy,
+            ),
+            ListTile(
+              leading: const Icon(Icons.help),
+              title: Text(AppLocalizations.of(context).settingsStartTutorial),
+              onTap: () => openTutorial(context),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -139,7 +128,7 @@ class SettingsScreen extends StatelessWidget {
                   return GestureDetector(
                     onTap: () => openCredits(context),
                     child: Padding(
-                      padding: EdgeInsets.only(bottom: 8),
+                      padding: const EdgeInsets.only(bottom: 8),
                       child: Text('v ${snapshot.data!.version}'),
                     ),
                   );
