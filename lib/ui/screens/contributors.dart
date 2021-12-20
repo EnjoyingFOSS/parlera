@@ -20,7 +20,7 @@
 //
 // This file is derived from work covered by the following license notice:
 //
-//   Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and "ewaosie"
+//   Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and Ewa Osiecka
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:parlera/store/contributor.dart';
 import 'package:parlera/ui/templates/screen.dart';
 
-class ContributorsScreen extends StatefulWidget {
+class ContributorsScreen extends StatefulWidget { // todo replace with about screen
   const ContributorsScreen({Key? key}) : super(key: key);
 
   @override

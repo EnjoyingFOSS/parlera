@@ -20,7 +20,7 @@
 //
 // This file is derived from work covered by the following license notice:
 //
-//   Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and "ewaosie"
+//   Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and Ewa Osiecka
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ import 'package:parlera/store/store.dart';
 
 class QuestionModel extends StoreModel {
   static const questionsPerGame = 10;
-  
+
   QuestionRepository repository;
 
   bool _isLoading = true;
