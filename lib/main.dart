@@ -34,26 +34,24 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
-import 'package:parlera/ui/shared/screen_loader.dart';
+import 'package:parlera/widgets/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'localizations.dart';
-import 'ui/theme.dart';
+import 'helpers/theme.dart';
 import 'ui/screens/category_detail.dart';
-import 'ui/screens/game_play.dart';
+import 'ui/screens/game_play/game_play.dart';
 import 'ui/screens/game_summary.dart';
 import 'ui/screens/game_gallery.dart';
 import 'ui/screens/settings.dart';
 import 'ui/screens/tutorial.dart';
 import 'ui/screens/home.dart';
-import 'ui/screens/contributors.dart';
-import 'services/language.dart';
+import 'helpers/language.dart';
 import 'repository/category.dart';
 import 'repository/question.dart';
 import 'repository/language.dart';
@@ -140,10 +138,6 @@ class App extends StatelessWidget {
   Widget buildApp(BuildContext context) {
     return ScopedModelDescendant<LanguageModel>(
       builder: (context, child, model) {
-        if (model.isLoading) {
-          return const ScreenLoader();
-        }
-
         bool languageSet = model.language != null;
         if (languageSet) {
           CategoryModel.of(context).load(model.language!);
@@ -159,17 +153,14 @@ class App extends StatelessWidget {
 
             return locale;
           },
-          localizationsDelegates: [
-            SettingsLocalizationsDelegate(
-              languageSet ? Locale(model.language!, '') : null
-            ),
-            const AppLocalizationsDelegate(),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
           ],
           supportedLocales:
-              LanguageService.getCodes().map((code) => Locale(code, '')),
-          theme: createTheme(context),
+              LanguageHelper.getCodes().map((code) => Locale(code, '')),
+          theme: ThemeHelper.darkTheme,
           home: const HomeScreen(),
           routes: {
             '/category': (context) => const CategoryDetailScreen(),
@@ -178,7 +169,6 @@ class App extends StatelessWidget {
             '/game-gallery': (context) => const GameGalleryScreen(),
             '/settings': (context) => const SettingsScreen(),
             '/tutorial': (context) => const TutorialScreen(),
-            '/contributors': (context) => const ContributorsScreen(),
           },
         );
       },

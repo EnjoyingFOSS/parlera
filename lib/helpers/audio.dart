@@ -34,14 +34,25 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'package:vibration/vibration.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/widgets.dart';
+import 'package:parlera/store/settings.dart';
 
-class VibrationService {
-  static vibrate() async {
-    bool canVibrate = await Vibration.hasVibrator() ?? false;
+class AudioHelper {
+  static AudioCache audioCache = AudioCache(prefix: 'assets/audio/');
 
-    if (canVibrate) {
-      await Vibration.vibrate();
+  static bool _audioEnabled(BuildContext context) =>
+      SettingsModel.of(context).isAudioEnabled!;
+
+  static void playInvalid(context) {
+    if (_audioEnabled(context)) {
+      audioCache.play('choice_invalid.wav');
+    }
+  }
+
+  static void playValid(context) {
+    if (_audioEnabled(context)) {
+      audioCache.play('choice_valid.wav');
     }
   }
 }

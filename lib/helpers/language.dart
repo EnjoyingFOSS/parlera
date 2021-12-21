@@ -34,11 +34,8 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-class FormatterService {
-  static String secondsToTime(int value) {
-    int minutes = (value / 60).floor();
-    int seconds = value % 60;
-
-    return '${minutes.toString().padLeft(2, "0")}:${seconds.toString().padLeft(2, "0")}';
+class LanguageHelper {
+  static List<String> getCodes() {
+    return ['en', 'pl'];
   }
 }

@@ -34,8 +34,34 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-class LanguageService {
-  static List<String> getCodes() {
-    return ['en', 'pl'];
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:camera/camera.dart';
+
+import 'package:parlera/store/settings.dart';
+
+class PicturesHelper {
+  static Future<Directory> getDirectory(BuildContext context) async {
+    var baseDir = await getTemporaryDirectory();
+    var folder = SettingsModel.of(context).gamesPlayed.toString();
+
+    return await Directory('${baseDir.path}/game_$folder')
+        .create(recursive: true);
+  }
+
+  static Future<List<FileSystemEntity?>> getFiles(BuildContext context) async {
+    var dir = await getDirectory(context);
+
+    return dir.listSync();
+  }
+
+  static Future<CameraDescription> getCamera() async {
+    var cameras = await availableCameras();
+    var frontCamera = cameras.firstWhere((cameraDescription) =>
+        cameraDescription.lensDirection == CameraLensDirection.front);
+
+    return frontCamera;
   }
 }

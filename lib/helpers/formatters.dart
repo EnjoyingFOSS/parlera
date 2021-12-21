@@ -34,25 +34,11 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/widgets.dart';
-import 'package:parlera/store/settings.dart';
+class FormatterHelper {
+  static String secondsToTime(int value) {
+    int minutes = (value / 60).floor();
+    int seconds = value % 60;
 
-class AudioService {
-  static AudioCache sfxPlayer = AudioCache(prefix: 'assets/sfx/');
-
-  static _playSfx(BuildContext context, String name) async {
-    bool canAudio = SettingsModel.of(context).isAudioEnabled!;
-    if (canAudio) {
-      await sfxPlayer.play(name);
-    }
-  }
-
-  static invalid(context) {
-    _playSfx(context, 'choice_invalid.wav');
-  }
-
-  static valid(context) {
-    _playSfx(context, 'choice_valid.wav');
+    return '${minutes.toString().padLeft(2, "0")}:${seconds.toString().padLeft(2, "0")}';
   }
 }
