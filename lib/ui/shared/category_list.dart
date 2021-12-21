@@ -39,30 +39,31 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
 
-import 'package:parlera/ui/theme.dart';
 import 'package:parlera/models/category.dart';
 import 'category_list_item.dart';
 
 class CategoryList extends StatelessWidget {
+  final List<Category> categories;
+
   const CategoryList({
     Key? key,
-    this.categories,
+    required this.categories,
   }) : super(key: key);
-
-  final List<Category?>? categories;
 
   @override
   Widget build(BuildContext context) {
+    final crossAxisCount = MediaQuery.of(context).size.width ~/ 480 + 1;
     return ScopedModelDescendant<CategoryModel>(
         builder: (context, child, model) {
       return GridView.count(
+        childAspectRatio: _getCardAspectRatio(context, crossAxisCount),
         shrinkWrap: true,
         primary: false,
         padding: const EdgeInsets.all(8),
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
-        crossAxisCount: ThemeConfig.categoriesGridCount,
-        children: categories!.map((category) {
+        crossAxisCount: crossAxisCount,
+        children: categories.map((category) {
           return CategoryListItem(
             category: category,
             onTap: () {
@@ -79,5 +80,14 @@ class CategoryList extends StatelessWidget {
         }).toList(),
       );
     });
+  }
+
+  double _getCardAspectRatio(BuildContext context, int crossAxisCount) {
+    final itemWidth =
+        (MediaQuery.of(context).size.width - 32 - 8 * (crossAxisCount - 1)) /
+            crossAxisCount;
+    const itemHeight = 96.0;
+
+    return itemWidth / itemHeight;
   }
 }

@@ -50,7 +50,7 @@ class CategoryFavoritesScreen extends StatelessWidget {
     return ScreenTemplate(
       child: ScopedModelDescendant<CategoryModel>(
           builder: (context, child, model) {
-        if (model.favourites.isEmpty) {
+        if (model.favorites.isEmpty) {
           return Opacity(
             opacity: 0.5,
             child: Center(
@@ -74,8 +74,8 @@ class CategoryFavoritesScreen extends StatelessWidget {
             ),
           );
         }
-
-        return CategoryList(categories: model.favourites);
+        
+        return CategoryList(categories: model.favorites);
       }),
     );
   }

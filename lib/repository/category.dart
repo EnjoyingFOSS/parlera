@@ -63,22 +63,22 @@ class CategoryRepository {
     return categories;
   }
 
-  List<String> toggleFavorite(List<String> favourites, Category selected) {
-    if (selected.id != null) {
-      if (favourites.contains(selected.id)) {
-        favourites.remove(selected.id);
-      } else {
-        favourites.add(selected.id!);
-      }
-
-      storage!.setStringList(storageFavoriteListKey, favourites);
+  List<String> toggleFavorite(List<String> favorites, Category selected) {
+    if (favorites.contains(selected.id)) {
+      favorites.remove(selected.id);
+    } else {
+      favorites.add(selected.id);
     }
 
-    return favourites;
+    storage!.setStringList(storageFavoriteListKey, favorites);
+
+    return favorites;
   }
 
-  List<String> getFavorites() {
-    return storage!.getStringList(storageFavoriteListKey) ?? [];
+  List<String> getFavorites(Map<String, Category> categories) {
+    final favoriteIds = storage!.getStringList(storageFavoriteListKey);
+    return favoriteIds?.where((id) => categories.containsKey(id)).toList() ??
+        [];
   }
 
   String _playedCountStorageKey(Category category) {

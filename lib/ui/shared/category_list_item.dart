@@ -43,32 +43,99 @@ import 'package:parlera/store/category.dart';
 import 'package:parlera/ui/theme.dart';
 import 'package:parlera/models/category.dart';
 
-class CategoryListItem extends StatefulWidget {
-  const CategoryListItem({
-    Key? key,
-    this.category,
-    this.onTap,
-  }) : super(key: key);
+class CategoryListItem extends StatelessWidget {
+  final Category category;
+  final VoidCallback onTap;
 
-  final Category? category;
-  final VoidCallback? onTap;
+  const CategoryListItem(
+      {Key? key, required this.category, required this.onTap})
+      : super(key: key);
 
   @override
-  _CategoryListItemState createState() => _CategoryListItemState();
+  Widget build(BuildContext context) {
+    int questionCount = category.questions.length;
+
+    return InkWell(
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.black26,
+          ),
+          child: Stack(children: [
+            Positioned.directional(
+                start: -16,
+                top: 4,
+                bottom: 4,
+                textDirection: Directionality.of(context),
+                child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Hero(
+                      tag: 'categoryImage-${category.name}',
+                      child: Container(
+                        child: SvgPicture.asset(category.getImagePath(),
+                            fit: BoxFit.contain),
+                      ),
+                    ))),
+            Positioned.directional(
+                start: 84,
+                end: 8,
+                top: 2,
+                bottom: 2,
+                textDirection: Directionality.of(context),
+                child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      category.name!,
+                      style: const TextStyle(
+                        fontSize: 24,
+                      ),
+                    )))
+            // todo get rid of these properly
+            // ScopedModelDescendant<CategoryModel>(
+            //   builder: (context, child, model) {
+            //     return Positioned(
+            //       bottom: 10,
+            //       left: 10,
+            //       child: _MetaItem(
+            //         playedCount: model.getPlayedCount(category),
+            //       ),
+            //     );
+            //   },
+            // ),
+            // if (questionCount > 0)
+            //   Positioned(
+            //       bottom: 10,
+            //       right: 10,
+            //       child: Text(
+            //         AppLocalizations.of(context)
+            //             .categoryItemQuestionsCount(questionCount),
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //           fontSize: ThemeConfig.categoriesMetaSize,
+            //         ),
+            //       ))
+          ]),
+        ));
+  }
 }
 
-class _CategoryListItemState extends State<CategoryListItem> {
-  Widget buildMetaItem(String text, [IconData? icon]) {
+class _MetaItem extends StatelessWidget {
+  final int playedCount;
+
+  const _MetaItem({Key? key, required this.playedCount}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Opacity(
       opacity: 0.7,
       child: Row(
         children: [
-          if (icon != null)
-            Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: Icon(icon, size: 14)),
+          const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4.0),
+              child: Icon(Icons.play_arrow, size: 14)),
           Text(
-            text,
+            playedCount.toString(),
             style: TextStyle(
               color: Colors.white,
               fontSize: ThemeConfig.categoriesMetaSize,
@@ -76,72 +143,6 @@ class _CategoryListItemState extends State<CategoryListItem> {
           ),
         ],
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    int questionCount = widget.category!.questions.length;
-
-    return GestureDetector(
-      onTap: widget.onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Stack(children: [
-        Hero(
-          tag: 'categoryImage-${widget.category!.name}',
-          child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              child: SvgPicture.asset(widget.category!.getImagePath(),
-                  fit: BoxFit.contain)),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: Text(
-            widget.category!.name!,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: 30,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(8),
-              bottomRight: Radius.circular(8),
-            ),
-            child: Container(
-              height: double.infinity,
-              color: Theme.of(context).primaryColor.withOpacity(0.5),
-            ),
-          ),
-        ),
-        ScopedModelDescendant<CategoryModel>(
-          builder: (context, child, model) {
-            return Positioned(
-              bottom: 10,
-              left: 10,
-              child: buildMetaItem(
-                model.getPlayedCount(widget.category!).toString(),
-                Icons.play_arrow,
-              ),
-            );
-          },
-        ),
-        if (questionCount > 0)
-          Positioned(
-            bottom: 10,
-            right: 10,
-            child: buildMetaItem(
-              AppLocalizations.of(context)
-                  .categoryItemQuestionsCount(questionCount),
-            ),
-          )
-      ]),
     );
   }
 }

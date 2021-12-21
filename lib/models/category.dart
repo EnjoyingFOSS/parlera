@@ -37,7 +37,7 @@
 import 'package:parlera/models/question.dart';
 
 class Category {
-  final String? id;
+  final String id;
   final String? name;
   final String? image;
   final String? description;
