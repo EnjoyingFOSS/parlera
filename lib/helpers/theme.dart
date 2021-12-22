@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ThemeHelper {
-  static final _darkColors = ColorScheme(
-      primary: const Color(0xFFE33E46),
-      primaryVariant: const Color(0xFFEB7076),
-      secondary: const Color(0xFFF7D0A1),
-      secondaryVariant: const Color(0xFFFAE3C6),
-      surface: const Color(0xFF48392a),
-      background: const Color(0xFF33291E),
-      error: const Color(0xFFB00020),
+  static const _darkColors = ColorScheme(
+      primary: Color(0xFFE33E46),
+      primaryVariant: Color(0xFFEB7076),
+      secondary: Color(0xFFF7D0A1),
+      secondaryVariant: Color(0xFFFAE3C6),
+      surface: Color(0xFF48392a),
+      background: Color(0xFF33291E),
+      error: Color(0xFFB00020),
       onPrimary: Colors.black87,
       onSecondary: Colors.black87,
       onSurface: Colors.white,
@@ -34,6 +34,12 @@ class ThemeHelper {
         errorColor: colors.error,
         toggleableActiveColor: colors.primary,
         fontFamily: 'MontserratAlternates',
+        buttonTheme: const ButtonThemeData(shape: CircleBorder()),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ))),
         appBarTheme: AppBarTheme(
             color: colors.background,
             iconTheme: IconThemeData(color: colors.primary),
