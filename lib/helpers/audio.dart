@@ -46,13 +46,13 @@ class AudioHelper {
 
   static void playInvalid(context) {
     if (_audioEnabled(context)) {
-      audioCache.play('choice_invalid.wav');
+      audioCache.play('choice_incorrect.wav');
     }
   }
 
   static void playValid(context) {
     if (_audioEnabled(context)) {
-      audioCache.play('choice_valid.wav');
+      audioCache.play('choice_correct.wav');
     }
   }
 }
