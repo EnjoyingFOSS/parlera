@@ -66,7 +66,7 @@ class QuestionRepository {
     return allowedQuestions;
   }
 
-  List<Question?> getRandomMixUp(
+  List<Question> getRandomMixUp(
     Map<String?, List<Question>> questions,
     int limit,
   ) {
@@ -83,7 +83,7 @@ class QuestionRepository {
     return _getRandomQuestions(result, limit);
   }
 
-  List<Question?> getRandom(
+  List<Question> getRandom(
       Map<String?, List<Question>> questions, String? categoryId, int limit,
       {List<Question?> excluded = const []}) {
     if (categoryId == 'mixup') {

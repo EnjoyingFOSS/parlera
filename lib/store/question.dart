@@ -52,14 +52,14 @@ class QuestionModel extends StoreModel {
   Map<String?, List<Question>> _questions = {};
   Map<String?, List<Question>> get questions => _questions;
 
-  List<Question?> _currentQuestions = [];
-  List<Question?> get currentQuestions => _currentQuestions;
-  List<Question?> get questionsAnswered =>
-      _currentQuestions.where((q) => q!.isPassed != null).toList();
+  List<Question> _currentQuestions = [];
+  List<Question> get currentQuestions => _currentQuestions;
+  List<Question> get questionsAnswered =>
+      _currentQuestions.where((q) => q.isPassed != null).toList();
   List<Question?> get questionsPassed =>
-      questionsAnswered.where((q) => q!.isPassed!).toList();
+      questionsAnswered.where((q) => q.isPassed!).toList();
   List<Question?> get questionsFailed =>
-      questionsAnswered.where((q) => !q!.isPassed!).toList();
+      questionsAnswered.where((q) => !q.isPassed!).toList();
   final List<Question?> _latestQuestions = [];
   List<Question?> get latestQuestions => _latestQuestions;
 
@@ -85,7 +85,7 @@ class QuestionModel extends StoreModel {
       excluded: _latestQuestions,
     );
     for (var q in _currentQuestions) {
-      q!.isPassed = null;
+      q.isPassed = null;
     }
     _latestQuestions.addAll(_currentQuestions);
     _currentQuestion = _currentQuestions[0];
