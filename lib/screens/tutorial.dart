@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:parlera/localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/store/tutorial.dart';
 import '../shared/reveal/widgets.dart';
 import "package:parlera/ui/shared/reveal/pages.dart" as zg;

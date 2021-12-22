@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:parlera/ui/shared/screen_loader.dart';
+import 'package:parlera/screens/category_list/category_list.dart';
+import 'package:parlera/screens/settings.dart';
+import 'package:parlera/widgets/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
 import 'package:parlera/store/question.dart';
 import 'package:parlera/store/tutorial.dart';
-import 'package:parlera/ui/screens/category_list.dart';
-import 'package:parlera/ui/screens/category_favorites.dart';
-import 'package:parlera/ui/screens/settings.dart';
-import 'package:parlera/ui/templates/screen.dart';
-import '../theme.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -60,38 +57,30 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             return const ScreenLoader();
           }
 
-          return ScreenTemplate(
-            child: Scaffold(
-              bottomNavigationBar: Container(
-                color: primaryDarkColor,
-                height: 55,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      top: BorderSide(
-                        color: primaryColor,
-                        width: 1,
-                      ),
-                    ),
-                  ),
-                  child: TabBar(
-                    controller: _tabController,
-                    labelColor: Theme.of(context).colorScheme.secondary,
-                    unselectedLabelColor: primaryLightColor,
-                    indicatorColor: primaryDarkColor,
-                    indicatorSize: TabBarIndicatorSize.label,
-                    tabs: tabs,
-                  ),
-                ),
-              ),
-              body: TabBarView(
+          return Scaffold(
+            bottomNavigationBar: Container(
+              color: Theme.of(context).colorScheme.secondary,
+              height: 55,
+              child: TabBar(
                 controller: _tabController,
-                children: const [
-                  CategoryListScreen(),
-                  CategoryFavoritesScreen(),
-                  SettingsScreen(),
-                ],
+                labelColor: Theme.of(context).colorScheme.primary,
+                unselectedLabelColor:
+                    Theme.of(context).colorScheme.onSecondary.withOpacity(0.6),
+                indicatorColor: Theme.of(context).colorScheme.primary,
+                tabs: tabs,
               ),
+            ),
+            body: TabBarView(
+              controller: _tabController,
+              children: const [
+                CategoryListScreen(
+                  type: CategoryType.ALL,
+                ),
+                CategoryListScreen(
+                  type: CategoryType.FAVORITES,
+                ),
+                SettingsScreen(),
+              ],
             ),
           );
         },

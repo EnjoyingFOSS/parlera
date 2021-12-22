@@ -7,6 +7,8 @@ As an additional permission under section 7, you are allowed to distribute the s
 
 All unofficial builds and forks of the app must be clearly labeled as such in the app's name. (E.g. "Parlera UNOFFICIAL" or a different name altogether, never just "Parlera".)
 
+Code was originally forked from the Apache-licensed [Zgadula game](https://github.com/vintage/party_flutter) by Kamil Rykowski (@rykowski_dev), Ewa Osiecka (ewaosie), and Kamil Lewandowski (Kamill90).
+
 Images
 ======
 Images in images/categories come from Google's [Noto Emoji repository](https://github.com/googlefonts/noto-emoji) and are licensed under the (Apache 2.0 license)[https://www.apache.org/licenses/LICENSE-2.0.txt], which can be found in the images/categories folder.
@@ -15,7 +17,7 @@ Images in images/tutorial are from Baianat's [Thousands](https://www.baianat.com
 
 Sound effects
 ====
-The sounds for the [correct](https://freesound.org/people/Fupicat/sounds/607207/) and [incorrect](https://freesound.org/people/Fupicat/sounds/538151/) answers by [FupiCat](https://fupicat.github.io/) are licensed under the CC0 license.
+The sounds for the correct and incorrect sounds by Miroslav Mazel are licensed under the CC BY-SA license.
 
 Fonts
 ====

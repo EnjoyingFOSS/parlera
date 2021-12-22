@@ -34,16 +34,14 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'package:parlera/localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/store/category.dart';
 import 'package:parlera/store/settings.dart';
-import 'package:parlera/ui/templates/screen.dart';
-import 'package:parlera/ui/theme.dart';
 
 class CategoryDetailScreen extends StatelessWidget {
   const CategoryDetailScreen({Key? key}) : super(key: key);
@@ -53,7 +51,7 @@ class CategoryDetailScreen extends StatelessWidget {
       onPressed: onPressed as void Function()?,
       icon: Icon(
         isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: isFavorite ? secondaryDarkColor : Colors.white,
+        color: Colors.white,
       ),
     );
   }
@@ -70,9 +68,9 @@ class CategoryDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTemplate(
-      showBack: true,
-      child: ScopedModelDescendant<CategoryModel>(
+    return Scaffold(
+      appBar: AppBar(),
+      body: ScopedModelDescendant<CategoryModel>(
         builder: (context, child, model) {
           var category = model.currentCategory!;
 
@@ -86,8 +84,8 @@ class CategoryDetailScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: SizedBox(
-                          width: ThemeConfig.categoryImageSize,
-                          height: ThemeConfig.categoryImageSize,
+                          width: 192,
+                          height: 192,
                           child: Hero(
                             tag: 'categoryImage-${category.name}',
                             child: SvgPicture.asset(
@@ -129,22 +127,25 @@ class CategoryDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              CupertinoSegmentedControl(
-                                padding: const EdgeInsets.only(top: 8),
-                                borderColor: Colors.white,
-                                selectedColor: secondaryColor,
-                                pressedColor: secondaryDarkColor,
-                                unselectedColor: Theme.of(context).primaryColor,
-                                children: {
-                                  30: buildRoundTimeSelectItem("30s"),
-                                  60: buildRoundTimeSelectItem("60s"),
-                                  90: buildRoundTimeSelectItem("90s"),
-                                  120: buildRoundTimeSelectItem("120s"),
+                              AnimatedToggleSwitch<int>.rolling(
+                                innerColor:
+                                    Colors.transparent,
+                                iconBuilder: (int value, _, bool active) {
+                                  return Center(
+                                      child: Text(
+                                    "$value s.",
+                                    style: TextStyle(
+                                        color: active
+                                            ? Theme.of(context).colorScheme.onSecondary
+                                            : Theme.of(context).colorScheme.onSurface),
+                                  ));
                                 },
-                                groupValue: settingsModel.roundTime!.toDouble(),
-                                onValueChanged: (dynamic value) {
+                                indicatorType: IndicatorType.circle,
+                                current: settingsModel.roundTime!,
+                                values: const [30, 60, 90, 120],
+                                onChanged: (int value) {
                                   //     "settings_round_time", {"value": value});
-                                  settingsModel.changeRoundTime(value.toInt());
+                                  settingsModel.changeRoundTime(value);
                                 },
                               ),
                             ],

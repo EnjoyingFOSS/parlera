@@ -38,7 +38,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../theme.dart';
 import 'pages.dart';
 
 class PagerIndicator extends StatelessWidget {
@@ -123,7 +122,7 @@ class PageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = secondaryDarkColor;
+    final color = Theme.of(context).colorScheme.secondaryVariant;
 
     return SizedBox(
       width: 25.0,
@@ -137,7 +136,7 @@ class PageBubble extends StatelessWidget {
             borderRadius: BorderRadius.circular(2.0),
             color: viewModel!.isHollow
                 ? color.withOpacity(viewModel!.activePercent!)
-                : secondaryColor,
+                : Theme.of(context).colorScheme.secondary,
             border: Border.all(
               color: viewModel!.isHollow
                   ? color.withOpacity(1 - viewModel!.activePercent!)

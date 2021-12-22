@@ -1,6 +1,8 @@
 {
   "@@last_modified": "2018-09-23T12:01:09.716726",
   "about": "About",
+  "emptyCategories": "Couldn't load categories :(",
+  "labelGo": "Go!",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",

@@ -77,7 +77,7 @@ class QuestionModel extends StoreModel {
     notifyListeners();
   }
 
-  generateCurrentQuestions(String? categoryId) {
+  void generateCurrentQuestions(String? categoryId) {
     _currentQuestions = repository.getRandom(
       _questions,
       categoryId,

@@ -36,12 +36,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:scoped_model/scoped_model.dart';
 
-import 'package:parlera/localizations.dart';
-import 'package:parlera/store/category.dart';
-import 'package:parlera/ui/theme.dart';
 import 'package:parlera/models/category.dart';
+import 'package:parlera/widgets/parlera_card.dart';
 
 class CategoryListItem extends StatelessWidget {
   final Category category;
@@ -55,68 +52,60 @@ class CategoryListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     int questionCount = category.questions.length;
 
-    return InkWell(
+    return ParleraCard(
         onTap: onTap,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Colors.black26,
-          ),
-          child: Stack(children: [
-            Positioned.directional(
-                start: -16,
-                top: 4,
-                bottom: 4,
-                textDirection: Directionality.of(context),
-                child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Hero(
-                      tag: 'categoryImage-${category.name}',
-                      child: Container(
-                        child: SvgPicture.asset(category.getImagePath(),
-                            fit: BoxFit.contain),
-                      ),
-                    ))),
-            Positioned.directional(
-                start: 84,
-                end: 8,
-                top: 2,
-                bottom: 2,
-                textDirection: Directionality.of(context),
-                child: Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Text(
-                      category.name!,
-                      style: const TextStyle(
-                        fontSize: 24,
-                      ),
-                    )))
-            // todo get rid of these properly
-            // ScopedModelDescendant<CategoryModel>(
-            //   builder: (context, child, model) {
-            //     return Positioned(
-            //       bottom: 10,
-            //       left: 10,
-            //       child: _MetaItem(
-            //         playedCount: model.getPlayedCount(category),
-            //       ),
-            //     );
-            //   },
-            // ),
-            // if (questionCount > 0)
-            //   Positioned(
-            //       bottom: 10,
-            //       right: 10,
-            //       child: Text(
-            //         AppLocalizations.of(context)
-            //             .categoryItemQuestionsCount(questionCount),
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //           fontSize: ThemeConfig.categoriesMetaSize,
-            //         ),
-            //       ))
-          ]),
-        ));
+        child: (Stack(children: [
+          Positioned.directional(
+              start: -16,
+              top: 4,
+              bottom: 4,
+              textDirection: Directionality.of(context),
+              child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Hero(
+                    tag: 'categoryImage-${category.name}',
+                    child: SvgPicture.asset(category.getImagePath(),
+                        fit: BoxFit.contain),
+                  ))),
+          Positioned.directional(
+              start: 84,
+              end: 8,
+              top: 2,
+              bottom: 2,
+              textDirection: Directionality.of(context),
+              child: Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text(
+                    category.name!,
+                    style: const TextStyle(
+                      fontSize: 24,
+                    ),
+                  )))
+          // todo get rid of these properly
+          // ScopedModelDescendant<CategoryModel>(
+          //   builder: (context, child, model) {
+          //     return Positioned(
+          //       bottom: 10,
+          //       left: 10,
+          //       child: _MetaItem(
+          //         playedCount: model.getPlayedCount(category),
+          //       ),
+          //     );
+          //   },
+          // ),
+          // if (questionCount > 0)
+          //   Positioned(
+          //       bottom: 10,
+          //       right: 10,
+          //       child: Text(
+          //         AppLocalizations.of(context)
+          //             .categoryItemQuestionsCount(questionCount),
+          //         style: TextStyle(
+          //           color: Colors.white,
+          //           fontSize: ThemeConfig.categoriesMetaSize,
+          //         ),
+          //       ))
+        ])));
   }
 }
 
@@ -136,9 +125,9 @@ class _MetaItem extends StatelessWidget {
               child: Icon(Icons.play_arrow, size: 14)),
           Text(
             playedCount.toString(),
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
-              fontSize: ThemeConfig.categoriesMetaSize,
+              fontSize: 12,
             ),
           ),
         ],

@@ -39,25 +39,26 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:parlera/ui/shared/game_controller.dart';
+import 'package:parlera/helpers/audio.dart';
+import 'package:parlera/helpers/pictures.dart';
+import 'package:parlera/helpers/theme.dart';
+import 'package:parlera/helpers/vibration.dart';
+import 'package:parlera/screens/game_play/widgets/prep_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:pedantic/pedantic.dart';
-
-import 'package:parlera/localizations.dart';
-import 'package:parlera/services/audio.dart';
-import 'package:parlera/services/vibration.dart';
 
 import 'package:parlera/store/category.dart';
 import 'package:parlera/models/category.dart';
 import 'package:parlera/store/question.dart';
 import 'package:parlera/store/settings.dart';
 import 'package:parlera/store/gallery.dart';
-import 'package:parlera/ui/screens/camera_preview.dart';
-import 'package:parlera/ui/templates/screen.dart';
-import 'package:parlera/ui/theme.dart';
-import 'package:parlera/services/pictures.dart';
-import 'package:sensors_plus/sensors_plus.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'widgets/camera_preview.dart';
+import 'tilt_service.dart';
+import 'widgets/game_button.dart';
+import 'widgets/result_icon.dart';
 
 class GamePlayScreen extends StatefulWidget {
   const GamePlayScreen({Key? key}) : super(key: key);
@@ -69,17 +70,18 @@ class GamePlayScreen extends StatefulWidget {
 class GamePlayScreenState extends State<GamePlayScreen>
     with TickerProviderStateMixin {
   static const _rotationChannel = MethodChannel('parlera/orientation');
-  static const backgroundOpacity = 0.9;
 
-  Timer? gameTimer;
-  int secondsMax = -1;
-  int secondsLeft = 5;
-  bool isStarted = false;
-  bool isPaused = false;
-  bool? isCameraEnabled = false;
-  bool showAd = false;
+  static const _secondsPrep = 5;
+
+  Timer? _gameTimer;
+  int _secondsMax = -1;
+  late int _secondsLeft;
+  bool _isStarted = false;
+  bool _isPaused = false;
+  bool? _isCameraEnabled = false;
   StreamSubscription<dynamic>? _rotateSubscription;
-  Category? category;
+  Category? _category;
+  late final TiltService? _tiltService;
 
   AnimationController? invalidAC;
   late Animation<double> invalidAnimation;
@@ -90,20 +92,22 @@ class GamePlayScreenState extends State<GamePlayScreen>
   void initState() {
     super.initState();
     startTimer();
-    category = CategoryModel.of(context).currentCategory;
-    QuestionModel.of(context).generateCurrentQuestions(category!.id);
+    _category = CategoryModel.of(context).currentCategory;
+    QuestionModel.of(context).generateCurrentQuestions(_category!.id);
 
     SettingsModel settings = SettingsModel.of(context);
-    secondsMax = settings.roundTime ?? -1;
-    isCameraEnabled = settings.isCameraEnabled;
+    _secondsMax = settings.roundTime ?? -1;
+    _isCameraEnabled = settings.isCameraEnabled;
     if (settings.isRotationControlEnabled!) {
-      enableRotationControl();
+      _tiltService = TiltService(
+          handleInvalid: handleInvalid,
+          handleValid: handleValid,
+          isPlaying: () => !_isStarted || _isPaused);
+      _secondsLeft = _secondsPrep;
+    } else {
+      _tiltService = null;
+      _secondsLeft = 0;
     }
-    // var gamesCount = settings.gamesFinished + 1;
-    // showAd = gamesCount % 2 == 0;
-    // if (showAd) {
-    //   AdsService.loadInterstitialAd();
-    // }
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
@@ -167,72 +171,46 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
     validAC?.dispose();
     invalidAC?.dispose();
+    _tiltService?.dispose();
 
     super.dispose();
     stopTimer();
   }
 
-  enableRotationControl() {
-    bool safePosition = true;
-    double rotationBorder = 9.5;
-
-    _rotateSubscription =
-        accelerometerEvents.listen((AccelerometerEvent event) {
-      if (!isStarted || isPaused) {
-        return;
-      }
-
-      if (event.z > rotationBorder) {
-        if (safePosition) {
-          safePosition = false;
-          handleInvalid();
-        }
-      } else if (event.z < -rotationBorder) {
-        if (safePosition) {
-          safePosition = false;
-          handleValid();
-        }
-      } else if (event.z.abs() > rotationBorder / 2) {
-        safePosition = true;
-      }
-    });
-  }
-
   startTimer() {
-    gameTimer = Timer.periodic(const Duration(seconds: 1), gameLoop);
+    _gameTimer = Timer.periodic(const Duration(seconds: 1), gameLoop);
   }
 
   stopTimer() {
-    gameTimer?.cancel();
+    _gameTimer?.cancel();
   }
 
   void gameLoop(Timer timer) {
-    if (isPaused) {
+    if (_isPaused) {
       return;
     }
 
-    if (secondsLeft <= 0 && !isPaused) {
+    if (_secondsLeft <= 0 && !_isPaused) {
       return handleTimeout();
     }
 
     setState(() {
-      secondsLeft -= 1;
+      _secondsLeft -= 1;
     });
   }
 
   savePictures() async {
-    GalleryModel.of(context).update(await PicturesService.getFiles(context));
+    GalleryModel.of(context).update(await PicturesHelper.getFiles(context));
   }
 
   showScore() {
     SettingsModel.of(context).increaseGamesFinished();
-    CategoryModel.of(context).increasePlayedCount(category!);
+    CategoryModel.of(context).increasePlayedCount(_category!);
 
     //   'valid': QuestionModel.of(context).questionsPassed.length,
     //   'invalid': QuestionModel.of(context).questionsFailed.length,
     // });
     Navigator.pushReplacementNamed(context, '/game-summary');
-    // AdsService.showInterstitialAd();
   }
 
   Future<bool> confirmBack() async {
@@ -262,12 +240,14 @@ class GamePlayScreenState extends State<GamePlayScreen>
             color: Colors.transparent,
           ),
           DialogButton(
-            child: Text(AppLocalizations.of(context).gameCancelApprove),
+            child: Text(AppLocalizations.of(context).gameCancelApprove,
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
             onPressed: () {
               Navigator.pop(context);
               completer.complete(true);
             },
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.primary,
           ),
         ],
       ).show(),
@@ -283,7 +263,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   nextQuestion() {
     stopTimer();
-    if (secondsLeft == 0) {
+    if (_secondsLeft == 0) {
       return gameOver();
     }
 
@@ -293,7 +273,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
 
     setState(() {
-      isPaused = false;
+      _isPaused = false;
     });
 
     startTimer();
@@ -301,12 +281,12 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   postAnswer({required bool isValid}) {
     if (Platform.isAndroid || Platform.isIOS) {
-      VibrationService.vibrate();
+      VibrationHelper.vibrate();
     }
     QuestionModel.of(context).answerQuestion(isValid);
 
     setState(() {
-      isPaused = true;
+      _isPaused = true;
     });
 
     //   'valid': isValid,
@@ -316,32 +296,32 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   handleValid() {
-    if (isPaused) {
+    if (_isPaused) {
       return;
     }
 
-    AudioService.valid(context);
+    AudioHelper.playValid(context);
     validAC!.forward();
     postAnswer(isValid: true);
   }
 
   handleInvalid() {
-    if (isPaused) {
+    if (_isPaused) {
       return;
     }
 
-    AudioService.invalid(context);
+    AudioHelper.playInvalid(context);
     invalidAC!.forward();
     postAnswer(isValid: false);
   }
 
   void handleTimeout() {
-    if (isStarted) {
+    if (_isStarted) {
       handleInvalid();
     } else {
       setState(() {
-        isStarted = true;
-        secondsLeft = secondsMax;
+        _isStarted = true;
+        _secondsLeft = _secondsMax;
       });
     }
   }
@@ -360,17 +340,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
     );
   }
 
-  Widget buildHeaderIcon(IconData icon) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Icon(
-        icon,
-        size: ThemeConfig.fullScreenIconSize,
-        color: Theme.of(context).textTheme.bodyText1!.color,
-      ),
-    );
-  }
-
   Widget buildSplashContent(Widget child, Color background, [IconData? icon]) {
     return Container(
       decoration: BoxDecoration(color: background),
@@ -382,7 +351,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
         ),
         if (QuestionModel.of(context).isPreLastQuestion())
           Padding(
-            padding:const  EdgeInsets.only(bottom: 16),
+            padding: const EdgeInsets.only(bottom: 16),
             child: Text(
               AppLocalizations.of(context).lastQuestion,
               style: const TextStyle(
@@ -405,130 +374,108 @@ class GamePlayScreenState extends State<GamePlayScreen>
           children: [
             Row(
               children: [
-                GameController(
-                  child: buildHeaderIcon(Icons.sentiment_very_satisfied),
+                GameButton(
+                  child: const ResultIcon(success: true),
                   alignment: Alignment.bottomCenter,
-                  color: successColor.withOpacity(backgroundOpacity),
+                  color: ThemeHelper.successColor,
                   onTap: handleValid,
                 ),
-                GameController(
-                  child: buildHeaderIcon(Icons.sentiment_very_dissatisfied),
+                GameButton(
+                  child: const ResultIcon(success: false),
                   alignment: Alignment.bottomCenter,
-                  color: Theme.of(context)
-                      .errorColor
-                      .withOpacity(backgroundOpacity),
+                  color: ThemeHelper.failColor,
                   onTap: handleInvalid,
                 ),
               ],
             ),
             IgnorePointer(
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (currentQuestion != null)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: SafeArea(
-                          child: Text(
-                            currentQuestion.categoryName!,
-                            style: const TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (currentQuestion != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: SafeArea(
+                        child: Text(
+                          currentQuestion.categoryName!,
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                       ),
-                    if (currentQuestion != null)
-                      Expanded(
-                        child: Center(
-                          child: buildHeader(currentQuestion.name),
-                        ),
-                      ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Text(
-                        secondsLeft.toString(),
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                    ),
+                  if (currentQuestion != null)
+                    Expanded(
+                      child: Center(
+                        child: buildHeader(currentQuestion.name),
                       ),
                     ),
-                  ],
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: Text(
+                      _secondsLeft.toString(),
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
+            Positioned.directional(
+                textDirection: Directionality.of(context),
+                top: 8,
+                start: 8,
+                child: BackButton()),
           ],
         );
       },
     );
   }
 
-  Widget buildContent() {
-    if (isPaused || isStarted) {
-      return Stack(
-        children: [
-          buildGameContent(),
-          ScaleTransition(
-            scale: invalidAnimation,
-            child: buildSplashContent(
-              buildHeaderIcon(Icons.sentiment_very_dissatisfied),
-              Theme.of(context).errorColor,
-            ),
-          ),
-          ScaleTransition(
-            scale: validAnimation,
-            child: buildSplashContent(
-              buildHeaderIcon(Icons.sentiment_very_satisfied),
-              successColor,
-            ),
-          ),
-        ],
-      );
-    }
-
-    return buildSplashContent(
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Text(
-              AppLocalizations.of(context).preparationOrientationDescription,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 40.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          buildHeader(secondsLeft.toString()),
-        ],
-      ),
-      Colors.transparent,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    bool showCamera = isCameraEnabled! && isStarted;
+    bool showCamera = _isCameraEnabled! && _isStarted;
 
-    return ScreenTemplate(
-      onBack: () async {
-        if (await confirmBack()) {
-          Navigator.pop(context);
-        }
-      },
-      child: WillPopScope(
+    return Scaffold(
+      body: WillPopScope(
         onWillPop: () async {
           return await confirmBack();
         },
         child: Stack(children: [
           if (showCamera) const CameraPreviewScreen(),
-          buildContent(), //todo split up into widgets!!!
+          if (_isPaused || _isStarted)
+            Stack(
+              children: [
+                buildGameContent(),
+                ScaleTransition(
+                  scale: invalidAnimation,
+                  child: buildSplashContent(
+                    const ResultIcon(success: false),
+                    ThemeHelper.failColor,
+                  ),
+                ),
+                ScaleTransition(
+                  scale: validAnimation,
+                  child: buildSplashContent(
+                    const ResultIcon(success: true),
+                    ThemeHelper.successColor,
+                  ),
+                ),
+              ],
+            )
+          else if (_secondsLeft == 0)
+            PrepScreen(
+                countdownText: AppLocalizations.of(context).labelGo)
+          else
+            PrepScreen(
+                countdownText: _secondsLeft.toString(),
+                descriptionText: AppLocalizations.of(context)
+                    .preparationOrientationDescription),
         ]),
       ),
     );

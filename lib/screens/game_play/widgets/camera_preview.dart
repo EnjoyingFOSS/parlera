@@ -39,7 +39,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:parlera/services/pictures.dart';
+import 'package:parlera/helpers/pictures.dart';
 
 class CameraPreviewScreen extends StatefulWidget {
   const CameraPreviewScreen({Key? key}) : super(key: key);
@@ -96,8 +96,8 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
       await controller!.dispose();
     }
 
-    pictureDir = await PicturesService.getDirectory(context);
-    var frontCamera = await PicturesService.getCamera();
+    pictureDir = await PicturesHelper.getDirectory(context);
+    var frontCamera = await PicturesHelper.getCamera();
 
     controller = CameraController(
       frontCamera,
@@ -152,38 +152,17 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
       return false;
     }
 
-    
-
-    controller!.takePicture(); // todo check: does this still save the picture? if not, save to ${pictureDir.path}/${DateTime.now().millisecondsSinceEpoch}.png
+    controller!
+        .takePicture(); // todo check: does this still save the picture? if not, save to ${pictureDir.path}/${DateTime.now().millisecondsSinceEpoch}.png
 
     Future.delayed(const Duration(seconds: 1)).then((_) async {
-      List<FileSystemEntity?> files = await PicturesService.getFiles(context);
+      List<FileSystemEntity?> files = await PicturesHelper.getFiles(context);
       setState(() {
         lastImageOpacity = 1;
         lastImage = files.last;
         imageAnimationController!.forward();
       });
     });
-  }
-
-  Widget buildImageTaken() {
-    return Positioned(
-      right: 0,
-      top: 0,
-      child: AnimatedOpacity(
-        opacity: lastImageOpacity,
-        duration: opacityAnimationDuration,
-        child: ScaleTransition(
-          scale: imageAnimationController!,
-          child: Image.file(
-            lastImage as File,
-            fit: BoxFit.cover,
-            width: 100,
-            height: 100,
-          ),
-        ),
-      ),
-    );
   }
 
   @override
@@ -198,7 +177,24 @@ class CameraPreviewScreenState extends State<CameraPreviewScreen>
         child: Stack(
           children: [
             CameraPreview(controller!),
-            if (lastImage != null) buildImageTaken(),
+            if (lastImage != null)
+              Positioned(
+                right: 0,
+                top: 0,
+                child: AnimatedOpacity(
+                  opacity: lastImageOpacity,
+                  duration: opacityAnimationDuration,
+                  child: ScaleTransition(
+                    scale: imageAnimationController!,
+                    child: Image.file(
+                      lastImage as File,
+                      fit: BoxFit.cover,
+                      width: 100,
+                      height: 100,
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
       ),

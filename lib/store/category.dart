@@ -47,12 +47,12 @@ class CategoryModel extends StoreModel {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
-  Map<String?, Category?> _categories = {};
-  List<Category?> get categories => _categories.values.toList();
+  Map<String, Category> _categories = {};
+  List<Category> get categories => _categories.values.toList();
 
-  List<String> _favourites = [];
-  List<Category?> get favourites =>
-      _favourites.map((id) => _categories[id]).where((c) => c != null).toList();
+  List<String> _favorites = [];
+  List<Category> get favorites =>
+      _favorites.map((id) => _categories[id]!).toList();
 
   Category? _currentCategory;
   Category? get currentCategory => _currentCategory;
@@ -69,7 +69,7 @@ class CategoryModel extends StoreModel {
     _categories = {
       for (var c in await repository.getAll(languageCode)) c.id: c
     };
-    _favourites = repository.getFavorites();
+    _favorites = repository.getFavorites(_categories);
     _isLoading = false;
     notifyListeners();
   }
@@ -80,11 +80,11 @@ class CategoryModel extends StoreModel {
   }
 
   isFavorite(Category category) {
-    return _favourites.contains(category.id);
+    return _favorites.contains(category.id);
   }
 
   toggleFavorite(Category category) {
-    _favourites = repository.toggleFavorite(_favourites, category);
+    _favorites = repository.toggleFavorite(_favorites, category);
     notifyListeners();
   }
 

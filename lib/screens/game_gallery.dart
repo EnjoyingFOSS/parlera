@@ -42,9 +42,6 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:parlera/store/gallery.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:parlera/ui/templates/screen.dart';
-
-import '../theme.dart';
 
 class GameGalleryScreen extends StatelessWidget {
   const GameGalleryScreen({Key? key}) : super(key: key);
@@ -68,12 +65,13 @@ class GameGalleryScreen extends StatelessWidget {
         ),
         items: images.map((item) {
           return Stack(children: [
-            const Positioned(
+            Positioned(
               top: 0,
               left: 0,
               right: 0,
               bottom: 0,
-              child: SpinKitRing(color: secondaryColor, size: 70.0),
+              child: SpinKitRing(
+                  color: Theme.of(context).colorScheme.secondary, size: 70.0),
             ),
             Builder(
               builder: (BuildContext context) {
@@ -89,7 +87,6 @@ class GameGalleryScreen extends StatelessWidget {
                           child: const Icon(Icons.share),
                           backgroundColor: Theme.of(context).primaryColor,
                           onPressed: () async {
-                            
                             Share.shareFiles([item.path]);
                           },
                         ),
@@ -107,17 +104,14 @@ class GameGalleryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTemplate(
-      showBack: true,
-      child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: buildGallery(),
-            ),
-          ],
-        ),
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: buildGallery(),
+          ),
+        ],
       ),
     );
   }

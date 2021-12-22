@@ -35,59 +35,38 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
 
-import 'package:parlera/store/category.dart';
-
-import 'package:parlera/models/category.dart';
-import 'category_list_item.dart';
-
-class CategoryList extends StatelessWidget {
-  final List<Category> categories;
-
-  const CategoryList({
+class GameButton extends StatefulWidget {
+  const GameButton({
     Key? key,
-    required this.categories,
+    this.child,
+    this.alignment,
+    this.color,
+    this.onTap,
   }) : super(key: key);
 
+  final Widget? child;
+  final Alignment? alignment;
+  final Color? color;
+  final Function? onTap;
+
+  @override
+  _GameButtonState createState() => _GameButtonState();
+}
+
+class _GameButtonState extends State<GameButton> {
   @override
   Widget build(BuildContext context) {
-    final crossAxisCount = MediaQuery.of(context).size.width ~/ 480 + 1;
-    return ScopedModelDescendant<CategoryModel>(
-        builder: (context, child, model) {
-      return GridView.count(
-        childAspectRatio: _getCardAspectRatio(context, crossAxisCount),
-        shrinkWrap: true,
-        primary: false,
-        padding: const EdgeInsets.all(8),
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-        crossAxisCount: crossAxisCount,
-        children: categories.map((category) {
-          return CategoryListItem(
-            category: category,
-            onTap: () {
-              model.setCurrent(category);
-              //   'category_select',
-              //   {'category': category.name},
-              // );
-              Navigator.pushNamed(
-                context,
-                '/category',
-              );
-            },
-          );
-        }).toList(),
-      );
-    });
-  }
-
-  double _getCardAspectRatio(BuildContext context, int crossAxisCount) {
-    final itemWidth =
-        (MediaQuery.of(context).size.width - 32 - 8 * (crossAxisCount - 1)) /
-            crossAxisCount;
-    const itemHeight = 96.0;
-
-    return itemWidth / itemHeight;
+    return Expanded(
+      child: GestureDetector(
+        onTap: widget.onTap as void Function()?,
+        child: Container(
+          alignment: widget.alignment,
+          child: Opacity(opacity: 0.6, child: widget.child),
+          height: double.infinity,
+          decoration: BoxDecoration(color: widget.color),
+        ),
+      ),
+    );
   }
 }
