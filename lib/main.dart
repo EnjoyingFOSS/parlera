@@ -37,6 +37,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
+import 'package:parlera/screens/game_play/game_play.dart';
+import 'package:parlera/screens/game_summary/game_summary.dart';
 import 'package:parlera/widgets/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,8 +47,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'helpers/theme.dart';
 import 'ui/screens/category_detail.dart';
-import 'ui/screens/game_play/game_play.dart';
-import 'ui/screens/game_summary.dart';
 import 'ui/screens/game_gallery.dart';
 import 'ui/screens/settings.dart';
 import 'ui/screens/tutorial.dart';
