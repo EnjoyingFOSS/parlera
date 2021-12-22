@@ -1,6 +1,6 @@
 [
   {
-    "description": "Opisuj osobniki z królestwa zwięrząt, bądź pokaż je w naturalnym środowisku.",
+    "description": "",
     "id": "animals",
     "image": "animals.svg",
     "name": "Zwierzęta",
@@ -142,7 +142,7 @@
     ]
   },
   {
-    "description": "Udzielaj podpowiedzi nucąc największe światowe hity, bądź wystukuj rytm palcami.",
+    "description": "",
     "id": "humming",
     "image": "sing.svg",
     "name": "Zanuć",
@@ -326,7 +326,7 @@
     ]
   },
   {
-    "description": "Każdy jeść musi, a większość nawet to lubi. Opisz jedzenie, picie i powiązane.",
+    "description": "",
     "id": "food",
     "image": "food.svg",
     "name": "Jedzenie i napoje",
@@ -479,7 +479,7 @@
     ]
   },
   {
-    "description": "Od komedii po dramaty. Opowiedz fabułę, lub odegraj kultową scenkę.",
+    "description": "",
     "id": "movies",
     "image": "movies.svg",
     "name": "Filmy",
@@ -641,7 +641,7 @@
     ]
   },
   {
-    "description": "Udzielaj podpowiedzi nucąc największe POLSKIE hity, bądź wystukuj rytm palcami.",
+    "description": "",
     "id": "humming_pl",
     "image": "sing_pl.svg",
     "name": "Zanuć Polska",
@@ -869,7 +869,7 @@
     ]
   },
   {
-    "description": "Muminki, Reksio, czy Johny Bravo? Czy wszyscy oglądaliście te same bajki?",
+    "description": "",
     "id": "cartoons",
     "image": "cartoons.svg",
     "name": "Filmy animowane",
@@ -1006,7 +1006,7 @@
     ]
   },
   {
-    "description": "Konsolowe i komputerowe. Pokazuj, opowiadaj, graj.",
+    "description": "",
     "id": "games",
     "image": "games.svg",
     "name": "Gry",
@@ -1203,7 +1203,7 @@
     ]
   },
   {
-    "description": "Telewizyjne i nie tylko hity do ogadnięcia. Wszystkie chwyty dozwolone.",
+    "description": "",
     "id": "tv",
     "image": "tv.svg",
     "name": "Seriale",
@@ -1340,7 +1340,7 @@
     ]
   },
   {
-    "description": "\"Oczko mu się odlepiło. Temu misiu.\" Opowiedz fabułę, lub odegraj kultową scenkę.",
+    "description": "",
     "id": "movies_pl",
     "image": "movies_pl.svg",
     "name": "Polskie filmy",
@@ -1454,7 +1454,7 @@
     ]
   },
   {
-    "description": "Zaimprowizuj postać wydając przy tym stosowne dźwięki oraz pozy.",
+    "description": "",
     "id": "fictional_character",
     "image": "fictional_characters.svg",
     "name": "Postacie fikcyjne",
@@ -1640,7 +1640,7 @@
     ]
   },
   {
-    "description": "Zabaw się w aktora i zaprezentuj osobę tak jak ją pamiętasz, bądź opisz.",
+    "description": "",
     "id": "famous_characters",
     "image": "famous_characters.svg",
     "name": "Znane osoby",
@@ -1760,7 +1760,7 @@
     ]
   },
   {
-    "description": "Telewizyjne i nie tylko POLSKIE hity do ogadnięcia.",
+    "description": "",
     "id": "tv_pl",
     "image": "tv_pl.svg",
     "name": "Polskie seriale",
@@ -1844,7 +1844,7 @@
     ]
   },
   {
-    "description": "Kategoria z hasłami z którymi poradzą sobie również dzieci. Zabawa dla całej rodziny.",
+    "description": "",
     "id": "kids",
     "image": "kids.svg",
     "name": "Dla dzieci",
@@ -1965,7 +1965,7 @@
     ]
   },
   {
-    "description": "Lubimy czytać, lubimy opowiadać. Nie tylko dla moli książkowych.",
+    "description": "",
     "id": "books",
     "image": "books.svg",
     "name": "Książki",
@@ -2085,7 +2085,7 @@
     ]
   },
   {
-    "description": "\"Kiedyś to kurła było!\" Przypomnij sobie jak to kiedyś było, kiedy nic nie było.",
+    "description": "",
     "id": "prl",
     "image": "prl.svg",
     "name": "Czasy PRL",
@@ -2205,7 +2205,7 @@
     ]
   },
   {
-    "description": "\"Kiedyś to kurła było!\" Przypomnij sobie jak to kiedyś było, kiedy nic nie było.",
+    "description": "",
     "id": "90s",
     "image": "y90s.svg",
     "name": "Lata 90'",
@@ -2307,14 +2307,14 @@
     ]
   },
   {
-    "description": "Kategoria specjalna, której hasła pochodzą z losowych dziedzin. Dla wtajemniczonych Zgadulowiczów!",
+    "description": "",
     "id": "mixup",
     "image": "mix.svg",
     "name": "Hasła mieszane",
     "questions": []
   },
   {
-    "description": "Codziennego użytku, ale i takie których używasz od święta. Rysuj, pokazuj, opowiadaj!",
+    "description": "",
     "id": "item",
     "image": "items.svg",
     "name": "Przedmioty",
@@ -2446,7 +2446,7 @@
     ]
   },
   {
-    "description": "Zademonstruj bez użycia słów jak się czujesz, lub w jakim nastroju jesteś.",
+    "description": "",
     "id": "characteristics",
     "image": "characteristics.svg",
     "name": "Jaki jestem?",
@@ -2554,7 +2554,7 @@
     ]
   },
   {
-    "description": "xxx",
+    "description": "",
     "id": "place",
     "image": "places.svg",
     "name": "Miejsca",
@@ -2678,7 +2678,7 @@
     ]
   },
   {
-    "description": "Święta, święta i po świętach. Idealna kategoria na świąteczne spotkanie z rodziną.",
+    "description": "",
     "id": "holidays",
     "image": "holidays.svg",
     "name": "Święta",
@@ -2775,7 +2775,7 @@
     ]
   },
   {
-    "description": "Internet wraz z jego głębokimi odmętami i nie tylko.",
+    "description": "",
     "id": "internet",
     "image": "internet.svg",
     "name": "Internety",
@@ -2927,7 +2927,7 @@
     ]
   },
   {
-    "description": "Idealna kategoria do zademonstrowania czynności bez użycia słów. Zostań aktorem!",
+    "description": "",
     "id": "actions",
     "image": "actions.svg",
     "name": "Czynności",
@@ -3041,7 +3041,7 @@
     ]
   },
   {
-    "description": "Dyscypliny sportowe, sportowcy i inne hasła od których można wyczuć pot.",
+    "description": "",
     "id": "sport",
     "image": "sport.svg",
     "name": "Sport",
@@ -3166,7 +3166,7 @@
     ]
   },
   {
-    "description": "Wciel się w dowolny zawód i udowodnij jaki z Ciebie wszechstronny pracownik.",
+    "description": "",
     "id": "jobs",
     "image": "jobs.svg",
     "name": "Zawody",
@@ -3285,7 +3285,7 @@
     ]
   },
   {
-    "description": "Powiedzonka i przysłowia z rodzimego kraju.",
+    "description": "",
     "id": "proverbs",
     "image": "proverbs.svg",
     "name": "Powiedzenia",

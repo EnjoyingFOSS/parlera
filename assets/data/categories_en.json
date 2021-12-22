@@ -1,6 +1,6 @@
 [
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "animals",
     "image": "animals.svg",
     "name": "Animals",
@@ -103,7 +103,7 @@
     ]
   },
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "food",
     "image": "food.svg",
     "name": "Food & drinks",
@@ -213,7 +213,7 @@
     ]
   },
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "movies",
     "image": "movies.svg",
     "name": "Movies",
@@ -469,7 +469,7 @@
     ]
   },
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "games",
     "image": "games.svg",
     "name": "Video games",
@@ -654,7 +654,7 @@
     ]
   },
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "tv",
     "image": "tv.svg",
     "name": "TV series",
@@ -830,7 +830,7 @@
     ]
   },
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "fictional_character",
     "image": "fictional_characters.svg",
     "name": "Fictional characters",
@@ -995,14 +995,14 @@
     ]
   },
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "mixup",
     "image": "mix.svg",
     "name": "Mix-Up!",
     "questions": []
   },
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "jobs",
     "image": "jobs.svg",
     "name": "Professions",
@@ -1122,7 +1122,7 @@
     ]
   },
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "item",
     "image": "items.svg",
     "name": "Things",
@@ -1253,7 +1253,7 @@
     ]
   },
   {
-    "description": "Various questions to describe, show and even draw. Have fun!",
+    "description": "",
     "id": "place",
     "image": "places.svg",
     "name": "Places",
