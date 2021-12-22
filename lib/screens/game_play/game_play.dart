@@ -219,15 +219,14 @@ class GamePlayScreenState extends State<GamePlayScreen>
     unawaited(
       Alert(
         context: context,
-        type: AlertType.warning,
-        title: 'Parlera',
-        style: const AlertStyle(
+        // type: AlertType.warning,
+        style: AlertStyle(
           isCloseButton: false,
           isOverlayTapDismiss: false,
-          alertBorder: Border(),
-          titleStyle: TextStyle(color: Colors.white),
-          descStyle: TextStyle(color: Colors.white, height: 1.05),
-          buttonAreaPadding: EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
+          alertBorder:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          descStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+          buttonAreaPadding: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
         ),
         desc: AppLocalizations.of(context).gameCancelConfirmation,
         buttons: [
@@ -375,13 +374,13 @@ class GamePlayScreenState extends State<GamePlayScreen>
             Row(
               children: [
                 GameButton(
-                  child: const ResultIcon(success: true),
+                  child: const ResultIcon(success: true), //todo add down icon
                   alignment: Alignment.bottomCenter,
                   color: ThemeHelper.successColor,
                   onTap: handleValid,
                 ),
                 GameButton(
-                  child: const ResultIcon(success: false),
+                  child: const ResultIcon(success: false), //todo add up icon
                   alignment: Alignment.bottomCenter,
                   color: ThemeHelper.failColor,
                   onTap: handleInvalid,
@@ -430,7 +429,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
                 textDirection: Directionality.of(context),
                 top: 8,
                 start: 8,
-                child: BackButton()),
+                child: const BackButton()),
           ],
         );
       },
@@ -469,8 +468,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
               ],
             )
           else if (_secondsLeft == 0)
-            PrepScreen(
-                countdownText: AppLocalizations.of(context).labelGo)
+            PrepScreen(countdownText: AppLocalizations.of(context).labelGo)
           else
             PrepScreen(
                 countdownText: _secondsLeft.toString(),

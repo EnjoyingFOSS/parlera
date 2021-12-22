@@ -2,7 +2,7 @@
   "@@last_modified": "2018-09-23T12:01:09.716726",
   "about": "About",
   "emptyCategories": "Couldn't load categories :(",
-  "labelGo": "Go!",
+  "labelGo": "Let's go!",
   "tutorialSkip": "Play",
   "@tutorialSkip": {
     "description": "Button which skips the tutorial and takes the player to the game",
@@ -69,19 +69,19 @@
       "type": "text",
       "placeholders": {}
     },
-  "gameCancelConfirmation": "Do you want to cancel the current game?",
+  "gameCancelConfirmation": "Leave the current game?",
   "@gameCancelConfirmation": {
     "description": "Description of the dialog which is presented to the player when he tries to quit the game loop",
     "type": "text",
     "placeholders": {}
   },
-  "gameCancelApprove": "OK",
+  "gameCancelApprove": "Leave",
   "@gameCancelApprove": {
     "description": "Text for approving the decision to cancel current game.",
     "type": "text",
     "placeholders": {}
   },
-  "gameCancelDeny": "Cancel",
+  "gameCancelDeny": "Stay",
   "@gameCancelDeny": {
     "description": "Text for canceling the decision to cancel current game.",
     "type": "text",
@@ -99,7 +99,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "summaryBack": "Play again",
+  "summaryBack": "Done",
   "@summaryBack": {
     "description": "Button which takes the player from summary screen to category listing",
     "type": "text",

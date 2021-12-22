@@ -43,7 +43,7 @@ import 'package:parlera/store/category.dart';
 import 'widgets/category_list_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-enum CategoryType { ALL, FAVORITES }
+enum CategoryType { all, favorites }
 
 class CategoryListScreen extends StatelessWidget {
   final CategoryType type;
@@ -60,14 +60,14 @@ class CategoryListScreen extends StatelessWidget {
     return ScopedModelDescendant<CategoryModel>(
         builder: (context, child, model) {
       final categories =
-          (type == CategoryType.FAVORITES) ? model.favorites : model.categories;
+          (type == CategoryType.favorites) ? model.favorites : model.categories;
       if (categories.isEmpty) {
         switch (type) {
-          case CategoryType.FAVORITES:
+          case CategoryType.favorites:
             return EmptyScreen(
                 title: AppLocalizations.of(context).emptyFavorites,
                 icon: const Icon(Icons.favorite_border, size: 96));
-          case CategoryType.ALL:
+          case CategoryType.all:
             return EmptyScreen(
                 title: AppLocalizations.of(context).emptyCategories,
                 icon: const Icon(Icons.apps, size: 96));

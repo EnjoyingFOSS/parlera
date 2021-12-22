@@ -16,8 +16,8 @@ class ParleraListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final direction = Directionality.of(context);
-    final margin = 24.0;
-    final iconSize = 48;
+    const margin = 24.0;
+    const iconSize = 48;
     return ParleraCard(
         height: 80,
         child: Stack(children: [

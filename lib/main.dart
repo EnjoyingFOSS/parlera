@@ -43,7 +43,7 @@ import 'package:parlera/screens/game_play/game_play.dart';
 import 'package:parlera/screens/game_summary/game_summary.dart';
 import 'package:parlera/screens/home.dart';
 import 'package:parlera/screens/settings.dart';
-import 'package:parlera/screens/tutorial_old.dart';
+import 'package:parlera/screens/tutorial/tutorial.dart';
 import 'package:parlera/widgets/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -67,10 +67,10 @@ import 'store/language.dart';
 import 'store/gallery.dart';
 import 'store/contributor.dart';
 
-class App extends StatelessWidget {
+class Parlera extends StatelessWidget {
   final Map<Type, StoreModel> stores = {};
 
-  App({Key? key}) : super(key: key);
+  Parlera({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,52 +90,55 @@ class App extends StatelessWidget {
           return const ScreenLoader();
         }
 
-        return buildStore(context, snapshot.data);
-      },
-    );
-  }
+        //build store
+        if (stores.isEmpty) {
+          final storage = snapshot.data;
+          stores.addAll({
+            CategoryModel: CategoryModel(CategoryRepository(storage: storage)),
+            QuestionModel: QuestionModel(QuestionRepository()),
+            TutorialModel: TutorialModel(TutorialRepository(storage: storage)),
+            SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
+            LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
+            GalleryModel: GalleryModel(),
+            ContributorModel: ContributorModel(ContributorRepository()),
+          });
+          for (var store in stores.values) {
+            store.initialize();
+          }
+        }
 
-  Widget buildStore(BuildContext context, SharedPreferences? storage) {
-    if (stores.isEmpty) {
-      stores.addAll({
-        CategoryModel: CategoryModel(CategoryRepository(storage: storage)),
-        QuestionModel: QuestionModel(QuestionRepository()),
-        TutorialModel: TutorialModel(TutorialRepository(storage: storage)),
-        SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
-        LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
-        GalleryModel: GalleryModel(),
-        ContributorModel: ContributorModel(ContributorRepository()),
-      });
-      for (var store in stores.values) {
-        store.initialize();
-      }
-    }
-
-    return ScopedModel<CategoryModel>(
-      model: stores[CategoryModel] as CategoryModel,
-      child: ScopedModel<QuestionModel>(
-        model: stores[QuestionModel] as QuestionModel,
-        child: ScopedModel<TutorialModel>(
-          model: stores[TutorialModel] as TutorialModel,
-          child: ScopedModel<SettingsModel>(
-            model: stores[SettingsModel] as SettingsModel,
-            child: ScopedModel<LanguageModel>(
-              model: stores[LanguageModel] as LanguageModel,
-              child: ScopedModel<GalleryModel>(
-                model: stores[GalleryModel] as GalleryModel,
-                child: ScopedModel<ContributorModel>(
-                  model: stores[ContributorModel] as ContributorModel,
-                  child: buildApp(context),
+        return ScopedModel<CategoryModel>(
+          model: stores[CategoryModel] as CategoryModel,
+          child: ScopedModel<QuestionModel>(
+            model: stores[QuestionModel] as QuestionModel,
+            child: ScopedModel<TutorialModel>(
+              model: stores[TutorialModel] as TutorialModel,
+              child: ScopedModel<SettingsModel>(
+                model: stores[SettingsModel] as SettingsModel,
+                child: ScopedModel<LanguageModel>(
+                  model: stores[LanguageModel] as LanguageModel,
+                  child: ScopedModel<GalleryModel>(
+                    model: stores[GalleryModel] as GalleryModel,
+                    child: ScopedModel<ContributorModel>(
+                      model: stores[ContributorModel] as ContributorModel,
+                      child: const ParleraApp(),
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
+}
 
-  Widget buildApp(BuildContext context) {
+class ParleraApp extends StatelessWidget {
+  const ParleraApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return ScopedModelDescendant<LanguageModel>(
       builder: (context, child, model) {
         bool languageSet = model.language != null;
@@ -146,6 +149,7 @@ class App extends StatelessWidget {
 
         return MaterialApp(
           title: 'Parlera',
+          locale: languageSet ? Locale(model.language!, '') : null,
           localeResolutionCallback: (locale, locales) {
             if (!languageSet) {
               model.changeLanguage(locale!.languageCode);
@@ -177,5 +181,5 @@ class App extends StatelessWidget {
 }
 
 void main() {
-  runApp(App());
+  runApp(Parlera());
 }

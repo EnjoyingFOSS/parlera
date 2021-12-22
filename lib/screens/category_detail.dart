@@ -46,16 +46,6 @@ import 'package:parlera/store/settings.dart';
 class CategoryDetailScreen extends StatelessWidget {
   const CategoryDetailScreen({Key? key}) : super(key: key);
 
-  Widget buildFavorite({required bool isFavorite, Function? onPressed}) {
-    return IconButton(
-      onPressed: onPressed as void Function()?,
-      icon: Icon(
-        isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: Colors.white,
-      ),
-    );
-  }
-
   Widget buildRoundTimeSelectItem(String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
@@ -68,122 +58,125 @@ class CategoryDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: ScopedModelDescendant<CategoryModel>(
-        builder: (context, child, model) {
-          var category = model.currentCategory!;
-
-          return SafeArea(
-            child: Stack(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: SizedBox(
-                          width: 192,
-                          height: 192,
-                          child: Hero(
-                            tag: 'categoryImage-${category.name}',
-                            child: SvgPicture.asset(
-                              category.getImagePath(),
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 320,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 32),
-                          child: Text(
-                            category.description!,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(height: 1.2),
-                          ),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        child: Divider(
-                          indent: 32,
-                          endIndent: 32,
-                        ),
-                      ),
-                      ScopedModelDescendant<SettingsModel>(
-                        builder: (context, child, settingsModel) {
-                          return Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: RichText(
-                                  text: TextSpan(
-                                    text: AppLocalizations.of(context).gameTime,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1,
-                                  ),
-                                ),
-                              ),
-                              AnimatedToggleSwitch<int>.rolling(
-                                innerColor:
-                                    Colors.transparent,
-                                iconBuilder: (int value, _, bool active) {
-                                  return Center(
-                                      child: Text(
-                                    "$value s.",
-                                    style: TextStyle(
-                                        color: active
-                                            ? Theme.of(context).colorScheme.onSecondary
-                                            : Theme.of(context).colorScheme.onSurface),
-                                  ));
-                                },
-                                indicatorType: IndicatorType.circle,
-                                current: settingsModel.roundTime!,
-                                values: const [30, 60, 90, 120],
-                                onChanged: (int value) {
-                                  //     "settings_round_time", {"value": value});
-                                  settingsModel.changeRoundTime(value);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 32),
-                        child: ElevatedButton.icon(
-                          label: Text(
-                              AppLocalizations.of(context).preparationPlay),
-                          icon: const Icon(Icons.play_circle_outline),
-                          onPressed: () {
-                            SettingsModel.of(context).increaseGamesPlayed();
-
-                            Navigator.pushReplacementNamed(
-                              context,
-                              '/game-play',
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: buildFavorite(
-                    isFavorite: model.isFavorite(category),
-                    onPressed: () => model.toggleFavorite(category),
+    return ScopedModelDescendant<CategoryModel>(
+      builder: (context, child, model) {
+        final category = model.currentCategory!;
+        final description = category.description ?? "";
+        return Scaffold(
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () => model.toggleFavorite(category),
+                  icon: Icon(
+                    model.isFavorite(category)
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: Colors.white,
                   ),
                 )
               ],
             ),
-          );
-        },
-      ),
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: SizedBox(
+                      width: 160,
+                      height: 160,
+                      child: Hero(
+                        tag: 'categoryImage-${category.name}',
+                        child: SvgPicture.asset(
+                          category.getImagePath(),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    category.name ?? "",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  if (description != "")
+                    SizedBox(
+                      width: 320,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 32),
+                        child: Text(
+                          category.description!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(height: 1.2),
+                        ),
+                      ),
+                    ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Divider(
+                      indent: 32,
+                      endIndent: 32,
+                    ),
+                  ),
+                  ScopedModelDescendant<SettingsModel>(
+                    builder: (context, child, settingsModel) {
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: RichText(
+                              text: TextSpan(
+                                text: AppLocalizations.of(context).gameTime,
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                            ),
+                          ),
+                          AnimatedToggleSwitch<int>.rolling(
+                            innerColor: Colors.transparent,
+                            iconBuilder: (int value, _, bool active) {
+                              return Center(
+                                  child: Text(
+                                "$value s.",
+                                style: TextStyle(
+                                    color: active
+                                        ? Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .onSurface),
+                              ));
+                            },
+                            indicatorType: IndicatorType.circle,
+                            current: settingsModel.roundTime!,
+                            values: const [30, 60, 90, 120],
+                            onChanged: (int value) {
+                              //     "settings_round_time", {"value": value});
+                              settingsModel.changeRoundTime(value);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 32),
+                    child: FloatingActionButton.extended(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      label: Text(AppLocalizations.of(context).preparationPlay),
+                      icon: const Icon(Icons.play_arrow),
+                      onPressed: () {
+                        SettingsModel.of(context).increaseGamesPlayed();
+                        Navigator.pushReplacementNamed(
+                          context,
+                          '/game-play',
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ));
+      },
     );
   }
 }

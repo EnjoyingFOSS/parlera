@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/screens/game_summary/widgets/question_item.dart';
-import 'package:quiver/iterables.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

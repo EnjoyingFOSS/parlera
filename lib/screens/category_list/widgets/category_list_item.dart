@@ -50,8 +50,6 @@ class CategoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int questionCount = category.questions.length;
-
     return ParleraCard(
         onTap: onTap,
         child: (Stack(children: [
@@ -81,7 +79,7 @@ class CategoryListItem extends StatelessWidget {
                       fontSize: 24,
                     ),
                   )))
-          // todo get rid of these properly
+          // todo incorporate this information into category detail
           // ScopedModelDescendant<CategoryModel>(
           //   builder: (context, child, model) {
           //     return Positioned(

@@ -42,6 +42,8 @@
 //   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //   SOFTWARE.
 
+// ignore_for_file: prefer_if_null_operators, prefer_const_constructors, unnecessary_this
+
 import 'dart:async';
 
 import 'clipper.dart';
