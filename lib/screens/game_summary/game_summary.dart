@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:parlera/helpers/theme.dart';
+import 'package:parlera/screens/game_summary/widgets/question_item.dart';
 import 'package:quiver/iterables.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -14,60 +16,6 @@ import 'widgets/gallery_horizontal.dart';
 class GameSummaryScreen extends StatelessWidget {
   const GameSummaryScreen({Key? key}) : super(key: key);
 
-  Widget buildQuestionItem(BuildContext context, Question? question) {
-    if (question == null) {
-      return Container();
-    }
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Icon(
-            question.isPassed! ? Icons.check : Icons.close,
-            size: 20.0,
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Text(
-                question.name,
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  List<Widget> buildQuestionsList(
-    BuildContext context,
-    List<Question?> questions,
-  ) {
-    var chunks = partition(questions, 2).toList();
-    return List.generate(
-        chunks.length,
-        (index) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: buildQuestionItem(
-                          context, chunks[index].elementAt(0))),
-                  Expanded(
-                      child: buildQuestionItem(
-                          context,
-                          chunks[index].length > 1
-                              ? chunks[index].elementAt(1)
-                              : null)),
-                ],
-              ),
-            )).toList();
-  }
-
   void openGallery(BuildContext context, FileSystemEntity item) {
     GalleryModel.of(context).setActive(item);
 
@@ -77,22 +25,41 @@ class GameSummaryScreen extends StatelessWidget {
     );
   }
 
+  List<Widget> _buildAnswerGrid(List<Question> questionsAnswered) {
+    final div2length = (questionsAnswered.length + 1) ~/ 2;
+    return List.generate(div2length, (index) {
+      //todo turn into gridview, make whole page scrollable
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+        child: Row(
+          children: [
+            Expanded(
+                child: QuestionItem(question: questionsAnswered[index * 2])),
+            Container(width: 18),
+            if (index * 2 + 1 < questionsAnswered.length)
+              Expanded(
+                  child:
+                      QuestionItem(question: questionsAnswered[index * 2 + 1])),
+          ],
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<QuestionModel>(
       builder: (context, child, model) {
         return Scaffold(
-          appBar: AppBar(),
-          body: Column(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+            appBar: AppBar(),
+            body: SingleChildScrollView(
+              child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 4, top: 8),
+                    padding: const EdgeInsets.only(bottom: 0, top: 8),
                     child: Text(
                       AppLocalizations.of(context).summaryHeader,
-                      style: Theme.of(context).textTheme.caption,
+                      // style: Theme.of(context).textTheme,
                     ),
                   ),
                   Container(
@@ -108,56 +75,49 @@ class GameSummaryScreen extends StatelessWidget {
                       child: Text(
                         model.questionsPassed.length.toString(),
                         style: Theme.of(context).textTheme.headline2!.copyWith(
-                              color:
-                                  Theme.of(context).colorScheme.surface,
+                              color: Theme.of(context).colorScheme.surface,
                             ),
                       ),
                     ),
                   ),
+                  ScopedModelDescendant<GalleryModel>(
+                    builder: (context, child, model) {
+                      if (model.images.isEmpty) {
+                        return Container();
+                      }
+
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: GalleryHorizontal(
+                          items: model.images,
+                          onTap: (item) {
+                            if (item != null) openGallery(context, item);
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                  ..._buildAnswerGrid(model.questionsAnswered),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Divider(
+                      indent: 32,
+                      endIndent: 32,
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    label: Text(AppLocalizations.of(context).summaryBack),
+                    icon: const Icon(Icons.check),
+                    onPressed: () {
+                      // if (!SettingsModel.of(context).isNotificationsEnabled!) {
+                      //   SettingsModel.of(context).enableNotifications();
+                      // }
+                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                    },
+                  ),
                 ],
               ),
-              ScopedModelDescendant<GalleryModel>(
-                builder: (context, child, model) {
-                  if (model.images.isEmpty) {
-                    return Container();
-                  }
-
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: GalleryHorizontal(
-                      items: model.images,
-                      onTap: (item) {
-                        if (item != null) openGallery(context, item);
-                      },
-                    ),
-                  );
-                },
-              ),
-              ListView(
-                padding: const EdgeInsets.only(top: 16),
-                shrinkWrap: true,
-                children: buildQuestionsList(context, model.questionsAnswered),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: Divider(
-                  indent: 32,
-                  endIndent: 32,
-                ),
-              ),
-              ElevatedButton.icon(
-                label: Text(AppLocalizations.of(context).summaryBack),
-                icon: const Icon(Icons.play_circle_outline),
-                onPressed: () {
-                  // if (!SettingsModel.of(context).isNotificationsEnabled!) {
-                  //   SettingsModel.of(context).enableNotifications();
-                  // }
-                  Navigator.popUntil(context, ModalRoute.withName('/'));
-                },
-              ),
-            ],
-          ),
-        );
+            ));
       },
     );
   }
