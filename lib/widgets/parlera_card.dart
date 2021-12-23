@@ -11,17 +11,12 @@ class ParleraCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: onTap,
-        child: Container(
-            height: height,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Theme.of(context).colorScheme.surface,
-              // border: Border.all(
-              //     width: 2,
-              //     color: Theme.of(context).colorScheme.onBackground)
-            ),
-            child: child));
+    return Ink(
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Theme.of(context).colorScheme.surface,
+        ),
+        child: InkWell(onTap: onTap, child: child));
   }
 }
