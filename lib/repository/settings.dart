@@ -36,7 +36,7 @@
 
 import 'dart:core';
 
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsRepository {
@@ -44,7 +44,6 @@ class SettingsRepository {
   static const String storageRotationControlEnabledKey =
       'is_rotation_control_enabled';
   static const String storageCameraEnabledKey = 'is_camera_enabled';
-  static const String storageSpeechEnabledKey = 'is_speech_enabled';
   static const String storageRoundTimeKey = 'round_time';
   static const String storageGamesPlayedKey = 'games_played';
   static const String storageGamesFinishedKey = 'games_finished';
@@ -87,18 +86,6 @@ class SettingsRepository {
     var value = !isCameraEnabled();
 
     storage!.setBool(storageCameraEnabledKey, value);
-
-    return value;
-  }
-
-  bool isSpeechEnabled() {
-    return storage!.getBool(storageSpeechEnabledKey) ?? false;
-  }
-
-  bool toggleSpeech() {
-    final value = !isSpeechEnabled();
-
-    storage!.setBool(storageSpeechEnabledKey, value);
 
     return value;
   }
