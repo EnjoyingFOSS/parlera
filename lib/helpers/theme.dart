@@ -1,3 +1,23 @@
+// This file is part of Parlera.
+//
+// Parlera is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version. As an additional permission under
+// section 7, you are allowed to distribute the software through an app
+// store, even if that store has restrictive terms and conditions that
+// are incompatible with the AGPL, provided that the source is also
+// available under the AGPL with or without this permission through a
+// channel without those restrictive terms and conditions.
+//
+// Parlera is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
+
 import 'package:flutter/material.dart';
 
 class ThemeHelper {
@@ -15,6 +35,7 @@ class ThemeHelper {
       onBackground: Colors.white,
       onError: Colors.white,
       brightness: Brightness.dark);
+  static const _fontFamily = 'MontserratAlternates';
 
   static const successColor = Color(0xFF417B5A); //91c9bb 6b8f71
   static const failColor = Color(0xFFE33E46);
@@ -32,8 +53,9 @@ class ThemeHelper {
         scaffoldBackgroundColor: colors.background,
         cardColor: colors.surface,
         errorColor: colors.error,
+        dialogBackgroundColor: colors.surface,
         toggleableActiveColor: colors.primary,
-        fontFamily: 'MontserratAlternates',
+        fontFamily: _fontFamily,
         buttonTheme: const ButtonThemeData(shape: CircleBorder()),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
@@ -42,11 +64,12 @@ class ThemeHelper {
         ))),
         appBarTheme: AppBarTheme(
             color: colors.background,
-            iconTheme: IconThemeData(color: colors.primary),
+            iconTheme: IconThemeData(color: colors.onBackground),
             titleTextStyle: TextStyle(
+                fontFamily: _fontFamily,
                 fontSize: 32,
                 fontWeight: FontWeight.w900,
-                color: colors.primary),
+                color: colors.onBackground),
             centerTitle: false,
             elevation: 0));
   }
