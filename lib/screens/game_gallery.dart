@@ -41,78 +41,44 @@ import 'package:share_plus/share_plus.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:parlera/store/gallery.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class GameGalleryScreen extends StatelessWidget {
   const GameGalleryScreen({Key? key}) : super(key: key);
 
-  Widget buildGallery() {
-    return ScopedModelDescendant<GalleryModel>(
-        builder: (context, child, model) {
-      var images = model.images;
-
-      return CarouselSlider(
-        options: CarouselOptions(
-          enableInfiniteScroll: true,
-          height: MediaQuery.of(context).size.height * 0.8,
-          enlargeCenterPage: false,
-          autoPlay: false,
-          viewportFraction: 1.0,
-          initialPage: images.indexOf(model.activeImage),
-          onPageChanged: (index, _) {
-            model.setActive(images[index]);
-          },
-        ),
-        items: images.map((item) {
-          return Stack(children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: SpinKitRing(
-                  color: Theme.of(context).colorScheme.secondary, size: 70.0),
-            ),
-            Builder(
-              builder: (BuildContext context) {
-                return Center(
-                  child: Stack(
-                    children: [
-                      Image.file(item as File, fit: BoxFit.contain),
-                      Positioned(
-                        top: 10,
-                        right: 10,
-                        child: FloatingActionButton(
-                          elevation: 0.0,
-                          child: const Icon(Icons.share),
-                          backgroundColor: Theme.of(context).primaryColor,
-                          onPressed: () async {
-                            Share.shareFiles([item.path]);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ]);
-        }).toList(),
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: buildGallery(),
+    return ScopedModelDescendant<GalleryModel>(
+        builder: (context, child, model) {
+      final carouselController = CarouselController();
+      final images = model.images;
+
+      return Scaffold(
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                  onPressed: () => Share.shareFiles([model.activeImage!.path]),
+                  icon: const Icon(Icons.share)),
+            ],
           ),
-        ],
-      ),
-    );
+          body: CarouselSlider(
+            options: CarouselOptions(
+              enableInfiniteScroll: true,
+              height: MediaQuery.of(context).size.height * 0.8,
+              enlargeCenterPage: false,
+              autoPlay: false,
+              viewportFraction: 1.0,
+              initialPage: images.indexOf(model.activeImage),
+              onPageChanged: (index, _) {
+                model.setActive(images[index]);
+              },
+            ),
+            carouselController: carouselController,
+            items: images.map((item) {
+              return Center(
+                child: Image.file(item as File, fit: BoxFit.contain),
+              );
+            }).toList(),
+          ));
+    });
   }
 }
