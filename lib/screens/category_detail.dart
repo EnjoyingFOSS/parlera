@@ -71,7 +71,6 @@ class CategoryDetailScreen extends StatelessWidget {
                     model.isFavorite(category)
                         ? Icons.favorite
                         : Icons.favorite_border,
-                    color: Colors.white,
                   ),
                 )
               ],

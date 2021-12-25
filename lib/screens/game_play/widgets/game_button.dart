@@ -39,15 +39,15 @@ import 'package:flutter/material.dart';
 class GameButton extends StatefulWidget {
   const GameButton({
     Key? key,
-    this.child,
-    this.alignment,
-    this.color,
+    required this.child,
+    required this.alignment,
+    required this.color,
     this.onTap,
   }) : super(key: key);
 
-  final Widget? child;
-  final Alignment? alignment;
-  final Color? color;
+  final Widget child;
+  final Alignment alignment;
+  final Color color;
   final Function? onTap;
 
   @override

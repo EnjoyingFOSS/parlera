@@ -43,7 +43,7 @@ import 'package:parlera/screens/game_play/game_play.dart';
 import 'package:parlera/screens/game_summary/game_summary.dart';
 import 'package:parlera/screens/home.dart';
 import 'package:parlera/screens/settings.dart';
-import 'package:parlera/screens/tutorial/tutorial.dart';
+import 'package:parlera/screens/tutorial.dart';
 import 'package:parlera/widgets/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';

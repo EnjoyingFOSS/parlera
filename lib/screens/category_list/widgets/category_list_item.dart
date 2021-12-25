@@ -107,29 +107,29 @@ class CategoryListItem extends StatelessWidget {
   }
 }
 
-class _MetaItem extends StatelessWidget {
-  final int playedCount;
-
-  const _MetaItem({Key? key, required this.playedCount}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Opacity(
-      opacity: 0.7,
-      child: Row(
-        children: [
-          const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4.0),
-              child: Icon(Icons.play_arrow, size: 14)),
-          Text(
-            playedCount.toString(),
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 12,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+// class _MetaItem extends StatelessWidget {
+//   final int playedCount;
+//
+//   const _MetaItem({Key? key, required this.playedCount}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Opacity(
+//       opacity: 0.7,
+//       child: Row(
+//         children: [
+//           const Padding(
+//               padding: EdgeInsets.symmetric(horizontal: 4.0),
+//               child: Icon(Icons.play_arrow, size: 14)),
+//           Text(
+//             playedCount.toString(),
+//             style: const TextStyle(
+//               color: Colors.white,
+//               fontSize: 12,
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

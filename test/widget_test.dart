@@ -1,4 +1,4 @@
-// Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and "ewaosie"
+// Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and Ewa Osiecka
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.

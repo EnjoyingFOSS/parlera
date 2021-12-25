@@ -11,14 +11,17 @@ Code was originally forked from the Apache-licensed [Zgadula game](https://githu
 
 Images
 ======
+
 Images in images/categories come from Google's [Noto Emoji repository](https://github.com/googlefonts/noto-emoji) and are licensed under the (Apache 2.0 license)[https://www.apache.org/licenses/LICENSE-2.0.txt], which can be found in the images/categories folder.
 
 Images in images/tutorial are from Baianat's [Thousands](https://www.baianat.com/freebies/thousands) icon pack and licensed under the [MIT license](https://opensource.org/licenses/mit).
 
 Sound effects
 ====
-The sounds for the correct and incorrect sounds by Miroslav Mazel are licensed under the CC BY-SA license.
+
+The sounds for the correct and incorrect sounds by Miroslav Mazel are licensed under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
 
 Fonts
 ====
+
 The included Montserrat Alternate fonts are licensed under the OFL license.

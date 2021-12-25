@@ -69,8 +69,6 @@ class GamePlayScreen extends StatefulWidget {
 
 class GamePlayScreenState extends State<GamePlayScreen>
     with TickerProviderStateMixin {
-  static const _rotationChannel = MethodChannel('parlera/orientation');
-
   static const _secondsPrep = 5;
 
   Timer? _gameTimer;
@@ -112,15 +110,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
     ]);
-    // TODO: Remove it when fixed in Flutter
-    // https://github.com/flutter/flutter/issues/13238
-    try {
-      if (Platform.isAndroid || Platform.isIOS) {
-        _rotationChannel.invokeMethod('setLandscape');
-      }
-    } catch (error) {
-      print("Error on landscape");
-    }
 
     initAnimations();
   }
@@ -155,15 +144,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    // TODO: Remove it when fixed in Flutter
-    // https://github.com/flutter/flutter/issues/13238
-    try {
-      if (Platform.isAndroid || Platform.isIOS) {
-        _rotationChannel.invokeMethod('setPortrait');
-      }
-    } catch (error) {
-      print("Error on portrait");
-    }
 
     if (_rotateSubscription != null) {
       _rotateSubscription!.cancel();
@@ -446,7 +426,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
           return await confirmBack();
         },
         child: Stack(children: [
-          if (showCamera) const CameraPreviewScreen(),
+          if (showCamera) const CameraPreviewScreen(), // todo test this out
           if (_isPaused || _isStarted)
             Stack(
               children: [
@@ -473,7 +453,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
             PrepScreen(
                 countdownText: _secondsLeft.toString(),
                 descriptionText: AppLocalizations.of(context)
-                    .preparationOrientationDescription),
+                    .preparationOrientationDescription), //todo remind users of directions each time
         ]),
       ),
     );
