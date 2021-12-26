@@ -62,7 +62,7 @@ class CategoryListItem extends StatelessWidget {
                   aspectRatio: 1,
                   child: Hero(
                     tag: 'categoryImage-${category.name}',
-                    child: SvgPicture.asset(category.getImagePath(),
+                    child: Image.asset(category.getImagePath(),
                         fit: BoxFit.contain),
                   ))),
           Positioned.directional(

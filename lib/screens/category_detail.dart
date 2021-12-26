@@ -85,7 +85,7 @@ class CategoryDetailScreen extends StatelessWidget {
                       height: 160,
                       child: Hero(
                         tag: 'categoryImage-${category.name}',
-                        child: SvgPicture.asset(
+                        child: Image.asset(
                           category.getImagePath(),
                           fit: BoxFit.contain,
                         ),
