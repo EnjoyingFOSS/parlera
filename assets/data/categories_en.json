@@ -2,7 +2,7 @@
   {
     "description": "",
     "id": "animals",
-    "image": "animals.svg",
+    "image": "animals.webp",
     "name": "Animals",
     "questions": [
       "Alligator",
@@ -105,7 +105,7 @@
   {
     "description": "",
     "id": "food",
-    "image": "food.svg",
+    "image": "food.webp",
     "name": "Food & drinks",
     "questions": [
       "Almond",
@@ -215,7 +215,7 @@
   {
     "description": "",
     "id": "movies",
-    "image": "movies.svg",
+    "image": "movies.webp",
     "name": "Movies",
     "questions": [
       "12 Angry Men",
@@ -471,7 +471,7 @@
   {
     "description": "",
     "id": "games",
-    "image": "games.svg",
+    "image": "games.webp",
     "name": "Video games",
     "questions": [
       "2D",
@@ -656,7 +656,7 @@
   {
     "description": "",
     "id": "tv",
-    "image": "tv.svg",
+    "image": "tv.webp",
     "name": "TV series",
     "questions": [
       "9-1-1",
@@ -832,7 +832,7 @@
   {
     "description": "",
     "id": "fictional_character",
-    "image": "fictional_characters.svg",
+    "image": "fictional_characters.webp",
     "name": "Fictional characters",
     "questions": [
       "Achilles",
@@ -997,14 +997,14 @@
   {
     "description": "",
     "id": "mixup",
-    "image": "mix.svg",
+    "image": "mix.webp",
     "name": "Mix-Up!",
     "questions": []
   },
   {
     "description": "",
     "id": "jobs",
-    "image": "jobs.svg",
+    "image": "jobs.webp",
     "name": "Professions",
     "questions": [
       "Accountant",
@@ -1124,7 +1124,7 @@
   {
     "description": "",
     "id": "item",
-    "image": "items.svg",
+    "image": "items.webp",
     "name": "Things",
     "questions": [
       "3D printer",
@@ -1255,7 +1255,7 @@
   {
     "description": "",
     "id": "place",
-    "image": "places.svg",
+    "image": "places.webp",
     "name": "Places",
     "questions": [
       "Airport",

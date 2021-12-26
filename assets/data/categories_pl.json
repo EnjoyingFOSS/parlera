@@ -2,7 +2,7 @@
   {
     "description": "",
     "id": "animals",
-    "image": "animals.svg",
+    "image": "animals.webp",
     "name": "Zwierzęta",
     "questions": [
       "Aligator",
@@ -144,7 +144,7 @@
   {
     "description": "",
     "id": "humming",
-    "image": "sing.svg",
+    "image": "sing.webp",
     "name": "Zanuć",
     "questions": [
       "Adele - Hello",
@@ -328,7 +328,7 @@
   {
     "description": "",
     "id": "food",
-    "image": "food.svg",
+    "image": "food.webp",
     "name": "Jedzenie i napoje",
     "questions": [
       "7 Up",
@@ -481,7 +481,7 @@
   {
     "description": "",
     "id": "movies",
-    "image": "movies.svg",
+    "image": "movies.webp",
     "name": "Filmy",
     "questions": [
       "22 Jump Street",
@@ -643,7 +643,7 @@
   {
     "description": "",
     "id": "humming_pl",
-    "image": "sing_pl.svg",
+    "image": "sing_pl.webp",
     "name": "Zanuć Polska",
     "questions": [
       "2 plus 1 - Chodź, pomaluj mój świat",
@@ -871,7 +871,7 @@
   {
     "description": "",
     "id": "cartoons",
-    "image": "cartoons.svg",
+    "image": "cartoons.webp",
     "name": "Filmy animowane",
     "questions": [
       "101 Dalmatyńczyków",
@@ -1008,7 +1008,7 @@
   {
     "description": "",
     "id": "games",
-    "image": "games.svg",
+    "image": "games.webp",
     "name": "Gry",
     "questions": [
       "Age of Empires",
@@ -1205,7 +1205,7 @@
   {
     "description": "",
     "id": "tv",
-    "image": "tv.svg",
+    "image": "tv.webp",
     "name": "Seriale",
     "questions": [
       "'Allo 'Allo!",
@@ -1342,7 +1342,7 @@
   {
     "description": "",
     "id": "movies_pl",
-    "image": "movies_pl.svg",
+    "image": "movies_pl.webp",
     "name": "Polskie filmy",
     "questions": [
       "A historii tego swetra i tak byś nie zrozumiał",
@@ -1456,7 +1456,7 @@
   {
     "description": "",
     "id": "fictional_character",
-    "image": "fictional_characters.svg",
+    "image": "fictional_characters.webp",
     "name": "Postacie fikcyjne",
     "questions": [
       "Achilles",
@@ -1642,7 +1642,7 @@
   {
     "description": "",
     "id": "famous_characters",
-    "image": "famous_characters.svg",
+    "image": "famous_characters.webp",
     "name": "Znane osoby",
     "questions": [
       "Abraham Lincoln",
@@ -1762,7 +1762,7 @@
   {
     "description": "",
     "id": "tv_pl",
-    "image": "tv_pl.svg",
+    "image": "tv_pl.webp",
     "name": "Polskie seriale",
     "questions": [
       "07 zgłoś się",
@@ -1846,7 +1846,7 @@
   {
     "description": "",
     "id": "kids",
-    "image": "kids.svg",
+    "image": "kids.webp",
     "name": "Dla dzieci",
     "questions": [
       "Boisko",
@@ -1967,7 +1967,7 @@
   {
     "description": "",
     "id": "books",
-    "image": "books.svg",
+    "image": "books.webp",
     "name": "Książki",
     "questions": [
       "Adam Mickiewicz",
@@ -2087,7 +2087,7 @@
   {
     "description": "",
     "id": "prl",
-    "image": "prl.svg",
+    "image": "prl.webp",
     "name": "Czasy PRL",
     "questions": [
       "07 zgłoś się",
@@ -2207,7 +2207,7 @@
   {
     "description": "",
     "id": "90s",
-    "image": "y90s.svg",
+    "image": "y90s.webp",
     "name": "Lata 90'",
     "questions": [
       "Aleksander Kwaśniewski",
@@ -2309,14 +2309,14 @@
   {
     "description": "",
     "id": "mixup",
-    "image": "mix.svg",
+    "image": "mix.webp",
     "name": "Hasła mieszane",
     "questions": []
   },
   {
     "description": "",
     "id": "item",
-    "image": "items.svg",
+    "image": "items.webp",
     "name": "Przedmioty",
     "questions": [
       "Balon z helem",
@@ -2448,7 +2448,7 @@
   {
     "description": "",
     "id": "characteristics",
-    "image": "characteristics.svg",
+    "image": "characteristics.webp",
     "name": "Jaki jestem?",
     "questions": [
       "Biedny",
@@ -2556,7 +2556,7 @@
   {
     "description": "",
     "id": "place",
-    "image": "places.svg",
+    "image": "places.webp",
     "name": "Miejsca",
     "questions": [
       "Agencja nieruchomości",
@@ -2680,7 +2680,7 @@
   {
     "description": "",
     "id": "holidays",
-    "image": "holidays.svg",
+    "image": "holidays.webp",
     "name": "Święta",
     "questions": [
       "'Kiedy ślub?'",
@@ -2777,7 +2777,7 @@
   {
     "description": "",
     "id": "internet",
-    "image": "internet.svg",
+    "image": "internet.webp",
     "name": "Internety",
     "questions": [
       "ASAP",
@@ -2929,7 +2929,7 @@
   {
     "description": "",
     "id": "actions",
-    "image": "actions.svg",
+    "image": "actions.webp",
     "name": "Czynności",
     "questions": [
       "Bieg przez płotki",
@@ -3043,7 +3043,7 @@
   {
     "description": "",
     "id": "sport",
-    "image": "sport.svg",
+    "image": "sport.webp",
     "name": "Sport",
     "questions": [
       "AC Milan",
@@ -3168,7 +3168,7 @@
   {
     "description": "",
     "id": "jobs",
-    "image": "jobs.svg",
+    "image": "jobs.webp",
     "name": "Zawody",
     "questions": [
       "Adwokat",
@@ -3287,7 +3287,7 @@
   {
     "description": "",
     "id": "proverbs",
-    "image": "proverbs.svg",
+    "image": "proverbs.webp",
     "name": "Powiedzenia",
     "questions": [
       "A kto z nami nie wypije – tego we dwa kije",
