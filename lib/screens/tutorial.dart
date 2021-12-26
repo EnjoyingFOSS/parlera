@@ -28,34 +28,46 @@ class TutorialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final finishTutorial = () {
+      TutorialModel.of(context).watch();
+      Navigator.popUntil(context, ModalRoute.withName('/'));
+    };
+
     return Scaffold(
         body: OverBoard(
+      skipText: AppLocalizations.of(context).btnSkip,
+      nextText: AppLocalizations.of(context).btnNext,
+      finishText: AppLocalizations.of(context).btnFinishTutorial,
       pages: [
         PageModel(
-            imageAssetPath: 'assets/images/tutorial/1.png',
-            title: AppLocalizations.of(context).tutorialFirstSectionHeader,
-            body: AppLocalizations.of(context).tutorialFirstSectionDescription,
-            color: Theme.of(context).colorScheme.primary),
-        PageModel(
-            imageAssetPath: 'assets/images/tutorial/2.png',
-            title: AppLocalizations.of(context).tutorialSecondSectionHeader,
-            body: AppLocalizations.of(context).tutorialSecondSectionDescription,
+            imageAssetPath: 'assets/images/tutorial/1.webp',
+            title: AppLocalizations.of(context).tutorialPhoneFirstSectionHeader,
+            body: AppLocalizations.of(context)
+                .tutorialPhoneFirstSectionDescription,
             color: Theme.of(context).colorScheme.surface),
         PageModel(
-            imageAssetPath: 'assets/images/tutorial/3.png',
-            title: AppLocalizations.of(context).tutorialThirdSectionHeader,
-            body: AppLocalizations.of(context).tutorialThirdSectionDescription,
-            color: Theme.of(context).colorScheme.primary),
+            imageAssetPath: 'assets/images/tutorial/2.webp',
+            title:
+                AppLocalizations.of(context).tutorialPhoneSecondSectionHeader,
+            body: AppLocalizations.of(context)
+                .tutorialPhoneSecondSectionDescription,
+            color: Theme.of(context).colorScheme.background),
         PageModel(
-            imageAssetPath: 'assets/images/tutorial/4.png',
-            title: AppLocalizations.of(context).tutorialFourthSectionHeader,
-            body: AppLocalizations.of(context).tutorialFourthSectionDescription,
+            imageAssetPath: 'assets/images/tutorial/3.webp',
+            title: AppLocalizations.of(context).tutorialPhoneThirdSectionHeader,
+            body: AppLocalizations.of(context)
+                .tutorialPhoneThirdSectionDescription,
             color: Theme.of(context).colorScheme.surface),
+        PageModel(
+            imageAssetPath: 'assets/images/tutorial/4.webp',
+            title:
+                AppLocalizations.of(context).tutorialPhoneFourthSectionHeader,
+            body: AppLocalizations.of(context)
+                .tutorialPhoneFourthSectionDescription,
+            color: Theme.of(context).colorScheme.background),
       ],
-      finishCallback: () {
-        Navigator.popUntil(context, ModalRoute.withName('/'));
-        TutorialModel.of(context).watch();
-      },
+      skipCallback: finishTutorial,
+      finishCallback: finishTutorial,
     ));
   }
 }

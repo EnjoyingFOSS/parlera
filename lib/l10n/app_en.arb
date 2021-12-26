@@ -1,92 +1,37 @@
 {
-  "@@last_modified": "2018-09-23T12:01:09.716726",
   "about": "About",
   "emptyCategories": "Couldn't load categories :(",
   "labelGo": "Let's go!",
-  "tutorialSkip": "Play",
-  "@tutorialSkip": {
-    "description": "Button which skips the tutorial and takes the player to the game",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tutorialFirstSectionHeader": "Friends",
-  "@tutorialFirstSectionHeader": {
-    "description": "Header for the first tutorial section",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tutorialFirstSectionDescription": "Gather a groups of friends and sit together. Youngest player starts.",
-  "@tutorialFirstSectionDescription": {
-    "description": "Description for the first tutorial section",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tutorialSecondSectionHeader": "Category",
-  "@tutorialSecondSectionHeader": {
-    "description": "Header for the second tutorial section",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tutorialSecondSectionDescription": "Select the category and place the phone on forehead. Guess the word with friends help.",
-  "@tutorialSecondSectionDescription": {
-    "description": "Description for the second tutorial section",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tutorialThirdSectionHeader": "Tips",
-    "@tutorialThirdSectionHeader": {
-      "description": "Header for the third tutorial section",
-      "type": "text",
-      "placeholders": {}
-    },
-    "tutorialThirdSectionDescription": "Decide on what kind of tips would you use during the round - speak, show, draw or even hum.",
-    "@tutorialThirdSectionDescription": {
-      "description": "Description for the third tutorial section",
-      "type": "text",
-      "placeholders": {}
-    },
-  "tutorialFourthSectionHeader": "Fun!",
-  "@tutorialFourthSectionHeader": {
-    "description": "Header for the fourth tutorial section",
-    "type": "text",
-    "placeholders": {}
-  },
-  "tutorialFourthSectionDescription": "Tap the screen for next question. Good luck!",
-  "@tutorialFourthSectionDescription": {
-    "description": "Description for the fourth tutorial section",
-    "type": "text",
-    "placeholders": {}
-  },
+  "settingsAccelerometer": "Tilt phone to answer",
+  "settingsCamera": "Take photos during game",
+  "settingsAudio": "Play sound after answering",
+  "gameCancelConfirmation": "Leave the current game?",
+  "gameCancelApprove": "Leave",
+  "gameCancelDeny": "Stay",
+  "tutorialPhoneFirstSectionHeader": "Guess the word!",
+  "tutorialPhoneFirstSectionDescription": "Put your phone on your forehead and have friends describe the word on the screen to you.",
+  "tutorialPhoneSecondSectionHeader": "Tilt up to pass",
+  "tutorialPhoneSecondSectionDescription": "No clue what it is? Just tilt the phone up to skip this word.",
+  "tutorialPhoneThirdSectionHeader": "Tilt down if you got it",
+  "tutorialPhoneThirdSectionDescription": "Got it right? Tilt the phone down to move onto the next word.",
+  "tutorialPhoneFourthSectionHeader": "Want to mime or draw?",
+  "tutorialPhoneFourthSectionDescription": "Turn off tilting in Settings and use Parlera as a word bank. Then have one person perform and others guess.",
+  "btnSkip": "Skip",
+  "btnNext": "Next",
+  "btnFinishTutorial": "Let's play!",
   "preparationPlay": "Play",
+  "gameTime": "Duration",
   "@preparationPlay": {
     "description": "Button which confirms the selected category and starts the main game",
     "type": "text",
     "placeholders": {}
   },
-  "preparationOrientationDescription": "Place the phone on forehead",
+  "preparationOrientationDescription": "Place the phone on your forehead",
     "@preparationOrientationDescription": {
       "description": "Message which reminds player to put the phone in landscape orientation before game starts",
       "type": "text",
       "placeholders": {}
     },
-  "gameCancelConfirmation": "Leave the current game?",
-  "@gameCancelConfirmation": {
-    "description": "Description of the dialog which is presented to the player when he tries to quit the game loop",
-    "type": "text",
-    "placeholders": {}
-  },
-  "gameCancelApprove": "Leave",
-  "@gameCancelApprove": {
-    "description": "Text for approving the decision to cancel current game.",
-    "type": "text",
-    "placeholders": {}
-  },
-  "gameCancelDeny": "Stay",
-  "@gameCancelDeny": {
-    "description": "Text for canceling the decision to cancel current game.",
-    "type": "text",
-    "placeholders": {}
-  },
   "lastQuestion": "Last question",
   "@lastQuestion": {
     "description": "Text shown before presenting last question during the game",
@@ -111,57 +56,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "settingsCamera": "Camera",
-  "@settingsCamera": {
-    "description": "Label for toggling camera support",
-    "type": "text",
-    "placeholders": {}
-  },
-  "settingsCameraHint": "Take temporary photos during game",
-    "@settingsCameraHint": {
-      "description": "Hint for toggling camera support",
-      "type": "text",
-      "placeholders": {}
-    },
-  "settingsSpeech": "Microphone",
-    "@settingsSpeech": {
-      "description": "Label for toggling speech recognition support",
-      "type": "text",
-      "placeholders": {}
-    },
-    "settingsSpeechHint": "Recognize answers automatically during game",
-    "@settingsSpeechHint": {
-      "description": "Hint for toggling speech recognition support",
-      "type": "text",
-      "placeholders": {}
-    },
-  "settingsAccelerometer": "Accelerometer",
-  "@settingsAccelerometer": {
-    "description": "Label for toggling accelerometer support",
-    "type": "text",
-    "placeholders": {}
-  },
-  "settingsAccelerometerHint": "Tilt the phone down if you guess the word correctly",
-    "@settingsAccelerometerHint": {
-      "description": "Hint for toggling accelerometer support",
-      "type": "text",
-      "placeholders": {}
-    },
-  "settingsAudio": "Audio",
-  "@settingsAudio": {
-    "description": "Label for toggling audio support",
-    "type": "text",
-    "placeholders": {}
-  },
   "settingsLanguage": "Language",
   "@settingsLanguage": {
     "description": "Label for changing game language",
-    "type": "text",
-    "placeholders": {}
-  },
-  "settingsPrivacyPolicy": "Privacy policy",
-  "@settingsPrivacyPolicy": {
-    "description": "Label for opening privacy policy",
     "type": "text",
     "placeholders": {}
   },
@@ -171,12 +68,6 @@
       "type": "text",
       "placeholders": {}
     },
-  "gameTime": "Game time",
-  "@gameTime": {
-    "description": "Label for game time slider",
-    "type": "text",
-    "placeholders": {}
-  },
   "categoryItemQuestionsCount": "{count} items",
     "@categoryItemQuestionsCount": {
       "description": "Metadata showing total count of questions in category",
