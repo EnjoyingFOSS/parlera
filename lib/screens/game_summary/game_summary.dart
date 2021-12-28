@@ -37,17 +37,18 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:parlera/screens/game_summary/widgets/question_item.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:parlera/models/question.dart';
 import 'package:parlera/store/gallery.dart';
 import 'package:parlera/store/question.dart';
 
+import 'widgets/answer_grid.dart';
 import 'widgets/gallery_horizontal.dart';
 
 class GameSummaryScreen extends StatelessWidget {
+  static const _maxAnswerWidth = 256;
+
   const GameSummaryScreen({Key? key}) : super(key: key);
 
   void openGallery(BuildContext context, FileSystemEntity item) {
@@ -57,27 +58,6 @@ class GameSummaryScreen extends StatelessWidget {
       context,
       '/game-gallery',
     );
-  }
-
-  List<Widget> _buildAnswerGrid(List<Question> questionsAnswered) {
-    final div2length = (questionsAnswered.length + 1) ~/ 2;
-    return List.generate(div2length, (index) {
-      //todo turn into gridview, make whole page scrollable
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Row(
-          children: [
-            Expanded(
-                child: QuestionItem(question: questionsAnswered[index * 2])),
-            Container(width: 18),
-            if (index * 2 + 1 < questionsAnswered.length)
-              Expanded(
-                  child:
-                      QuestionItem(question: questionsAnswered[index * 2 + 1])),
-          ],
-        ),
-      );
-    });
   }
 
   @override
@@ -131,7 +111,12 @@ class GameSummaryScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  ..._buildAnswerGrid(model.questionsAnswered),
+                  AnswerGrid(
+                    questionsAnswered: model.questionsAnswered,
+                    answersPerRow: MediaQuery.of(context).size.width.toInt() ~/
+                            _maxAnswerWidth +
+                        1,
+                  ),
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16),
                     child: Divider(
@@ -141,7 +126,7 @@ class GameSummaryScreen extends StatelessWidget {
                   ),
                   ElevatedButton.icon(
                     label: Text(AppLocalizations.of(context).summaryBack),
-                    icon: const Icon(Icons.check),
+                    icon: const Icon(Icons.check_rounded),
                     onPressed: () {
                       // if (!SettingsModel.of(context).isNotificationsEnabled!) {
                       //   SettingsModel.of(context).enableNotifications();
