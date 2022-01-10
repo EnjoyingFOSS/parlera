@@ -36,7 +36,6 @@
 
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -69,8 +68,8 @@ class CategoryDetailScreen extends StatelessWidget {
                   onPressed: () => model.toggleFavorite(category),
                   icon: Icon(
                     model.isFavorite(category)
-                        ? Icons.favorite
-                        : Icons.favorite_border,
+                        ? Icons.favorite_rounded
+                        : Icons.favorite_border_rounded,
                   ),
                 )
               ],
@@ -134,7 +133,7 @@ class CategoryDetailScreen extends StatelessWidget {
                             iconBuilder: (int value, _, bool active) {
                               return Center(
                                   child: Text(
-                                "$value s.",
+                                AppLocalizations.of(context).secondsTemplate.replaceFirst('%d', value.toString()),
                                 style: TextStyle(
                                     color: active
                                         ? Theme.of(context)
@@ -162,7 +161,7 @@ class CategoryDetailScreen extends StatelessWidget {
                     child: FloatingActionButton.extended(
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       label: Text(AppLocalizations.of(context).preparationPlay),
-                      icon: const Icon(Icons.play_arrow),
+                      icon: const Icon(Icons.play_arrow_rounded),
                       onPressed: () {
                         SettingsModel.of(context).increaseGamesPlayed();
                         Navigator.pushReplacementNamed(

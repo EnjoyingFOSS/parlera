@@ -57,7 +57,7 @@ class GameGalleryScreen extends StatelessWidget {
             actions: [
               IconButton(
                   onPressed: () => Share.shareFiles([model.activeImage!.path]),
-                  icon: const Icon(Icons.share)),
+                  icon: const Icon(Icons.share_rounded)),
             ],
           ),
           body: CarouselSlider(
@@ -67,7 +67,7 @@ class GameGalleryScreen extends StatelessWidget {
               enlargeCenterPage: false,
               autoPlay: false,
               viewportFraction: 1.0,
-              initialPage: images.indexOf(model.activeImage),
+              initialPage: images.indexOf(model.activeImage!),
               onPageChanged: (index, _) {
                 model.setActive(images[index]);
               },
