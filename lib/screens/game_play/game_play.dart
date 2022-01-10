@@ -407,7 +407,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
             ),
             Positioned.directional(
                 textDirection: Directionality.of(context),
-                top: 8,
+                top: MediaQuery.of(context).padding.top + 8,
                 start: 8,
                 child: const BackButton()),
           ],
@@ -418,15 +418,13 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   @override
   Widget build(BuildContext context) {
-    bool showCamera = _isCameraEnabled! && _isStarted;
-
     return Scaffold(
       body: WillPopScope(
         onWillPop: () async {
           return await confirmBack();
         },
         child: Stack(children: [
-          if (showCamera) const CameraPreviewScreen(), // todo test this out
+          // if (_isCameraEnabled! && _isStarted) const CameraPreviewScreen(), //todo this is now hidden behind opaque answers — fix
           if (_isPaused || _isStarted)
             Stack(
               children: [

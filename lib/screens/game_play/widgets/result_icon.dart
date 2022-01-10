@@ -47,8 +47,8 @@ class ResultIcon extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Icon(
         success
-            ? Icons.sentiment_satisfied_alt
-            : Icons.sentiment_very_dissatisfied,
+            ? Icons.sentiment_satisfied_alt_rounded
+            : Icons.sentiment_dissatisfied_rounded,
         size: 96,
         color: Theme.of(context).textTheme.bodyText1!.color,
       ),
