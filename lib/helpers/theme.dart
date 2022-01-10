@@ -56,6 +56,11 @@ class ThemeHelper {
         dialogBackgroundColor: colors.surface,
         toggleableActiveColor: colors.primary,
         fontFamily: _fontFamily,
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          unselectedItemColor: colors.onSecondary.withAlpha(90),
+            backgroundColor: colors.secondary,
+            selectedItemColor: colors.primary),
+        bottomSheetTheme: BottomSheetThemeData(backgroundColor: colors.surface),
         buttonTheme: const ButtonThemeData(shape: CircleBorder()),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(

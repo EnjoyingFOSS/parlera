@@ -21,17 +21,11 @@
   "btnFinishTutorial": "Let's play!",
   "preparationPlay": "Play",
   "gameTime": "Duration",
-  "@preparationPlay": {
-    "description": "Button which confirms the selected category and starts the main game",
-    "type": "text",
-    "placeholders": {}
-  },
-  "preparationOrientationDescription": "Place the phone on your forehead",
-    "@preparationOrientationDescription": {
-      "description": "Message which reminds player to put the phone in landscape orientation before game starts",
-      "type": "text",
-      "placeholders": {}
-    },
+  "favorites": "Favorites",
+  "settings": "Settings",
+  "emptyFavorites": "Favorite a category to find it here.",
+  "secondsTemplate": "%d s.",
+  "preparationOrientationDescription": "Hold your phone in front of your forehead",
   "lastQuestion": "Last question",
   "@lastQuestion": {
     "description": "Text shown before presenting last question during the game",
@@ -50,36 +44,10 @@
     "type": "text",
     "placeholders": {}
   },
-  "settingsHeader": "Settings",
-  "@settingsHeader": {
-    "description": "Header displayed at the top of settings screen",
-    "type": "text",
-    "placeholders": {}
-  },
-  "settingsLanguage": "Language",
-  "@settingsLanguage": {
-    "description": "Label for changing game language",
-    "type": "text",
-    "placeholders": {}
-  },
   "settingsStartTutorial": "How to play?",
-    "@settingsStartTutorial": {
-      "description": "Label for opening tutorial",
-      "type": "text",
-      "placeholders": {}
-    },
-  "categoryItemQuestionsCount": "{count} items",
-    "@categoryItemQuestionsCount": {
-      "description": "Metadata showing total count of questions in category",
-      "type": "text",
-      "placeholders": {
-        "count": {}
-      }
-    },
-  "emptyFavorites": "Add favorite categories to find them quicker.",
-    "@emptyFavorites": {
-      "description": "Hint shown when there are no favorites defined",
-      "type": "text",
-      "placeholders": {}
-    }
+  "@settingsStartTutorial": {
+    "description": "Label for opening tutorial",
+    "type": "text",
+    "placeholders": {}
+  }
 }

@@ -56,12 +56,12 @@ class QuestionModel extends StoreModel {
   List<Question> get currentQuestions => _currentQuestions;
   List<Question> get questionsAnswered =>
       _currentQuestions.where((q) => q.isPassed != null).toList();
-  List<Question?> get questionsPassed =>
+  List<Question> get questionsPassed =>
       questionsAnswered.where((q) => q.isPassed!).toList();
-  List<Question?> get questionsFailed =>
+  List<Question> get questionsFailed =>
       questionsAnswered.where((q) => !q.isPassed!).toList();
-  final List<Question?> _latestQuestions = [];
-  List<Question?> get latestQuestions => _latestQuestions;
+  final List<Question> _latestQuestions = [];
+  List<Question> get latestQuestions => _latestQuestions;
 
   Question? _currentQuestion;
   Question? get currentQuestion => _currentQuestion;

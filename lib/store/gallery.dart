@@ -44,10 +44,10 @@ class GalleryModel extends StoreModel {
   FileSystemEntity? _activeImage;
   FileSystemEntity? get activeImage => _activeImage;
 
-  List<FileSystemEntity?> _images = [];
-  List<FileSystemEntity?> get images => _images;
+  List<FileSystemEntity> _images = [];
+  List<FileSystemEntity> get images => _images;
 
-  update(List<FileSystemEntity?> images) {
+  update(List<FileSystemEntity> images) {
     _images = images;
     notifyListeners();
   }

@@ -144,6 +144,7 @@ class ParleraApp extends StatelessWidget {
 
         return MaterialApp(
           title: 'Parlera',
+          // debugShowCheckedModeBanner: false, // used for screenshots
           localeListResolutionCallback: (userLocales, supportedLocales) {
             if (isLanguageSet) {
               return Locale(model.language!, '');

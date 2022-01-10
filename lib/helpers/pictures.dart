@@ -51,7 +51,7 @@ class PicturesHelper {
         .create(recursive: true);
   }
 
-  static Future<List<FileSystemEntity?>> getFiles(BuildContext context) async {
+  static Future<List<FileSystemEntity>> getFiles(BuildContext context) async {
     var dir = await getDirectory(context);
 
     return dir.listSync();
