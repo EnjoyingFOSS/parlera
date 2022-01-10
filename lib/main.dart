@@ -37,13 +37,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
-import 'package:parlera/screens/category_detail.dart';
-import 'package:parlera/screens/game_gallery.dart';
+import 'package:parlera/screens/category_detail/category_detail.dart';
+import 'package:parlera/screens/game_gallery/game_gallery.dart';
 import 'package:parlera/screens/game_play/game_play.dart';
 import 'package:parlera/screens/game_summary/game_summary.dart';
-import 'package:parlera/screens/home.dart';
-import 'package:parlera/screens/settings.dart';
-import 'package:parlera/screens/tutorial.dart';
+import 'package:parlera/screens/home/home.dart';
+import 'package:parlera/screens/tutorial/tutorial.dart';
 import 'package:parlera/widgets/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,7 +56,6 @@ import 'repository/question.dart';
 import 'repository/language.dart';
 import 'repository/settings.dart';
 import 'repository/tutorial.dart';
-import 'repository/contributor.dart';
 import 'store/store.dart';
 import 'store/category.dart';
 import 'store/question.dart';
@@ -65,7 +63,6 @@ import 'store/tutorial.dart';
 import 'store/settings.dart';
 import 'store/language.dart';
 import 'store/gallery.dart';
-import 'store/contributor.dart';
 
 class Parlera extends StatelessWidget {
   final Map<Type, StoreModel> stores = {};
@@ -100,7 +97,6 @@ class Parlera extends StatelessWidget {
             SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
             LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
             GalleryModel: GalleryModel(),
-            ContributorModel: ContributorModel(ContributorRepository()),
           });
           for (var store in stores.values) {
             store.initialize();
@@ -119,10 +115,7 @@ class Parlera extends StatelessWidget {
                   model: stores[LanguageModel] as LanguageModel,
                   child: ScopedModel<GalleryModel>(
                     model: stores[GalleryModel] as GalleryModel,
-                    child: ScopedModel<ContributorModel>(
-                      model: stores[ContributorModel] as ContributorModel,
-                      child: const ParleraApp(),
-                    ),
+                    child: const ParleraApp(),
                   ),
                 ),
               ),
@@ -141,21 +134,31 @@ class ParleraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LanguageModel>(
       builder: (context, child, model) {
-        bool languageSet = model.language != null;
-        if (languageSet) {
+        final isLanguageSet = model.language != null &&
+            LanguageHelper.codes.contains(model
+                .language); //todo check for language support here, languages could be removed
+        if (isLanguageSet) {
           CategoryModel.of(context).load(model.language!);
           QuestionModel.of(context).load(model.language!);
         }
 
         return MaterialApp(
           title: 'Parlera',
-          locale: languageSet ? Locale(model.language!, '') : null,
-          localeResolutionCallback: (locale, locales) {
-            if (!languageSet) {
-              model.changeLanguage(locale!.languageCode);
+          localeListResolutionCallback: (userLocales, supportedLocales) {
+            if (isLanguageSet) {
+              return Locale(model.language!, '');
+            } else {
+              if (userLocales != null) {
+                for (var locale in userLocales) {
+                  if (supportedLocales.contains(locale)) {
+                    model.changeLanguage(locale.languageCode);
+                    return locale;
+                  }
+                }
+              }
+              model.changeLanguage(LanguageHelper.defaultLocale.languageCode);
+              return LanguageHelper.defaultLocale;
             }
-
-            return locale;
           },
           localizationsDelegates: const [
             AppLocalizations.delegate,
@@ -163,7 +166,7 @@ class ParleraApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
           ],
           supportedLocales:
-              LanguageHelper.getCodes().map((code) => Locale(code, '')),
+              LanguageHelper.codes.map((code) => Locale(code, '')),
           theme: ThemeHelper.darkTheme,
           home: const HomeScreen(),
           routes: {
@@ -171,7 +174,6 @@ class ParleraApp extends StatelessWidget {
             '/game-play': (context) => const GamePlayScreen(),
             '/game-summary': (context) => const GameSummaryScreen(),
             '/game-gallery': (context) => const GameGalleryScreen(),
-            '/settings': (context) => const SettingsScreen(),
             '/tutorial': (context) => const TutorialScreen(),
           },
         );

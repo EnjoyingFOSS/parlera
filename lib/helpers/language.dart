@@ -34,8 +34,10 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
+import 'dart:ui';
+
 class LanguageHelper {
-  static List<String> getCodes() {
-    return ['en', 'pl'];
-  }
+  static const defaultLocale = Locale("en");
+
+  static final Set<String> codes = {"en"};
 }
