@@ -117,23 +117,6 @@ class GameSummaryScreen extends StatelessWidget {
                             _maxAnswerWidth +
                         1,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    child: Divider(
-                      indent: 16,
-                      endIndent: 16,
-                    ),
-                  ),
-                  ElevatedButton.icon(
-                    label: Text(AppLocalizations.of(context).summaryBack),
-                    icon: const Icon(Icons.check_rounded),
-                    onPressed: () {
-                      // if (!SettingsModel.of(context).isNotificationsEnabled!) {
-                      //   SettingsModel.of(context).enableNotifications();
-                      // }
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
-                    },
-                  ),
                 ],
               ),
             ));

@@ -25,29 +25,8 @@
   "settings": "Settings",
   "emptyFavorites": "Favorite a category to find it here.",
   "secondsTemplate": "%d s.",
-  "preparationOrientationDescription": "Hold your phone in front of your forehead",
-  "lastQuestion": "Last question",
-  "@lastQuestion": {
-    "description": "Text shown before presenting last question during the game",
-    "type": "text",
-    "placeholders": {}
-  },
+  "preparationOrientationDescription": "Hold your phone up to your forehead",
+  "lastQuestion": "Last guess",
   "summaryHeader": "Your score",
-  "@summaryHeader": {
-    "description": "Header displayed at the top of summary screen, informing player about current score",
-    "type": "text",
-    "placeholders": {}
-  },
-  "summaryBack": "Done",
-  "@summaryBack": {
-    "description": "Button which takes the player from summary screen to category listing",
-    "type": "text",
-    "placeholders": {}
-  },
-  "settingsStartTutorial": "How to play?",
-  "@settingsStartTutorial": {
-    "description": "Label for opening tutorial",
-    "type": "text",
-    "placeholders": {}
-  }
+  "settingsStartTutorial": "How to play?"
 }
