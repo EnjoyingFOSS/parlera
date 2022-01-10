@@ -40,15 +40,15 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
 
-import 'widgets/category_list_item.dart';
+import 'category_list_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum CategoryType { all, favorites }
 
-class CategoryListScreen extends StatelessWidget {
+class CategoryList extends StatelessWidget {
   final CategoryType type;
 
-  const CategoryListScreen({
+  const CategoryList({
     Key? key,
     required this.type,
   }) : super(key: key);
@@ -66,37 +66,51 @@ class CategoryListScreen extends StatelessWidget {
           case CategoryType.favorites:
             return EmptyScreen(
                 title: AppLocalizations.of(context).emptyFavorites,
-                icon: const Icon(Icons.favorite_border, size: 96));
+                icon: const Icon(Icons.favorite_border_rounded, size: 96));
           case CategoryType.all:
             return EmptyScreen(
                 title: AppLocalizations.of(context).emptyCategories,
-                icon: const Icon(Icons.apps, size: 96));
+                icon: const Icon(Icons.apps_rounded, size: 96));
         }
       } else {
-        return GridView.count(
-          childAspectRatio: _getCardAspectRatio(context, crossAxisCount),
+        final title = (type == CategoryType.favorites) ? AppLocalizations.of(context).favorites : "Parlera";
+        return SafeArea(
+            child: CustomScrollView(
           shrinkWrap: true,
           primary: false,
-          padding: const EdgeInsets.all(8),
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-          crossAxisCount: crossAxisCount,
-          children: categories.map((category) {
-            return CategoryListItem(
-              category: category,
-              onTap: () {
-                model.setCurrent(category);
-                //   'category_select',
-                //   {'category': category.name},
-                // );
-                Navigator.pushNamed(
-                  context,
-                  '/category',
-                );
-              },
-            );
-          }).toList(),
-        );
+          slivers: [
+            SliverPadding(
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 12),
+                sliver: SliverAppBar(
+              title: Text(title, style: const TextStyle(fontSize: 56)),
+            )),
+            SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                sliver: SliverGrid.count(
+                  crossAxisCount: crossAxisCount,
+                  childAspectRatio:
+                      _getCardAspectRatio(context, crossAxisCount),
+                  //
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  children: categories.map((category) {
+                    return CategoryListItem(
+                      category: category,
+                      onTap: () {
+                        model.setCurrent(category);
+                        //   'category_select',
+                        //   {'category': category.name},
+                        // );
+                        Navigator.pushNamed(
+                          context,
+                          '/category',
+                        );
+                      },
+                    );
+                  }).toList(),
+                ))
+          ],
+        ));
       }
     });
   }

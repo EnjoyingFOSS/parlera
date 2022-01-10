@@ -35,10 +35,11 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:parlera/screens/category_list/category_list.dart';
-import 'package:parlera/screens/settings.dart';
+import 'package:parlera/screens/home/widgets/category_list.dart';
+import 'package:parlera/screens/home/widgets/settings_list.dart';
 import 'package:parlera/widgets/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:parlera/store/category.dart';
 import 'package:parlera/store/question.dart';
@@ -53,31 +54,20 @@ class HomeScreen extends StatefulWidget {
   }
 }
 
+enum _NavItem { all, favorites, menu }
+
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  final List<Tab> _tabs = <Tab>[
-    const Tab(icon: Icon(Icons.play_circle_filled)),
-    const Tab(icon: Icon(Icons.favorite)),
-    const Tab(icon: Icon(Icons.settings)),
-  ];
-  TabController? _tabController;
+  CategoryType _currentCategory = CategoryType.all;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: _tabs.length);
-
     if (!isTutorialWatched()) {
       WidgetsBinding.instance!.addPostFrameCallback((_) => Navigator.pushNamed(
             context,
             '/tutorial',
           ));
     }
-  }
-
-  @override
-  void dispose() {
-    _tabController!.dispose();
-    super.dispose();
   }
 
   bool isTutorialWatched() {
@@ -93,32 +83,59 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             return const ScreenLoader();
           }
 
+          int currentIndex;
+          switch (_currentCategory) {
+            case CategoryType.all:
+              currentIndex = _NavItem.all.index;
+              break;
+            case CategoryType.favorites:
+              currentIndex = _NavItem.favorites.index;
+              break;
+          }
+
           return Scaffold(
-            bottomNavigationBar: Container(
-              color: Theme.of(context).colorScheme.secondary,
-              height: 55,
-              child: TabBar(
-                controller: _tabController,
-                labelColor: Theme.of(context).colorScheme.primary,
-                unselectedLabelColor:
-                    Theme.of(context).colorScheme.onSecondary.withOpacity(0.6),
-                indicatorColor: Theme.of(context).colorScheme.primary,
-                tabs: _tabs,
+              bottomNavigationBar: BottomNavigationBar(
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                items: _NavItem.values.map((navItem) {
+                  switch (navItem) {
+                    case _NavItem.all:
+                      return const BottomNavigationBarItem(
+                          icon: Icon(Icons.home_rounded), label: "Parlera");
+                    case _NavItem.favorites:
+                      return BottomNavigationBarItem(
+                          icon: const Icon(Icons.favorite_rounded),
+                          label: AppLocalizations.of(context).favorites);
+                    case _NavItem.menu:
+                      return BottomNavigationBarItem(
+                          icon: const Icon(Icons.menu),
+                          label: AppLocalizations.of(context).settings);
+                  }
+                }).toList(),
+                currentIndex: currentIndex,
+                onTap: (i) {
+                  switch (_NavItem.values[i]) {
+                    case _NavItem.all:
+                      setState(() {
+                        _currentCategory = CategoryType.all;
+                      });
+                      break;
+                    case _NavItem.favorites:
+                      setState(() {
+                        _currentCategory = CategoryType.favorites;
+                      });
+                      break;
+                    case _NavItem.menu:
+                      showModalBottomSheet<void>(
+                          context: context,
+                          builder: (context) => const SettingsList());
+                      break;
+                  }
+                },
               ),
-            ),
-            body: TabBarView(
-              controller: _tabController,
-              children: const [
-                CategoryListScreen(
-                  type: CategoryType.all,
-                ),
-                CategoryListScreen(
-                  type: CategoryType.favorites,
-                ),
-                SettingsScreen(),
-              ],
-            ),
-          );
+              body: CategoryList(
+                type: _currentCategory,
+              ));
         },
       ),
     );

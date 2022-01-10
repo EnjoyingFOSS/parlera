@@ -35,7 +35,6 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:parlera/models/category.dart';
 import 'package:parlera/widgets/parlera_card.dart';
@@ -54,7 +53,7 @@ class CategoryListItem extends StatelessWidget {
         onTap: onTap,
         child: (Stack(children: [
           Positioned.directional(
-              start: -16,
+              start: -12,
               top: 4,
               bottom: 4,
               textDirection: Directionality.of(context),
@@ -66,7 +65,7 @@ class CategoryListItem extends StatelessWidget {
                         fit: BoxFit.contain),
                   ))),
           Positioned.directional(
-              start: 84,
+              start: 88,
               end: 8,
               top: 2,
               bottom: 2,
