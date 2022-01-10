@@ -1,0 +1,3 @@
+A party game where your friends describe and you guess.
+
+Contribute at https://gitlab.com/enjoyingfoss/parlera/

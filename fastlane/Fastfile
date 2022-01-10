@@ -1,0 +1,38 @@
+update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  lane :internal do
+    gradle(
+      task: 'bundle',
+      build_type: 'Release',
+      project_dir: 'android/'
+    )
+    upload_to_play_store(
+      track: "internal",
+      aab: "build/app/outputs/bundle/release/app-release.aab"
+    )
+  end
+
+  lane :tobeta do
+    upload_to_play_store(
+      track: "internal",
+      track_promote_to: "beta",
+      version_code: 1
+    )
+  end
+
+  lane :toproduction do
+    upload_to_play_store(
+      track: "beta",
+      track_promote_to: "production",
+      version_code: 1
+    )
+  end
+end
