@@ -27,11 +27,13 @@ dependencies:
   camera: ^0.9.4
   permission_handler: ^8.3.0 #todo check if needed
   path_provider: ^2.0.8
-  carousel_slider: ^4.0.0
+  carousel_slider: ^4.0.0 #todo remove, implement custom
   share_plus: ^3.0.4
-  flutter_svg: ^1.0.0
   animated_toggle_switch: ^0.2.1
   flutter_overboard: ^3.0.0
+  #todo animations: ^2.0.2 use for Container transform
+  #todo sembast: ^3.1.1+1 use for local storage
+  #todo use flutter_staggered_animations ^1.0.0 for gridview animation
 
 dev_dependencies:
   flutter_test:
