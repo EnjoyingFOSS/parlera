@@ -44,6 +44,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // import 'package:parlera/helpers/language.dart';
 import 'package:parlera/store/settings.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:parlera/store/language.dart';
 
 class SettingsList extends StatelessWidget {
@@ -66,88 +67,90 @@ class SettingsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<SettingsModel>(
       builder: (context, child, model) {
-        return CustomScrollView(slivers: [
-          //todo slivers unnecessary, unless I allow expansion with a headerbar with a collapse icon
-          SliverPadding(
-              padding: const EdgeInsets.all(0),
-              sliver: SliverList(
-                  delegate: SliverChildListDelegate(
-                [
-                  if (Platform.isIOS || Platform.isAndroid)
-                    SwitchListTile(
-                      title: Text(AppLocalizations.of(context).settingsCamera),
-                      value: model.isCameraEnabled!,
-                      onChanged: (bool value) async {
-                        if (value && !await requestCameraPermissions()) {
-                          return;
-                        }
-                        model.toggleCamera();
-                      },
-                      secondary: const Icon(Icons.camera_alt_rounded),
-                    ),
-                  if (Platform.isIOS || Platform.isAndroid)
-                    SwitchListTile(
-                      title: Text(
-                          AppLocalizations.of(context).settingsAccelerometer),
-                      value: model.isRotationControlEnabled!,
-                      onChanged: (bool value) {
-                        model.toggleRotationControl();
-                      },
-                      secondary: const Icon(Icons.screen_rotation_rounded),
-                    ),
+        return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (Platform.isIOS || Platform.isAndroid)
                   SwitchListTile(
-                    title: Text(AppLocalizations.of(context).settingsAudio),
-                    value: model.isAudioEnabled!,
-                    onChanged: (bool value) {
-                      model.toggleAudio();
+                    title: Text(AppLocalizations.of(context).settingsCamera),
+                    value: model.isCameraEnabled!,
+                    onChanged: (bool value) async {
+                      if (value && !await requestCameraPermissions()) {
+                        return;
+                      }
+                      model.toggleCamera();
                     },
-                    secondary: const Icon(Icons.music_note_rounded),
+                    secondary: const Icon(Icons.camera_alt_rounded),
                   ),
-                  // ScopedModelDescendant<LanguageModel>( // todo add languages later
-                  //   builder: (context, child, model) {
-                  //     return ListTile(
-                  //         title: Text(
-                  //             AppLocalizations.of(context).settingsLanguage),
-                  //         leading: const Icon(Icons.language_rounded),
-                  //         trailing: DropdownButtonHideUnderline(
-                  //           child: DropdownButton(
-                  //             value: model.language,
-                  //             items: LanguageHelper.codes
-                  //                 .map(
-                  //                   (code) => DropdownMenuItem(
-                  //                     child: Text(code.toUpperCase()),
-                  //                     value: code,
-                  //                   ),
-                  //                 )
-                  //                 .toList(),
-                  //             onChanged: (String? language) {
-                  //               // logChange('settings_language', language);
-                  //               model.changeLanguage(
-                  //                   language); //todo make it change global language too
-                  //             },
-                  //           ),
-                  //         ));
-                  //   },
-                  // ),
-                  ListTile(
-                    leading: const Icon(Icons.help_rounded),
+                if (Platform.isIOS || Platform.isAndroid)
+                  SwitchListTile(
                     title: Text(
-                        AppLocalizations.of(context).settingsStartTutorial),
-                    onTap: () => openTutorial(context),
+                        AppLocalizations.of(context).settingsAccelerometer),
+                    value: model.isRotationControlEnabled!,
+                    onChanged: (bool value) {
+                      model.toggleRotationControl();
+                    },
+                    secondary: const Icon(Icons.screen_rotation_rounded),
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.info_rounded),
-                    title: Text(AppLocalizations.of(context).about),
-                    onTap: () => _showAboutDialog(context),
-                  ),
-                ],
-              )))
-        ]);
+                SwitchListTile(
+                  title: Text(AppLocalizations.of(context).settingsAudio),
+                  value: model.isAudioEnabled!,
+                  onChanged: (bool value) {
+                    model.toggleAudio();
+                  },
+                  secondary: const Icon(Icons.music_note_rounded),
+                ),
+                // ScopedModelDescendant<LanguageModel>( // todo add languages later
+                //   builder: (context, child, model) {
+                //     return ListTile(
+                //         title: Text(
+                //             AppLocalizations.of(context).settingsLanguage),
+                //         leading: const Icon(Icons.language_rounded),
+                //         trailing: DropdownButtonHideUnderline(
+                //           child: DropdownButton(
+                //             value: model.language,
+                //             items: LanguageHelper.codes
+                //                 .map(
+                //                   (code) => DropdownMenuItem(
+                //                     child: Text(code.toUpperCase()),
+                //                     value: code,
+                //                   ),
+                //                 )
+                //                 .toList(),
+                //             onChanged: (String? language) {
+                //               // logChange('settings_language', language);
+                //               model.changeLanguage(
+                //                   language); //todo make it change global language too
+                //             },
+                //           ),
+                //         ));
+                //   },
+                // ),
+                ListTile(
+                  leading: const Icon(Icons.help_rounded),
+                  title:
+                      Text(AppLocalizations.of(context).settingsStartTutorial),
+                  onTap: () => _openTutorial(context),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.volunteer_activism),
+                  title: Text(AppLocalizations.of(context).contribute),
+                  onTap: () => _launchURL(context, "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.info_rounded),
+                  title: Text(AppLocalizations.of(context).aboutParlera),
+                  onTap: () => _showAboutDialog(context),
+                ),
+              ],
+            ));
       },
     );
   }
 
-  openTutorial(BuildContext context) {
+  void _openTutorial(BuildContext context) {
     Navigator.pushNamed(
       context,
       '/tutorial',
@@ -167,5 +170,13 @@ class SettingsList extends StatelessWidget {
         ),
         applicationName: packageInfo.appName,
         applicationVersion: packageInfo.version);
+  }
+
+  void _launchURL(BuildContext context, String url) async {
+    await canLaunch(url)
+        ? await launch(url)
+        : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(AppLocalizations.of(context).urlCantOpen),
+          ));
   }
 }

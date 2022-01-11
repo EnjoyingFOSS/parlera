@@ -1,5 +1,5 @@
 {
-  "about": "About",
+  "aboutParlera": "About Parlera",
   "emptyCategories": "Couldn't load categories :(",
   "labelGo": "Let's go!",
   "settingsAccelerometer": "Tilt phone to answer",
@@ -28,5 +28,7 @@
   "preparationOrientationDescription": "Hold your phone up to your forehead",
   "lastQuestion": "Last guess",
   "summaryHeader": "Your score",
-  "settingsStartTutorial": "How to play?"
+  "settingsStartTutorial": "How to play?",
+  "contribute": "Contribute",
+  "urlCantOpen": "Could not open URL."
 }
