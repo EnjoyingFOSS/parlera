@@ -82,7 +82,7 @@ class CategoryList extends StatelessWidget {
             SliverPadding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 12),
                 sliver: SliverAppBar(
-              title: Text(title, style: const TextStyle(fontSize: 56)),
+              title: Text(title, style: const TextStyle(fontSize: 52)),
             )),
             SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -119,7 +119,7 @@ class CategoryList extends StatelessWidget {
     final itemWidth =
         (MediaQuery.of(context).size.width - 32 - 8 * (crossAxisCount - 1)) /
             crossAxisCount;
-    const itemHeight = 96.0;
+    const itemHeight = 80.0;
 
     return itemWidth / itemHeight;
   }
