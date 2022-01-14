@@ -78,7 +78,7 @@ class SettingsModel extends StoreModel {
   SettingsModel(this.repository);
 
   @override
-  initialize() async {
+  Future<void> initialize() async {
     _isLoading = true;
     notifyListeners();
 
@@ -94,32 +94,32 @@ class SettingsModel extends StoreModel {
     notifyListeners();
   }
 
-  toggleAudio() async {
+  Future<void> toggleAudio() async {
     _isAudioEnabled = repository.toggleAudio();
     notifyListeners();
   }
 
-  toggleRotationControl() async {
+  Future<void> toggleRotationControl() async {
     _isRotationControlEnabled = repository.toggleRotationControl();
     notifyListeners();
   }
 
-  toggleCamera() async {
+  Future<void> toggleCamera() async {
     _isCameraEnabled = repository.toggleCamera();
     notifyListeners();
   }
 
-  changeRoundTime(int? roundTime) async {
+  Future<void> changeRoundTime(int roundTime) async {
     _roundTime = repository.setRoundTime(roundTime);
     notifyListeners();
   }
 
-  increaseGamesPlayed() async {
+  Future<void> increaseGamesPlayed() async {
     _gamesPlayed = repository.increaseGamesPlayed();
     notifyListeners();
   }
 
-  increaseGamesFinished() async {
+  Future<void> increaseGamesFinished() async {
     _gamesFinished = repository.increaseGamesFinished();
     notifyListeners();
   }

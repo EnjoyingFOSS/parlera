@@ -42,12 +42,12 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:parlera/models/question.dart';
 
 class QuestionRepository {
-  Future<Map<String?, List<Question>>> getAll(String languageCode) async {
+  Future<Map<String, List<Question>>> getAll(String languageCode) async {
     languageCode = languageCode.toLowerCase();
     List<dynamic> categoryList = json.decode(await rootBundle
         .loadString('assets/data/categories_$languageCode.json'));
 
-    Map<String?, List<Question>> questions = {};
+    Map<String, List<Question>> questions = {};
     for (Map<String, dynamic> categoryMap in categoryList) {
       questions[categoryMap['id']] = List.from(categoryMap['questions']
           .map((name) => Question(name, categoryMap['name'])));
@@ -56,8 +56,8 @@ class QuestionRepository {
     return questions;
   }
 
-  _getRandomQuestions(List<Question> questions, int limit,
-      {List<Question?> excluded = const []}) {
+  List<Question> _getRandomQuestions(List<Question> questions, int limit,
+      {List<Question> excluded = const []}) {
     var allowedQuestions =
         questions.where((q) => !excluded.contains(q)).toList();
     allowedQuestions.shuffle();
@@ -67,7 +67,7 @@ class QuestionRepository {
   }
 
   List<Question> getRandomMixUp(
-    Map<String?, List<Question>> questions,
+    Map<String, List<Question>> questions,
     int limit,
   ) {
     var keys = questions.keys.where((q) => q != 'mixup').toList();
@@ -84,20 +84,26 @@ class QuestionRepository {
   }
 
   List<Question> getRandom(
-      Map<String?, List<Question>> questions, String? categoryId, int limit,
-      {List<Question?> excluded = const []}) {
+      Map<String, List<Question>> questions, String categoryId, int limit,
+      {List<Question> excluded = const []}) {
     if (categoryId == 'mixup') {
       return getRandomMixUp(questions, limit);
     }
 
-    return _getRandomQuestions(
-      questions[categoryId]!,
-      limit,
-      excluded: excluded,
-    );
+    final categoryQs = questions[categoryId];
+
+    if (categoryQs != null) {
+      return _getRandomQuestions(
+        categoryQs,
+        limit,
+        excluded: excluded,
+      );
+    } else {
+      return List.empty();
+    }
   }
 
-  Question? getNext(List<Question?> questions, Question? current) {
+  Question? getNext(List<Question> questions, Question current) {
     int nextIndex = questions.indexOf(current) + 1;
 
     if (nextIndex == questions.length) {

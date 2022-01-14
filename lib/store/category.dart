@@ -57,8 +57,8 @@ class CategoryModel extends StoreModel {
   Category? _currentCategory;
   Category? get currentCategory => _currentCategory;
 
-  final Map<String?, int> _playedCount = {};
-  Map<String?, int> get playedCount => _playedCount;
+  final Map<String, int> _playedCount = {};
+  Map<String, int> get playedCount => _playedCount;
 
   CategoryModel(this.repository);
 

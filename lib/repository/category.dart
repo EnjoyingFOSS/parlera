@@ -45,7 +45,7 @@ class CategoryRepository {
   static const String storageCategoryPlayedCountKey = 'category_played_count';
   static const String storageFavoriteListKey = 'category_favorite_list';
 
-  final SharedPreferences? storage;
+  final SharedPreferences storage;
 
   CategoryRepository({required this.storage});
 
@@ -70,13 +70,13 @@ class CategoryRepository {
       favorites.add(selected.id);
     }
 
-    storage!.setStringList(storageFavoriteListKey, favorites);
+    storage.setStringList(storageFavoriteListKey, favorites);
 
     return favorites;
   }
 
   List<String> getFavorites(Map<String, Category> categories) {
-    final favoriteIds = storage!.getStringList(storageFavoriteListKey);
+    final favoriteIds = storage.getStringList(storageFavoriteListKey);
     return favoriteIds?.where((id) => categories.containsKey(id)).toList() ??
         [];
   }
@@ -86,12 +86,12 @@ class CategoryRepository {
   }
 
   int getPlayedCount(Category category) {
-    return storage!.getInt(_playedCountStorageKey(category)) ?? 0;
+    return storage.getInt(_playedCountStorageKey(category)) ?? 0;
   }
 
   int increasePlayedCount(Category category) {
     var gamesPlayed = getPlayedCount(category) + 1;
-    storage!.setInt(_playedCountStorageKey(category), gamesPlayed);
+    storage.setInt(_playedCountStorageKey(category), gamesPlayed);
 
     return gamesPlayed;
   }

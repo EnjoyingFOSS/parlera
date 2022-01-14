@@ -89,7 +89,7 @@ class Parlera extends StatelessWidget {
 
         //build store
         if (stores.isEmpty) {
-          final storage = snapshot.data;
+          final storage = snapshot.data!;
           stores.addAll({
             CategoryModel: CategoryModel(CategoryRepository(storage: storage)),
             QuestionModel: QuestionModel(QuestionRepository()),

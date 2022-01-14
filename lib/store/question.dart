@@ -49,8 +49,8 @@ class QuestionModel extends StoreModel {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
-  Map<String?, List<Question>> _questions = {};
-  Map<String?, List<Question>> get questions => _questions;
+  Map<String, List<Question>> _questions = {};
+  Map<String, List<Question>> get questions => _questions;
 
   List<Question> _currentQuestions = [];
   List<Question> get currentQuestions => _currentQuestions;
@@ -68,7 +68,7 @@ class QuestionModel extends StoreModel {
 
   QuestionModel(this.repository);
 
-  load(String languageCode) async {
+  Future<void> load(String languageCode) async {
     _isLoading = true;
     notifyListeners();
 
@@ -77,7 +77,7 @@ class QuestionModel extends StoreModel {
     notifyListeners();
   }
 
-  void generateCurrentQuestions(String? categoryId) {
+  void generateCurrentQuestions(String categoryId) {
     _currentQuestions = repository.getRandom(
       _questions,
       categoryId,
@@ -92,8 +92,12 @@ class QuestionModel extends StoreModel {
     notifyListeners();
   }
 
-  isPreLastQuestion() {
-    var nextQuestion = repository.getNext(_currentQuestions, _currentQuestion);
+  bool isPreLastQuestion() {
+    if (_currentQuestion == null) {
+      return false;
+    }
+
+    var nextQuestion = repository.getNext(_currentQuestions, _currentQuestion!);
     if (nextQuestion == null) {
       return false;
     }
@@ -101,14 +105,19 @@ class QuestionModel extends StoreModel {
     return repository.getNext(_currentQuestions, nextQuestion) == null;
   }
 
-  setNextQuestion() {
-    _currentQuestion = repository.getNext(_currentQuestions, _currentQuestion);
-    notifyListeners();
+  void setNextQuestion() {
+    if (_currentQuestion != null) {
+      _currentQuestion =
+          repository.getNext(_currentQuestions, _currentQuestion!);
+      notifyListeners();
+    }
   }
 
-  answerQuestion(bool isValid) {
-    _currentQuestion!.isPassed = isValid;
-    notifyListeners();
+  void answerQuestion(bool isValid) {
+    if (_currentQuestion != null) {
+      _currentQuestion!.isPassed = isValid;
+      notifyListeners();
+    }
   }
 
   static QuestionModel of(BuildContext context) =>

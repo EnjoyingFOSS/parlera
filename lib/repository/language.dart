@@ -41,19 +41,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LanguageRepository {
   static const String storageLanguageKey = 'language';
 
-  final SharedPreferences? storage;
+  final SharedPreferences storage;
 
   LanguageRepository({required this.storage});
 
   String? getLanguage() {
-    return storage!.getString(storageLanguageKey);
+    return storage.getString(storageLanguageKey);
   }
 
   String? setLanguage(String? language) {
     if (language == null) {
-      storage!.remove(storageLanguageKey);
+      storage.remove(storageLanguageKey);
     } else {
-      storage!.setString(storageLanguageKey, language);
+      storage.setString(storageLanguageKey, language);
     }
 
     return language;

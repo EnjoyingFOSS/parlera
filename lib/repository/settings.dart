@@ -50,85 +50,85 @@ class SettingsRepository {
   static const String storageNotificationsEnabledKey =
       'is_notifications_enabled';
 
-  final SharedPreferences? storage;
+  final SharedPreferences storage;
 
   SettingsRepository({required this.storage});
 
   bool isAudioEnabled() {
-    return storage!.getBool(storageAudioEnabledKey) ?? true;
+    return storage.getBool(storageAudioEnabledKey) ?? true;
   }
 
   bool toggleAudio() {
     var value = !isAudioEnabled();
 
-    storage!.setBool(storageAudioEnabledKey, value);
+    storage.setBool(storageAudioEnabledKey, value);
 
     return value;
   }
 
   bool isRotationControlEnabled() {
-    return storage!.getBool(storageRotationControlEnabledKey) ?? false;
+    return storage.getBool(storageRotationControlEnabledKey) ?? false;
   }
 
   bool toggleRotationControl() {
     var value = !isRotationControlEnabled();
 
-    storage!.setBool(storageRotationControlEnabledKey, value);
+    storage.setBool(storageRotationControlEnabledKey, value);
 
     return value;
   }
 
   bool isCameraEnabled() {
-    return storage!.getBool(storageCameraEnabledKey) ?? false;
+    return storage.getBool(storageCameraEnabledKey) ?? false;
   }
 
   bool toggleCamera() {
     var value = !isCameraEnabled();
 
-    storage!.setBool(storageCameraEnabledKey, value);
+    storage.setBool(storageCameraEnabledKey, value);
 
     return value;
   }
 
   int getRoundTime() {
-    return storage!.getInt(storageRoundTimeKey) ?? 60;
+    return storage.getInt(storageRoundTimeKey) ?? 60;
   }
 
-  int? setRoundTime(int? roundTime) {
-    storage!.setInt(storageRoundTimeKey, roundTime!);
+  int setRoundTime(int roundTime) {
+    storage.setInt(storageRoundTimeKey, roundTime);
 
     return roundTime;
   }
 
   int getGamesPlayed() {
-    return storage!.getInt(storageGamesPlayedKey) ?? 0;
+    return storage.getInt(storageGamesPlayedKey) ?? 0;
   }
 
   int increaseGamesPlayed() {
     var gamesPlayed = getGamesPlayed() + 1;
-    storage!.setInt(storageGamesPlayedKey, gamesPlayed);
+    storage.setInt(storageGamesPlayedKey, gamesPlayed);
 
     return gamesPlayed;
   }
 
   int getGamesFinished() {
-    return storage!.getInt(storageGamesFinishedKey) ?? 0;
+    return storage.getInt(storageGamesFinishedKey) ?? 0;
   }
 
   int increaseGamesFinished() {
     var gamesFinished = getGamesFinished() + 1;
 
-    storage!.setInt(storageGamesFinishedKey, gamesFinished);
+    storage.setInt(storageGamesFinishedKey, gamesFinished);
 
     return gamesFinished;
   }
 
   bool isNotificationsEnabled() {
-    return storage!.getBool(storageNotificationsEnabledKey) ?? false;
+    return storage.getBool(storageNotificationsEnabledKey) ?? false;
   }
 
   void enableNotifications() {
-    storage!.setBool(storageNotificationsEnabledKey, true);
+    storage.setBool(storageNotificationsEnabledKey, true);
   }
 
   Future<String> getAppVersion() async {
