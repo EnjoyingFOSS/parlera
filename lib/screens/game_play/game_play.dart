@@ -37,12 +37,14 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:parlera/helpers/audio.dart';
 import 'package:parlera/helpers/pictures.dart';
 import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/helpers/vibration.dart';
+import 'package:parlera/screens/game_play/widgets/game_content.dart';
 import 'package:parlera/screens/game_play/widgets/prep_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -59,6 +61,7 @@ import 'widgets/camera_preview.dart';
 import 'tilt_service.dart';
 import 'widgets/game_button.dart';
 import 'widgets/result_icon.dart';
+import 'widgets/splash_content.dart';
 
 class GamePlayScreen extends StatefulWidget {
   const GamePlayScreen({Key? key}) : super(key: key);
@@ -76,26 +79,26 @@ class GamePlayScreenState extends State<GamePlayScreen>
   late int _secondsLeft;
   bool _isStarted = false;
   bool _isPaused = false;
-  bool? _isCameraEnabled = false;
+  bool _isCameraEnabled = false;
   StreamSubscription<dynamic>? _rotateSubscription;
-  Category? _category;
+  late final Category _category;
   late final TiltService? _tiltService;
 
-  AnimationController? invalidAC;
-  late Animation<double> invalidAnimation;
-  AnimationController? validAC;
-  late Animation<double> validAnimation;
+  AnimationController? _invalidAC;
+  late Animation<double> _invalidAnimation;
+  AnimationController? _validAC;
+  late Animation<double> _validAnimation;
 
   @override
   void initState() {
     super.initState();
     startTimer();
-    _category = CategoryModel.of(context).currentCategory;
-    QuestionModel.of(context).generateCurrentQuestions(_category!.id);
+    _category = CategoryModel.of(context).currentCategory!;
+    QuestionModel.of(context).generateCurrentQuestions(_category.id);
 
     SettingsModel settings = SettingsModel.of(context);
     _secondsMax = settings.roundTime ?? -1;
-    _isCameraEnabled = settings.isCameraEnabled;
+    _isCameraEnabled = settings.isCameraEnabled ?? false;
     if (settings.isRotationControlEnabled!) {
       _tiltService = TiltService(
           handleInvalid: handleInvalid,
@@ -127,14 +130,14 @@ class GamePlayScreenState extends State<GamePlayScreen>
     return controller;
   }
 
-  initAnimations() {
-    invalidAC = createAnswerAnimationController();
-    invalidAnimation =
-        CurvedAnimation(parent: invalidAC!, curve: Curves.elasticOut);
+  void initAnimations() {
+    _invalidAC = createAnswerAnimationController();
+    _invalidAnimation =
+        CurvedAnimation(parent: _invalidAC!, curve: Curves.elasticOut);
 
-    validAC = createAnswerAnimationController();
-    validAnimation =
-        CurvedAnimation(parent: validAC!, curve: Curves.elasticOut);
+    _validAC = createAnswerAnimationController();
+    _validAnimation =
+        CurvedAnimation(parent: _validAC!, curve: Curves.elasticOut);
   }
 
   @override
@@ -149,19 +152,19 @@ class GamePlayScreenState extends State<GamePlayScreen>
       _rotateSubscription!.cancel();
     }
 
-    validAC?.dispose();
-    invalidAC?.dispose();
+    _validAC?.dispose();
+    _invalidAC?.dispose();
     _tiltService?.dispose();
 
     super.dispose();
     stopTimer();
   }
 
-  startTimer() {
+  void startTimer() {
     _gameTimer = Timer.periodic(const Duration(seconds: 1), gameLoop);
   }
 
-  stopTimer() {
+  void stopTimer() {
     _gameTimer?.cancel();
   }
 
@@ -179,13 +182,13 @@ class GamePlayScreenState extends State<GamePlayScreen>
     });
   }
 
-  savePictures() async {
+  Future<void> savePictures() async {
     GalleryModel.of(context).update(await PicturesHelper.getFiles(context));
   }
 
-  showScore() {
+  void showScore() {
     SettingsModel.of(context).increaseGamesFinished();
-    CategoryModel.of(context).increasePlayedCount(_category!);
+    CategoryModel.of(context).increasePlayedCount(_category);
 
     //   'valid': QuestionModel.of(context).questionsPassed.length,
     //   'invalid': QuestionModel.of(context).questionsFailed.length,
@@ -236,11 +239,13 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   void gameOver() {
-    savePictures();
+    if (_isCameraEnabled) {
+      savePictures();
+    }
     showScore();
   }
 
-  nextQuestion() {
+  void nextQuestion() {
     stopTimer();
     if (_secondsLeft == 0) {
       return gameOver();
@@ -258,8 +263,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
     startTimer();
   }
 
-  postAnswer({required bool isValid}) {
-    if (Platform.isAndroid || Platform.isIOS) {
+  void postAnswer({required bool isValid}) {
+    if (!flutter_foundation.kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
       VibrationHelper.vibrate();
     }
     QuestionModel.of(context).answerQuestion(isValid);
@@ -274,23 +279,23 @@ class GamePlayScreenState extends State<GamePlayScreen>
     // });
   }
 
-  handleValid() {
+  void handleValid() {
     if (_isPaused) {
       return;
     }
 
     AudioHelper.playValid(context);
-    validAC!.forward();
+    _validAC!.forward();
     postAnswer(isValid: true);
   }
 
-  handleInvalid() {
+  void handleInvalid() {
     if (_isPaused) {
       return;
     }
 
     AudioHelper.playInvalid(context);
-    invalidAC!.forward();
+    _invalidAC!.forward();
     postAnswer(isValid: false);
   }
 
@@ -305,117 +310,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
   }
 
-  Widget buildHeader(String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          fontSize: 64.0,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
-  Widget buildSplashContent(Widget child, Color background, [IconData? icon]) {
-    return Container(
-      decoration: BoxDecoration(color: background),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Expanded(
-          child: Center(
-            child: child,
-          ),
-        ),
-        if (QuestionModel.of(context).isPreLastQuestion())
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: Text(
-              AppLocalizations.of(context).lastQuestion,
-              style: const TextStyle(
-                fontSize: 36.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          )
-      ]),
-    );
-  }
-
-  Widget buildGameContent() {
-    return ScopedModelDescendant<QuestionModel>(
-      builder: (context, child, model) {
-        var currentQuestion = model.currentQuestion;
-
-        return Stack(
-          children: [
-            Row(
-              children: [
-                GameButton(
-                  child: const ResultIcon(success: true), //todo add down icon
-                  alignment: Alignment.bottomCenter,
-                  color: ThemeHelper.successColor,
-                  onTap: handleValid,
-                ),
-                GameButton(
-                  child: const ResultIcon(success: false), //todo add up icon
-                  alignment: Alignment.bottomCenter,
-                  color: ThemeHelper.failColor,
-                  onTap: handleInvalid,
-                ),
-              ],
-            ),
-            IgnorePointer(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (currentQuestion != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: SafeArea(
-                        child: Text(
-                          currentQuestion.categoryName!,
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  if (currentQuestion != null)
-                    Expanded(
-                      child: Center(
-                        child: buildHeader(currentQuestion.name),
-                      ),
-                    ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20.0),
-                    child: Text(
-                      _secondsLeft.toString(),
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned.directional(
-                textDirection: Directionality.of(context),
-                top: MediaQuery.of(context).padding.top + 8,
-                start: 8,
-                child: const BackButton()),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -428,19 +322,34 @@ class GamePlayScreenState extends State<GamePlayScreen>
           if (_isPaused || _isStarted)
             Stack(
               children: [
-                buildGameContent(),
+                ScopedModelDescendant<QuestionModel>(
+                  builder: (context, child, model) {
+                    final currentQuestion = model.currentQuestion;
+                    if (currentQuestion != null) {
+                      return GameContent(
+                          handleValid: handleValid,
+                          handleInvalid: handleInvalid,
+                          currentQuestion: currentQuestion,
+                          secondsLeft: _secondsLeft.toString());
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
                 ScaleTransition(
-                  scale: invalidAnimation,
-                  child: buildSplashContent(
-                    const ResultIcon(success: false),
-                    ThemeHelper.failColor,
+                  scale: _invalidAnimation,
+                  child: SplashContent(
+                    isNextToLast: QuestionModel.of(context).isPreLastQuestion(),
+                    child: const ResultIcon(success: false),
+                    background: ThemeHelper.failColor,
                   ),
                 ),
                 ScaleTransition(
-                  scale: validAnimation,
-                  child: buildSplashContent(
-                    const ResultIcon(success: true),
-                    ThemeHelper.successColor,
+                  scale: _validAnimation,
+                  child: SplashContent(
+                    isNextToLast: QuestionModel.of(context).isPreLastQuestion(),
+                    child: const ResultIcon(success: true),
+                    background: ThemeHelper.successColor,
                   ),
                 ),
               ],
