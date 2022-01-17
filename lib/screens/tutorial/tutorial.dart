@@ -18,6 +18,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
@@ -25,6 +27,8 @@ import 'package:parlera/store/tutorial.dart';
 
 class TutorialScreen extends StatelessWidget {
   const TutorialScreen({Key? key}) : super(key: key);
+
+  bool _isMobile() => Platform.isAndroid || Platform.isIOS;
 
   @override
   Widget build(BuildContext context) {
@@ -41,29 +45,51 @@ class TutorialScreen extends StatelessWidget {
       pages: [
         PageModel(
             imageAssetPath: 'assets/images/tutorial/1.webp',
-            title: AppLocalizations.of(context).tutorialPhoneFirstSectionHeader,
-            body: AppLocalizations.of(context)
-                .tutorialPhoneFirstSectionDescription,
+            title: AppLocalizations.of(context).tutorialFirstSectionHeader,
+            body: _isMobile()
+                ? AppLocalizations.of(context)
+                    .tutorialFirstSectionDescriptionPhone
+                : AppLocalizations.of(context)
+                    .tutorialFirstSectionDescriptionDesktop,
             color: Theme.of(context).colorScheme.surface),
-        PageModel(
-            imageAssetPath: 'assets/images/tutorial/2.webp',
-            title:
-                AppLocalizations.of(context).tutorialPhoneSecondSectionHeader,
-            body: AppLocalizations.of(context)
-                .tutorialPhoneSecondSectionDescription,
-            color: Theme.of(context).colorScheme.background),
-        PageModel(
-            imageAssetPath: 'assets/images/tutorial/3.webp',
-            title: AppLocalizations.of(context).tutorialPhoneThirdSectionHeader,
-            body: AppLocalizations.of(context)
-                .tutorialPhoneThirdSectionDescription,
-            color: Theme.of(context).colorScheme.surface),
+        _isMobile()
+            ? PageModel(
+                imageAssetPath: 'assets/images/tutorial/2-phone.webp',
+                title: AppLocalizations.of(context)
+                    .tutorialSecondSectionHeaderPhone,
+                body: AppLocalizations.of(context)
+                    .tutorialSecondSectionDescriptionPhone,
+                color: Theme.of(context).colorScheme.background)
+            : PageModel(
+                imageAssetPath: 'assets/images/tutorial/2.webp',
+                title: AppLocalizations.of(context)
+                    .tutorialSecondSectionHeaderDesktop,
+                body: AppLocalizations.of(context)
+                    .tutorialSecondSectionDescriptionDesktop,
+                color: Theme.of(context).colorScheme.background),
+        _isMobile()
+            ? PageModel(
+                imageAssetPath: 'assets/images/tutorial/3-phone.webp',
+                title: AppLocalizations.of(context)
+                    .tutorialThirdSectionHeaderPhone,
+                body: AppLocalizations.of(context)
+                    .tutorialThirdSectionDescriptionPhone,
+                color: Theme.of(context).colorScheme.surface)
+            : PageModel(
+                imageAssetPath: 'assets/images/tutorial/3.webp',
+                title: AppLocalizations.of(context)
+                    .tutorialThirdSectionHeaderDesktop,
+                body: AppLocalizations.of(context)
+                    .tutorialThirdSectionDescriptionDesktop,
+                color: Theme.of(context).colorScheme.surface),
         PageModel(
             imageAssetPath: 'assets/images/tutorial/4.webp',
-            title:
-                AppLocalizations.of(context).tutorialPhoneFourthSectionHeader,
-            body: AppLocalizations.of(context)
-                .tutorialPhoneFourthSectionDescription,
+            title: AppLocalizations.of(context).tutorialFourthSectionHeader,
+            body: _isMobile()
+                ? AppLocalizations.of(context)
+                    .tutorialFourthSectionDescriptionPhone
+                : AppLocalizations.of(context)
+                    .tutorialFourthSectionDescriptionDesktop,
             color: Theme.of(context).colorScheme.background),
       ],
       skipCallback: finishTutorial,
