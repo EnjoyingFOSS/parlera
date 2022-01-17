@@ -36,6 +36,7 @@
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -72,7 +73,8 @@ class SettingsList extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (Platform.isIOS || Platform.isAndroid)
+                if (!flutter_foundation.kIsWeb &&
+                    (Platform.isIOS || Platform.isAndroid))
                   SwitchListTile(
                     title: Text(AppLocalizations.of(context).settingsCamera),
                     value: model.isCameraEnabled!,
@@ -84,7 +86,8 @@ class SettingsList extends StatelessWidget {
                     },
                     secondary: const Icon(Icons.camera_alt_rounded),
                   ),
-                if (Platform.isIOS || Platform.isAndroid)
+                if (!flutter_foundation.kIsWeb &&
+                    (Platform.isIOS || Platform.isAndroid))
                   SwitchListTile(
                     title: Text(
                         AppLocalizations.of(context).settingsAccelerometer),
@@ -137,7 +140,8 @@ class SettingsList extends StatelessWidget {
                 ListTile(
                   leading: const Icon(Icons.volunteer_activism),
                   title: Text(AppLocalizations.of(context).contribute),
-                  onTap: () => _launchURL(context, "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
+                  onTap: () => _launchURL(context,
+                      "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
                 ),
                 ListTile(
                   leading: const Icon(Icons.info_rounded),
