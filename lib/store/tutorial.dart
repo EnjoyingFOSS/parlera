@@ -48,12 +48,12 @@ class TutorialModel extends StoreModel {
   TutorialModel(this.repository);
 
   @override
-  initialize() async {
-    _isWatched = await repository.isWatched();
+  Future<void> initialize() async {
+    _isWatched = (await repository.isWatched()) ?? false;
     notifyListeners();
   }
 
-  watch() async {
+  Future<void> watch() async {
     _isWatched = await repository.watch();
     notifyListeners();
   }

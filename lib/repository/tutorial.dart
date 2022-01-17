@@ -41,17 +41,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 class TutorialRepository {
   static const String storageWatchKey = 'is_tutorial_watched';
 
-  final SharedPreferences? storage;
+  final SharedPreferences storage;
 
   TutorialRepository({required this.storage});
 
-  isWatched() {
-    return storage!.getBool(storageWatchKey) ?? false;
-  }
+  Future<bool?> isWatched() async => storage.getBool(storageWatchKey);
 
-  watch() {
-    storage!.setBool(storageWatchKey, true);
-
-    return true;
-  }
+  Future<bool> watch() async => storage.setBool(storageWatchKey, true);
 }
