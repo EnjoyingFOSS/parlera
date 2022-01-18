@@ -42,7 +42,7 @@ class AudioHelper {
   static AudioCache audioCache = AudioCache(prefix: 'assets/audio/');
 
   static bool _audioEnabled(BuildContext context) =>
-      SettingsModel.of(context).isAudioEnabled!;
+      SettingsModel.of(context).isAudioEnabled;
 
   static void playInvalid(context) {
     if (_audioEnabled(context)) {

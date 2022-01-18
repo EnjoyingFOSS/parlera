@@ -51,29 +51,29 @@ class SettingsModel extends StoreModel {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
-  bool? _isAudioEnabled;
-  bool? get isAudioEnabled => _isAudioEnabled;
+  late bool _isAudioEnabled;
+  bool get isAudioEnabled => _isAudioEnabled;
 
-  bool? _isRotationControlEnabled;
-  bool? get isRotationControlEnabled => _isRotationControlEnabled;
+  late bool _isRotationControlEnabled;
+  bool get isRotationControlEnabled => _isRotationControlEnabled;
 
-  bool? _isCameraEnabled;
-  bool? get isCameraEnabled => _isCameraEnabled;
+  late bool _isCameraEnabled;
+  bool get isCameraEnabled => _isCameraEnabled;
 
-  int? _roundTime;
-  int? get roundTime => _roundTime;
+  late int _roundTime;
+  int get roundTime => _roundTime;
 
   String? _version;
   String? get version => _version;
 
-  int? _gamesPlayed;
-  int? get gamesPlayed => _gamesPlayed;
+  late int _gamesPlayed;
+  int get gamesPlayed => _gamesPlayed;
 
-  int? _gamesFinished;
-  int? get gamesFinished => _gamesFinished;
+  late int _gamesFinished;
+  int get gamesFinished => _gamesFinished;
 
-  bool? _isNotificationsEnabled;
-  bool? get isNotificationsEnabled => _isNotificationsEnabled;
+  late bool _areNotificationsEnabled;
+  bool get isNotificationsEnabled => _areNotificationsEnabled;
 
   SettingsModel(this.repository);
 
@@ -89,7 +89,7 @@ class SettingsModel extends StoreModel {
     _version = await repository.getAppVersion();
     _gamesPlayed = repository.getGamesPlayed();
     _gamesFinished = repository.getGamesFinished();
-    _isNotificationsEnabled = repository.isNotificationsEnabled();
+    _areNotificationsEnabled = repository.areNotificationsEnabled();
     _isLoading = false;
     notifyListeners();
   }
@@ -126,7 +126,7 @@ class SettingsModel extends StoreModel {
 
   // enableNotifications() {
   //   NotificationsService.register();
-  //   _isNotificationsEnabled = true;
+  //   _areNotificationsEnabled = true;
   //   repository.enableNotifications();
   //   notifyListeners();
   // }

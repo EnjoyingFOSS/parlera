@@ -97,9 +97,9 @@ class GamePlayScreenState extends State<GamePlayScreen>
     QuestionModel.of(context).generateCurrentQuestions(_category.id);
 
     SettingsModel settings = SettingsModel.of(context);
-    _secondsMax = settings.roundTime ?? -1;
-    _isCameraEnabled = settings.isCameraEnabled ?? false;
-    if (settings.isRotationControlEnabled!) {
+    _secondsMax = settings.roundTime;
+    _isCameraEnabled = settings.isCameraEnabled;
+    if (settings.isRotationControlEnabled) {
       _tiltService = TiltService(
           handleInvalid: handleInvalid,
           handleValid: handleValid,

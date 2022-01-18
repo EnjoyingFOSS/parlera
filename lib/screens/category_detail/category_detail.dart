@@ -145,7 +145,7 @@ class CategoryDetailScreen extends StatelessWidget {
                               ));
                             },
                             indicatorType: IndicatorType.circle,
-                            current: settingsModel.roundTime!,
+                            current: settingsModel.roundTime,
                             values: const [30, 60, 90, 120],
                             onChanged: (int value) {
                               //     "settings_round_time", {"value": value});
