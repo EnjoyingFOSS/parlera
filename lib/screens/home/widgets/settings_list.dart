@@ -77,7 +77,7 @@ class SettingsList extends StatelessWidget {
                     (Platform.isIOS || Platform.isAndroid))
                   SwitchListTile(
                     title: Text(AppLocalizations.of(context).settingsCamera),
-                    value: model.isCameraEnabled!,
+                    value: model.isCameraEnabled,
                     onChanged: (bool value) async {
                       if (value && !await requestCameraPermissions()) {
                         return;
@@ -91,15 +91,15 @@ class SettingsList extends StatelessWidget {
                   SwitchListTile(
                     title: Text(
                         AppLocalizations.of(context).settingsAccelerometer),
-                    value: model.isRotationControlEnabled!,
+                    value: model.isRotationControlEnabled,
                     onChanged: (bool value) {
                       model.toggleRotationControl();
                     },
                     secondary: const Icon(Icons.screen_rotation_rounded),
                   ),
-                SwitchListTile(
+                if (!Platform.isLinux) SwitchListTile(
                   title: Text(AppLocalizations.of(context).settingsAudio),
-                  value: model.isAudioEnabled!,
+                  value: model.isAudioEnabled,
                   onChanged: (bool value) {
                     model.toggleAudio();
                   },

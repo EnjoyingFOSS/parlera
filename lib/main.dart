@@ -34,6 +34,8 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
@@ -71,7 +73,9 @@ class Parlera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Wakelock.enable();
+    if (!Platform.isLinux) { //todo change after support is added
+      Wakelock.enable();
+    }
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,

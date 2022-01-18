@@ -35,6 +35,7 @@
 //   limitations under the License.
 
 import 'dart:core';
+import 'dart:io';
 
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -55,11 +56,13 @@ class SettingsRepository {
   SettingsRepository({required this.storage});
 
   bool isAudioEnabled() {
-    return storage.getBool(storageAudioEnabledKey) ?? true;
+    return storage.getBool(storageAudioEnabledKey) ?? (Platform.isLinux)
+        ? false //todo use for Linux when audio is ported over
+        : true;
   }
 
   bool toggleAudio() {
-    var value = !isAudioEnabled();
+    final value = !isAudioEnabled();
 
     storage.setBool(storageAudioEnabledKey, value);
 
@@ -71,7 +74,7 @@ class SettingsRepository {
   }
 
   bool toggleRotationControl() {
-    var value = !isRotationControlEnabled();
+    final value = !isRotationControlEnabled();
 
     storage.setBool(storageRotationControlEnabledKey, value);
 
@@ -83,7 +86,7 @@ class SettingsRepository {
   }
 
   bool toggleCamera() {
-    var value = !isCameraEnabled();
+    final value = !isCameraEnabled();
 
     storage.setBool(storageCameraEnabledKey, value);
 
@@ -105,7 +108,7 @@ class SettingsRepository {
   }
 
   int increaseGamesPlayed() {
-    var gamesPlayed = getGamesPlayed() + 1;
+    final gamesPlayed = getGamesPlayed() + 1;
     storage.setInt(storageGamesPlayedKey, gamesPlayed);
 
     return gamesPlayed;
@@ -116,14 +119,14 @@ class SettingsRepository {
   }
 
   int increaseGamesFinished() {
-    var gamesFinished = getGamesFinished() + 1;
+    final gamesFinished = getGamesFinished() + 1;
 
     storage.setInt(storageGamesFinishedKey, gamesFinished);
 
     return gamesFinished;
   }
 
-  bool isNotificationsEnabled() {
+  bool areNotificationsEnabled() {
     return storage.getBool(storageNotificationsEnabledKey) ?? false;
   }
 
