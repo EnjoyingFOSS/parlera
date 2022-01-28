@@ -70,7 +70,10 @@ class SettingsRepository {
   }
 
   bool isRotationControlEnabled() {
-    return storage.getBool(storageRotationControlEnabledKey) ?? false;
+    return storage.getBool(storageRotationControlEnabledKey) ??
+            (Platform.isAndroid || Platform.isLinux)
+        ? true
+        : false;
   }
 
   bool toggleRotationControl() {
