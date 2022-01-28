@@ -21,79 +21,137 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_overboard/flutter_overboard.dart';
 import 'package:parlera/store/tutorial.dart';
 
-class TutorialScreen extends StatelessWidget {
+import 'widgets/tutorial_page.dart';
+import 'widgets/pagination_bar.dart';
+
+class TutorialScreen extends StatefulWidget {
   const TutorialScreen({Key? key}) : super(key: key);
+
+  @override
+  _TutorialScreenState createState() => _TutorialScreenState();
+}
+
+class _KeyboardPreviousIntent extends Intent {
+  const _KeyboardPreviousIntent();
+}
+
+class _KeyboardNextIntent extends Intent {
+  const _KeyboardNextIntent();
+}
+
+class _TutorialScreenState extends State<TutorialScreen> {
+  static const _switchAnimationDuration = Duration(milliseconds: 500);
+  static const _switchAnimationCurve = Curves.ease;
+
+  final _controller = PageController();
+  int _currentPage = 0;
 
   bool _isMobile() => Platform.isAndroid || Platform.isIOS;
 
   @override
   Widget build(BuildContext context) {
-    final finishTutorial = () {
-      TutorialModel.of(context).watch();
-      Navigator.popUntil(context, ModalRoute.withName('/'));
-    };
-
+    final _pages = [
+      TutorialPage(
+          imagePath: 'assets/images/tutorial/1.webp',
+          title: AppLocalizations.of(context).tutorialFirstSectionHeader,
+          description: _isMobile()
+              ? AppLocalizations.of(context)
+                  .tutorialFirstSectionDescriptionPhone
+              : AppLocalizations.of(context)
+                  .tutorialFirstSectionDescriptionDesktop,
+          bgColor: Theme.of(context).colorScheme.surface),
+      _isMobile()
+          ? TutorialPage(
+              imagePath: 'assets/images/tutorial/2-phone.webp',
+              title:
+                  AppLocalizations.of(context).tutorialSecondSectionHeaderPhone,
+              description: AppLocalizations.of(context)
+                  .tutorialSecondSectionDescriptionPhone,
+              bgColor: Theme.of(context).colorScheme.surface)
+          : TutorialPage(
+              imagePath: 'assets/images/tutorial/2.webp',
+              title: AppLocalizations.of(context)
+                  .tutorialSecondSectionHeaderDesktop,
+              description: AppLocalizations.of(context)
+                  .tutorialSecondSectionDescriptionDesktop,
+              bgColor: Theme.of(context).colorScheme.surface),
+      _isMobile()
+          ? TutorialPage(
+              imagePath: 'assets/images/tutorial/3-phone.webp',
+              title:
+                  AppLocalizations.of(context).tutorialThirdSectionHeaderPhone,
+              description: AppLocalizations.of(context)
+                  .tutorialThirdSectionDescriptionPhone,
+              bgColor: Theme.of(context).colorScheme.surface)
+          : TutorialPage(
+              imagePath: 'assets/images/tutorial/3.webp',
+              title: AppLocalizations.of(context)
+                  .tutorialThirdSectionHeaderDesktop,
+              description: AppLocalizations.of(context)
+                  .tutorialThirdSectionDescriptionDesktop,
+              bgColor: Theme.of(context).colorScheme.surface),
+      TutorialPage(
+          imagePath: 'assets/images/tutorial/4.webp',
+          title: AppLocalizations.of(context).tutorialFourthSectionHeader,
+          description: _isMobile()
+              ? AppLocalizations.of(context)
+                  .tutorialFourthSectionDescriptionPhone
+              : AppLocalizations.of(context)
+                  .tutorialFourthSectionDescriptionDesktop,
+          bgColor: Theme.of(context).colorScheme.surface),
+    ];
     return Scaffold(
-        body: OverBoard(
-      skipText: AppLocalizations.of(context).btnSkip,
-      nextText: AppLocalizations.of(context).btnNext,
-      finishText: AppLocalizations.of(context).btnFinishTutorial,
-      pages: [
-        PageModel(
-            imageAssetPath: 'assets/images/tutorial/1.webp',
-            title: AppLocalizations.of(context).tutorialFirstSectionHeader,
-            body: _isMobile()
-                ? AppLocalizations.of(context)
-                    .tutorialFirstSectionDescriptionPhone
-                : AppLocalizations.of(context)
-                    .tutorialFirstSectionDescriptionDesktop,
-            color: Theme.of(context).colorScheme.surface),
-        _isMobile()
-            ? PageModel(
-                imageAssetPath: 'assets/images/tutorial/2-phone.webp',
-                title: AppLocalizations.of(context)
-                    .tutorialSecondSectionHeaderPhone,
-                body: AppLocalizations.of(context)
-                    .tutorialSecondSectionDescriptionPhone,
-                color: Theme.of(context).colorScheme.background)
-            : PageModel(
-                imageAssetPath: 'assets/images/tutorial/2.webp',
-                title: AppLocalizations.of(context)
-                    .tutorialSecondSectionHeaderDesktop,
-                body: AppLocalizations.of(context)
-                    .tutorialSecondSectionDescriptionDesktop,
-                color: Theme.of(context).colorScheme.background),
-        _isMobile()
-            ? PageModel(
-                imageAssetPath: 'assets/images/tutorial/3-phone.webp',
-                title: AppLocalizations.of(context)
-                    .tutorialThirdSectionHeaderPhone,
-                body: AppLocalizations.of(context)
-                    .tutorialThirdSectionDescriptionPhone,
-                color: Theme.of(context).colorScheme.surface)
-            : PageModel(
-                imageAssetPath: 'assets/images/tutorial/3.webp',
-                title: AppLocalizations.of(context)
-                    .tutorialThirdSectionHeaderDesktop,
-                body: AppLocalizations.of(context)
-                    .tutorialThirdSectionDescriptionDesktop,
-                color: Theme.of(context).colorScheme.surface),
-        PageModel(
-            imageAssetPath: 'assets/images/tutorial/4.webp',
-            title: AppLocalizations.of(context).tutorialFourthSectionHeader,
-            body: _isMobile()
-                ? AppLocalizations.of(context)
-                    .tutorialFourthSectionDescriptionPhone
-                : AppLocalizations.of(context)
-                    .tutorialFourthSectionDescriptionDesktop,
-            color: Theme.of(context).colorScheme.background),
-      ],
-      skipCallback: finishTutorial,
-      finishCallback: finishTutorial,
-    ));
+        body: Shortcuts(
+            shortcuts: {
+          LogicalKeySet(LogicalKeyboardKey.arrowLeft):
+              const _KeyboardPreviousIntent(),
+          LogicalKeySet(LogicalKeyboardKey.arrowRight):
+              const _KeyboardNextIntent(),
+        },
+            child: Actions(
+                actions: {
+                  _KeyboardPreviousIntent:
+                      CallbackAction(onInvoke: (_) => _navigatePrevious()),
+                  _KeyboardNextIntent:
+                      CallbackAction(onInvoke: (_) => _navigateNext()),
+                },
+                child: SafeArea(
+                    child: Stack(children: [
+                  PageView(
+                    // physics: const PageScrollPhysics(),
+                    onPageChanged: (int page) {
+                      setState(() {
+                        _currentPage = page;
+                      });
+                    },
+                    controller: _controller,
+                    children: _pages,
+                  ),
+                  Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: PaginationBar(
+                        controller: _controller,
+                        onFinish: () {
+                          TutorialModel.of(context).watch();
+                          Navigator.popUntil(context, ModalRoute.withName('/'));
+                        },
+                        pageCount: _pages.length,
+                        currentPage: _currentPage,
+                        onNavigateNext: _navigateNext,
+                        onNavigatePrevious: _navigatePrevious,
+                      ))
+                ])))));
   }
+
+  void _navigatePrevious() => _controller.previousPage(
+      duration: _switchAnimationDuration, curve: _switchAnimationCurve);
+
+  void _navigateNext() => _controller.nextPage(
+      duration: _switchAnimationDuration, curve: _switchAnimationCurve);
 }
