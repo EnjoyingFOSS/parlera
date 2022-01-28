@@ -42,14 +42,14 @@ import 'package:parlera/store/store.dart';
 class TutorialModel extends StoreModel {
   TutorialRepository repository;
 
-  bool _isWatched = false;
+  late bool _isWatched;
   bool get isWatched => _isWatched;
 
   TutorialModel(this.repository);
 
   @override
   Future<void> initialize() async {
-    _isWatched = (await repository.isWatched()) ?? false;
+    _isWatched = repository.isWatched() ?? false;
     notifyListeners();
   }
 

@@ -58,7 +58,7 @@ class CategoryDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<CategoryModel>(
-      builder: (context, child, model) {
+      builder: (context, _, model) {
         final category = model.currentCategory!;
         final description = category.description ?? "";
         return Scaffold(

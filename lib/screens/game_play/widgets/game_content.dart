@@ -76,13 +76,9 @@ class GameContent extends StatelessWidget {
         child: Actions(
             actions: {
               _KeyboardHandleValidIntent:
-                  CallbackAction<_KeyboardHandleValidIntent>(
-                      onInvoke: (_KeyboardHandleValidIntent intent) =>
-                          handleValid()),
+                  CallbackAction(onInvoke: (_) => handleValid()),
               _KeyboardHandleInvalidIntent:
-                  CallbackAction<_KeyboardHandleInvalidIntent>(
-                      onInvoke: (_KeyboardHandleInvalidIntent intent) =>
-                          handleInvalid()),
+                  CallbackAction(onInvoke: (_) => handleInvalid()),
             },
             child: Focus(
                 autofocus: true,

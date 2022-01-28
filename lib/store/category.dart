@@ -62,7 +62,7 @@ class CategoryModel extends StoreModel {
 
   CategoryModel(this.repository);
 
-  load(String languageCode) async {
+  void load(String languageCode) async {
     _isLoading = true;
     notifyListeners();
 
@@ -74,21 +74,21 @@ class CategoryModel extends StoreModel {
     notifyListeners();
   }
 
-  setCurrent(Category? category) {
+  void setCurrent(Category? category) {
     _currentCategory = category;
     notifyListeners();
   }
 
-  isFavorite(Category category) {
+  bool isFavorite(Category category) {
     return _favorites.contains(category.id);
   }
 
-  toggleFavorite(Category category) {
+  void toggleFavorite(Category category) {
     _favorites = repository.toggleFavorite(_favorites, category);
     notifyListeners();
   }
 
-  getPlayedCount(Category category) {
+  int? getPlayedCount(Category category) {
     if (!_playedCount.containsKey(category.id)) {
       _playedCount[category.id] = repository.getPlayedCount(category);
     }
@@ -96,7 +96,7 @@ class CategoryModel extends StoreModel {
     return _playedCount[category.id];
   }
 
-  increasePlayedCount(Category category) async {
+  void increasePlayedCount(Category category) async {
     _playedCount[category.id] = repository.increasePlayedCount(category);
     notifyListeners();
   }

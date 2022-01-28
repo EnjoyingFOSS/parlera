@@ -47,12 +47,12 @@ class GalleryModel extends StoreModel {
   List<FileSystemEntity> _images = [];
   List<FileSystemEntity> get images => _images;
 
-  update(List<FileSystemEntity> images) {
+  void update(List<FileSystemEntity> images) {
     _images = images;
     notifyListeners();
   }
 
-  setActive(FileSystemEntity? image) {
+  void setActive(FileSystemEntity? image) {
     _activeImage = image;
     notifyListeners();
   }
