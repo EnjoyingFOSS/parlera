@@ -73,7 +73,8 @@ class Parlera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!Platform.isLinux) { //todo change after support is added
+    if (!Platform.isLinux) {
+      //todo change after support is added
       Wakelock.enable();
     }
 
@@ -132,39 +133,40 @@ class Parlera extends StatelessWidget {
 }
 
 class ParleraApp extends StatelessWidget {
+  static const nullLocale =
+      "vo"; //todo Ugly hack to make localeListResolutionCallback run when categoryLanguage is set; will need to be replaced if Volapük is ever added
   const ParleraApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LanguageModel>(
-      builder: (context, child, model) {
-        final isLanguageSet = model.language != null &&
-            LanguageHelper.codes.contains(model
-                .language); //todo check for language support here, languages could be removed
-        if (isLanguageSet) {
-          CategoryModel.of(context).load(model.language!);
-          QuestionModel.of(context).load(model.language!);
-        }
-
+      builder: (context, _, model) {
         return MaterialApp(
           title: 'Parlera',
           // debugShowCheckedModeBanner: false, // used for screenshots
           localeListResolutionCallback: (userLocales, supportedLocales) {
-            if (isLanguageSet) {
-              return Locale(model.language!, '');
-            } else {
-              if (userLocales != null) {
-                for (var locale in userLocales) {
-                  if (supportedLocales.contains(locale)) {
-                    model.changeLanguage(locale.languageCode);
-                    return locale;
-                  }
+            Locale? result;
+            if (LanguageHelper.codes.contains(model.language)) {
+              result = Locale(model.language!, '');
+            } else if (userLocales != null) {
+              for (var locale in userLocales) {
+                if (supportedLocales.contains(locale)) {
+                  model.setLanguage(locale.languageCode);
+                  result = locale;
+                  break;
                 }
               }
-              model.changeLanguage(LanguageHelper.defaultLocale.languageCode);
-              return LanguageHelper.defaultLocale;
+              if (result == null) {
+                model.setLanguage(LanguageHelper.defaultLocale.languageCode);
+                result = LanguageHelper.defaultLocale;
+              }
             }
+            final langCode = result!.languageCode;
+            CategoryModel.of(context).load(langCode);
+            QuestionModel.of(context).load(langCode);
+            return result;
           },
+          locale: Locale(model.language ?? nullLocale, ''),
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

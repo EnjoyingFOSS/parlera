@@ -24,11 +24,13 @@
   "tutorialFourthSectionDescriptionDesktop": "Turn the monitor so only one person sees the word, then have that person perform and others guess.",
   "btnSkip": "Skip",
   "btnNext": "Next",
+  "btnBack": "Back",
   "btnFinishTutorial": "Let's play!",
   "preparationPlay": "Play",
   "gameTime": "Duration",
   "favorites": "Favorites",
   "settings": "Settings",
+  "settingsLanguage": "Language",
   "emptyFavorites": "Favorite a category to find it here.",
   "secondsTemplate": "%d s.",
   "preparationOrientationDescription": "Hold your phone up to your forehead",
@@ -36,5 +38,11 @@
   "summaryHeader": "Final score",
   "settingsStartTutorial": "How to play?",
   "contribute": "Contribute",
-  "urlCantOpen": "Could not open URL."
+  "urlCantOpen": "Could not open URL.",
+  "categoryRandom": "Random",
+  "languageSystem": "System default",
+  "languageEnglish": "English",
+  "languageCzech": "Czech",
+  "languageGerman": "German",
+  "languagesVaryNotice": "Categories and words vary across languages."
 }

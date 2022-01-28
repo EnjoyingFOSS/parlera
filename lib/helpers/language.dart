@@ -34,10 +34,29 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'dart:ui';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LanguageHelper {
-  static const defaultLocale = Locale("en");
+  static const _en = "en";
+  static const _cs = "cs";
+  static const _de = "de";
 
-  static final Set<String> codes = {"en"};
+  static const defaultLocale = Locale(_en);
+
+  static final Set<String> codes = {_en, _cs, _de};
+
+  static String getLanguageName(BuildContext context, String? code) {
+    switch (code) {
+      case null:
+        return AppLocalizations.of(context).languageSystem;
+      case _en:
+        return AppLocalizations.of(context).languageEnglish;
+      case _cs:
+        return AppLocalizations.of(context).languageCzech;
+      case _de:
+        return AppLocalizations.of(context).languageGerman;
+    }
+    throw Exception("Unsupported language code");
+  }
 }

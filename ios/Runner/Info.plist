@@ -4,6 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleLocalizations</key>
+		<array>
+			<string>en</string>
+			<string>cs</string>
+			<string>de</string>
+		</array>
 	<key>CFBundleDisplayName</key>
 	<string>Parlera</string>
 	<key>CFBundleExecutable</key>

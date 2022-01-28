@@ -45,8 +45,10 @@ class LanguageModel extends StoreModel {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
-  String? _language;
+  late String? _language;
   String? get language => _language;
+
+  String? get savedLanguage => repository.getLanguage();
 
   LanguageModel(this.repository);
 
@@ -57,8 +59,15 @@ class LanguageModel extends StoreModel {
     notifyListeners();
   }
 
-  changeLanguage(String? language) async {
+  /// Saves the language to local settings and sets it as the UI language
+  void saveLanguage(String? language) {
     _language = repository.setLanguage(language);
+    notifyListeners();
+  }
+
+  /// Sets the UI language, but doesn't save it as a setting. Appropriate for resolving a null language setting.
+  void setLanguage(String language) {
+    _language = language;
     notifyListeners();
   }
 
