@@ -57,7 +57,7 @@ class ThemeHelper {
         toggleableActiveColor: colors.primary,
         fontFamily: _fontFamily,
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          unselectedItemColor: colors.onSecondary.withAlpha(90),
+            unselectedItemColor: colors.onSecondary.withAlpha(90),
             backgroundColor: colors.secondary,
             selectedItemColor: colors.primary),
         bottomSheetTheme: BottomSheetThemeData(backgroundColor: colors.surface),
@@ -67,6 +67,7 @@ class ThemeHelper {
                 shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100),
         ))),
+        textTheme: TextTheme(headline4: TextStyle(color: colors.onBackground)),
         appBarTheme: AppBarTheme(
             color: colors.background,
             iconTheme: IconThemeData(color: colors.onBackground),
