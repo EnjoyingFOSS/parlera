@@ -56,9 +56,10 @@ class SettingsRepository {
   SettingsRepository({required this.storage});
 
   bool isAudioEnabled() {
-    return storage.getBool(storageAudioEnabledKey) ?? (Platform.isLinux)
-        ? false //todo use for Linux when audio is ported over
-        : true;
+    return storage.getBool(storageAudioEnabledKey) ??
+        (Platform.isLinux
+            ? false
+            : true); //todo use for Linux when audio is ported over
   }
 
   bool toggleAudio() {
@@ -71,9 +72,7 @@ class SettingsRepository {
 
   bool isRotationControlEnabled() {
     return storage.getBool(storageRotationControlEnabledKey) ??
-            (Platform.isAndroid || Platform.isLinux)
-        ? true
-        : false;
+        ((Platform.isAndroid || Platform.isIOS) ? true : false);
   }
 
   bool toggleRotationControl() {
