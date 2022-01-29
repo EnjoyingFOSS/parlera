@@ -1,0 +1,6 @@
+First big update!
+
+- Internationalization (English, German, and basic Czech)
+- UI responsiveness
+- Tweaked tutorial
+- Major bug fixes
