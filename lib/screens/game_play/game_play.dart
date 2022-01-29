@@ -143,13 +143,17 @@ class GamePlayScreenState extends State<GamePlayScreen>
   @protected
   @mustCallSuper
   void dispose() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-
     if (_rotateSubscription != null) {
       _rotateSubscription!.cancel();
     }
+
+    SystemChrome
+        .setPreferredOrientations(
+            [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight
+    ]);
 
     _validAC?.dispose();
     _invalidAC?.dispose();

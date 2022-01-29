@@ -80,6 +80,8 @@ class Parlera extends StatelessWidget {
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight
     ]);
 
     return FutureBuilder<SharedPreferences>(
