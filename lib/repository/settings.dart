@@ -41,14 +41,14 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsRepository {
-  static const String storageAudioEnabledKey = 'is_audio_enabled';
-  static const String storageRotationControlEnabledKey =
+  static const String _storageAudioEnabledKey = 'is_audio_enabled';
+  static const String _storageRotationControlEnabledKey =
       'is_rotation_control_enabled';
-  static const String storageCameraEnabledKey = 'is_camera_enabled';
-  static const String storageRoundTimeKey = 'round_time';
-  static const String storageGamesPlayedKey = 'games_played';
-  static const String storageGamesFinishedKey = 'games_finished';
-  static const String storageNotificationsEnabledKey =
+  // static const String storageCameraEnabledKey = 'is_camera_enabled'; // TODO CAMERA: Make it work and work well
+  static const String _storageRoundTimeKey = 'round_time';
+  static const String _storageGamesPlayedKey = 'games_played';
+  static const String _storageGamesFinishedKey = 'games_finished';
+  static const String _storageNotificationsEnabledKey =
       'is_notifications_enabled';
 
   final SharedPreferences storage;
@@ -56,7 +56,7 @@ class SettingsRepository {
   SettingsRepository({required this.storage});
 
   bool isAudioEnabled() {
-    return storage.getBool(storageAudioEnabledKey) ??
+    return storage.getBool(_storageAudioEnabledKey) ??
         (Platform.isLinux
             ? false
             : true); //todo use for Linux when audio is ported over
@@ -65,75 +65,76 @@ class SettingsRepository {
   bool toggleAudio() {
     final value = !isAudioEnabled();
 
-    storage.setBool(storageAudioEnabledKey, value);
+    storage.setBool(_storageAudioEnabledKey, value);
 
     return value;
   }
 
   bool isRotationControlEnabled() {
-    return storage.getBool(storageRotationControlEnabledKey) ??
+    return storage.getBool(_storageRotationControlEnabledKey) ??
         ((Platform.isAndroid || Platform.isIOS) ? true : false);
   }
 
   bool toggleRotationControl() {
     final value = !isRotationControlEnabled();
 
-    storage.setBool(storageRotationControlEnabledKey, value);
+    storage.setBool(_storageRotationControlEnabledKey, value);
 
     return value;
   }
 
-  bool isCameraEnabled() {
-    return storage.getBool(storageCameraEnabledKey) ?? false;
-  }
+  // TODO CAMERA: Make it work and work well
+  // bool isCameraEnabled() {
+  //   return storage.getBool(storageCameraEnabledKey) ?? false;
+  // }
 
-  bool toggleCamera() {
-    final value = !isCameraEnabled();
+  // bool toggleCamera() {
+  //   final value = !isCameraEnabled();
 
-    storage.setBool(storageCameraEnabledKey, value);
+  //   storage.setBool(storageCameraEnabledKey, value);
 
-    return value;
-  }
+  //   return value;
+  // }
 
   int getRoundTime() {
-    return storage.getInt(storageRoundTimeKey) ?? 60;
+    return storage.getInt(_storageRoundTimeKey) ?? 60;
   }
 
   int setRoundTime(int roundTime) {
-    storage.setInt(storageRoundTimeKey, roundTime);
+    storage.setInt(_storageRoundTimeKey, roundTime);
 
     return roundTime;
   }
 
   int getGamesPlayed() {
-    return storage.getInt(storageGamesPlayedKey) ?? 0;
+    return storage.getInt(_storageGamesPlayedKey) ?? 0;
   }
 
   int increaseGamesPlayed() {
     final gamesPlayed = getGamesPlayed() + 1;
-    storage.setInt(storageGamesPlayedKey, gamesPlayed);
+    storage.setInt(_storageGamesPlayedKey, gamesPlayed);
 
     return gamesPlayed;
   }
 
   int getGamesFinished() {
-    return storage.getInt(storageGamesFinishedKey) ?? 0;
+    return storage.getInt(_storageGamesFinishedKey) ?? 0;
   }
 
   int increaseGamesFinished() {
     final gamesFinished = getGamesFinished() + 1;
 
-    storage.setInt(storageGamesFinishedKey, gamesFinished);
+    storage.setInt(_storageGamesFinishedKey, gamesFinished);
 
     return gamesFinished;
   }
 
   bool areNotificationsEnabled() {
-    return storage.getBool(storageNotificationsEnabledKey) ?? false;
+    return storage.getBool(_storageNotificationsEnabledKey) ?? false;
   }
 
   void enableNotifications() {
-    storage.setBool(storageNotificationsEnabledKey, true);
+    storage.setBool(_storageNotificationsEnabledKey, true);
   }
 
   Future<String> getAppVersion() async {

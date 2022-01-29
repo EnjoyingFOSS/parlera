@@ -57,8 +57,8 @@ class SettingsModel extends StoreModel {
   late bool _isRotationControlEnabled;
   bool get isRotationControlEnabled => _isRotationControlEnabled;
 
-  late bool _isCameraEnabled;
-  bool get isCameraEnabled => _isCameraEnabled;
+  // late bool _isCameraEnabled;
+  // bool get isCameraEnabled => _isCameraEnabled;
 
   late int _roundTime;
   int get roundTime => _roundTime;
@@ -84,7 +84,7 @@ class SettingsModel extends StoreModel {
 
     _isAudioEnabled = repository.isAudioEnabled();
     _isRotationControlEnabled = repository.isRotationControlEnabled();
-    _isCameraEnabled = repository.isCameraEnabled();
+    // _isCameraEnabled = repository.isCameraEnabled(); // TODO CAMERA: Make it work and work well
     _roundTime = repository.getRoundTime();
     _version = await repository.getAppVersion();
     _gamesPlayed = repository.getGamesPlayed();
@@ -104,10 +104,11 @@ class SettingsModel extends StoreModel {
     notifyListeners();
   }
 
-  Future<void> toggleCamera() async {
-    _isCameraEnabled = repository.toggleCamera();
-    notifyListeners();
-  }
+  // TODO CAMERA: Make it work and work well
+  // Future<void> toggleCamera() async {
+  //   _isCameraEnabled = repository.toggleCamera();
+  //   notifyListeners();
+  // }
 
   Future<void> changeRoundTime(int roundTime) async {
     _roundTime = repository.setRoundTime(roundTime);

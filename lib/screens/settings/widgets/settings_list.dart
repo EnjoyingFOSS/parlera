@@ -39,11 +39,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:parlera/helpers/language.dart';
 import 'package:parlera/screens/languages/languages.dart';
-import 'package:parlera/store/language.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:permission_handler/permission_handler.dart';
+// import 'package:permission_handler/permission_handler.dart'; // TODO CAMERA: Make it work and work well
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // import 'package:parlera/helpers/language.dart';
@@ -56,18 +54,18 @@ class SettingsList extends StatelessWidget {
 
   const SettingsList({Key? key, this.topMargin = 8}) : super(key: key);
 
-  Future<bool> requestCameraPermissions() async {
-    Map<Permission, PermissionStatus> statuses = await [
-      Permission.camera,
-    ].request();
-    var res = true;
-    for (var status in statuses.values) {
-      if (status != PermissionStatus.granted) {
-        res = false;
-      }
-    }
-    return res;
-  }
+  // Future<bool> requestCameraPermissions() async { // TODO CAMERA: Make it work and work well
+  //   Map<Permission, PermissionStatus> statuses = await [
+  //     Permission.camera,
+  //   ].request();
+  //   var res = true;
+  //   for (var status in statuses.values) {
+  //     if (status != PermissionStatus.granted) {
+  //       res = false;
+  //     }
+  //   }
+  //   return res;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -76,19 +74,19 @@ class SettingsList extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 8, top: topMargin),
         shrinkWrap: true,
         children: [
-          if (!flutter_foundation.kIsWeb &&
-              (Platform.isIOS || Platform.isAndroid))
-            SwitchListTile(
-              title: Text(AppLocalizations.of(context).settingsCamera),
-              value: model.isCameraEnabled,
-              onChanged: (bool value) async {
-                if (value && !await requestCameraPermissions()) {
-                  return;
-                }
-                model.toggleCamera();
-              },
-              secondary: const Icon(Icons.camera_alt_rounded),
-            ),
+          // if (!flutter_foundation.kIsWeb && // TODO CAMERA: Make it work and work well
+          //     (Platform.isIOS || Platform.isAndroid))
+          //   SwitchListTile(
+          //     title: Text(AppLocalizations.of(context).settingsCamera),
+          //     value: model.isCameraEnabled,
+          //     onChanged: (bool value) async {
+          //       if (value && !await requestCameraPermissions()) {
+          //         return;
+          //       }
+          //       model.toggleCamera();
+          //     },
+          //     secondary: const Icon(Icons.camera_alt_rounded),
+          //   ),
           if (!flutter_foundation.kIsWeb &&
               (Platform.isIOS || Platform.isAndroid))
             SwitchListTile(

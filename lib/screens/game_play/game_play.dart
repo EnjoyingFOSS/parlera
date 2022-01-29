@@ -41,25 +41,24 @@ import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:parlera/helpers/audio.dart';
-import 'package:parlera/helpers/pictures.dart';
+// TODO CAMERA: Make it work and work well
+// import 'package:parlera/helpers/pictures.dart';
+// import 'package:parlera/store/gallery.dart';
+// import 'widgets/camera_preview.dart';
 import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/helpers/vibration.dart';
 import 'package:parlera/screens/game_play/widgets/game_content.dart';
 import 'package:parlera/screens/game_play/widgets/prep_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:pedantic/pedantic.dart';
 
 import 'package:parlera/store/category.dart';
 import 'package:parlera/models/category.dart';
 import 'package:parlera/store/question.dart';
 import 'package:parlera/store/settings.dart';
-import 'package:parlera/store/gallery.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'widgets/camera_preview.dart';
 import 'tilt_service.dart';
-import 'widgets/game_button.dart';
 import 'widgets/result_icon.dart';
 import 'widgets/splash_content.dart';
 
@@ -79,7 +78,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   late int _secondsLeft;
   bool _isStarted = false;
   bool _isPaused = false;
-  bool _isCameraEnabled = false;
+  // bool _isCameraEnabled = false; // TODO CAMERA: Make it work and work well
   StreamSubscription<dynamic>? _rotateSubscription;
   late final Category _category;
   late final TiltService? _tiltService;
@@ -92,17 +91,17 @@ class GamePlayScreenState extends State<GamePlayScreen>
   @override
   void initState() {
     super.initState();
-    startTimer();
+    _startTimer();
     _category = CategoryModel.of(context).currentCategory!;
     QuestionModel.of(context).generateCurrentQuestions(_category.id);
 
     SettingsModel settings = SettingsModel.of(context);
     _secondsMax = settings.roundTime;
-    _isCameraEnabled = settings.isCameraEnabled;
+    // _isCameraEnabled = settings.isCameraEnabled; // TODO CAMERA: Make it work and work well
     if (settings.isRotationControlEnabled) {
       _tiltService = TiltService(
-          handleInvalid: handleInvalid,
-          handleValid: handleValid,
+          handleInvalid: _handleInvalid,
+          handleValid: _handleValid,
           isPlaying: () => !_isStarted || _isPaused);
       _secondsLeft = _secondsPrep;
     } else {
@@ -114,28 +113,28 @@ class GamePlayScreenState extends State<GamePlayScreen>
       DeviceOrientation.landscapeRight,
     ]);
 
-    initAnimations();
+    _initAnimations();
   }
 
-  AnimationController createAnswerAnimationController() {
+  AnimationController _createAnswerAnimationController() {
     const duration = Duration(milliseconds: 1500);
     var controller = AnimationController(vsync: this, duration: duration);
     controller.addStatusListener((listener) {
       if (listener == AnimationStatus.completed) {
         controller.reset();
-        nextQuestion();
+        _nextQuestion();
       }
     });
 
     return controller;
   }
 
-  void initAnimations() {
-    _invalidAC = createAnswerAnimationController();
+  void _initAnimations() {
+    _invalidAC = _createAnswerAnimationController();
     _invalidAnimation =
         CurvedAnimation(parent: _invalidAC!, curve: Curves.elasticOut);
 
-    _validAC = createAnswerAnimationController();
+    _validAC = _createAnswerAnimationController();
     _validAnimation =
         CurvedAnimation(parent: _validAC!, curve: Curves.elasticOut);
   }
@@ -157,24 +156,24 @@ class GamePlayScreenState extends State<GamePlayScreen>
     _tiltService?.dispose();
 
     super.dispose();
-    stopTimer();
+    _stopTimer();
   }
 
-  void startTimer() {
-    _gameTimer = Timer.periodic(const Duration(seconds: 1), gameLoop);
+  void _startTimer() {
+    _gameTimer = Timer.periodic(const Duration(seconds: 1), _gameLoop);
   }
 
-  void stopTimer() {
+  void _stopTimer() {
     _gameTimer?.cancel();
   }
 
-  void gameLoop(Timer timer) {
+  void _gameLoop(Timer timer) {
     if (_isPaused) {
       return;
     }
 
     if (_secondsLeft <= 0 && !_isPaused) {
-      return handleTimeout();
+      return _handleTimeout();
     }
 
     setState(() {
@@ -182,11 +181,12 @@ class GamePlayScreenState extends State<GamePlayScreen>
     });
   }
 
-  Future<void> savePictures() async {
-    GalleryModel.of(context).update(await PicturesHelper.getFiles(context));
-  }
+  // TODO CAMERA: Make it work and work well
+  // Future<void> savePictures() async {
+  //   GalleryModel.of(context).update(await PicturesHelper.getFiles(context));
+  // }
 
-  void showScore() {
+  void _showScore() {
     SettingsModel.of(context).increaseGamesFinished();
     CategoryModel.of(context).increasePlayedCount(_category);
 
@@ -196,7 +196,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     Navigator.pushReplacementNamed(context, '/game-summary');
   }
 
-  Future<bool> confirmBack() async {
+  Future<bool> _confirmBack() async {
     Completer completer = Completer<bool>();
 
     unawaited(
@@ -238,32 +238,32 @@ class GamePlayScreenState extends State<GamePlayScreen>
     return completer.future as FutureOr<bool>;
   }
 
-  void gameOver() {
-    if (_isCameraEnabled) {
-      savePictures();
-    }
-    showScore();
+  void _gameOver() {
+    //   if (_isCameraEnabled) { // TODO CAMERA: Make it work and work well
+    //     savePictures();
+    //   }
+    _showScore();
   }
 
-  void nextQuestion() {
-    stopTimer();
+  void _nextQuestion() {
+    _stopTimer();
     if (_secondsLeft == 0) {
-      return gameOver();
+      return _gameOver();
     }
 
     QuestionModel.of(context).setNextQuestion();
     if (QuestionModel.of(context).currentQuestion == null) {
-      return gameOver();
+      return _gameOver();
     }
 
     setState(() {
       _isPaused = false;
     });
 
-    startTimer();
+    _startTimer();
   }
 
-  void postAnswer({required bool isValid}) {
+  void _postAnswer({required bool isValid}) {
     if (!flutter_foundation.kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
       VibrationHelper.vibrate();
     }
@@ -279,29 +279,29 @@ class GamePlayScreenState extends State<GamePlayScreen>
     // });
   }
 
-  void handleValid() {
+  void _handleValid() {
     if (_isPaused) {
       return;
     }
 
     AudioHelper.playValid(context);
     _validAC!.forward();
-    postAnswer(isValid: true);
+    _postAnswer(isValid: true);
   }
 
-  void handleInvalid() {
+  void _handleInvalid() {
     if (_isPaused) {
       return;
     }
 
     AudioHelper.playInvalid(context);
     _invalidAC!.forward();
-    postAnswer(isValid: false);
+    _postAnswer(isValid: false);
   }
 
-  void handleTimeout() {
+  void _handleTimeout() {
     if (_isStarted) {
-      handleInvalid();
+      _handleInvalid();
     } else {
       setState(() {
         _isStarted = true;
@@ -315,10 +315,11 @@ class GamePlayScreenState extends State<GamePlayScreen>
     return Scaffold(
       body: WillPopScope(
         onWillPop: () async {
-          return await confirmBack();
+          return await _confirmBack();
         },
         child: Stack(children: [
-          // if (_isCameraEnabled! && _isStarted) const CameraPreviewScreen(), //todo this is now hidden behind opaque answers — fix
+          // if (_isCameraEnabled && _isStarted)
+          //   const CameraPreviewScreen(), //TODO CAMERA: Make it work and work well; this is now hidden behind opaque answers — fix
           if (_isPaused || _isStarted)
             Stack(
               children: [
@@ -327,8 +328,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
                     final currentQuestion = model.currentQuestion;
                     if (currentQuestion != null) {
                       return GameContent(
-                          handleValid: handleValid,
-                          handleInvalid: handleInvalid,
+                          handleValid: _handleValid,
+                          handleInvalid: _handleInvalid,
                           currentQuestion: currentQuestion,
                           secondsLeft: _secondsLeft.toString());
                     } else {

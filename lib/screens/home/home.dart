@@ -37,7 +37,6 @@
 import 'package:flutter/material.dart';
 import 'package:parlera/screens/home/widgets/category_list.dart';
 import 'package:parlera/screens/settings/settings.dart';
-import 'package:parlera/screens/settings/widgets/settings_list.dart';
 import 'package:parlera/widgets/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

@@ -34,34 +34,36 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'dart:io';
+// TODO CAMERA: Make it work and work well
 
-import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:camera/camera.dart';
+// import 'dart:io';
 
-import 'package:parlera/store/settings.dart';
+// import 'package:flutter/material.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'package:camera/camera.dart';
 
-class PicturesHelper {
-  static Future<Directory> getDirectory(BuildContext context) async {
-    var baseDir = await getTemporaryDirectory();
-    var folder = SettingsModel.of(context).gamesPlayed.toString();
+// import 'package:parlera/store/settings.dart';
 
-    return await Directory('${baseDir.path}/game_$folder')
-        .create(recursive: true);
-  }
+// class PicturesHelper {
+//   static Future<Directory> getDirectory(BuildContext context) async {
+//     var baseDir = await getTemporaryDirectory();
+//     var folder = SettingsModel.of(context).gamesPlayed.toString();
 
-  static Future<List<FileSystemEntity>> getFiles(BuildContext context) async {
-    var dir = await getDirectory(context);
+//     return await Directory('${baseDir.path}/game_$folder')
+//         .create(recursive: true);
+//   }
 
-    return dir.listSync();
-  }
+//   static Future<List<FileSystemEntity>> getFiles(BuildContext context) async {
+//     var dir = await getDirectory(context);
 
-  static Future<CameraDescription> getCamera() async {
-    var cameras = await availableCameras();
-    var frontCamera = cameras.firstWhere((cameraDescription) =>
-        cameraDescription.lensDirection == CameraLensDirection.front);
+//     return dir.listSync();
+//   }
 
-    return frontCamera;
-  }
-}
+//   static Future<CameraDescription> getCamera() async {
+//     var cameras = await availableCameras();
+//     var frontCamera = cameras.firstWhere((cameraDescription) =>
+//         cameraDescription.lensDirection == CameraLensDirection.front);
+
+//     return frontCamera;
+//   }
+// }

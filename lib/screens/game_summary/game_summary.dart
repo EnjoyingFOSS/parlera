@@ -34,31 +34,31 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:parlera/store/gallery.dart';
+// TODO CAMERA: Make it work and work well
+// import 'package:parlera/store/gallery.dart';
+// import 'widgets/gallery_horizontal.dart';
 import 'package:parlera/store/question.dart';
 
 import 'widgets/answer_grid.dart';
-import 'widgets/gallery_horizontal.dart';
 
 class GameSummaryScreen extends StatelessWidget {
   static const _maxAnswerWidth = 256;
 
   const GameSummaryScreen({Key? key}) : super(key: key);
 
-  void openGallery(BuildContext context, FileSystemEntity item) {
-    GalleryModel.of(context).setActive(item);
+  // TODO CAMERA: Make it work and work well
+  // void openGallery(BuildContext context, FileSystemEntity item) {
+  //   GalleryModel.of(context).setActive(item);
 
-    Navigator.pushNamed(
-      context,
-      '/game-gallery',
-    );
-  }
+  //   Navigator.pushNamed(
+  //     context,
+  //     '/game-gallery',
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -94,23 +94,23 @@ class GameSummaryScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ScopedModelDescendant<GalleryModel>(
-                    builder: (context, child, model) {
-                      if (model.images.isEmpty) {
-                        return Container();
-                      }
+                  // ScopedModelDescendant<GalleryModel>( // TODO CAMERA: Make it work and work well
+                  //   builder: (context, child, model) {
+                  //     if (model.images.isEmpty) {
+                  //       return Container();
+                  //     }
 
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: GalleryHorizontal(
-                          items: model.images,
-                          onTap: (item) {
-                            if (item != null) openGallery(context, item);
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                  //     return Padding(
+                  //       padding: const EdgeInsets.only(top: 16.0),
+                  //       child: GalleryHorizontal(
+                  //         items: model.images,
+                  //         onTap: (item) {
+                  //           if (item != null) openGallery(context, item);
+                  //         },
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
                   AnswerGrid(
                     questionsAnswered: model.questionsAnswered,
                     answersPerRow: MediaQuery.of(context).size.width.toInt() ~/
