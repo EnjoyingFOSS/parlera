@@ -36,6 +36,8 @@
 
 import 'dart:io';
 
+import 'package:devicelocale/devicelocale.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
@@ -73,7 +75,7 @@ class Parlera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!Platform.isLinux) {
+    if (!kIsWeb && !Platform.isLinux) {
       //todo change after support is added
       Wakelock.enable();
     }
@@ -103,7 +105,7 @@ class Parlera extends StatelessWidget {
             TutorialModel: TutorialModel(TutorialRepository(storage: storage)),
             SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
             LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
-            // GalleryModel: GalleryModel(), 
+            // GalleryModel: GalleryModel(),
           });
           for (var store in stores.values) {
             store.initialize();
@@ -122,7 +124,7 @@ class Parlera extends StatelessWidget {
                   model: stores[LanguageModel] as LanguageModel,
                   // child: ScopedModel<GalleryModel>( // TODO CAMERA: Make it work and work well
                   //   model: stores[GalleryModel] as GalleryModel,
-                    child: const ParleraApp(),
+                  child: const ParleraApp(),
                   // ),
                 ),
               ),
@@ -135,24 +137,32 @@ class Parlera extends StatelessWidget {
 }
 
 class ParleraApp extends StatelessWidget {
-  static const nullLocale =
-      "vo"; //todo Ugly hack to make localeListResolutionCallback run when categoryLanguage is set; will need to be replaced if Volapük is ever added
   const ParleraApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LanguageModel>(
       builder: (context, _, model) {
+        return FutureBuilder(
+          future: Devicelocale.currentAsLocale,
+          builder: (context, snapshot) {
+            if (snapshot.data == null) {
+          return const ScreenLoader();
+        }
+        final Locale? curLocale = snapshot.data as Locale?;
         return MaterialApp(
           title: 'Parlera',
           // debugShowCheckedModeBanner: false, // used for screenshots
           localeListResolutionCallback: (userLocales, supportedLocales) {
+            final languageCodes = LanguageHelper.codes;
             Locale? result;
-            if (LanguageHelper.codes.contains(model.language)) {
+            if (languageCodes.contains(model.language)) {
+              // manually set language resolution
               result = Locale(model.language!, '');
             } else if (userLocales != null) {
+              // system language resolution
               for (var locale in userLocales) {
-                if (supportedLocales.contains(locale)) {
+                if (languageCodes.contains(locale.languageCode)) {
                   model.setLanguage(locale.languageCode);
                   result = locale;
                   break;
@@ -168,7 +178,7 @@ class ParleraApp extends StatelessWidget {
             QuestionModel.of(context).load(langCode);
             return result;
           },
-          locale: Locale(model.language ?? nullLocale, ''),
+          locale: model.language != null ? Locale(model.language!, '') : curLocale,
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -185,7 +195,7 @@ class ParleraApp extends StatelessWidget {
             // '/game-gallery': (context) => const GameGalleryScreen(), // TODO CAMERA: Make it work and work well
             '/tutorial': (context) => const TutorialScreen(),
           },
-        );
+        );});
       },
     );
   }
