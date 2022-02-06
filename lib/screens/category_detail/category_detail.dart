@@ -18,13 +18,12 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:parlera/helpers/orientation.dart';
 import 'package:parlera/screens/category_detail/widgets/game_settings.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
-import 'package:parlera/store/settings.dart';
 
 import 'widgets/category_header.dart';
 
@@ -41,17 +40,13 @@ class CategoryDetailScreen extends StatelessWidget {
     );
   }
 
-  bool _isStronglyLandscape(double width, double height) =>
-      width / height >= 4 / 3;
-
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return ScopedModelDescendant<CategoryModel>(
       builder: (context, _, model) {
         final category = model.currentCategory!;
-        final stronglyLandscape = _isStronglyLandscape(size.width, size.height);
+        final stronglyLandscape =
+            OrientationHelper.isStronglyLandscape(context);
         return Scaffold(
             appBar: AppBar(
               actions: [

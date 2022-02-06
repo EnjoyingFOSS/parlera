@@ -74,6 +74,24 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return TutorialModel.of(context).isWatched;
   }
 
+  void _switchScreen(int i) {
+    switch (_NavItem.values[i]) {
+      case _NavItem.all:
+        setState(() {
+          _currentCategory = CategoryType.all;
+        });
+        break;
+      case _NavItem.favorites:
+        setState(() {
+          _currentCategory = CategoryType.favorites;
+        });
+        break;
+      case _NavItem.menu:
+        SettingsScreen.showBottomSheet(context);
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<CategoryModel>(
@@ -93,47 +111,84 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               break;
           }
 
-          return Scaffold(
-              bottomNavigationBar: BottomNavigationBar(
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                items: _NavItem.values.map((navItem) {
-                  switch (navItem) {
-                    case _NavItem.all:
-                      return const BottomNavigationBarItem(
-                          icon: Icon(Icons.home_rounded), label: "Parlera");
-                    case _NavItem.favorites:
-                      return BottomNavigationBarItem(
-                          icon: const Icon(Icons.favorite_rounded),
-                          label: AppLocalizations.of(context).favorites);
-                    case _NavItem.menu:
-                      return BottomNavigationBarItem(
-                          icon: const Icon(Icons.menu),
-                          label: AppLocalizations.of(context).settings);
-                  }
-                }).toList(),
-                currentIndex: currentIndex,
-                onTap: (i) {
-                  switch (_NavItem.values[i]) {
-                    case _NavItem.all:
-                      setState(() {
-                        _currentCategory = CategoryType.all;
-                      });
-                      break;
-                    case _NavItem.favorites:
-                      setState(() {
-                        _currentCategory = CategoryType.favorites;
-                      });
-                      break;
-                    case _NavItem.menu:
-                      SettingsScreen.showBottomSheet(context);
-                      break;
-                  }
-                },
-              ),
-              body: CategoryList(
-                type: _currentCategory,
-              ));
+          return OrientationBuilder(builder: (context, orientation) {
+            return (orientation == Orientation.landscape)
+                ? Scaffold(
+                    body: Row(children: [
+                    NavigationRail(
+                        unselectedIconTheme: IconThemeData(
+                            color: Theme.of(context).colorScheme.onSecondary),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
+                        selectedIndex: currentIndex,
+                        onDestinationSelected: _switchScreen,
+                        labelType: NavigationRailLabelType.none,
+                        destinations: _NavItem.values.map((navItem) {
+                          switch (navItem) {
+                            case _NavItem.all:
+                              return const NavigationRailDestination(
+                                  icon: Icon(Icons.home_rounded),
+                                  label: Text("Parlera"));
+                            case _NavItem.favorites:
+                              return NavigationRailDestination(
+                                  icon: const Icon(Icons.favorite_rounded),
+                                  label: Text(
+                                      AppLocalizations.of(context).favorites));
+                            case _NavItem.menu:
+                              return NavigationRailDestination(
+                                  icon: const Icon(Icons.menu),
+                                  label: Text(
+                                      AppLocalizations.of(context).settings));
+                          }
+                        }).toList()),
+                    Expanded(
+                        child: CategoryList(
+                      type: _currentCategory,
+                    ))
+                  ]))
+                : Scaffold(
+                    bottomNavigationBar: BottomNavigationBar(
+                      showSelectedLabels: false,
+                      showUnselectedLabels: false,
+                      items: _NavItem.values.map((navItem) {
+                        switch (navItem) {
+                          case _NavItem.all:
+                            return const BottomNavigationBarItem(
+                                icon: Icon(Icons.home_rounded),
+                                label: "Parlera");
+                          case _NavItem.favorites:
+                            return BottomNavigationBarItem(
+                                icon: const Icon(Icons.favorite_rounded),
+                                label: AppLocalizations.of(context).favorites);
+                          case _NavItem.menu:
+                            return BottomNavigationBarItem(
+                                icon: const Icon(Icons.menu),
+                                label: AppLocalizations.of(context).settings);
+                        }
+                      }).toList(),
+                      currentIndex: currentIndex,
+                      onTap: (i) {
+                        switch (_NavItem.values[i]) {
+                          case _NavItem.all:
+                            setState(() {
+                              _currentCategory = CategoryType.all;
+                            });
+                            break;
+                          case _NavItem.favorites:
+                            setState(() {
+                              _currentCategory = CategoryType.favorites;
+                            });
+                            break;
+                          case _NavItem.menu:
+                            SettingsScreen.showBottomSheet(context);
+                            break;
+                        }
+                      },
+                    ),
+                    body: CategoryList(
+                      type: _currentCategory,
+                    ));
+          });
         },
       ),
     );
