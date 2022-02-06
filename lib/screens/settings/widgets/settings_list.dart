@@ -97,7 +97,8 @@ class SettingsList extends StatelessWidget {
               },
               secondary: const Icon(Icons.screen_rotation_rounded),
             ),
-          if (!Platform.isLinux)
+          if (flutter_foundation.kIsWeb ||
+              (!flutter_foundation.kIsWeb && !Platform.isLinux))
             SwitchListTile(
               title: Text(AppLocalizations.of(context).settingsAudio),
               value: model.isAudioEnabled,

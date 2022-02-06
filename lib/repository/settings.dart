@@ -37,6 +37,7 @@
 import 'dart:core';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -57,7 +58,7 @@ class SettingsRepository {
 
   bool isAudioEnabled() {
     return storage.getBool(_storageAudioEnabledKey) ??
-        (Platform.isLinux
+        ((!kIsWeb && Platform.isLinux)
             ? false
             : true); //todo use for Linux when audio is ported over
   }
@@ -72,7 +73,7 @@ class SettingsRepository {
 
   bool isRotationControlEnabled() {
     return storage.getBool(_storageRotationControlEnabledKey) ??
-        ((Platform.isAndroid || Platform.isIOS) ? true : false);
+        ((!kIsWeb && (Platform.isAndroid || Platform.isIOS)) ? true : false);
   }
 
   bool toggleRotationControl() {

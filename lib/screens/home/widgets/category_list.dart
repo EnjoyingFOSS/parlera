@@ -73,17 +73,18 @@ class CategoryList extends StatelessWidget {
                 icon: const Icon(Icons.apps_rounded, size: 96));
         }
       } else {
-        final title = (type == CategoryType.favorites) ? AppLocalizations.of(context).favorites : "Parlera";
+        final title = (type == CategoryType.favorites)
+            ? AppLocalizations.of(context).favorites
+            : "Parlera";
         return SafeArea(
             child: CustomScrollView(
-          shrinkWrap: true,
           primary: false,
           slivers: [
             SliverPadding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 12),
                 sliver: SliverAppBar(
-              title: Text(title, style: const TextStyle(fontSize: 52)),
-            )),
+                  title: Text(title, style: const TextStyle(fontSize: 52)),
+                )),
             SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 sliver: SliverGrid.count(

@@ -20,6 +20,7 @@
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -50,7 +51,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
   final _controller = PageController();
   int _currentPage = 0;
 
-  bool _isMobile() => Platform.isAndroid || Platform.isIOS;
+  bool _isMobile() => (!kIsWeb && (Platform.isAndroid || Platform.isIOS));
 
   @override
   Widget build(BuildContext context) {

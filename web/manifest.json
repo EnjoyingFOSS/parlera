@@ -1,0 +1,35 @@
+{
+    "name": "Parlera - word guessing game",
+    "short_name": "Parlera",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#33291E",
+    "theme_color": "#F7D0A1",
+    "description": "A party game where your friends describe and you guess.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
