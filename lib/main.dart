@@ -144,58 +144,64 @@ class ParleraApp extends StatelessWidget {
     return ScopedModelDescendant<LanguageModel>(
       builder: (context, _, model) {
         return FutureBuilder(
-          future: Devicelocale.currentAsLocale,
-          builder: (context, snapshot) {
-            if (snapshot.data == null) {
-          return const ScreenLoader();
-        }
-        final Locale? curLocale = snapshot.data as Locale?;
-        return MaterialApp(
-          title: 'Parlera',
-          // debugShowCheckedModeBanner: false, // used for screenshots
-          localeListResolutionCallback: (userLocales, supportedLocales) {
-            final languageCodes = LanguageHelper.codes;
-            Locale? result;
-            if (languageCodes.contains(model.language)) {
-              // manually set language resolution
-              result = Locale(model.language!, '');
-            } else if (userLocales != null) {
-              // system language resolution
-              for (var locale in userLocales) {
-                if (languageCodes.contains(locale.languageCode)) {
-                  model.setLanguage(locale.languageCode);
-                  result = locale;
-                  break;
-                }
+            future: Platform.isMacOS
+                ? Future(() => LanguageHelper.defaultLocale)
+                : Devicelocale.currentAsLocale,
+            builder: (context, snapshot) {
+              if (snapshot.data == null) {
+                return const ScreenLoader();
               }
-              if (result == null) {
-                model.setLanguage(LanguageHelper.defaultLocale.languageCode);
-                result = LanguageHelper.defaultLocale;
-              }
-            }
-            final langCode = result!.languageCode;
-            CategoryModel.of(context).load(langCode);
-            QuestionModel.of(context).load(langCode);
-            return result;
-          },
-          locale: model.language != null ? Locale(model.language!, '') : curLocale,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          supportedLocales:
-              LanguageHelper.codes.map((code) => Locale(code, '')),
-          theme: ThemeHelper.darkTheme,
-          home: const HomeScreen(),
-          routes: {
-            '/category': (context) => const CategoryDetailScreen(),
-            '/game-play': (context) => const GamePlayScreen(),
-            '/game-summary': (context) => const GameSummaryScreen(),
-            // '/game-gallery': (context) => const GameGalleryScreen(), // TODO CAMERA: Make it work and work well
-            '/tutorial': (context) => const TutorialScreen(),
-          },
-        );});
+              final Locale? curLocale = snapshot.data as Locale?;
+              return MaterialApp(
+                title: 'Parlera',
+                // debugShowCheckedModeBanner: false, // used for screenshots
+                localeListResolutionCallback: (userLocales, supportedLocales) {
+                  final languageCodes = LanguageHelper.codes;
+                  Locale? result;
+                  if (languageCodes.contains(model.language)) {
+                    // manually set language resolution
+                    result = Locale(model.language!, '');
+                  } else if (userLocales != null) {
+                    // system language resolution
+                    for (var locale in userLocales) {
+                      if (languageCodes.contains(locale.languageCode)) {
+                        model.setLanguage(locale.languageCode);
+                        result = locale;
+                        break;
+                      }
+                    }
+                    if (result == null) {
+                      model.setLanguage(
+                          LanguageHelper.defaultLocale.languageCode);
+                      result = LanguageHelper.defaultLocale;
+                    }
+                  }
+                  final langCode = result!.languageCode;
+                  CategoryModel.of(context).load(langCode);
+                  QuestionModel.of(context).load(langCode);
+                  return result;
+                },
+                locale: model.language != null
+                    ? Locale(model.language!, '')
+                    : curLocale,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                ],
+                supportedLocales:
+                    LanguageHelper.codes.map((code) => Locale(code, '')),
+                theme: ThemeHelper.darkTheme,
+                home: const HomeScreen(),
+                routes: {
+                  '/category': (context) => const CategoryDetailScreen(),
+                  '/game-play': (context) => const GamePlayScreen(),
+                  '/game-summary': (context) => const GameSummaryScreen(),
+                  // '/game-gallery': (context) => const GameGalleryScreen(), // TODO CAMERA: Make it work and work well
+                  '/tutorial': (context) => const TutorialScreen(),
+                },
+              );
+            });
       },
     );
   }
