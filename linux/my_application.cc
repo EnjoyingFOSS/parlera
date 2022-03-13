@@ -20,26 +20,7 @@ static void my_application_activate(GApplication* application) {
   GtkWindow* window =
       GTK_WINDOW(gtk_application_window_new(GTK_APPLICATION(application)));
 
-  // CUSTOM TWEAK: Header bar disabled completely
-  gboolean use_header_bar = FALSE;
-#ifdef GDK_WINDOWING_X11
-  GdkScreen* screen = gtk_window_get_screen(window);
-  if (GDK_IS_X11_SCREEN(screen)) {
-    const gchar* wm_name = gdk_x11_screen_get_window_manager_name(screen);
-    if (g_strcmp0(wm_name, "GNOME Shell") != 0) {
-      use_header_bar = FALSE;
-    }
-  }
-#endif
-  // if (use_header_bar) {
-  //   GtkHeaderBar* header_bar = GTK_HEADER_BAR(gtk_header_bar_new());
-  //   gtk_widget_show(GTK_WIDGET(header_bar));
-  //   gtk_header_bar_set_title(header_bar, "Parlera");
-  //   gtk_header_bar_set_show_close_button(header_bar, TRUE);
-  //   gtk_window_set_titlebar(window, GTK_WIDGET(header_bar));
-  // } else {
-    gtk_window_set_title(window, "Parlera");
-  // }
+  gtk_window_set_title(window, "Parlera");
 
   gtk_window_set_default_size(window, 1280, 720);
   gtk_widget_show(GTK_WIDGET(window));
