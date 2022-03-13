@@ -3,7 +3,7 @@
 	<id>com.enjoyingfoss.Parlera</id>
 	<name>Parlera</name>
 	<summary>A party game where your friends describe and you guess; or vice versa</summary>
-	
+
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>AGPL-3.0-or-later</project_license>
 	<recommends>
@@ -27,8 +27,35 @@
 		</ul>
 	</description>
 
+	<screenshots>
+		<screenshot type="default">
+			<caption>Home screen listing the different word categories</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/parlera/-/raw/master/flatpak/screenshots/overview.png</image>
+		</screenshot>
+		<screenshot>
+			<caption>Tutorial explaining Parlera's gameplay</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/parlera/-/raw/master/flatpak/screenshots/tutorial1.png</image>
+		</screenshot>
+		<screenshot>
+			<caption>Screen describing a part of Parlera's keyboard control</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/parlera/-/raw/master/flatpak/screenshots/tutorial2.png</image>
+		</screenshot>
+		<screenshot>
+			<caption>The alternative way to play, with 1 person performing and others guessing</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/parlera/-/raw/master/flatpak/screenshots/tutorial4.png</image>
+		</screenshot>
+		<screenshot>
+			<caption>Parlera's game cover page</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/parlera/-/raw/master/flatpak/screenshots/pregame.png</image>
+		</screenshot>
+		<screenshot>
+			<caption>Parlera's settings</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/parlera/-/raw/master/flatpak/screenshots/settings.png</image>
+		</screenshot>
+	</screenshots>
+
 	<releases>
-		<release version="1.2.0" date="2022-03-15"/>
+		<release version="1.2.0" date="2022-03-15" />
 	</releases>
 
 	<content_rating type="oars-1.1" />
