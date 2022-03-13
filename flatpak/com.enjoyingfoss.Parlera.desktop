@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Parlera
+Comment=A party game where your friends describe and you guess
+Categories=Game;
+Icon=com.enjoyingfoss.Parlera
+Exec=parlera
+StartupWMClass=parlera
