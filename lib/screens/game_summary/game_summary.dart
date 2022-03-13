@@ -35,6 +35,9 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:palette_generator/palette_generator.dart';
+import 'package:parlera/helpers/dynamic_color.dart';
+import 'package:parlera/store/category.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -46,7 +49,7 @@ import 'package:parlera/store/question.dart';
 import 'widgets/answer_grid.dart';
 
 class GameSummaryScreen extends StatelessWidget {
-  static const _maxAnswerWidth = 256;
+  static const _maxAnswerWidth = 320;
 
   const GameSummaryScreen({Key? key}) : super(key: key);
 
@@ -62,65 +65,92 @@ class GameSummaryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<QuestionModel>(
-      builder: (context, child, model) {
-        return Scaffold(
-            appBar: AppBar(),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4, top: 8),
-                    child: Text(
-                      AppLocalizations.of(context).summaryHeader,
-                      // style: Theme.of(context).textTheme,
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8.0,
-                        horizontal: 20.0,
-                      ),
-                      child: Text(
-                        model.questionsPassed.length.toString(),
-                        style: Theme.of(context).textTheme.headline2!.copyWith(
-                              color: Theme.of(context).colorScheme.surface,
-                            ),
-                      ),
-                    ),
-                  ),
-                  // ScopedModelDescendant<GalleryModel>( // TODO CAMERA: Make it work and work well
-                  //   builder: (context, child, model) {
-                  //     if (model.images.isEmpty) {
-                  //       return Container();
-                  //     }
+    return ScopedModelDescendant<CategoryModel>(
+        builder: (context, _, categoryModel) {
+      return ScopedModelDescendant<QuestionModel>(
+        builder: (context, _, model) {
+          final imageProvider =
+              AssetImage(categoryModel.currentCategory!.getImagePath());
+          return Scaffold(
+              backgroundColor: Theme.of(context).colorScheme.surface,
+              body: SingleChildScrollView(
+                child: FutureBuilder(
+                    future: PaletteGenerator.fromImageProvider(imageProvider),
+                    builder: (context, snapshot) {
+                      final bgColor = (snapshot.data == null)
+                          ? Theme.of(context).backgroundColor
+                          : DynamicColorHelper.backgroundColorDark(
+                              snapshot.data as PaletteGenerator);
+                      final lightColor = (snapshot.data == null)
+                          ? Theme.of(context).colorScheme.secondary
+                          : DynamicColorHelper.backgroundColorLight(
+                              snapshot.data as PaletteGenerator);
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // ScopedModelDescendant<GalleryModel>( // TODO CAMERA: Make it work and work well
+                          //   builder: (context, child, model) {
+                          //     if (model.images.isEmpty) {
+                          //       return Container();
+                          //     }
 
-                  //     return Padding(
-                  //       padding: const EdgeInsets.only(top: 16.0),
-                  //       child: GalleryHorizontal(
-                  //         items: model.images,
-                  //         onTap: (item) {
-                  //           if (item != null) openGallery(context, item);
-                  //         },
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
-                  AnswerGrid(
-                    questionsAnswered: model.questionsAnswered,
-                    answersPerRow: MediaQuery.of(context).size.width.toInt() ~/
-                            _maxAnswerWidth +
-                        1,
-                  ),
-                ],
-              ),
-            ));
-      },
-    );
+                          //     return Padding(
+                          //       padding: const EdgeInsets.only(top: 16.0),
+                          //       child: GalleryHorizontal(
+                          //         items: model.images,
+                          //         onTap: (item) {
+                          //           if (item != null) openGallery(context, item);
+                          //         },
+                          //       ),
+                          //     );
+                          //   },
+                          // ),
+                          Stack(children: [
+                            Container(
+                              height: 32 + 44,
+                              color: bgColor,
+                            ),
+                            Positioned.directional(
+                              start: 8,
+                              top: 8,
+                              textDirection: Directionality.of(context),
+                              child: (const BackButton()),
+                            ),
+                            Center(
+                                child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: lightColor,
+                              ),
+                              margin: const EdgeInsets.only(top: 32),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8.0,
+                                horizontal: 20.0,
+                              ),
+                              child: Text( //todo use dynamic text size here, hardcode circle size
+                                model.questionsPassed.length.toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline2!
+                                    .copyWith(
+                                      color: bgColor,
+                                    ),
+                              ),
+                            ))
+                          ]),
+                          AnswerGrid(
+                            questionsAnswered: model.questionsAnswered,
+                            answersPerRow:
+                                MediaQuery.of(context).size.width.toInt() ~/
+                                        _maxAnswerWidth +
+                                    1,
+                          ),
+                        ],
+                      );
+                    }),
+              ));
+        },
+      );
+    });
   }
 }

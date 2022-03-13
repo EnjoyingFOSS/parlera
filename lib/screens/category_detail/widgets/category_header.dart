@@ -35,45 +35,83 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:parlera/helpers/dynamic_color.dart';
 import 'package:parlera/models/category.dart';
+import 'package:palette_generator/palette_generator.dart';
 
 class CategoryHeader extends StatelessWidget {
   final Category category;
+  final bool isLandscape;
+  final Function() onFavorite;
+  final bool isFavorite;
 
-  const CategoryHeader({Key? key, required this.category}) : super(key: key);
+  const CategoryHeader(
+      {Key? key,
+      required this.category,
+      required this.onFavorite,
+      required this.isFavorite,
+      required this.isLandscape})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final imageProvider = AssetImage(category.getImagePath());
     final description = category.description ?? "";
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Padding(
-        padding: const EdgeInsets.only(top: 8),
-        child: SizedBox(
-          width: 160,
-          height: 160,
-          child: Hero(
-            tag: 'categoryImage-${category.name}',
-            child: Image.asset(
-              category.getImagePath(),
-              fit: BoxFit.contain,
-            ),
-          ),
-        ),
-      ),
-      Text(
-        category.name ?? "",
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.headline4,
-      ),
-      if (description != "")
-        Padding(
-          padding: const EdgeInsets.only(top: 32),
-          child: Text(
-            category.description!,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-        ),
-    ]);
+    return FutureBuilder(
+        future: PaletteGenerator.fromImageProvider(imageProvider),
+        builder: (context, snapshot) {
+          final bgColor = (snapshot.data == null)
+              ? Theme.of(context).backgroundColor
+              : DynamicColorHelper.backgroundColorDark(
+                  snapshot.data as PaletteGenerator);
+          return Container(
+              color: bgColor,
+              padding: const EdgeInsets.only(bottom: 32),
+              width: double.infinity, //todo is this best practice?
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppBar(
+                      backgroundColor: Colors.transparent,
+                      actions: [
+                        IconButton(
+                          onPressed: onFavorite,
+                          icon: Icon(
+                            isFavorite
+                                ? Icons.favorite_rounded
+                                : Icons.favorite_border_rounded,
+                          ),
+                        )
+                      ],
+                    ),
+                    if (isLandscape) const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: SizedBox(
+                        width: 160,
+                        height: 160,
+                        child: Hero(
+                          tag: 'categoryImage-${category.name}',
+                          child: Image(image: imageProvider),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      category.name ?? "",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    if (description != "")
+                      Padding(
+                        padding: const EdgeInsets.only(top: 32),
+                        child: Text(
+                          category.description!,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
+                      ),
+                    if (isLandscape) const Spacer(),
+                  ]));
+        });
   }
 }

@@ -317,6 +317,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: WillPopScope(
         onWillPop: () async {
           return await _confirmBack();

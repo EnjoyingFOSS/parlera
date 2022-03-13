@@ -73,7 +73,6 @@ class GameSetings extends StatelessWidget {
                               : Theme.of(context).colorScheme.onSurface),
                     ));
                   },
-                  indicatorType: IndicatorType.circle,
                   current: settingsModel.roundTime,
                   values: const [30, 60, 90, 120],
                   onChanged: (int value) {

@@ -60,18 +60,19 @@ class AnswerItem extends StatelessWidget {
                         : ThemeHelper.failColor),
                 child: Icon(
                   success ? Icons.check_rounded : Icons.close_rounded,
-                  size: 16.0,
+                  size: 24.0,
                   color: Theme.of(context).colorScheme.onSurface,
                 )),
             const SizedBox(
-              width: 8,
+              width: 12,
             ),
-            Flexible(child: Text(
+            Flexible(
+                child: Text(
               question.name,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.subtitle1,
             )),
           ],
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4));
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8));
   }
 }

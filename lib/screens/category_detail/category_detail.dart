@@ -48,29 +48,20 @@ class CategoryDetailScreen extends StatelessWidget {
         final stronglyLandscape =
             OrientationHelper.isStronglyLandscape(context);
         return Scaffold(
-            appBar: AppBar(
-              actions: [
-                IconButton(
-                  onPressed: () => model.toggleFavorite(category),
-                  icon: Icon(
-                    model.isFavorite(category)
-                        ? Icons.favorite_rounded
-                        : Icons.favorite_border_rounded,
-                  ),
-                )
-              ],
-            ),
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: stronglyLandscape
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Expanded(child: CategoryHeader(category: category)),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        child: VerticalDivider(
-                          indent: 8,
-                          endIndent: 8,
-                        ),
+                      Expanded(
+                          child: CategoryHeader(
+                        category: category,
+                        onFavorite: () => model.toggleFavorite(category),
+                        isFavorite: model.isFavorite(category),
+                        isLandscape: stronglyLandscape,
+                      )),
+                      const SizedBox(
+                        width: 32,
                       ),
                       const Expanded(child: GameSetings()),
                     ],
@@ -78,13 +69,14 @@ class CategoryDetailScreen extends StatelessWidget {
                 : SingleChildScrollView(
                     child: Column(
                       children: [
-                        CategoryHeader(category: category),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16),
-                          child: Divider(
-                            indent: 32,
-                            endIndent: 32,
-                          ),
+                        CategoryHeader(
+                          category: category,
+                          onFavorite: () => model.toggleFavorite(category),
+                          isFavorite: model.isFavorite(category),
+                          isLandscape: stronglyLandscape,
+                        ),
+                        const SizedBox(
+                          height: 32,
                         ),
                         const GameSetings(),
                       ],
