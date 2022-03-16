@@ -30,6 +30,7 @@ Contributions might not be accepted even if they meet the rules here.
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
       alt="Get Parlera on Google Play"
-      height="80">](https://play.google.com/store/apps/details?id=com.enjoyingfoss.parlera)
+      height="108">](https://play.google.com/store/apps/details?id=com.enjoyingfoss.parlera)
+[<img src="https://www.flathub.org/assets/badges/flathub-badge-en.png" alt="Download Parlera Flatpak on Flathub" height="72">](https://flathub.org/apps/details/com.enjoyingfoss.Parlera)
 
 Coming to F-Droid [as soon as it's packaged](https://gitlab.com/fdroid/rfp/-/issues/1986).
