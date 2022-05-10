@@ -1,13 +1,12 @@
 abstract_name: Abstract
 abstract_questions: |-
     action
-    agnosticism
     appearance
     aspiration
     atheism
-    attribute
     autonomy
     beauty
+    belief
     Buddhism
     burn-out
     childishness
@@ -17,6 +16,8 @@ abstract_questions: |-
     comfort
     commonality
     connection
+    danger
+    death
     destiny
     difference
     difficulty
@@ -31,6 +32,7 @@ abstract_questions: |-
     fairness
     faith
     fate
+    feature
     free speech
     free time
     free will
@@ -42,7 +44,6 @@ abstract_questions: |-
     health
     hope
     human right
-    humanity
     humility
     humor
     idea
@@ -50,7 +51,6 @@ abstract_questions: |-
     importance
     infinity
     insult
-    integrity
     Islam
     language
     location
@@ -85,12 +85,12 @@ abstract_questions: |-
     sense of humor
     shape
     significance
-    simile
     slyness
     solace
     soul
     stress
     struggle
+    symbol
     success
     trend
     truth
@@ -246,7 +246,7 @@ animals_questions: |-
 classic-characters_name: Classic characters
 classic-characters_questions: |-
     Aladdin
-    Alice
+    Alice (from Alice in Wonderland)
     Bambi
     Big Bad Wolf
     Captain Hook
@@ -256,6 +256,7 @@ classic-characters_questions: |-
     D'Artagnan
     Dorothy
     Dracula
+    Dr. Watson
     Ebenezer Scrooge
     Eeyore
     Frankenstein
@@ -265,12 +266,9 @@ classic-characters_questions: |-
     Humpty Dumpty
     Jack and Jill
     John Carter
-    Watson
     Little Bo-Peep
     Little Red Riding Hood
     Mowgli
-    Munchkin
-    Mycroft Holmes
     Peter Pan
     Peter Piper
     Piglet
@@ -417,8 +415,6 @@ food-and-drink_questions: |-
     burrito
     butter
     cake
-    canapé
-    candy corn
     carrot
     cashew
     cauliflower
@@ -478,6 +474,7 @@ food-and-drink_questions: |-
     herb
     honey
     ice cream
+    ice cream sandwich
     juice
     kale
     kebab
@@ -587,18 +584,14 @@ food-and-drink_questions: |-
 historical-figures_name: Historical figures
 historical-figures_questions: |-
     Abraham Lincoln
-    Adam Smith
     Adolf Hitler
-    Al Capone
     Alan Turing
     Albert Einstein
     Alexander the Great
     Amadeus Mozart
     Andy Warhol
     Anne Frank
-    Ansel Adams
     Aristotle
-    Babe Ruth
     Benedict Arnold
     Benito Mussolini
     Billy the Kid
@@ -623,7 +616,6 @@ historical-figures_questions: |-
     Galileo Galilei
     Genghis Khan
     George Washington
-    Georgia O’Keeffe
     H. G. Wells
     Harriet Tubman
     Helen Keller
@@ -632,7 +624,6 @@ historical-figures_questions: |-
     Isaac Newton
     James Cook
     Jesus
-    Jimi Hendrix
     Joan of Arc
     Johann Sebastian Bach
     John Adams
@@ -650,7 +641,6 @@ historical-figures_questions: |-
     Malcolm X
     Marie Antoinette
     Marie Curie
-    Mark Twain
     Mark Twain
     Martin Luther King Jr.
     Mary Shelley
@@ -672,7 +662,6 @@ historical-figures_questions: |-
     René Descartes
     Richard Nixon
     Rosa Parks
-    Sacagawea
     Salvador Dalí
     Sigmund Freud
     Sitting Bull
@@ -781,7 +770,6 @@ idioms_questions: |-
     to make a long story short
     top of the line
     turn a blind eye
-    wet your pants
     when push comes to shove
     wild goose chase
     word of mouth
@@ -898,7 +886,6 @@ mythical-creatures_questions: |-
     Bigfoot
     Bloody Mary
     centaur
-    chupacabra
     cupid
     devil
     elf
@@ -913,7 +900,6 @@ mythical-creatures_questions: |-
     goblin
     Grim Reaper
     hydra
-    Jack Frost
     Kraken
     leprechaun
     Loch Ness monster
