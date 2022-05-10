@@ -1,96 +1,108 @@
 abstract_name: Abstraktní
 abstract_questions: |-
-    ambice
-    atribut
-    autonomie
-    bezpečnost
-    blaho
-    boj
-    chytrost
-    citát
-    dopad
-    dovolená
-    drzost
-    duše
-    duševní klid
-    důraz
-    filozofie
-    férovost
-    harmonie
-    humor
-    integrita
-    jazyk
-    klišé
-    krása
-    lidskost
-    lidské právo
-    lstivost
-    láska
-    matematika
-    metafora
-    moment
-    moudrost
-    mír
-    naděje
-    nebezpečí
-    nedorozumění
-    nekonečno
-    nenávist
-    nálada
-    nápad
-    objektivnost
-    obtížnost
-    oběť
-    odhad
-    odkaz
-    okamžik
-    osud
-    osud
-    pohodlí
-    pokora
-    porozumění
-    potřeba
-    pravda
-    problém
-    prvek
-    psychologie
-    přirovnání
-    příklad
-    reakce
-    realita
-    relaxace
-    respekt
-    rovnost
-    rozdíl
-    sebereflexe
-    selhání
-    skloňování
-    slovní druh
-    smysl pro humor
-    soukromí
-    spojení
-    společnost
-    stres
-    svoboda
-    svobodná vůle
-    tip
-    trend
-    tvar
-    umístění
-    urážka
-    volný čas
-    vyhoření
-    vzhled
-    vášeň
-    víra
-    výraz
-    význam
-    zdraví
-    zeměpis
-    zpětná vazba
-    úsilí
-    úspěch
-    útěcha
-    činnost
-    šifrování
+  ambice
+  atribut
+  autonomie
+  bezpečnost
+  blaho
+  boj
+  chytrost
+  citát
+  dopad
+  dovolená
+  drzost
+  duše
+  duševní klid
+  důraz
+  filozofie
+  férovost
+  harmonie
+  humor
+  integrita
+  jazyk
+  klišé
+  krása
+  lidskost
+  lidské právo
+  lstivost
+  láska
+  matematika
+  metafora
+  moment
+  moudrost
+  mír
+  naděje
+  nebezpečí
+  nedorozumění
+  nekonečno
+  nenávist
+  nálada
+  nápad
+  objektivnost
+  obtížnost
+  oběť
+  odhad
+  odkaz
+  okamžik
+  osud
+  osud
+  pohodlí
+  pokora
+  porozumění
+  potřeba
+  pravda
+  problém
+  prvek
+  psychologie
+  přirovnání
+  příklad
+  reakce
+  realita
+  relaxace
+  respekt
+  rovnost
+  rozdíl
+  sebereflexe
+  selhání
+  skloňování
+  slovní druh
+  smysl pro humor
+  soukromí
+  spojení
+  společnost
+  stres
+  svoboda
+  svobodná vůle
+  tip
+  trend
+  tvar
+  umístění
+  urážka
+  volný čas
+  vyhoření
+  vzhled
+  vášeň
+  víra
+  výraz
+  význam
+  zdraví
+  zeměpis
+  zpětná vazba
+  úsilí
+  úspěch
+  útěcha
+  činnost
+  šifrování
 mixup_name: Náhodné
+mythical-creatures_name: Mýtické bytosti
+mythical-creatures_questions: "anděl\nBaba Jaga\nbílá paní\nbubák\ncentaur\nčaroděj\n\
+  čarodějnice\nčert\nCupid\nďábel\ndémon\nduch\ndžin\nfénix\ngolem\nKrakonoš\nLochnesská\
+  \ nestvůra\njednorožec\nježibaba\nkouzelník\nmořská panna\nobr\npegas\nsfinga\n\
+  skřítek\nsiréna\nsmrtka\nsněžný muž\nsudička\ntrol\ntrpaslík\nupír\nvíla\nvíla Zubnička\n\
+  vlkodlak\nvodník\nYetti\nzlobr\nzombie"
+classic-characters_questions: "Aladin\nAlenka (z říše divů)\nBystrozraký\nČervená\
+  \ Karkulka\nDěd Vševěd\nDlouhý\nDrákula\nD'Artagnan\nFantomas\nFrankenstein\nHloupý\
+  \ Honza\nJeníček\nMalá mořská víla\nMauglí\nMařenka\nMedvídek Pú\nOšklivé kačátko\n\
+  Otesánek\nPinocchio\nPetr Pan\nPrinc Bajaja\nPopelka\nPták Ohnivák\nRobinson Crusoe\n\
+  Romeo\nSedm trpaslíků\nSherlock Holmes\nŠípková Růženka\nSněhurka\nSněhová královna\n\
+  Široký\nTarzan\nŽabí princ\nZlatovláska\nZorro"
