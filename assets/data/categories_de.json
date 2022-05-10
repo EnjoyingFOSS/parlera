@@ -616,8 +616,8 @@
   {
     "description": "",
     "id": "mixup",
-    "image": "random.webp",
-    "name": "Zufällig",
+    "image": "mixup.webp",
+    "name": "Zufällige",
     "questions": []
   }
 ]
