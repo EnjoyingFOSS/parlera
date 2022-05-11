@@ -267,20 +267,16 @@ food-and-drink_questions: |-
   Creme
   Curry
   Donut
-  Dressing
   Ei
   Eierlikör
-  Energy-Drink
   Erdbeere
   Erdnuss
   Essiggurke
   Falafel
-  Fingerfood
   Fisch
   Fischfilet
   Fischstäbchen
   Fleisch
-  Frozen Joghurt
   Frühstück
   Gemüse
   Getreide
@@ -573,3 +569,38 @@ mythical-creatures_questions: |-
 mixup_name: Zufällige
 classic-characters_name: Klassische Figuren
 classic-literature_name: Klassische Literatur
+historical-figures_name: Historische Figuren
+classic-literature_questions: "Äsops Fabeln\nAlices Abenteuer im Wunderland\nAnna\
+  \ Karenina\nIn achtzig Tagen um die Welt\nAschenputtel\nVerbrechen und Strafe\n\
+  David Copperfield\nDon Quijote\nDracula\nEmma\nFrankenstein\nGroße Erwartungen\n\
+  Gulliver's Reisen\nHamlet\nHänsel und Gretel\nIvanhoe\nJack and the Beanstalk\n\
+  Die Reise zum Mittelpunkt der Erde\nDie Elenden\nRotkäppchen\nKleine Frauen\nMacbeth\n\
+  Moby Dick\nOliver Twist\nOthello\nPeter Pan\nStolz und Vorurteil\nRapunzel\nRobinson\
+  \ Crusoe\nRomeo und Julia\nRumpelstilzchen\nNibelungenlied\nDornröschen\nSchneewittchen\n\
+  Die Abenteuer des Sherlock Holmes\nDie Abenteuer von Tom Sawyer\nDie schwarze Katze\n\
+  Die Brüder Karamasow\nGrimms Märchen\nDas Fass von Amontillado\nDer Graf von Monte\
+  \ Cristo\nDes Kaisers neue Kleider\nDer Froschkönig\nDer große Gatsby\nDer Glöckner\
+  \ von Notre-Dame\nDer Idiot\nDie Ilias\nDer unsichtbare Mann\nDas Dschungelbuch\n\
+  Die kleine Meerjungfrau\nDie verlorene Welt\nDie Metamorphose\nDie Nachtigall\n\
+  Die Odyssee\nDas Bildnis des Dorian Gray\nDie Prinzessin auf der Erbse\nDer Rabe\n\
+  Der scharlachrote Buchstabe\nDer seltsame Fall des Dr. Jekyll und Mr. Hyde\nDas\
+  \ verräterische Herz\nDie drei Musketiere\nDie Zeitmaschine\nDer Krieg der Welten\n\
+  Die Rote Zora\nDurch das Spiegelkabinett\nZwölf Jahre Sklave\nZwanzigtausend Meilen\
+  \ unter dem Meer\nKrieg und Frieden\nEmil und die Detektive\nPippi Langstrumpf"
+historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert\
+  \ Einstein\nAlexander der Große\nAmadeus Mozart\nAndy Warhol\nAnne Frank\nAristoteles\n\
+  Benedikt Arnold\nBenito Mussolini\nBilly the Kid\nBob Ross\nGebrüder Grimm\nBuddha\n\
+  Karl der Große\nCharles Darwin\nCharlie Chaplin\nChristoph Kolumbus\nClaude Monet\n\
+  Kleopatra\nNena\nMarlene Dietrich\nErnest Hemingway\nFrank Sinatra\nAngela Merkel\n\
+  Friedrich Nietzsche\nGalileo Galilei\nDschingis Khan\nBrüder Grimm\nBertolt Brecht\n\
+  Gustav Klimt\nHelen Keller\nHeinrich Ford\nImmanuel Kant\nIsaac Newton\nAlexander\
+  \ von Humboldt\nJesus\nJeanne d'Arc\nJohann Sebastian Bach\nOtto von Bismarck\n\
+  Sissi\nJohn Lennon\nJules Verne\nJulius Cäsar\nKönig Artus\nKönig Tut\nLeonardo\
+  \ da Vinci\nErich Kästner\nGerhard Schröder\nLudwig van Beethoven\nMahatma Gandhi\n\
+  Malcolm X\nMarie Antoinette\nMarie Curie\nMark Twain\nMartin Luther King Jr.\nLou\
+  \ Andreas-Salomé\nMaria, Königin der Schotten\nMichelangelo\nMuhammad\nNapoléon\
+  \ Bonaparte\nNeil Armstrong\nNelson Mandela\nNicolaus Kopernikus\nNikola Tesla\n\
+  Nina Hagen\nPlaton\nPocahontas\nPythagoras\nRené Descartes\nSalvador Dalí\nSigmund\
+  \ Freud\nSokrates\nSophie Scholl\nVincent Van Gogh\nWladimir Lenin\nVoltaire\nFriedrich\
+  \ Schiller\nGebrüder Wright"
+idioms_name: Redewendungen
