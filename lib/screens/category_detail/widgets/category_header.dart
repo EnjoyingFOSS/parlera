@@ -38,6 +38,7 @@ import 'package:flutter/material.dart';
 import 'package:parlera/helpers/dynamic_color.dart';
 import 'package:parlera/models/category.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CategoryHeader extends StatelessWidget {
   final Category category;
@@ -75,6 +76,7 @@ class CategoryHeader extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       actions: [
                         IconButton(
+                          tooltip: AppLocalizations.of(context).btnFavorite,
                           onPressed: onFavorite,
                           icon: Icon(
                             isFavorite
