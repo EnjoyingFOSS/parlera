@@ -10,7 +10,9 @@ This app was originally forked from the Apache-licensed [Zgadula game](https://g
 
 # Words
 
-The words in assets/data/ come from the [Parlerlist party game word list](https://gitlab.com/enjoyingfoss/parlerlist) and are licensed under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
+The words in assets/data/ come are licensed under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
+
+Contributors are listed in the CONTRIBUTORS file.
 
 # Images
 
