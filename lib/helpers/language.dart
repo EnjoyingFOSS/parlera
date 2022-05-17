@@ -41,10 +41,11 @@ class LanguageHelper {
   static const _en = "en";
   static const _cs = "cs";
   static const _de = "de";
+  static const _fr = "fr";
 
   static const defaultLocale = Locale(_en);
 
-  static final Set<String> codes = {_en, _cs, _de};
+  static final Set<String> codes = {_en, _cs, _de, _fr};
 
   static String getLanguageName(BuildContext context, String? code) {
     switch (code) {
@@ -56,6 +57,8 @@ class LanguageHelper {
         return AppLocalizations.of(context).languageCzech;
       case _de:
         return AppLocalizations.of(context).languageGerman;
+      case _fr:
+        return AppLocalizations.of(context).languageFrench;
     }
     throw Exception("Unsupported language code");
   }
