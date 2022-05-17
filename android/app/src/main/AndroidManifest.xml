@@ -2,6 +2,13 @@
     package="com.enjoyingfoss.parlera">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
    <application
         android:label="Parlera"
         android:icon="@mipmap/ic_launcher">
