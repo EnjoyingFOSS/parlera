@@ -88,5 +88,7 @@
   "tutorialSecondSectionDescriptionDesktop": "Ne olduğu hakkında hiçbir fikriniz yok mu? Bu sözcüğü atlamak için klavyenizdeki yukarı ok tuşuna basmanız yeterlidir.",
   "@tutorialSecondSectionDescriptionDesktop": {},
   "tutorialThirdSectionHeaderPhone": "Bulduysanız aşağı eğin",
-  "@tutorialThirdSectionHeaderPhone": {}
+  "@tutorialThirdSectionHeaderPhone": {},
+  "btnFavorite": "Sık kullanılanlara ekle",
+  "@btnFavorite": {}
 }

@@ -88,5 +88,7 @@
   "languagesVaryNotice": "Les catégories et les mots varient selon les langues.",
   "@languagesVaryNotice": {},
   "emptyCategories": "Impossible de charger les catégories :(",
-  "@emptyCategories": {}
+  "@emptyCategories": {},
+  "btnFavorite": "Ajouter aux favoris",
+  "@btnFavorite": {}
 }
