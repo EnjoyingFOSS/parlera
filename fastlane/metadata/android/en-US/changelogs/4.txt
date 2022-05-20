@@ -1,0 +1,7 @@
+Android 12 & French!
+
+- Android 12 update
+- French language!
+- Language updates
+- Dynamic category color coding
+- Bug fixes
