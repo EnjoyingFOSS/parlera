@@ -65,6 +65,7 @@ class GameSummaryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final safeAreaTop = MediaQuery.of(context).padding.top;
     return ScopedModelDescendant<CategoryModel>(
         builder: (context, _, categoryModel) {
       return ScopedModelDescendant<QuestionModel>(
@@ -107,12 +108,12 @@ class GameSummaryScreen extends StatelessWidget {
                           // ),
                           Stack(children: [
                             Container(
-                              height: 32 + 44,
+                              height: 32 + 44 + safeAreaTop,
                               color: bgColor,
                             ),
                             Positioned.directional(
                               start: 8,
-                              top: 8,
+                              top: 8 + safeAreaTop,
                               textDirection: Directionality.of(context),
                               child: (const BackButton()),
                             ),
@@ -122,12 +123,13 @@ class GameSummaryScreen extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color: lightColor,
                               ),
-                              margin: const EdgeInsets.only(top: 32),
+                              margin: EdgeInsets.only(top: 32 + safeAreaTop),
                               padding: const EdgeInsets.symmetric(
                                 vertical: 8.0,
                                 horizontal: 20.0,
                               ),
-                              child: Text( //todo use dynamic text size here, hardcode circle size
+                              child: Text(
+                                //todo use dynamic text size here, hardcode circle size
                                 model.questionsPassed.length.toString(),
                                 style: Theme.of(context)
                                     .textTheme
