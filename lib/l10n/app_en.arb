@@ -40,7 +40,7 @@
   "contribute": "Contribute",
   "urlCantOpen": "Could not open URL.",
   "categoryRandom": "Random",
-  "languageSystem": "Default",
+  "languageSystem": "Default (requires restart)",
   "languageEnglish": "English",
   "languageCzech": "Czech",
   "languageGerman": "German",
