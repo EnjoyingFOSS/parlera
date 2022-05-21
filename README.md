@@ -27,6 +27,9 @@ Contributions might not be accepted even if they meet the rules here.
 
 ## Install
 
+[<img src="https://f-droid.org/badge/get-it-on.png"
+      alt="Get Parlera on F-Droid"
+      height="108">](https://f-droid.org/packages/com.enjoyingfoss.parlera/)
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
       alt="Get Parlera on Google Play"
       height="108">](https://play.google.com/store/apps/details?id=com.enjoyingfoss.parlera)
