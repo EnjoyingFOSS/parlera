@@ -84,5 +84,9 @@
   "languageEnglish": "Inggris",
   "@languageEnglish": {},
   "languageGerman": "Jerman",
-  "@languageGerman": {}
+  "@languageGerman": {},
+  "emptyCategories": "Tidak dapat memuat kategori :(",
+  "@emptyCategories": {},
+  "emptyFavorites": "Favoritkan sebuah kategori untuk melihat nya di sini.",
+  "@emptyFavorites": {}
 }
