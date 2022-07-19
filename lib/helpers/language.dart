@@ -45,7 +45,7 @@ class LanguageHelper {
 
   static const defaultLocale = Locale(_en);
 
-  static final Set<String> codes = {_en, _cs, _de, _fr};
+  static const codes = {_en, _cs, _de, _fr};
 
   static String getLanguageName(BuildContext context, String? code) {
     switch (code) {
