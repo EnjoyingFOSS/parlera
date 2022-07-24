@@ -63,10 +63,10 @@ class SettingsRepository {
             : true); //todo use for Linux when audio is ported over
   }
 
-  bool toggleAudio() {
+  Future<bool> toggleAudio() async {
     final value = !isAudioEnabled();
 
-    storage.setBool(_storageAudioEnabledKey, value);
+    await storage.setBool(_storageAudioEnabledKey, value);
 
     return value;
   }
@@ -76,10 +76,10 @@ class SettingsRepository {
         ((!kIsWeb && (Platform.isAndroid || Platform.isIOS)) ? true : false);
   }
 
-  bool toggleRotationControl() {
+  Future<bool> toggleRotationControl() async {
     final value = !isRotationControlEnabled();
 
-    storage.setBool(_storageRotationControlEnabledKey, value);
+    await storage.setBool(_storageRotationControlEnabledKey, value);
 
     return value;
   }
@@ -101,8 +101,8 @@ class SettingsRepository {
     return storage.getInt(_storageRoundTimeKey) ?? 60;
   }
 
-  int setRoundTime(int roundTime) {
-    storage.setInt(_storageRoundTimeKey, roundTime);
+  Future<int> setRoundTime(int roundTime) async {
+    await storage.setInt(_storageRoundTimeKey, roundTime);
 
     return roundTime;
   }
@@ -111,9 +111,9 @@ class SettingsRepository {
     return storage.getInt(_storageGamesPlayedKey) ?? 0;
   }
 
-  int increaseGamesPlayed() {
+  Future<int> increaseGamesPlayed() async {
     final gamesPlayed = getGamesPlayed() + 1;
-    storage.setInt(_storageGamesPlayedKey, gamesPlayed);
+    await storage.setInt(_storageGamesPlayedKey, gamesPlayed);
 
     return gamesPlayed;
   }
@@ -122,10 +122,10 @@ class SettingsRepository {
     return storage.getInt(_storageGamesFinishedKey) ?? 0;
   }
 
-  int increaseGamesFinished() {
+  Future<int> increaseGamesFinished() async {
     final gamesFinished = getGamesFinished() + 1;
 
-    storage.setInt(_storageGamesFinishedKey, gamesFinished);
+    await storage.setInt(_storageGamesFinishedKey, gamesFinished);
 
     return gamesFinished;
   }
@@ -134,8 +134,8 @@ class SettingsRepository {
     return storage.getBool(_storageNotificationsEnabledKey) ?? false;
   }
 
-  void enableNotifications() {
-    storage.setBool(_storageNotificationsEnabledKey, true);
+  Future<void> enableNotifications() async {
+    await storage.setBool(_storageNotificationsEnabledKey, true);
   }
 
   Future<String> getAppVersion() async {

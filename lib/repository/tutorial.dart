@@ -47,5 +47,5 @@ class TutorialRepository {
 
   bool? isWatched() => storage.getBool(storageWatchKey);
 
-  Future<bool> watch() async => storage.setBool(storageWatchKey, true);
+  Future<bool> watch() async => await storage.setBool(storageWatchKey, true);
 }

@@ -49,11 +49,11 @@ class LanguageRepository {
     return storage.getString(storageLanguageKey);
   }
 
-  String? setLanguage(String? language) {
+  Future<String?> setLanguage(String? language) async {
     if (language == null) {
-      storage.remove(storageLanguageKey);
+      await storage.remove(storageLanguageKey);
     } else {
-      storage.setString(storageLanguageKey, language);
+      await storage.setString(storageLanguageKey, language);
     }
 
     return language;
