@@ -13,14 +13,14 @@ class AnswerGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (answersPerRow < 1) return Container();
+    if (answersPerRow < 1) return const SizedBox();
 
     final rowCount = (questionsAnswered.length / answersPerRow).ceil();
     var lastCellCount = questionsAnswered.length % answersPerRow;
     if (lastCellCount == 0) lastCellCount = answersPerRow;
 
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         child: Table(
             defaultColumnWidth: const FlexColumnWidth(1.0),
             children: List.generate(
@@ -43,7 +43,7 @@ class AnswerGrid extends StatelessWidget {
                               ? AnswerItem(
                                   question: questionsAnswered[
                                       rowI * answersPerRow + columnI])
-                              : Container()));
+                              : const SizedBox()));
                 }
               },
             )));

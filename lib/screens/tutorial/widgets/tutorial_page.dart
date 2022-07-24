@@ -34,7 +34,7 @@ class TutorialPage extends StatelessWidget {
                                 MediaQuery.of(context).size.height / 2,
                                 _minImageHeight)),
                         child: Image.asset(imagePath))),
-                Container(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -44,7 +44,7 @@ class TutorialPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headline4,
                       ),
-                      Container(height: 16),
+                      const SizedBox(height: 16),
                       Text(description,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.subtitle1)
@@ -59,13 +59,13 @@ class TutorialPage extends StatelessWidget {
                         maxHeight: min(MediaQuery.of(context).size.height / 2,
                             _minImageHeight)),
                     child: Image.asset(imagePath)),
-                Container(height: 16),
+                const SizedBox(height: 16),
                 Text(
                   title,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline4,
                 ),
-                Container(height: 16),
+                const SizedBox(height: 16),
                 Text(description,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.subtitle1)

@@ -69,7 +69,7 @@ class LanguageScreen extends StatelessWidget {
                               Icons.info_outline_rounded,
                               color: infoColor,
                             ),
-                            Container(
+                            const SizedBox(
                               width: 4,
                             ),
                             Flexible(

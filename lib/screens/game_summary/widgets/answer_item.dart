@@ -73,6 +73,6 @@ class AnswerItem extends StatelessWidget {
             )),
           ],
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8));
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8));
   }
 }
