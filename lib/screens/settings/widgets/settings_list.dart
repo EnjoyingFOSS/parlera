@@ -103,7 +103,6 @@ class SettingsList extends StatelessWidget {
               title: Text(AppLocalizations.of(context).settingsAudio),
               value: model.isAudioEnabled,
               onChanged: (bool value) {
-                print("toggling audio");
                 model.toggleAudio();
               },
               secondary: const Icon(Icons.music_note_rounded),
@@ -158,8 +157,9 @@ class SettingsList extends StatelessWidget {
   }
 
   void _launchURL(BuildContext context, String url) async {
-    await canLaunch(url)
-        ? await launch(url)
+    final uri = Uri.parse(url);
+    await canLaunchUrl(uri)
+        ? await launchUrl(uri)
         : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(AppLocalizations.of(context).urlCantOpen),
           ));
