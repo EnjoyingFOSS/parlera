@@ -62,17 +62,18 @@ class CategoryModel extends StoreModel {
 
   CategoryModel(this.repository);
 
-  void load(String languageCode) async {
+  Future<void> load(String languageCode) async {
     _isLoading = true;
     notifyListeners();
 
-    _categories = {
-      for (var c in await repository.getAll(languageCode)) c.id: c
-    };
+    _categories = await _loadCategories(languageCode);
     _favorites = repository.getFavorites(_categories);
     _isLoading = false;
     notifyListeners();
   }
+
+  Future<Map<String, Category>> _loadCategories(String languageCode) async =>
+      {for (var c in await repository.getAll(languageCode)) c.id: c};
 
   void setCurrent(Category? category) {
     _currentCategory = category;
@@ -83,8 +84,8 @@ class CategoryModel extends StoreModel {
     return _favorites.contains(category.id);
   }
 
-  void toggleFavorite(Category category) {
-    _favorites = repository.toggleFavorite(_favorites, category);
+  Future<void> toggleFavorite(Category category) async {
+    _favorites = await repository.toggleFavorite(_favorites, category);
     notifyListeners();
   }
 
@@ -96,10 +97,16 @@ class CategoryModel extends StoreModel {
     return _playedCount[category.id];
   }
 
-  void increasePlayedCount(Category category) async {
-    _playedCount[category.id] = repository.increasePlayedCount(category);
+  Future<void> increasePlayedCount(Category category) async {
+    _playedCount[category.id] = await repository.increasePlayedCount(category);
     notifyListeners();
   }
+
+  // Future<void> createCategory(Category category, String langCode) async {
+  //   await repository.createCategory(category, langCode);
+  //   _categories = await _loadCategories(langCode);
+  //   notifyListeners();
+  // }
 
   static CategoryModel of(BuildContext context) =>
       ScopedModel.of<CategoryModel>(context);

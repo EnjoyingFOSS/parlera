@@ -53,15 +53,15 @@ class LanguageModel extends StoreModel {
   LanguageModel(this.repository);
 
   @override
-  initialize() async {
+  Future<void> initialize() async {
     _language = repository.getLanguage();
     _isLoading = false;
     notifyListeners();
   }
 
   /// Saves the language to local settings and sets it as the UI language
-  void saveLanguage(String? language) {
-    _language = repository.setLanguage(language);
+  Future<void> saveLanguage(String? language) async {
+    _language = await repository.setLanguage(language);
     notifyListeners();
   }
 

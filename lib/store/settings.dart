@@ -95,33 +95,33 @@ class SettingsModel extends StoreModel {
   }
 
   Future<void> toggleAudio() async {
-    _isAudioEnabled = repository.toggleAudio();
+    _isAudioEnabled = await repository.toggleAudio();
     notifyListeners();
   }
 
   Future<void> toggleRotationControl() async {
-    _isRotationControlEnabled = repository.toggleRotationControl();
+    _isRotationControlEnabled = await repository.toggleRotationControl();
     notifyListeners();
   }
 
   // TODO CAMERA: Make it work and work well
   // Future<void> toggleCamera() async {
-  //   _isCameraEnabled = repository.toggleCamera();
+  //   _isCameraEnabled = await repository.toggleCamera();
   //   notifyListeners();
   // }
 
   Future<void> changeRoundTime(int roundTime) async {
-    _roundTime = repository.setRoundTime(roundTime);
+    _roundTime = await repository.setRoundTime(roundTime);
     notifyListeners();
   }
 
   Future<void> increaseGamesPlayed() async {
-    _gamesPlayed = repository.increaseGamesPlayed();
+    _gamesPlayed = await repository.increaseGamesPlayed();
     notifyListeners();
   }
 
   Future<void> increaseGamesFinished() async {
-    _gamesFinished = repository.increaseGamesFinished();
+    _gamesFinished = await repository.increaseGamesFinished();
     notifyListeners();
   }
 
