@@ -41,6 +41,8 @@ import 'package:parlera/models/category.dart';
 import 'package:parlera/repository/category.dart';
 import 'package:parlera/store/store.dart';
 
+import '../models/editable_category.dart';
+
 class CategoryModel extends StoreModel {
   CategoryRepository repository;
 
@@ -62,51 +64,58 @@ class CategoryModel extends StoreModel {
 
   CategoryModel(this.repository);
 
-  Future<void> load(String languageCode) async {
+  Future<void> load(String langCode) async {
     _isLoading = true;
     notifyListeners();
 
-    _categories = await _loadCategories(languageCode);
-    _favorites = repository.getFavorites(_categories);
+    _categories = await _loadCategories(langCode);
+    _favorites = repository.getFavoriteCategories(_categories, langCode);
     _isLoading = false;
     notifyListeners();
   }
 
-  Future<Map<String, Category>> _loadCategories(String languageCode) async =>
-      {for (var c in await repository.getAll(languageCode)) c.id: c};
+  Future<Map<String, Category>> _loadCategories(String langCode) async => {
+        for (var c in await repository.getAllCategories(langCode))
+          c.getUniqueId(): c
+      };
 
-  void setCurrent(Category? category) {
+  void setCurrent(Category category) {
     _currentCategory = category;
     notifyListeners();
   }
 
   bool isFavorite(Category category) {
-    return _favorites.contains(category.id);
+    return _favorites.contains(category.getUniqueId());
   }
 
   Future<void> toggleFavorite(Category category) async {
-    _favorites = await repository.toggleFavorite(_favorites, category);
+    _favorites = await repository.toggleFavoriteCategory(
+      _favorites,
+      category,
+    );
     notifyListeners();
   }
 
   int? getPlayedCount(Category category) {
-    if (!_playedCount.containsKey(category.id)) {
-      _playedCount[category.id] = repository.getPlayedCount(category);
+    if (!_playedCount.containsKey(category.getUniqueId())) {
+      _playedCount[category.getUniqueId()] =
+          repository.getPlayedCount(category);
     }
 
-    return _playedCount[category.id];
+    return _playedCount[category.getUniqueId()];
   }
 
   Future<void> increasePlayedCount(Category category) async {
-    _playedCount[category.id] = await repository.increasePlayedCount(category);
+    _playedCount[category.getUniqueId()] =
+        await repository.increasePlayedCount(category);
     notifyListeners();
   }
 
-  // Future<void> createCategory(Category category, String langCode) async {
-  //   await repository.createCategory(category, langCode);
-  //   _categories = await _loadCategories(langCode);
-  //   notifyListeners();
-  // }
+  Future<void> createCategory(EditableCategory ec) async {
+    await repository.createCategory(ec);
+    _categories = await _loadCategories(ec.langCode);
+    notifyListeners();
+  }
 
   static CategoryModel of(BuildContext context) =>
       ScopedModel.of<CategoryModel>(context);

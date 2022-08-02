@@ -35,64 +35,58 @@
 //   limitations under the License.
 
 import 'dart:core';
-import 'dart:convert';
 
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:parlera/helpers/db_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:parlera/models/category.dart';
 
-class CategoryRepository {
-  static const String storageCategoryPlayedCountKey = 'category_played_count';
-  static const String storageFavoriteListKey = 'category_favorite_list';
+import '../models/editable_category.dart';
 
+class CategoryRepository {
   final SharedPreferences storage;
+
+  String _getFavoritesKey(String langCode) =>
+      'category_favorite_list_$langCode';
+  String _getPlayedCountKey(Category category) =>
+      'category_played_count_${category.getUniqueId()}';
 
   CategoryRepository({required this.storage});
 
-  Future<List<Category>> getAll(String languageCode) async {
-    languageCode = languageCode.toLowerCase();
+  Future<List<Category>> getAllCategories(String langCode) async =>
+      await DBHelper.db.getAllCategories(langCode);
 
-    var categoryList = json.decode(await rootBundle
-        .loadString('assets/data/categories_$languageCode.json'));
-
-    List<Category> categories = [];
-    for (Map<String, dynamic> categoryMap in categoryList) {
-      categories.add(Category.fromJson(categoryMap));
-    }
-
-    return categories;
-  }
-
-  List<String> toggleFavorite(List<String> favorites, Category selected) {
-    if (favorites.contains(selected.id)) {
-      favorites.remove(selected.id);
-    } else {
-      favorites.add(selected.id);
-    }
-
-    storage.setStringList(storageFavoriteListKey, favorites);
-
-    return favorites;
-  }
-
-  List<String> getFavorites(Map<String, Category> categories) {
-    final favoriteIds = storage.getStringList(storageFavoriteListKey);
+  List<String> getFavoriteCategories(
+      Map<String, Category> categories, String langCode) {
+    final favoriteIds = storage.getStringList(_getFavoritesKey(langCode));
     return favoriteIds?.where((id) => categories.containsKey(id)).toList() ??
         [];
   }
 
-  String _playedCountStorageKey(Category category) {
-    return 'storageCategoryPlayedCountKey_${category.id}';
+  Future<List<String>> toggleFavoriteCategory(
+      List<String> favorites, Category selected) async {
+    if (favorites.contains(selected.getUniqueId())) {
+      favorites.remove(selected.getUniqueId());
+    } else {
+      favorites.add(selected.getUniqueId());
+    }
+
+    await storage.setStringList(_getFavoritesKey(selected.langCode), favorites);
+
+    return favorites;
   }
 
   int getPlayedCount(Category category) {
-    return storage.getInt(_playedCountStorageKey(category)) ?? 0;
+    return storage.getInt(_getPlayedCountKey(category)) ?? 0;
   }
 
-  int increasePlayedCount(Category category) {
+  Future<int> increasePlayedCount(Category category) async {
     var gamesPlayed = getPlayedCount(category) + 1;
-    storage.setInt(_playedCountStorageKey(category), gamesPlayed);
+    await storage.setInt(_getPlayedCountKey(category), gamesPlayed);
 
     return gamesPlayed;
+  }
+
+  Future<int> createCategory(EditableCategory ec) async {
+    return await DBHelper.db.addCategory(ec);
   }
 }
