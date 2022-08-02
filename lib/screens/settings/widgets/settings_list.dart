@@ -47,6 +47,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // import 'package:parlera/helpers/language.dart';
 import 'package:parlera/store/settings.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../helpers/url_launcher.dart';
 // import 'package:parlera/store/language.dart';
 
 class SettingsList extends StatelessWidget {
@@ -121,7 +123,7 @@ class SettingsList extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.volunteer_activism),
             title: Text(AppLocalizations.of(context).contribute),
-            onTap: () => _launchURL(context,
+            onTap: () => UrlLauncher.launchURL(context,
                 "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
           ),
           ListTile(
@@ -154,14 +156,5 @@ class SettingsList extends StatelessWidget {
         ),
         applicationName: packageInfo.appName,
         applicationVersion: packageInfo.version);
-  }
-
-  void _launchURL(BuildContext context, String url) async {
-    final uri = Uri.parse(url);
-    await canLaunchUrl(uri)
-        ? await launchUrl(uri)
-        : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(context).urlCantOpen),
-          ));
   }
 }
