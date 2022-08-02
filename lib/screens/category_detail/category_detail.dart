@@ -20,6 +20,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:parlera/helpers/orientation.dart';
+import 'package:parlera/models/category_type.dart';
+import 'package:parlera/screens/category_detail/widgets/empty_category.dart';
 import 'package:parlera/screens/category_detail/widgets/game_settings.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -45,6 +47,12 @@ class CategoryDetailScreen extends StatelessWidget {
     return ScopedModelDescendant<CategoryModel>(
       builder: (context, _, model) {
         final category = model.currentCategory!;
+
+        if (category.questions.isEmpty &&
+            category.type != CategoryType.random) {
+          return const EmptyCategory();
+        }
+
         final stronglyLandscape =
             OrientationHelper.isStronglyLandscape(context);
         return Scaffold(

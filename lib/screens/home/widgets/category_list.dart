@@ -35,6 +35,7 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:parlera/screens/category_creator/category_creator.dart';
 import 'package:parlera/widgets/empty_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -43,10 +44,10 @@ import 'package:parlera/store/category.dart';
 import 'category_list_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-enum CategoryType { all, favorites }
+enum CategoryFilter { all, favorites }
 
 class CategoryList extends StatelessWidget {
-  final CategoryType type;
+  final CategoryFilter type;
 
   const CategoryList({
     Key? key,
@@ -59,21 +60,22 @@ class CategoryList extends StatelessWidget {
 
     return ScopedModelDescendant<CategoryModel>(
         builder: (context, child, model) {
-      final categories =
-          (type == CategoryType.favorites) ? model.favorites : model.categories;
+      final categories = (type == CategoryFilter.favorites)
+          ? model.favorites
+          : model.categories;
       if (categories.isEmpty) {
         switch (type) {
-          case CategoryType.favorites:
+          case CategoryFilter.favorites:
             return EmptyScreen(
                 title: AppLocalizations.of(context).emptyFavorites,
                 icon: const Icon(Icons.favorite_border_rounded, size: 96));
-          case CategoryType.all:
+          case CategoryFilter.all:
             return EmptyScreen(
                 title: AppLocalizations.of(context).emptyCategories,
                 icon: const Icon(Icons.apps_rounded, size: 96));
         }
       } else {
-        final title = (type == CategoryType.favorites)
+        final title = (type == CategoryFilter.favorites)
             ? AppLocalizations.of(context).favorites
             : "Parlera";
         return SafeArea(
@@ -84,32 +86,43 @@ class CategoryList extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 12),
                 sliver: SliverAppBar(
                   title: Text(title, style: const TextStyle(fontSize: 52)),
+                  actions: [
+                    IconButton(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      //todo figure out how to not clip on tap
+                      onPressed: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const CategoryCreatorScreen()))
+                      },
+                      icon: const Icon(Icons.add),
+                      tooltip: AppLocalizations.of(context).btnCreateCategory,
+                    )
+                  ],
                 )),
             SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 sliver: SliverGrid.count(
-                  crossAxisCount: crossAxisCount,
-                  childAspectRatio:
-                      _getCardAspectRatio(context, crossAxisCount),
-                  //
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                  children: categories.map((category) {
-                    return CategoryListItem(
-                      category: category,
-                      onTap: () {
-                        model.setCurrent(category);
-                        //   'category_select',
-                        //   {'category': category.name},
-                        // );
-                        Navigator.pushNamed(
-                          context,
-                          '/category',
-                        );
-                      },
-                    );
-                  }).toList(),
-                ))
+                    crossAxisCount: crossAxisCount,
+                    childAspectRatio:
+                        _getCardAspectRatio(context, crossAxisCount),
+                    //
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                    children: List.generate(
+                        categories.length,
+                        (index) => CategoryListItem(
+                              category: categories[index],
+                              onTap: () {
+                                model.setCurrent(categories[index]);
+                                Navigator.pushNamed(
+                                  context,
+                                  '/category',
+                                );
+                              },
+                            ),
+                        growable: false)))
           ],
         ));
       }

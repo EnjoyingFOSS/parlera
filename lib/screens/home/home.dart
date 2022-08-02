@@ -58,7 +58,7 @@ class HomeScreen extends StatefulWidget {
 enum _NavItem { all, favorites, menu }
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  CategoryType _currentCategory = CategoryType.all;
+  CategoryFilter _currentCategory = CategoryFilter.all;
 
   @override
   void initState() {
@@ -79,12 +79,12 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     switch (_NavItem.values[i]) {
       case _NavItem.all:
         setState(() {
-          _currentCategory = CategoryType.all;
+          _currentCategory = CategoryFilter.all;
         });
         break;
       case _NavItem.favorites:
         setState(() {
-          _currentCategory = CategoryType.favorites;
+          _currentCategory = CategoryFilter.favorites;
         });
         break;
       case _NavItem.menu:
@@ -104,10 +104,10 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
           int currentIndex;
           switch (_currentCategory) {
-            case CategoryType.all:
+            case CategoryFilter.all:
               currentIndex = _NavItem.all.index;
               break;
-            case CategoryType.favorites:
+            case CategoryFilter.favorites:
               currentIndex = _NavItem.favorites.index;
               break;
           }
@@ -126,6 +126,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         switch (navItem) {
                           case _NavItem.all:
                             return const NavigationRailDestination(
+                                //todo use for material3 with each item: padding: EdgeInsets.symmetric(vertical: (72 - 24) / 2),
                                 icon: Icon(Icons.home_rounded),
                                 label: Text("Parlera"));
                           case _NavItem.favorites:
@@ -169,12 +170,12 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       switch (_NavItem.values[i]) {
                         case _NavItem.all:
                           setState(() {
-                            _currentCategory = CategoryType.all;
+                            _currentCategory = CategoryFilter.all;
                           });
                           break;
                         case _NavItem.favorites:
                           setState(() {
-                            _currentCategory = CategoryType.favorites;
+                            _currentCategory = CategoryFilter.favorites;
                           });
                           break;
                         case _NavItem.menu:
