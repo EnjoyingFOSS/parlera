@@ -35,68 +35,69 @@
 //   limitations under the License.
 
 import 'dart:core';
-import 'dart:convert';
+import 'dart:math';
 
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:parlera/helpers/db_helper.dart';
 
 import 'package:parlera/models/question.dart';
 
 class QuestionRepository {
-  Future<Map<String, List<Question>>> getAll(String languageCode) async {
-    languageCode = languageCode.toLowerCase();
-    List<dynamic> categoryList = json.decode(await rootBundle
-        .loadString('assets/data/categories_$languageCode.json'));
+  Future<Map<String, List<Question>>> getAllQuestions(
+          String languageCode) async =>
+      await DBHelper.db.getAllQuestions(languageCode);
 
-    Map<String, List<Question>> questions = {};
-    for (Map<String, dynamic> categoryMap in categoryList) {
-      questions[categoryMap['id']] = List.from(categoryMap['questions']
-          .map((name) => Question(name, categoryMap['name'])));
-    }
-
-    return questions;
-  }
-
-  List<Question> _getRandomQuestions(List<Question> questions, int limit,
+  List<Question> _getShuffledQuestions(List<Question> questions, int limit,
       {List<Question> excluded = const []}) {
     var allowedQuestions =
         questions.where((q) => !excluded.contains(q)).toList();
     allowedQuestions.shuffle();
-    allowedQuestions = allowedQuestions.sublist(0, limit);
+
+    if (allowedQuestions.length < limit) {
+      //include excluded recent questions if there aren't enough questions overall
+
+      final remainingLimit = limit - allowedQuestions.length;
+      final remainingQuestions =
+          questions.where((q) => excluded.contains(q)).toList();
+      remainingQuestions.shuffle();
+      if (remainingLimit < remainingQuestions.length) {
+        remainingQuestions.sublist(0, remainingLimit);
+      }
+      allowedQuestions.addAll(remainingQuestions);
+    } else {
+      allowedQuestions = allowedQuestions.sublist(0, limit);
+    }
 
     return allowedQuestions;
   }
 
-  List<Question> getRandomMixUp(
+  List<Question> getRandomSelection(
     Map<String, List<Question>> questions,
     int limit,
   ) {
-    var keys = questions.keys.where((q) => q != 'mixup').toList();
+    var keys = questions.keys.toList();
     keys.shuffle();
     keys = keys.sublist(0, 3);
 
     List<Question> result = List.from(
+      //todo THIS CAN LEAD TO FEWER QUESTIONS IF I PICK CATEGORIES WITH JUST 1 QUESTION EACH (but is that really a problem worth solving, though?)
       keys
-          .map((k) => _getRandomQuestions(questions[k]!, (limit ~/ 3) + 1))
+          .map((k) => _getShuffledQuestions(questions[k]!, (limit ~/ 3) + 1))
           .expand((i) => i),
     );
 
-    return _getRandomQuestions(result, limit);
+    return _getShuffledQuestions(result, limit);
   }
 
-  List<Question> getRandom(
+  List<Question> getSelection(
       Map<String, List<Question>> questions, String categoryId, int limit,
-      {List<Question> excluded = const []}) {
-    if (categoryId == 'mixup') {
-      return getRandomMixUp(questions, limit);
-    }
-
+      {List<Question> askedRecently = const []}) {
     final categoryQs = questions[categoryId];
 
     if (categoryQs != null) {
-      return _getRandomQuestions(
+      return _getShuffledQuestions(
         categoryQs,
         limit,
-        excluded: excluded,
+        excluded: askedRecently,
       );
     } else {
       return List.empty();

@@ -41,8 +41,11 @@ import 'package:parlera/models/question.dart';
 import 'package:parlera/repository/question.dart';
 import 'package:parlera/store/store.dart';
 
+import '../models/category.dart';
+import '../models/category_type.dart';
+
 class QuestionModel extends StoreModel {
-  static const questionsPerGame = 10;
+  static const _questionsPerGame = 10;
 
   QuestionRepository repository;
 
@@ -55,11 +58,11 @@ class QuestionModel extends StoreModel {
   List<Question> _currentQuestions = [];
   List<Question> get currentQuestions => _currentQuestions;
   List<Question> get questionsAnswered =>
-      _currentQuestions.where((q) => q.isPassed != null).toList();
+      _currentQuestions.where((q) => q.answeredCorrectly != null).toList();
   List<Question> get questionsPassed =>
-      questionsAnswered.where((q) => q.isPassed!).toList();
+      questionsAnswered.where((q) => q.answeredCorrectly!).toList();
   List<Question> get questionsFailed =>
-      questionsAnswered.where((q) => !q.isPassed!).toList();
+      questionsAnswered.where((q) => !q.answeredCorrectly!).toList();
   final List<Question> _latestQuestions = [];
   List<Question> get latestQuestions => _latestQuestions;
 
@@ -72,20 +75,25 @@ class QuestionModel extends StoreModel {
     _isLoading = true;
     notifyListeners();
 
-    _questions = await repository.getAll(languageCode);
+    _questions = await repository.getAllQuestions(languageCode);
     _isLoading = false;
     notifyListeners();
   }
 
-  void generateCurrentQuestions(String categoryId) {
-    _currentQuestions = repository.getRandom(
-      _questions,
-      categoryId,
-      questionsPerGame,
-      excluded: _latestQuestions,
-    );
+  void pickGameQuestions(Category category) {
+    if (category.type == CategoryType.random) {
+      _currentQuestions =
+          repository.getRandomSelection(questions, _questionsPerGame);
+    } else {
+      _currentQuestions = repository.getSelection(
+        _questions,
+        category.getUniqueId(),
+        _questionsPerGame,
+        excluded: _latestQuestions,
+      );
+    }
     for (var q in _currentQuestions) {
-      q.isPassed = null;
+      q.answeredCorrectly = null;
     }
     _latestQuestions.addAll(_currentQuestions);
     _currentQuestion = _currentQuestions[0];
@@ -115,7 +123,7 @@ class QuestionModel extends StoreModel {
 
   void answerQuestion(bool isValid) {
     if (_currentQuestion != null) {
-      _currentQuestion!.isPassed = isValid;
+      _currentQuestion!.answeredCorrectly = isValid;
       notifyListeners();
     }
   }
