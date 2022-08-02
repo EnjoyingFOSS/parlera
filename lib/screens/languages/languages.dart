@@ -24,6 +24,8 @@ import 'package:parlera/store/language.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../helpers/url_launcher.dart';
+
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({Key? key}) : super(key: key);
 
@@ -52,6 +54,16 @@ class LanguageScreen extends StatelessWidget {
                 }))),
                 SliverList(
                   delegate: SliverChildListDelegate.fixed([
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.of(context).btnContributeLanguage,
+                      ),
+                      leading: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 6),
+                          child: Icon(Icons.add)),
+                      onTap: () => UrlLauncher.launchURL(context,
+                          'https://hosted.weblate.org/projects/parlera/ui/'),
+                    ),
                     Container(
                       color: Theme.of(context)
                           .colorScheme
