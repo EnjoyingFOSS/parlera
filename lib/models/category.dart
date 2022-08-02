@@ -34,37 +34,60 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'package:parlera/models/question.dart';
+import 'package:parlera/models/category_type.dart';
 
 class Category {
-  final String id;
-  final String? name;
+  static const jsonImage = "image";
+  static const jsonName = "name";
+  static const jsonQs = "questions";
+  static const jsonEmoji = "emoji";
+
+  static const _randomImage = 'assets/images/categories/random.webp';
+
+  final CategoryType type;
+  final int _sembastId;
+  final String name;
   final String? image;
-  final String? description;
-  List<Question> questions;
+  final String langCode;
+  final List questions;
 
-  Category(
-    this.id,
-    this.name,
+  const Category({
+    required this.type, //type and sembast ID together are the key
+    required int sembastId,
+    required this.name,
+    required this.langCode,
     this.image,
-    this.description,
-    this.questions,
-  );
+    // this.emoji,
+    // this.bgColor,
+    required this.questions,
+  }) : _sembastId = sembastId;
 
-  Category.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'],
-        image = json['image'],
-        description = json['description'],
-        questions = List.from(
-            json['questions'].map((name) => Question(name, json['name'])));
+  Category.random(this.langCode, String translatedName)
+      : _sembastId = 0,
+        type = CategoryType.random,
+        image = _randomImage,
+        name = translatedName,
+        questions = [];
 
-  @override
-  String toString() {
-    return name!;
-  }
+  Category.fromJson(
+      this.langCode, int sembastId, this.type, Map<String, dynamic> json)
+      : _sembastId = sembastId,
+        name = json[jsonName],
+        image = json[jsonImage],
+        // emoji = json['emoji'],
+        // bgColor = json['bgColor'],
+        questions = json[
+            jsonQs]; //TODO not List.from(json['questions'].map((name) => Question(name, json['name'])))?
 
-  String getImagePath() {
-    return 'assets/images/categories/$image';
-  }
+  String getUniqueId() => getUniqueIdFromInputs(langCode, type, _sembastId);
+
+  static String getUniqueIdFromInputs(
+          String langCode, CategoryType type, int sembastId) =>
+      "${langCode}___${type.toString()}___$sembastId";
+
+  String getImagePath() => type == CategoryType.random
+      ? _randomImage
+      : (image != null
+          ? 'assets/images/categories/$image'
+          : 'assets/images/categories/missing.webp');
 }

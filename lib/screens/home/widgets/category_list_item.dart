@@ -37,7 +37,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:parlera/models/category.dart';
-import 'package:parlera/widgets/parlera_card.dart';
+
+import '../../../widgets/parlera_card.dart';
 
 class CategoryListItem extends StatelessWidget {
   final Category category;
@@ -49,6 +50,7 @@ class CategoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imagePath = category.getImagePath();
     return ParleraCard(
         onTap: onTap,
         child: (Stack(children: [
@@ -60,9 +62,10 @@ class CategoryListItem extends StatelessWidget {
               child: AspectRatio(
                   aspectRatio: 1,
                   child: Hero(
-                    tag: 'categoryImage-${category.name}',
-                    child: Image.asset(category.getImagePath(),
-                        fit: BoxFit.contain),
+                    tag: 'categoryImage-${category.getUniqueId()}',
+                    child: imagePath == null
+                        ? const SizedBox()
+                        : Image.asset(imagePath, fit: BoxFit.contain),
                   ))),
           Positioned.directional(
               start: 80,
@@ -73,7 +76,7 @@ class CategoryListItem extends StatelessWidget {
               child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
-                    category.name!,
+                    category.name,
                     style: const TextStyle(
                       fontSize: 20,
                     ),
