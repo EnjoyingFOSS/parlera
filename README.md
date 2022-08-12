@@ -17,7 +17,7 @@ You can help through:
 
 When you submit entries, make sure that they are:
 
-* Known by the most adult native speakers of a specific language (for country-specific words, use the *Region* column)
+* Known by the most adult native speakers of a specific language
 * In their most basic form — just like dictionary entries (i.e. singular, first person, infinitive, ...)
 * Family-friendly
 * Not derogatory
