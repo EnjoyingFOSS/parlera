@@ -104,40 +104,6 @@ class DBHelper {
     return join(documentsDirectory.path, _dbFile);
   }
 
-  // Future<Map<String, List<Question>>> getAllQuestions(String langCode) async { //TODO REMOVE
-  //   final database = await _instance;
-  //   final bundledStore =
-  //       intMapStoreFactory.store(_getStoreName(langCode, true));
-  //   final customStore =
-  //       intMapStoreFactory.store(_getStoreName(langCode, false));
-
-  //   final bundledCatList = await bundledStore.find(database);
-  //   final customCatList = await customStore.find(database);
-
-  //   final map = <String, List<Question>>{};
-
-  //   for (int index = 0;
-  //       index < bundledCatList.length + customCatList.length;
-  //       index++) {
-  //     final isBundled = index < bundledCatList.length;
-  //     final catMapItem = isBundled
-  //         ? bundledCatList[index]
-  //         : customCatList[index - bundledCatList.length];
-  //     final catKey = catMapItem.key;
-  //     final qs = (catMapItem[Category.jsonQs] as List<dynamic>)
-  //         .map((qString) => Question(qString
-  //             as String)) //todo odd type conversion here only because of faulty json?
-  //         .toList();
-
-  //     map.putIfAbsent(
-  //         Category.getUniqueIdFromInputs(langCode,
-  //             isBundled ? CategoryType.bundled : CategoryType.custom, catKey),
-  //         () => qs);
-  //   }
-
-  //   return map;
-  // }
-
   Future<List<Category>> getAllCategories(String langCode) async {
     final database = await _instance;
     final bundledStore =
@@ -166,11 +132,22 @@ class DBHelper {
     });
   }
 
-  Future<int> addCategory(EditableCategory ec) async {
+  Future addOrUpdateCustomCategory(EditableCategory ec) async {
     final database = await _instance;
     final customStore =
         intMapStoreFactory.store(_getQStoreName(ec.langCode, isBundled: false));
-    return await customStore.add(
-        database, {Category.jsonName: ec.name, Category.jsonQs: ec.questions});
+    final sembastPos = ec.sembastPos;
+    if (sembastPos != null) {
+      return await customStore.record(sembastPos).update(database, ec.toJson());
+    } else {
+      return await customStore.add(database, ec.toJson());
+    }
+  }
+
+  Future<int?> deleteCustomCategory(String langCode, int id) async {
+    final database = await _instance;
+    final customStore =
+        intMapStoreFactory.store(_getQStoreName(langCode, isBundled: false));
+    return await customStore.record(id).delete(database);
   }
 }
