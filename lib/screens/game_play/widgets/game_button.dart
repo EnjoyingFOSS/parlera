@@ -51,7 +51,7 @@ class GameButton extends StatefulWidget {
   final Function? onTap;
 
   @override
-  _GameButtonState createState() => _GameButtonState();
+  State<GameButton> createState() => _GameButtonState();
 }
 
 class _GameButtonState extends State<GameButton> {
@@ -62,9 +62,9 @@ class _GameButtonState extends State<GameButton> {
         onTap: widget.onTap as void Function()?,
         child: Container(
           alignment: widget.alignment,
-          child: Opacity(opacity: 0.6, child: widget.child),
           height: double.infinity,
           decoration: BoxDecoration(color: widget.color),
+          child: Opacity(opacity: 0.6, child: widget.child),
         ),
       ),
     );

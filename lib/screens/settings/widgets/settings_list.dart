@@ -46,7 +46,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // import 'package:parlera/helpers/language.dart';
 import 'package:parlera/store/settings.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../helpers/url_launcher.dart';
 // import 'package:parlera/store/language.dart';

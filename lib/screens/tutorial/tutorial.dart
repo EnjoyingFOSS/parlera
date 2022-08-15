@@ -33,7 +33,7 @@ class TutorialScreen extends StatefulWidget {
   const TutorialScreen({Key? key}) : super(key: key);
 
   @override
-  _TutorialScreenState createState() => _TutorialScreenState();
+  State<TutorialScreen> createState() => _TutorialScreenState();
 }
 
 class _KeyboardPreviousIntent extends Intent {
@@ -55,7 +55,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _pages = [
+    final pages = [
       TutorialPage(
           imagePath: 'assets/images/tutorial/1.webp',
           title: AppLocalizations.of(context).tutorialFirstSectionHeader,
@@ -106,6 +106,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
           bgColor: Theme.of(context).colorScheme.surface),
     ];
     return Scaffold(
+        //todo use CallbackShortcuts instead
         body: Shortcuts(
             shortcuts: {
           LogicalKeySet(LogicalKeyboardKey.arrowLeft):
@@ -130,7 +131,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                       });
                     },
                     controller: _controller,
-                    children: _pages,
+                    children: pages,
                   ),
                   Positioned(
                       bottom: 0,
@@ -142,7 +143,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                           TutorialModel.of(context).watch();
                           Navigator.popUntil(context, ModalRoute.withName('/'));
                         },
-                        pageCount: _pages.length,
+                        pageCount: pages.length,
                         currentPage: _currentPage,
                         onNavigateNext: _navigateNext,
                         onNavigatePrevious: _navigatePrevious,

@@ -45,9 +45,10 @@ class AnswerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final success = question.isPassed!;
+    final success = question.answeredCorrectly!;
 
     return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -72,7 +73,6 @@ class AnswerItem extends StatelessWidget {
               style: Theme.of(context).textTheme.subtitle1,
             )),
           ],
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8));
+        ));
   }
 }

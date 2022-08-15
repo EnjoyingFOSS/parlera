@@ -37,6 +37,10 @@ class ParleraCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: Theme.of(context).colorScheme.surface,
         ),
-        child: InkWell(onTap: onTap, child: child, borderRadius: BorderRadius.circular(8),));
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(8),
+          child: child,
+        ));
   }
 }
