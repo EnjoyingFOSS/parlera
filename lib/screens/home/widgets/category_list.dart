@@ -34,19 +34,28 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:parlera/helpers/language.dart';
 import 'package:parlera/screens/category_creator/category_creator.dart';
 import 'package:parlera/widgets/empty_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
 
+import '../../../helpers/import_export.dart';
+import '../../../store/language.dart';
 import 'category_list_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum CategoryFilter { all, favorites }
 
 class CategoryList extends StatelessWidget {
+  static const String _menuCreate = "create";
+  static const String _menuImport = "import";
+
   final CategoryFilter type;
 
   const CategoryList({
@@ -58,74 +67,123 @@ class CategoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     final crossAxisCount = MediaQuery.of(context).size.width ~/ 480 + 1;
 
-    return ScopedModelDescendant<CategoryModel>(
-        builder: (context, child, model) {
-      final categories = (type == CategoryFilter.favorites)
-          ? model.favorites
-          : model.categories;
-      if (categories.isEmpty) {
-        switch (type) {
-          case CategoryFilter.favorites:
-            return EmptyScreen(
-                title: AppLocalizations.of(context).emptyFavorites,
-                icon: const Icon(Icons.favorite_border_rounded, size: 96));
-          case CategoryFilter.all:
-            return EmptyScreen(
-                title: AppLocalizations.of(context).emptyCategories,
-                icon: const Icon(Icons.apps_rounded, size: 96));
-        }
-      } else {
-        final title = (type == CategoryFilter.favorites)
-            ? AppLocalizations.of(context).favorites
-            : "Parlera";
-        return SafeArea(
-            child: CustomScrollView(
-          primary: false,
-          slivers: [
-            SliverPadding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 12),
-                sliver: SliverAppBar(
-                  title: Text(title, style: const TextStyle(fontSize: 52)),
-                  actions: [
-                    IconButton(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      //todo figure out how to not clip on tap
-                      onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const CategoryCreatorScreen()))
-                      },
-                      icon: const Icon(Icons.add),
-                      tooltip: AppLocalizations.of(context).btnCreateCategory,
-                    )
-                  ],
-                )),
-            SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                sliver: SliverGrid.count(
-                    crossAxisCount: crossAxisCount,
-                    childAspectRatio:
-                        _getCardAspectRatio(context, crossAxisCount),
-                    //
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                    children: List.generate(
-                        categories.length,
-                        (index) => CategoryListItem(
-                              category: categories[index],
-                              onTap: () {
-                                model.setCurrent(categories[index]);
-                                Navigator.pushNamed(
+    return ScopedModelDescendant<LanguageModel>(
+        builder: (context, _, langModel) {
+      return ScopedModelDescendant<CategoryModel>(
+          builder: (context, child, model) {
+        final categories = (type == CategoryFilter.favorites)
+            ? model.favorites
+            : model.categories;
+        if (categories.isEmpty) {
+          switch (type) {
+            case CategoryFilter.favorites:
+              return EmptyScreen(
+                  title: AppLocalizations.of(context).emptyFavorites,
+                  icon: const Icon(Icons.favorite_border_rounded, size: 96));
+            case CategoryFilter.all:
+              return EmptyScreen(
+                  title: AppLocalizations.of(context).emptyCategories,
+                  icon: const Icon(Icons.apps_rounded, size: 96));
+          }
+        } else {
+          final title = (type == CategoryFilter.favorites)
+              ? AppLocalizations.of(context).favorites
+              : "Parlera";
+          return SafeArea(
+              child: CustomScrollView(
+            primary: false,
+            slivers: [
+              SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 12),
+                  sliver: SliverAppBar(
+                    title: Text(title, style: const TextStyle(fontSize: 52)),
+                    actions: [
+                      PopupMenuButton(
+                        icon: const Icon(Icons.add),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        tooltip: AppLocalizations.of(context).menuAddCategory,
+                        itemBuilder: (context) => [
+                          PopupMenuItem<String>(
+                              value: _menuCreate,
+                              child: Text(AppLocalizations.of(context)
+                                  .btnCreateCategory)),
+                          PopupMenuItem<String>(
+                              value: _menuImport,
+                              child: Text(AppLocalizations.of(context)
+                                  .btnImportCategory)),
+                        ],
+                        onSelected: (String value) async {
+                          switch (value) {
+                            case _menuCreate:
+                              Navigator.push(
                                   context,
-                                  '/category',
-                                );
-                              },
-                            ),
-                        growable: false)))
-          ],
-        ));
-      }
+                                  MaterialPageRoute(
+                                      builder: (_) =>
+                                          const CategoryCreatorScreen()));
+                              break;
+                            case _menuImport:
+                              final scaffoldMessengerState =
+                                  ScaffoldMessenger.of(context);
+                              final categoryImported =
+                                  AppLocalizations.of(context)
+                                      .txtCategoryImported;
+                              try {
+                                final fpr = await FilePicker.platform
+                                    .pickFiles(withData: Platform.isLinux);
+
+                                if (fpr != null) {
+                                  final inputFile = fpr.files.first;
+
+                                  await ImportExportHelper.importFile(
+                                      inputFile,
+                                      model,
+                                      langModel.language ??
+                                          LanguageHelper
+                                              .defaultLocale.languageCode);
+
+                                  scaffoldMessengerState.showSnackBar(SnackBar(
+                                      content: Text(categoryImported)));
+                                }
+                                break;
+                              } catch (_) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            AppLocalizations.of(context)
+                                                .errorCouldNotImport)));
+                                return;
+                              }
+                          }
+                        },
+                      ),
+                    ],
+                  )),
+              SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  sliver: SliverGrid.count(
+                      crossAxisCount: crossAxisCount,
+                      childAspectRatio:
+                          _getCardAspectRatio(context, crossAxisCount),
+                      //
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      children: List.generate(
+                          categories.length,
+                          (index) => CategoryListItem(
+                                category: categories[index],
+                                onTap: () {
+                                  model.setCurrent(categories[index]);
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/category',
+                                  );
+                                },
+                              ),
+                          growable: false)))
+            ],
+          ));
+        }
+      });
     });
   }
 
