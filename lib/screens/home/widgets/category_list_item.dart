@@ -35,9 +35,12 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:parlera/models/category.dart';
 
+import '../../../helpers/emoji.dart';
+import '../../../helpers/hero.dart';
 import '../../../widgets/parlera_card.dart';
 
 class CategoryListItem extends StatelessWidget {
@@ -50,7 +53,7 @@ class CategoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imagePath = category.getImagePath();
+    final imagePath = EmojiHelper.getImagePath(category.emoji);
     return ParleraCard(
         onTap: onTap,
         child: (Stack(children: [
@@ -60,13 +63,11 @@ class CategoryListItem extends StatelessWidget {
               bottom: 4,
               textDirection: Directionality.of(context),
               child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Hero(
-                    tag: 'categoryImage-${category.getUniqueId()}',
-                    child: imagePath == null
-                        ? const SizedBox()
-                        : Image.asset(imagePath, fit: BoxFit.contain),
-                  ))),
+                aspectRatio: 1,
+                child: Hero(
+                    tag: HeroHelper.categoryImage(category),
+                    child: SvgPicture.asset(imagePath)),
+              )),
           Positioned.directional(
               start: 80,
               end: 8,
