@@ -4,13 +4,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class SplashContent extends StatelessWidget {
   final bool isNextToLast;
   final Color background;
-  final Widget child;
+  final IconData iconData;
 
   const SplashContent(
       {Key? key,
       required this.background,
-      required this.child,
-      required this.isNextToLast})
+      required this.isNextToLast,
+      required this.iconData})
       : super(key: key);
 
   @override
@@ -20,7 +20,11 @@ class SplashContent extends StatelessWidget {
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Expanded(
           child: Center(
-            child: child,
+            child: Icon(
+              iconData,
+              size: 256,
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
           ),
         ),
         if (isNextToLast)

@@ -38,9 +38,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/models/question.dart';
-
 import 'game_button.dart';
-import 'result_icon.dart';
 
 class _KeyboardHandleValidIntent extends Intent {
   const _KeyboardHandleValidIntent();
@@ -51,9 +49,10 @@ class _KeyboardHandleInvalidIntent extends Intent {
 }
 
 class GameContent extends StatelessWidget {
-  final Function handleValid;
-  final Function handleInvalid;
+  final void Function() handleValid;
+  final void Function() handleInvalid;
   final Question currentQuestion;
+  final String categoryName;
   final String secondsLeft;
 
   const GameContent(
@@ -61,12 +60,14 @@ class GameContent extends StatelessWidget {
       required this.handleValid,
       required this.handleInvalid,
       required this.currentQuestion,
-      required this.secondsLeft})
+      required this.secondsLeft,
+      required this.categoryName})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Shortcuts(
+        //todo use CallbackShortcuts instead
         shortcuts: {
           LogicalKeySet(LogicalKeyboardKey.arrowUp):
               const _KeyboardHandleInvalidIntent(),
@@ -87,18 +88,16 @@ class GameContent extends StatelessWidget {
                     Row(
                       children: [
                         GameButton(
-                          child: const ResultIcon(
-                              success: true), //todo add down icon
-                          alignment: Alignment.bottomCenter,
-                          color: ThemeHelper.successColor,
-                          onTap: handleValid,
+                          color: ThemeHelper.failColorDarker,
+                          onTap: handleInvalid,
+                          emojiIcon: Icons.sentiment_dissatisfied_rounded,
+                          arrowIcon: Icons.arrow_upward,
                         ),
                         GameButton(
-                          child: const ResultIcon(
-                              success: false), //todo add up icon
-                          alignment: Alignment.bottomCenter,
-                          color: ThemeHelper.failColor,
-                          onTap: handleInvalid,
+                          color: ThemeHelper.successColorDarker,
+                          onTap: handleValid,
+                          emojiIcon: Icons.sentiment_satisfied_alt_rounded,
+                          arrowIcon: Icons.arrow_downward,
                         ),
                       ],
                     ),
@@ -107,13 +106,12 @@ class GameContent extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                            padding: const EdgeInsets.only(top: 16.0),
                             child: SafeArea(
                               child: Text(
-                                currentQuestion.categoryName,
+                                categoryName,
                                 style: const TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24.0,
                                   color: Colors.white,
                                 ),
                               ),
@@ -135,11 +133,11 @@ class GameContent extends StatelessWidget {
                             )),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 20.0),
+                            padding: const EdgeInsets.only(bottom: 12.0),
                             child: Text(
                               secondsLeft,
                               style: const TextStyle(
-                                fontSize: 18.0,
+                                fontSize: 24.0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),

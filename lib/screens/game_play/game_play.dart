@@ -50,7 +50,6 @@ import 'package:parlera/helpers/vibration.dart';
 import 'package:parlera/screens/game_play/widgets/game_content.dart';
 import 'package:parlera/screens/game_play/widgets/prep_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:parlera/store/category.dart';
 import 'package:parlera/models/category.dart';
@@ -58,8 +57,8 @@ import 'package:parlera/store/question.dart';
 import 'package:parlera/store/settings.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../models/category_type.dart';
 import 'tilt_service.dart';
-import 'widgets/result_icon.dart';
 import 'widgets/splash_content.dart';
 
 class GamePlayScreen extends StatefulWidget {
@@ -92,8 +91,15 @@ class GamePlayScreenState extends State<GamePlayScreen>
   void initState() {
     super.initState();
     _startTimer();
-    _category = CategoryModel.of(context).currentCategory!;
-    QuestionModel.of(context).generateCurrentQuestions(_category.id);
+    _category = CategoryModel.of(context)
+        .currentCategory!; //todo can I assume non-nullability?
+
+    if (_category.type == CategoryType.random) {
+      QuestionModel.of(context)
+          .pickRandomQuestions(_category, CategoryModel.of(context).categories);
+    } else {
+      QuestionModel.of(context).pickQuestionsFromCategory(_category);
+    }
 
     SettingsModel settings = SettingsModel.of(context);
     _secondsMax = settings.roundTime;
@@ -147,9 +153,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
       _rotateSubscription!.cancel();
     }
 
-    SystemChrome
-        .setPreferredOrientations(
-            [
+    SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight
@@ -193,53 +197,28 @@ class GamePlayScreenState extends State<GamePlayScreen>
   void _showScore() {
     SettingsModel.of(context).increaseGamesFinished();
     CategoryModel.of(context).increasePlayedCount(_category);
-
-    //   'valid': QuestionModel.of(context).questionsPassed.length,
-    //   'invalid': QuestionModel.of(context).questionsFailed.length,
-    // });
     Navigator.pushReplacementNamed(context, '/game-summary');
   }
 
-  Future<bool> _confirmBack() async {
-    Completer completer = Completer<bool>();
-
-    unawaited(
-      Alert(
+  void _onClose() {
+    showDialog<AlertDialog>(
         context: context,
-        // type: AlertType.warning,
-        style: AlertStyle(
-          isCloseButton: false,
-          isOverlayTapDismiss: false,
-          alertBorder:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          descStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-          buttonAreaPadding: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
-        ),
-        desc: AppLocalizations.of(context).gameCancelConfirmation,
-        buttons: [
-          DialogButton(
-            child: Text(AppLocalizations.of(context).gameCancelDeny),
-            onPressed: () {
-              Navigator.pop(context);
-              completer.complete(false);
-            },
-            color: Colors.transparent,
-          ),
-          DialogButton(
-            child: Text(AppLocalizations.of(context).gameCancelApprove,
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
-            onPressed: () {
-              Navigator.pop(context);
-              completer.complete(true);
-            },
-            color: Theme.of(context).colorScheme.primary,
-          ),
-        ],
-      ).show(),
-    );
-
-    return completer.future as FutureOr<bool>;
+        builder: (BuildContext context) => AlertDialog(
+              title: Text(AppLocalizations.of(context).gameCancelConfirmation),
+              actions: <Widget>[
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(AppLocalizations.of(context).gameCancelDeny)),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                    child: Text(AppLocalizations.of(context).gameCancelApprove))
+              ],
+            ));
   }
 
   void _gameOver() {
@@ -320,7 +299,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: WillPopScope(
         onWillPop: () async {
-          return await _confirmBack();
+          _onClose();
+          return false;
         },
         child: Stack(children: [
           // if (_isCameraEnabled && _isStarted)
@@ -336,9 +316,10 @@ class GamePlayScreenState extends State<GamePlayScreen>
                           handleValid: _handleValid,
                           handleInvalid: _handleInvalid,
                           currentQuestion: currentQuestion,
+                          categoryName: model.currentCategory?.name ?? "",
                           secondsLeft: _secondsLeft.toString());
                     } else {
-                      return Container();
+                      return const SizedBox();
                     }
                   },
                 ),
@@ -346,16 +327,16 @@ class GamePlayScreenState extends State<GamePlayScreen>
                   scale: _invalidAnimation,
                   child: SplashContent(
                     isNextToLast: QuestionModel.of(context).isPreLastQuestion(),
-                    child: const ResultIcon(success: false),
-                    background: ThemeHelper.failColor,
+                    background: ThemeHelper.failColorLighter,
+                    iconData: Icons.sentiment_dissatisfied_rounded,
                   ),
                 ),
                 ScaleTransition(
                   scale: _validAnimation,
                   child: SplashContent(
                     isNextToLast: QuestionModel.of(context).isPreLastQuestion(),
-                    child: const ResultIcon(success: true),
-                    background: ThemeHelper.successColor,
+                    background: ThemeHelper.successColorLighter,
+                    iconData: Icons.sentiment_satisfied_alt_rounded,
                   ),
                 ),
               ],

@@ -36,37 +36,48 @@
 
 import 'package:flutter/material.dart';
 
-class GameButton extends StatefulWidget {
+class GameButton extends StatelessWidget {
+  final IconData emojiIcon;
+  final IconData arrowIcon;
+  final Color color;
+  final void Function()? onTap;
+
   const GameButton({
     Key? key,
-    required this.child,
-    required this.alignment,
+    required this.emojiIcon,
+    required this.arrowIcon,
     required this.color,
     this.onTap,
   }) : super(key: key);
 
-  final Widget child;
-  final Alignment alignment;
-  final Color color;
-  final Function? onTap;
-
-  @override
-  State<GameButton> createState() => _GameButtonState();
-}
-
-class _GameButtonState extends State<GameButton> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GestureDetector(
-        onTap: widget.onTap as void Function()?,
-        child: Container(
-          alignment: widget.alignment,
-          height: double.infinity,
-          decoration: BoxDecoration(color: widget.color),
-          child: Opacity(opacity: 0.6, child: widget.child),
-        ),
-      ),
-    );
+        child: SizedBox(
+            height: double.infinity,
+            child: Material(
+                color: color,
+                child: InkWell(
+                    onTap: onTap,
+                    child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Row(mainAxisSize: MainAxisSize.min, children: [
+                            Icon(
+                              emojiIcon,
+                              size: 24,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Icon(
+                              arrowIcon,
+                              size: 24,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            )
+                          ]),
+                        ))))));
   }
 }
