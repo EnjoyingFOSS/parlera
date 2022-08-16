@@ -23,13 +23,11 @@ import 'package:flutter/material.dart';
 class ThemeHelper {
   static const _darkColors = ColorScheme(
       primary: Color(0xFFE33E46),
-      primaryVariant: Color(0xFFEB7076),
       secondary: Color(0xFFF7D0A1),
-      secondaryVariant: Color(0xFFFAE3C6),
       surface: Color(0xFF48392a),
       background: Color(0xFF33291E),
-      error: Color(0xFFB00020),
-      onPrimary: Colors.black87,
+      error: Color(0xFFE33E46),
+      onPrimary: Colors.white,
       onSecondary: Colors.black87,
       onSurface: Colors.white,
       onBackground: Colors.white,
@@ -44,30 +42,57 @@ class ThemeHelper {
 
   static ThemeData _getThemeFromScheme(ColorScheme colors) {
     return ThemeData(
+        useMaterial3: false,
         colorScheme: colors,
         visualDensity: VisualDensity.comfortable,
         backgroundColor: colors.background,
         brightness: colors.brightness,
         primaryColor: colors.primary,
-        primaryColorDark: colors.primaryVariant,
         scaffoldBackgroundColor: colors.background,
         cardColor: colors.surface,
         errorColor: colors.error,
         dialogBackgroundColor: colors.surface,
+        dialogTheme: DialogTheme(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         toggleableActiveColor: colors.primary,
         fontFamily: _fontFamily,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: InputBorder.none,
+          filled: true,
+        ),
+        navigationRailTheme: NavigationRailThemeData(
+            useIndicator: false,
+            backgroundColor: colors.secondary,
+            unselectedIconTheme: IconThemeData(
+                color: colors.onSecondary
+                    .withAlpha(90)), //todo use with material 3, opacity: 0.35),
+            selectedIconTheme: IconThemeData(color: colors.primary)),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100))),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
             unselectedItemColor: colors.onSecondary.withAlpha(90),
             backgroundColor: colors.secondary,
             selectedItemColor: colors.primary),
         bottomSheetTheme: BottomSheetThemeData(backgroundColor: colors.surface),
-        buttonTheme: const ButtonThemeData(shape: CircleBorder()),
+        snackBarTheme: SnackBarThemeData(
+          actionTextColor: colors.onSecondary,
+          backgroundColor: colors.secondary,
+        ),
+        buttonTheme: ButtonThemeData(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100),
+            ),
+            height: 48),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(20),
                 shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
-        ))),
+                  borderRadius: BorderRadius.circular(100),
+                ))),
         textTheme: TextTheme(headline4: TextStyle(color: colors.onBackground)),
+        canvasColor: colors.surface,
         appBarTheme: AppBarTheme(
             color: colors.background,
             iconTheme: IconThemeData(color: colors.onBackground),
