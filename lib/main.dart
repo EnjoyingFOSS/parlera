@@ -145,15 +145,14 @@ class ParleraApp extends StatelessWidget {
         title: 'Parlera',
         // debugShowCheckedModeBanner: false, // used for screenshots
         localeListResolutionCallback: (userLocales, supportedLocales) {
-          final languageCodes = LanguageHelper.codes;
           Locale? result;
-          if (languageCodes.contains(model.language)) {
+          if (LanguageHelper.codes.contains(model.language)) {
             // manually set language resolution
             result = Locale(model.language!, '');
           } else if (userLocales != null) {
             // system language resolution
             for (var locale in userLocales) {
-              if (languageCodes.contains(locale.languageCode)) {
+              if (LanguageHelper.codes.contains(locale.languageCode)) {
                 model.setLanguage(locale.languageCode);
                 result = locale;
                 break;
@@ -166,19 +165,20 @@ class ParleraApp extends StatelessWidget {
           }
           final langCode = result!.languageCode;
           CategoryModel.of(context).load(langCode);
-          QuestionModel.of(context).load(langCode);
           return result;
         },
         locale: model.language != null ? Locale(model.language!, '') : null,
         localizationsDelegates: const [
           AppLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
         supportedLocales: LanguageHelper.codes.map((code) => Locale(code, '')),
         theme: ThemeHelper.darkTheme,
-        home: const HomeScreen(),
+        initialRoute: '/',
         routes: {
+          '/': (context) => const HomeScreen(),
           '/category': (context) => const CategoryDetailScreen(),
           '/game-play': (context) => const GamePlayScreen(),
           '/game-summary': (context) => const GameSummaryScreen(),
