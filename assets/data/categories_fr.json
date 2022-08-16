@@ -1,8 +1,7 @@
 [
     {
-        "description": "",
-        "id": "animals",
-        "image": "animals.webp",
+        "emoji": "🐤",
+        "bgColor": 4279445039,
         "name": "Animaux",
         "questions": [
             "abeille",
@@ -146,9 +145,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "classic-characters",
-        "image": "classic-characters.webp",
+        "emoji": "🧞‍♂️",
+        "bgColor": 4279053622,
         "name": "Personnages classiques",
         "questions": [
             "Aladin",
@@ -212,9 +210,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "classic-literature",
-        "image": "classic-literature.webp",
+        "emoji": "📜",
+        "bgColor": 4283451704,
         "name": "Littérature classique",
         "questions": [
             "À la recherche du temps perdu",
@@ -292,9 +289,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "food-and-drink",
-        "image": "food-and-drink.webp",
+        "emoji": "🍉",
+        "bgColor": 4280756005,
         "name": "Nourriture et boisson",
         "questions": [
             "amande",
@@ -485,9 +481,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "abstract",
-        "image": "abstract.webp",
+        "emoji": "💘",
+        "bgColor": 4282324260,
         "name": "Abstrait",
         "questions": [
             "action",
@@ -590,9 +585,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "historical-figures",
-        "image": "historical-figures.webp",
+        "emoji": "⚜️",
+        "bgColor": 4284037175,
         "name": "Figures historiques",
         "questions": [
             "Abraham Lincoln",
@@ -687,9 +681,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "jobs",
-        "image": "jobs.webp",
+        "emoji": "💼",
+        "bgColor": 4282130207,
         "name": "Métiers",
         "questions": [
             "comptable",
@@ -795,9 +788,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "mythical-creatures",
-        "image": "mythical-creatures.webp",
+        "emoji": "🧌",
+        "bgColor": 4282533724,
         "name": "Créatures mythiques",
         "questions": [
             "abominable homme des neiges",
@@ -843,12 +835,5 @@
             "yéti",
             "zombie"
         ]
-    },
-    {
-        "description": "",
-        "id": "mixup",
-        "image": "mixup.webp",
-        "name": "Aléatoire",
-        "questions": []
     }
 ]

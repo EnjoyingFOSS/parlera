@@ -1,8 +1,7 @@
 [
     {
-        "description": "",
-        "id": "abstract",
-        "image": "abstract.webp",
+        "emoji": "💘",
+        "bgColor": 4282324260,
         "name": "Abstract",
         "questions": [
             "action",
@@ -108,9 +107,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "animals",
-        "image": "animals.webp",
+        "emoji": "🐤",
+        "bgColor": 4279445039,
         "name": "Animals",
         "questions": [
             "aardvark",
@@ -257,9 +255,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "classic-characters",
-        "image": "classic-characters.webp",
+        "emoji": "🧞‍♂️",
+        "bgColor": 4279053622,
         "name": "Classic characters",
         "questions": [
             "Aladdin",
@@ -328,9 +325,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "classic-literature",
-        "image": "classic-literature.webp",
+        "emoji": "📜",
+        "bgColor": 4283451704,
         "name": "Classic literature",
         "questions": [
             "A Christmas Carol",
@@ -412,9 +408,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "food-and-drink",
-        "image": "food-and-drink.webp",
+        "emoji": "🍉",
+        "bgColor": 4280756005,
         "name": "Food and drink",
         "questions": [
             "almond",
@@ -613,9 +608,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "historical-figures",
-        "image": "historical-figures.webp",
+        "emoji": "⚜️",
+        "bgColor": 4284037175,
         "name": "Historical figures",
         "questions": [
             "Abraham Lincoln",
@@ -712,9 +706,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "idioms",
-        "image": "idioms.webp",
+        "emoji": "💬",
+        "bgColor": 4282729797,
         "name": "Idioms",
         "questions": [
             "a bridge too far",
@@ -819,9 +812,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "jobs",
-        "image": "jobs.webp",
+        "emoji": "💼",
+        "bgColor": 4282130207,
         "name": "Jobs",
         "questions": [
             "accountant",
@@ -929,9 +921,8 @@
         ]
     },
     {
-        "description": "",
-        "id": "mythical-creatures",
-        "image": "mythical-creatures.webp",
+        "emoji": "🧌",
+        "bgColor": 4282533724,
         "name": "Mythical creatures",
         "questions": [
             "abominable snowman",
@@ -981,12 +972,5 @@
             "yeti",
             "zombie"
         ]
-    },
-    {
-        "description": "",
-        "id": "mixup",
-        "image": "mixup.webp",
-        "name": "Random",
-        "questions": []
     }
 ]
