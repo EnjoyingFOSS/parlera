@@ -66,12 +66,12 @@ class Category {
     required this.questions,
   });
 
-  Category.random(this.lang, String translatedName)
+  Category.random(this.lang)
       : sembastPos = 0,
         type = CategoryType.random,
         emoji = "🎲",
         bgColor = const Color(0xFF282828),
-        name = translatedName,
+        name = lang.randomName(),
         questions = [];
 
   Category.fromJson(

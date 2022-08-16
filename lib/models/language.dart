@@ -49,6 +49,26 @@ enum ParleraLanguage {
 
   Locale toLocale() => Locale(langCode);
 
+  String randomName() {
+    switch (this) {
+      case en:
+        return "Random";
+      case cs:
+        return "Náhodné";
+      case de:
+        return "Zufällig";
+      case fr:
+        return "Aléatoire";
+      //     case id: return "Acak";
+      // case it: return "Casuale";
+      // case nb: return "Tilfeldig";
+      // case pl: return "Losowa";
+      // case tr: return "Rastgele";
+      // case zh: return "随机";
+    }
+    throw ArgumentError();
+  }
+
   String getLanguageName(BuildContext context) {
     switch (this) {
       case en:

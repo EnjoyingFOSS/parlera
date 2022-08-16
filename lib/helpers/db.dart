@@ -40,19 +40,6 @@ class DBHelper {
   static const _customSignifier = "_custom";
   static const _questionStoreSuffix = "_qs";
 
-  static const _randomNames = {
-    ParleraLanguage.cs: "Náhodné",
-    ParleraLanguage.de: "Zufällig",
-    ParleraLanguage.en: "Random",
-    ParleraLanguage.fr: "Aléatoire",
-    // ParleraLanguage.id: "Acak",
-    // ParleraLanguage.it: "Casuale",
-    // ParleraLanguage.nb: "Tilfeldig",
-    // ParleraLanguage.pl: "Losowa",
-    // ParleraLanguage.tr: "Rastgele",
-    // ParleraLanguage.zh: "随机"
-  };
-
   DBHelper._();
   static final DBHelper db = DBHelper._();
 
@@ -116,7 +103,7 @@ class DBHelper {
     return List.generate(bundledCatList.length + customCatList.length + 1,
         (index) {
       if (index == bundledCatList.length + customCatList.length) {
-        return Category.random(lang, _randomNames[lang]!);
+        return Category.random(lang);
       }
 
       final isBundled = index < bundledCatList.length;
