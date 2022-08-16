@@ -36,8 +36,7 @@
 
 class Question {
   final String name;
-  final String categoryName;
   bool? answeredCorrectly;
 
-  Question(this.name, this.categoryName);
+  Question(this.name);
 }

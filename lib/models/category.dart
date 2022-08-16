@@ -34,60 +34,62 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
+import 'dart:ui';
+
 import 'package:parlera/models/category_type.dart';
+import 'package:parlera/models/question.dart';
 
 class Category {
-  static const jsonImage = "image";
   static const jsonName = "name";
   static const jsonQs = "questions";
   static const jsonEmoji = "emoji";
-
-  static const _randomImage = 'assets/images/categories/random.webp';
+  static const jsonBgColor = "bgColor";
+  static const jsonLangCode = "langCode";
 
   final CategoryType type;
-  final int _sembastId;
+  final int sembastPos;
   final String name;
-  final String? image;
+  final String emoji;
+  final Color bgColor;
   final String langCode;
-  final List questions;
+  final List<Question> questions;
 
   const Category({
     required this.type, //type and sembast ID together are the key
-    required int sembastId,
+    required this.sembastPos,
     required this.name,
     required this.langCode,
-    this.image,
-    // this.emoji,
-    // this.bgColor,
+    required this.emoji,
+    required this.bgColor,
     required this.questions,
-  }) : _sembastId = sembastId;
+  });
 
   Category.random(this.langCode, String translatedName)
-      : _sembastId = 0,
+      : sembastPos = 0,
         type = CategoryType.random,
-        image = _randomImage,
+        emoji = "🎲",
+        bgColor = const Color(0xFF282828),
         name = translatedName,
         questions = [];
 
   Category.fromJson(
-      this.langCode, int sembastId, this.type, Map<String, dynamic> json)
-      : _sembastId = sembastId,
-        name = json[jsonName],
-        image = json[jsonImage],
-        // emoji = json['emoji'],
-        // bgColor = json['bgColor'],
-        questions = json[
-            jsonQs]; //TODO not List.from(json['questions'].map((name) => Question(name, json['name'])))?
+      this.langCode, this.sembastPos, this.type, Map<String, dynamic> json)
+      : name = json[jsonName],
+        emoji = json[jsonEmoji] ?? "❔",
+        bgColor = Color(json[jsonBgColor] ?? 0xFFFFFFFF),
+        questions = (json[jsonQs] as List).map((q) => Question(q)).toList();
 
-  String getUniqueId() => getUniqueIdFromInputs(langCode, type, _sembastId);
+  Map<String, dynamic> toJson() => {
+        jsonName: name,
+        jsonEmoji: emoji,
+        jsonBgColor: bgColor.value,
+        jsonLangCode: langCode,
+        jsonQs: questions.map((q) => q.name).toList(),
+      };
+
+  String getUniqueId() => getUniqueIdFromInputs(langCode, type, sembastPos);
 
   static String getUniqueIdFromInputs(
-          String langCode, CategoryType type, int sembastId) =>
-      "${langCode}___${type.toString()}___$sembastId";
-
-  String getImagePath() => type == CategoryType.random
-      ? _randomImage
-      : (image != null
-          ? 'assets/images/categories/$image'
-          : 'assets/images/categories/missing.webp');
+          String langCode, CategoryType type, int sembastPos) =>
+      "${langCode}___${type.toString()}___$sembastPos";
 }
