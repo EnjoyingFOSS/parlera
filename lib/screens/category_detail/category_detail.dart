@@ -63,6 +63,7 @@ class CategoryDetailScreen extends StatelessWidget {
                     children: [
                       Expanded(
                           child: CategoryHeader(
+                        model: model,
                         category: category,
                         onFavorite: () => model.toggleFavorite(category),
                         isFavorite: model.isFavorite(category),
@@ -78,6 +79,7 @@ class CategoryDetailScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         CategoryHeader(
+                          model: model,
                           category: category,
                           onFavorite: () => model.toggleFavorite(category),
                           isFavorite: model.isFavorite(category),

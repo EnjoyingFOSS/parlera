@@ -35,12 +35,25 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:parlera/helpers/dynamic_color.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:parlera/helpers/emoji.dart';
+import 'package:parlera/helpers/hero.dart';
+import 'package:parlera/helpers/import_export.dart';
 import 'package:parlera/models/category.dart';
-import 'package:palette_generator/palette_generator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:parlera/models/category_type.dart';
+import 'package:parlera/models/editable_category.dart';
+import 'package:parlera/screens/category_creator/category_creator.dart';
+
+import '../../../store/category.dart';
 
 class CategoryHeader extends StatelessWidget {
+  static const String _menuDelete = "delete";
+  static const String _menuEdit = "edit";
+  static const String _menuDuplicate = "duplicate";
+  static const String _menuExport = "export";
+
+  final CategoryModel model;
   final Category category;
   final bool isLandscape;
   final Function() onFavorite;
@@ -48,6 +61,7 @@ class CategoryHeader extends StatelessWidget {
 
   const CategoryHeader(
       {Key? key,
+      required this.model,
       required this.category,
       required this.onFavorite,
       required this.isFavorite,
@@ -56,64 +70,113 @@ class CategoryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageProvider = AssetImage(category.getImagePath());
-    final description = category.description ?? "";
-    return FutureBuilder(
-        future: PaletteGenerator.fromImageProvider(imageProvider),
-        builder: (context, snapshot) {
-          final bgColor = (snapshot.data == null)
-              ? Theme.of(context).backgroundColor
-              : DynamicColorHelper.backgroundColorDark(
-                  snapshot.data as PaletteGenerator);
-          return Container(
-              color: bgColor,
-              padding: const EdgeInsets.only(bottom: 32),
-              width: double.infinity, //todo is this best practice?
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppBar(
-                      backgroundColor: Colors.transparent,
-                      actions: [
-                        IconButton(
-                          tooltip: AppLocalizations.of(context).btnFavorite,
-                          onPressed: onFavorite,
-                          icon: Icon(
-                            isFavorite
-                                ? Icons.favorite_rounded
-                                : Icons.favorite_border_rounded,
-                          ),
-                        )
-                      ],
-                    ),
-                    if (isLandscape) const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: SizedBox(
-                        width: 160,
-                        height: 160,
-                        child: Hero(
-                          tag: 'categoryImage-${category.name}',
-                          child: Image(image: imageProvider),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      category.name ?? "",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
-                    if (description != "")
-                      Padding(
-                        padding: const EdgeInsets.only(top: 32),
-                        child: Text(
-                          category.description!,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.subtitle1,
-                        ),
-                      ),
-                    if (isLandscape) const Spacer(),
-                  ]));
-        });
+    final imageProvider = Svg(EmojiHelper.getImagePath(category.emoji));
+    return Container(
+        color: category.bgColor,
+        padding: const EdgeInsets.only(bottom: 32),
+        width: double.infinity,
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          AppBar(
+            backgroundColor: Colors.transparent,
+            actions: [
+              IconButton(
+                tooltip: AppLocalizations.of(context).btnFavorite,
+                onPressed: onFavorite,
+                icon: Icon(
+                  isFavorite
+                      ? Icons.favorite_rounded
+                      : Icons.favorite_border_rounded,
+                ),
+              ),
+              PopupMenuButton(
+                itemBuilder: (context) {
+                  return category.type == CategoryType.custom
+                      ? [
+                          PopupMenuItem<String>(
+                              value: _menuEdit,
+                              child:
+                                  Text(AppLocalizations.of(context).btnEdit)),
+                          PopupMenuItem<String>(
+                              value: _menuDuplicate,
+                              child: Text(
+                                  AppLocalizations.of(context).btnDuplicate)),
+                          PopupMenuItem<String>(
+                              value: _menuExport,
+                              child:
+                                  Text(AppLocalizations.of(context).btnExport)),
+                          PopupMenuItem<String>(
+                              value: _menuDelete,
+                              child:
+                                  Text(AppLocalizations.of(context).btnDelete)),
+                        ]
+                      : [
+                          PopupMenuItem<String>(
+                              value: _menuDuplicate,
+                              child: Text(
+                                  AppLocalizations.of(context).btnDuplicate)),
+                          PopupMenuItem<String>(
+                              value: _menuExport,
+                              child:
+                                  Text(AppLocalizations.of(context).btnExport)),
+                        ];
+                },
+                onSelected: (String value) async {
+                  switch (value) {
+                    case _menuDelete:
+                      model.deleteCustomCategory(
+                          category.sembastPos, category.langCode);
+                      Navigator.pop(context);
+                      break;
+                    case _menuEdit:
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CategoryCreatorScreen(
+                                ec: EditableCategory.fromCategory(category),
+                              )));
+                      break;
+                    case _menuDuplicate:
+                      final ec = EditableCategory.fromCategory(category);
+                      ec.sembastPos = null;
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CategoryCreatorScreen(
+                                ec: ec,
+                              )));
+                      break;
+                    case _menuExport:
+                      try {
+                        await ImportExportHelper.exportJson(
+                            category.toJson(),
+                            "${category.name}.parlera",
+                            "[Parlera export] ${category.name}");
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(
+                              AppLocalizations.of(context).errorCouldNotExport),
+                        ));
+                      }
+                      break;
+                  }
+                },
+              )
+            ],
+          ),
+          if (isLandscape) const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Hero(
+              tag: HeroHelper.categoryImage(category),
+              child: Image(
+                image: imageProvider,
+                height: 160,
+                width: 160,
+              ),
+            ),
+          ),
+          Text(
+            category.name,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          if (isLandscape) const Spacer(),
+        ]));
   }
 }
