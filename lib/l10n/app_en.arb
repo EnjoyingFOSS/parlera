@@ -69,6 +69,7 @@
   "txtCategoryExported": "Category exported",
   "txtCategoryAdded": "Category added",
   "txtCategoryEdited": "Category edited",
+  "txtSwitchLanguageInSettings": "To use a different language, switch to it in Settings.",
   "emptyCategoryQuestions": "This category doesn't contain any words to guess :(",
   "languageSystem": "Default (requires restart)",
   "languageEnglish": "English",
