@@ -35,8 +35,7 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:palette_generator/palette_generator.dart';
-import 'package:parlera/helpers/dynamic_color.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:parlera/store/category.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -46,10 +45,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // import 'widgets/gallery_horizontal.dart';
 import 'package:parlera/store/question.dart';
 
+import '../../helpers/emoji.dart';
+import '../../helpers/hero.dart';
 import 'widgets/answer_grid.dart';
 
 class GameSummaryScreen extends StatelessWidget {
-  static const _maxAnswerWidth = 320;
+  static const _maxAnswerWidth = 400;
+  static const _standardTopAreaHeight = 60;
 
   const GameSummaryScreen({Key? key}) : super(key: key);
 
@@ -66,91 +68,79 @@ class GameSummaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final safeAreaTop = MediaQuery.of(context).padding.top;
+    final topAreaHeight =
+        MediaQuery.of(context).size.height < 400 ? 8 : _standardTopAreaHeight;
+
     return ScopedModelDescendant<CategoryModel>(
         builder: (context, _, categoryModel) {
       return ScopedModelDescendant<QuestionModel>(
         builder: (context, _, model) {
-          final imageProvider =
-              AssetImage(categoryModel.currentCategory!.getImagePath());
+          final category = categoryModel.currentCategory!;
+          final imageProvider = Svg(EmojiHelper.getImagePath(category.emoji));
           return Scaffold(
               backgroundColor: Theme.of(context).colorScheme.surface,
               body: SingleChildScrollView(
-                child: FutureBuilder(
-                    future: PaletteGenerator.fromImageProvider(imageProvider),
-                    builder: (context, snapshot) {
-                      final bgColor = (snapshot.data == null)
-                          ? Theme.of(context).backgroundColor
-                          : DynamicColorHelper.backgroundColorDark(
-                              snapshot.data as PaletteGenerator);
-                      final lightColor = (snapshot.data == null)
-                          ? Theme.of(context).colorScheme.secondary
-                          : DynamicColorHelper.backgroundColorLight(
-                              snapshot.data as PaletteGenerator);
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // ScopedModelDescendant<GalleryModel>( // TODO CAMERA: Make it work and work well
-                          //   builder: (context, child, model) {
-                          //     if (model.images.isEmpty) {
-                          //       return Container();
-                          //     }
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // ScopedModelDescendant<GalleryModel>( // TODO CAMERA: Make it work and work well
+                  //   builder: (context, child, model) {
+                  //     if (model.images.isEmpty) {
+                  //       return Container();
+                  //     }
 
-                          //     return Padding(
-                          //       padding: const EdgeInsets.only(top: 16.0),
-                          //       child: GalleryHorizontal(
-                          //         items: model.images,
-                          //         onTap: (item) {
-                          //           if (item != null) openGallery(context, item);
-                          //         },
-                          //       ),
-                          //     );
-                          //   },
-                          // ),
-                          Stack(children: [
-                            Container(
-                              height: 32 + 44 + safeAreaTop,
-                              color: bgColor,
-                            ),
-                            Positioned.directional(
-                              start: 8,
-                              top: 8 + safeAreaTop,
-                              textDirection: Directionality.of(context),
-                              child: (const BackButton()),
-                            ),
-                            Center(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: lightColor,
-                              ),
-                              margin: EdgeInsets.only(top: 32 + safeAreaTop),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 8.0,
-                                horizontal: 20.0,
-                              ),
-                              child: Text(
-                                //todo use dynamic text size here, hardcode circle size
-                                model.questionsPassed.length.toString(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline2!
-                                    .copyWith(
-                                      color: bgColor,
-                                    ),
-                              ),
-                            ))
-                          ]),
-                          AnswerGrid(
-                            questionsAnswered: model.questionsAnswered,
-                            answersPerRow:
-                                MediaQuery.of(context).size.width.toInt() ~/
-                                        _maxAnswerWidth +
-                                    1,
-                          ),
-                        ],
-                      );
-                    }),
-              ));
+                  //     return Padding(
+                  //       padding: const EdgeInsets.only(top: 16.0),
+                  //       child: GalleryHorizontal(
+                  //         items: model.images,
+                  //         onTap: (item) {
+                  //           if (item != null) openGallery(context, item);
+                  //         },
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
+                  Stack(children: [
+                    Container(
+                      height: topAreaHeight + 90 + safeAreaTop,
+                      color: category.bgColor,
+                    ),
+                    Positioned.directional(
+                      start: 8,
+                      top: 8 + safeAreaTop,
+                      textDirection: Directionality.of(context),
+                      child: (const BackButton()),
+                    ),
+                    Container(
+                        margin:
+                            EdgeInsets.only(top: topAreaHeight + safeAreaTop),
+                        alignment: Alignment.center,
+                        child: Hero(
+                            tag: HeroHelper.categoryImage(category),
+                            child: Image(
+                              image: imageProvider,
+                              width: 120,
+                              height: 120,
+                            )))
+                  ]),
+                  const SizedBox(height: 16),
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                      child: Text(
+                        AppLocalizations.of(context).txtYourScore(
+                            model.questionsPassed.length,
+                            model.currentQuestions.length),
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline4,
+                      )),
+                  AnswerGrid(
+                    questionsAnswered: model.questionsAnswered,
+                    answersPerRow: MediaQuery.of(context).size.width.toInt() ~/
+                            _maxAnswerWidth +
+                        1,
+                  ),
+                ],
+              )));
         },
       );
     });
