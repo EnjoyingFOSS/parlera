@@ -36,7 +36,7 @@
 
 import 'dart:core';
 
-import 'package:parlera/helpers/db_helper.dart';
+import 'package:parlera/helpers/db.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:parlera/models/category.dart';
 
@@ -86,7 +86,11 @@ class CategoryRepository {
     return gamesPlayed;
   }
 
-  Future<int> createCategory(EditableCategory ec) async {
-    return await DBHelper.db.addCategory(ec);
+  Future createOrUpdateCategory(EditableCategory ec) async {
+    return await DBHelper.db.addOrUpdateCustomCategory(ec);
+  }
+
+  Future<int?> deleteCustomCategory(String langCode, int id) async {
+    return await DBHelper.db.deleteCustomCategory(langCode, id);
   }
 }

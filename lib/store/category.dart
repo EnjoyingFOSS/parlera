@@ -50,7 +50,8 @@ class CategoryModel extends StoreModel {
   bool get isLoading => _isLoading;
 
   Map<String, Category> _categories = {};
-  List<Category> get categories => _categories.values.toList();
+  List<Category> get categories => _categories.values
+      .toList(); //todo just store them as a list! _categories should equal categories
 
   List<String> _favorites = [];
   List<Category> get favorites =>
@@ -111,9 +112,15 @@ class CategoryModel extends StoreModel {
     notifyListeners();
   }
 
-  Future<void> createCategory(EditableCategory ec) async {
-    await repository.createCategory(ec);
+  Future<void> createOrUpdateCustomCategory(EditableCategory ec) async {
+    await repository.createOrUpdateCategory(ec);
     _categories = await _loadCategories(ec.langCode);
+    notifyListeners();
+  }
+
+  Future<void> deleteCustomCategory(int id, String langCode) async {
+    await repository.deleteCustomCategory(langCode, id);
+    _categories = await _loadCategories(langCode);
     notifyListeners();
   }
 
