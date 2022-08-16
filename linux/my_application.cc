@@ -16,6 +16,9 @@ G_DEFINE_TYPE(MyApplication, my_application, GTK_TYPE_APPLICATION)
 
 // Implements GApplication::activate.
 static void my_application_activate(GApplication* application) {
+  g_object_set(gtk_settings_get_default(),
+    "gtk-application-prefer-dark-theme", TRUE,
+    NULL); //todo check that this works
   MyApplication* self = MY_APPLICATION(application);
   GtkWindow* window =
       GTK_WINDOW(gtk_application_window_new(GTK_APPLICATION(application)));
