@@ -19,19 +19,21 @@ dependencies:
   package_info_plus: ^1.4.0
   scoped_model: ^2.0.0-nullsafety.0
   sensors_plus: ^1.3.0
-  audioplayers: ^0.20.0
-  vibration: 1.7.4-nullsafety.0
+  audioplayers: ^0.20.1
+  vibration: ^1.7.4
   wakelock: ^0.6.1
   url_launcher: ^6.0.20
   flutter_device_type: ^0.4.0
-  rflutter_alert: ^2.0.4 #todo remove?
   path_provider: ^2.0.9
   share_plus: ^4.0.4
   animated_toggle_switch: ^0.5.2
   smooth_page_indicator: ^1.0.0
   palette_generator: ^0.3.3
-  #todo animations: ^2.0.2 use for Container transform
-  # todo sembast: ^3.2.0
+  sembast: ^3.2.0
+  emoji_picker_flutter: ^1.3.1
+  flutter_svg: ^1.1.3
+  flutter_svg_provider: ^1.0.3
+  file_picker: ^5.0.1
 
   # TODO CAMERA: Make it work and work well
   # camera: ^0.9.4
@@ -42,7 +44,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true
@@ -52,8 +54,8 @@ flutter:
     - assets/data/
     - assets/images/
     - assets/images/tutorial/
-    - assets/images/categories/
     - assets/audio/
+    - assets/emoji/
 
   fonts:
     - family: MontserratAlternates
