@@ -42,18 +42,12 @@ import 'package:parlera/repository/question.dart';
 import 'package:parlera/store/store.dart';
 
 import '../models/category.dart';
-import '../models/category_type.dart';
 
 class QuestionModel extends StoreModel {
-  static const _questionsPerGame = 10;
+  //TODO convert to static helper
+  static const _perGameQuestionLimit = 10;
 
   QuestionRepository repository;
-
-  bool _isLoading = true;
-  bool get isLoading => _isLoading;
-
-  Map<String, List<Question>> _questions = {};
-  Map<String, List<Question>> get questions => _questions;
 
   List<Question> _currentQuestions = [];
   List<Question> get currentQuestions => _currentQuestions;
@@ -66,36 +60,36 @@ class QuestionModel extends StoreModel {
   final List<Question> _latestQuestions = [];
   List<Question> get latestQuestions => _latestQuestions;
 
+  Category? _currentCategory;
+  Category? get currentCategory => _currentCategory;
   Question? _currentQuestion;
   Question? get currentQuestion => _currentQuestion;
 
   QuestionModel(this.repository);
 
-  Future<void> load(String languageCode) async {
-    _isLoading = true;
-    notifyListeners();
-
-    _questions = await repository.getAllQuestions(languageCode);
-    _isLoading = false;
-    notifyListeners();
+  void pickRandomQuestions(
+      Category randomCategory, List<Category> allCategories) {
+    _currentQuestions =
+        repository.getRandomSelection(allCategories, _perGameQuestionLimit);
+    _initQuestions(randomCategory);
   }
 
-  void pickGameQuestions(Category category) {
-    if (category.type == CategoryType.random) {
-      _currentQuestions =
-          repository.getRandomSelection(questions, _questionsPerGame);
-    } else {
-      _currentQuestions = repository.getSelection(
-        _questions,
-        category.getUniqueId(),
-        _questionsPerGame,
-        excluded: _latestQuestions,
-      );
-    }
+  void pickQuestionsFromCategory(Category category) {
+    _currentQuestions = repository.getSelection(
+      category.questions,
+      category.getUniqueId(),
+      _perGameQuestionLimit,
+      askedRecently: _latestQuestions,
+    );
+    _initQuestions(category);
+  }
+
+  void _initQuestions(Category category) {
     for (var q in _currentQuestions) {
       q.answeredCorrectly = null;
     }
     _latestQuestions.addAll(_currentQuestions);
+    _currentCategory = category;
     _currentQuestion = _currentQuestions[0];
     notifyListeners();
   }

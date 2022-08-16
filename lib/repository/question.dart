@@ -35,16 +35,12 @@
 //   limitations under the License.
 
 import 'dart:core';
-import 'dart:math';
-
-import 'package:parlera/helpers/db_helper.dart';
 
 import 'package:parlera/models/question.dart';
+import '../models/category.dart';
 
 class QuestionRepository {
-  Future<Map<String, List<Question>>> getAllQuestions(
-          String languageCode) async =>
-      await DBHelper.db.getAllQuestions(languageCode);
+  //TODO convert to static helper
 
   List<Question> _getShuffledQuestions(List<Question> questions, int limit,
       {List<Question> excluded = const []}) {
@@ -71,17 +67,16 @@ class QuestionRepository {
   }
 
   List<Question> getRandomSelection(
-    Map<String, List<Question>> questions,
+    List<Category> categories,
     int limit,
   ) {
-    var keys = questions.keys.toList();
-    keys.shuffle();
-    keys = keys.sublist(0, 3);
+    categories.shuffle();
+    categories = categories.sublist(0, 3);
 
     List<Question> result = List.from(
       //todo THIS CAN LEAD TO FEWER QUESTIONS IF I PICK CATEGORIES WITH JUST 1 QUESTION EACH (but is that really a problem worth solving, though?)
-      keys
-          .map((k) => _getShuffledQuestions(questions[k]!, (limit ~/ 3) + 1))
+      categories
+          .map((cat) => _getShuffledQuestions(cat.questions, (limit ~/ 3) + 1))
           .expand((i) => i),
     );
 
@@ -89,20 +84,13 @@ class QuestionRepository {
   }
 
   List<Question> getSelection(
-      Map<String, List<Question>> questions, String categoryId, int limit,
-      {List<Question> askedRecently = const []}) {
-    final categoryQs = questions[categoryId];
-
-    if (categoryQs != null) {
-      return _getShuffledQuestions(
+          List<Question> categoryQs, String categoryId, int limit,
+          {List<Question> askedRecently = const []}) =>
+      _getShuffledQuestions(
         categoryQs,
         limit,
         excluded: askedRecently,
       );
-    } else {
-      return List.empty();
-    }
-  }
 
   Question? getNext(List<Question> questions, Question current) {
     int nextIndex = questions.indexOf(current) + 1;
