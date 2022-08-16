@@ -165,5 +165,7 @@
   "languageRussian": "Ruština",
   "@languageRussian": {},
   "languageNorwegianBokmal": "Norština (Bokmål)",
-  "@languageNorwegianBokmal": {}
+  "@languageNorwegianBokmal": {},
+  "txtSwitchLanguageInSettings": "Pro použití jiného jazyka je nutné přepnout jazyk v Nastavení.",
+  "@txtSwitchLanguageInSettings": {}
 }
