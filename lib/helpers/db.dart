@@ -21,7 +21,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:parlera/helpers/language.dart';
 import 'package:parlera/models/category_type.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
@@ -31,6 +30,7 @@ import 'package:flutter/services.dart' show rootBundle;
 
 import '../models/category.dart';
 import '../models/editable_category.dart';
+import '../models/language.dart';
 
 class DBHelper {
   static const _dbFile = "parlera.db";
@@ -41,16 +41,16 @@ class DBHelper {
   static const _questionStoreSuffix = "_qs";
 
   static const _randomNames = {
-    "cs": "Náhodné",
-    "de": "Zufällig",
-    "en": "Random",
-    "fr": "Aléatoire",
-    "id": "Acak",
-    "it": "Casuale",
-    "nb": "Tilfeldig",
-    "pl": "Losowa",
-    "tr": "Rastgele",
-    "zh": "随机"
+    ParleraLanguage.cs: "Náhodné",
+    ParleraLanguage.de: "Zufällig",
+    ParleraLanguage.en: "Random",
+    ParleraLanguage.fr: "Aléatoire",
+    // ParleraLanguage.id: "Acak",
+    // ParleraLanguage.it: "Casuale",
+    // ParleraLanguage.nb: "Tilfeldig",
+    // ParleraLanguage.pl: "Losowa",
+    // ParleraLanguage.tr: "Rastgele",
+    // ParleraLanguage.zh: "随机"
   };
 
   DBHelper._();
@@ -72,30 +72,29 @@ class DBHelper {
       // always delete old bundled categories and add new ones
       // todo can just bundle the resulting db files, maybe — though would that depend on the platform?
 
-      for (final langCode in LanguageHelper.codes) {
+      for (final lang in ParleraLanguage.values) {
         await stringMapStoreFactory
-            .store(_getQStoreName(langCode, isBundled: true))
+            .store(_getQStoreName(lang, isBundled: true))
             .drop(database); //todo ok even if the store doesn't exist?
-        final List jsonMapList = (json.decode(
-            await rootBundle.loadString(_getBundledJsonPath(langCode))));
+        final List jsonMapList = (json
+            .decode(await rootBundle.loadString(_getBundledJsonPath(lang))));
 
-        // print(jsonMapList);
         final newMap = jsonMapList
             .map((dynamic map) => Map<String, Object?>.from(map))
             .toList();
-        //     as List<Map<String, Object?>>;
+
         final newStore =
-            intMapStoreFactory.store(_getQStoreName(langCode, isBundled: true));
+            intMapStoreFactory.store(_getQStoreName(lang, isBundled: true));
         await newStore.addAll(database, newMap);
       }
     });
   }
 
-  String _getBundledJsonPath(String langCode) =>
-      "assets/data/categories_$langCode.json";
+  String _getBundledJsonPath(ParleraLanguage lang) =>
+      "assets/data/categories_${lang.langCode}.json";
 
-  String _getQStoreName(String langCode, {required bool isBundled}) =>
-      langCode +
+  String _getQStoreName(ParleraLanguage lang, {required bool isBundled}) =>
+      lang.langCode +
       (isBundled ? _bundledSignifier : _customSignifier) +
       _questionStoreSuffix;
 
@@ -104,12 +103,12 @@ class DBHelper {
     return join(documentsDirectory.path, _dbFile);
   }
 
-  Future<List<Category>> getAllCategories(String langCode) async {
+  Future<List<Category>> getAllCategories(ParleraLanguage lang) async {
     final database = await _instance;
     final bundledStore =
-        intMapStoreFactory.store(_getQStoreName(langCode, isBundled: true));
+        intMapStoreFactory.store(_getQStoreName(lang, isBundled: true));
     final customStore =
-        intMapStoreFactory.store(_getQStoreName(langCode, isBundled: false));
+        intMapStoreFactory.store(_getQStoreName(lang, isBundled: false));
 
     final bundledCatList = await bundledStore.find(database);
     final customCatList = await customStore.find(database);
@@ -117,7 +116,7 @@ class DBHelper {
     return List.generate(bundledCatList.length + customCatList.length + 1,
         (index) {
       if (index == bundledCatList.length + customCatList.length) {
-        return Category.random(langCode, _randomNames[langCode]!);
+        return Category.random(lang, _randomNames[lang]!);
       }
 
       final isBundled = index < bundledCatList.length;
@@ -125,7 +124,7 @@ class DBHelper {
           ? bundledCatList[index]
           : customCatList[index - bundledCatList.length];
       return Category.fromJson(
-          langCode,
+          lang,
           catMapItem.key,
           isBundled ? CategoryType.bundled : CategoryType.custom,
           catMapItem.value);
@@ -135,7 +134,7 @@ class DBHelper {
   Future addOrUpdateCustomCategory(EditableCategory ec) async {
     final database = await _instance;
     final customStore =
-        intMapStoreFactory.store(_getQStoreName(ec.langCode, isBundled: false));
+        intMapStoreFactory.store(_getQStoreName(ec.lang, isBundled: false));
     final sembastPos = ec.sembastPos;
     if (sembastPos != null) {
       return await customStore.record(sembastPos).update(database, ec.toJson());
@@ -144,10 +143,10 @@ class DBHelper {
     }
   }
 
-  Future<int?> deleteCustomCategory(String langCode, int id) async {
+  Future<int?> deleteCustomCategory(ParleraLanguage lang, int id) async {
     final database = await _instance;
     final customStore =
-        intMapStoreFactory.store(_getQStoreName(langCode, isBundled: false));
+        intMapStoreFactory.store(_getQStoreName(lang, isBundled: false));
     return await customStore.record(id).delete(database);
   }
 }

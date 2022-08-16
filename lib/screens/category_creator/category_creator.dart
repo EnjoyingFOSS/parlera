@@ -67,9 +67,9 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
         MediaQuery.of(context).size.height < 400 ? 8 : _standardTopAreaHeight;
 
     return ScopedModelDescendant<LanguageModel>(builder: (context, _, model) {
-      final modelLanguage = model.language;
+      final modelLanguage = model.lang;
       final colors = Theme.of(context).colorScheme;
-      if (modelLanguage != null) _editableCategory.langCode = modelLanguage;
+      if (modelLanguage != null) _editableCategory.lang = modelLanguage;
       return WillPopScope(
           onWillPop: () async {
             _onClose();
@@ -91,7 +91,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                 }
               },
               colors: colors,
-              langCode: _editableCategory.langCode,
+              lang: _editableCategory.lang,
             ),
             body: Form(
                 key: _formKey,

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../helpers/language.dart';
+import '../../../models/language.dart';
 
 class CreatorBottomBar extends StatelessWidget {
   final void Function() onDone;
   final ColorScheme colors;
-  final String langCode;
+  final ParleraLanguage lang;
 
   const CreatorBottomBar(
       {Key? key,
       required this.onDone,
       required this.colors,
-      required this.langCode})
+      required this.lang})
       : super(key: key);
 
   @override
@@ -42,7 +42,7 @@ class CreatorBottomBar extends StatelessWidget {
                           width: 4,
                         ),
                         Text(
-                          LanguageHelper.getLanguageName(context, langCode),
+                          lang.getLanguageName(context),
                           style: TextStyle(
                             color: colors.onSecondary,
                           ),

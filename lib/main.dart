@@ -53,7 +53,7 @@ import 'package:wakelock/wakelock.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'helpers/theme.dart';
-import 'helpers/language.dart';
+import 'models/language.dart';
 import 'repository/category.dart';
 import 'repository/question.dart';
 import 'repository/language.dart';
@@ -145,36 +145,33 @@ class ParleraApp extends StatelessWidget {
         title: 'Parlera',
         // debugShowCheckedModeBanner: false, // used for screenshots
         localeListResolutionCallback: (userLocales, supportedLocales) {
-          Locale? result;
-          if (LanguageHelper.codes.contains(model.language)) {
-            // manually set language resolution
-            result = Locale(model.language!, '');
-          } else if (userLocales != null) {
+          ParleraLanguage? resLang = model.lang;
+          if (resLang == null) {
             // system language resolution
-            for (var locale in userLocales) {
-              if (LanguageHelper.codes.contains(locale.languageCode)) {
-                model.setLanguage(locale.languageCode);
-                result = locale;
+            for (var locale in userLocales ?? const []) {
+              try {
+                final lang = ParleraLanguage.getLang(locale.languageCode);
+                model.setLanguage(lang);
+                resLang = lang;
                 break;
-              }
+              } catch (_) {}
             }
-            if (result == null) {
-              model.setLanguage(LanguageHelper.defaultLocale.languageCode);
-              result = LanguageHelper.defaultLocale;
+            if (resLang == null) {
+              model.setLanguage(ParleraLanguage.defaultLang);
+              resLang = ParleraLanguage.defaultLang;
             }
           }
-          final langCode = result!.languageCode;
-          CategoryModel.of(context).load(langCode);
-          return result;
+          CategoryModel.of(context).load(resLang);
+          return resLang.toLocale();
         },
-        locale: model.language != null ? Locale(model.language!, '') : null,
+        locale: model.lang?.toLocale(),
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        supportedLocales: LanguageHelper.codes.map((code) => Locale(code, '')),
+        supportedLocales: ParleraLanguage.values.map((lang) => lang.toLocale()),
         theme: ThemeHelper.darkTheme,
         initialRoute: '/',
         routes: {

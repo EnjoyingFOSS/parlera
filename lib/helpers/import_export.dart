@@ -27,6 +27,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:file_picker/file_picker.dart';
 
 import '../models/editable_category.dart';
+import '../models/language.dart';
 import '../store/category.dart';
 
 class ImportExportHelper {
@@ -60,7 +61,7 @@ class ImportExportHelper {
       //TODO test on linux
       PlatformFile inputFile,
       CategoryModel model,
-      String langCode) async {
+      ParleraLanguage lang) async {
     late final String inputPath;
 
     if (Platform.isLinux) {
@@ -82,7 +83,7 @@ class ImportExportHelper {
     }
 
     final ec = EditableCategory.fromJson(
-        jsonDecode(await File(inputPath).readAsString()), langCode);
+        jsonDecode(await File(inputPath).readAsString()), lang);
     model.createOrUpdateCustomCategory(ec);
   }
 }

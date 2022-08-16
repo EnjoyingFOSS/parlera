@@ -39,6 +39,8 @@ import 'dart:ui';
 import 'package:parlera/models/category_type.dart';
 import 'package:parlera/models/question.dart';
 
+import 'language.dart';
+
 class Category {
   static const jsonName = "name";
   static const jsonQs = "questions";
@@ -51,20 +53,20 @@ class Category {
   final String name;
   final String emoji;
   final Color bgColor;
-  final String langCode;
+  final ParleraLanguage lang;
   final List<Question> questions;
 
   const Category({
     required this.type, //type and sembast ID together are the key
     required this.sembastPos,
     required this.name,
-    required this.langCode,
+    required this.lang,
     required this.emoji,
     required this.bgColor,
     required this.questions,
   });
 
-  Category.random(this.langCode, String translatedName)
+  Category.random(this.lang, String translatedName)
       : sembastPos = 0,
         type = CategoryType.random,
         emoji = "🎲",
@@ -73,7 +75,7 @@ class Category {
         questions = [];
 
   Category.fromJson(
-      this.langCode, this.sembastPos, this.type, Map<String, dynamic> json)
+      this.lang, this.sembastPos, this.type, Map<String, dynamic> json)
       : name = json[jsonName],
         emoji = json[jsonEmoji] ?? "❔",
         bgColor = Color(json[jsonBgColor] ?? 0xFFFFFFFF),
@@ -83,13 +85,13 @@ class Category {
         jsonName: name,
         jsonEmoji: emoji,
         jsonBgColor: bgColor.value,
-        jsonLangCode: langCode,
+        jsonLangCode: lang,
         jsonQs: questions.map((q) => q.name).toList(),
       };
 
-  String getUniqueId() => getUniqueIdFromInputs(langCode, type, sembastPos);
+  String getUniqueId() => getUniqueIdFromInputs(lang, type, sembastPos);
 
   static String getUniqueIdFromInputs(
-          String langCode, CategoryType type, int sembastPos) =>
-      "${langCode}___${type.toString()}___$sembastPos";
+          ParleraLanguage lang, CategoryType type, int sembastPos) =>
+      "${lang.langCode}___${type.toString()}___$sembastPos";
 }

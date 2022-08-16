@@ -39,35 +39,37 @@ import 'package:flutter/widgets.dart';
 import 'package:parlera/repository/language.dart';
 import 'package:parlera/store/store.dart';
 
+import '../models/language.dart';
+
 class LanguageModel extends StoreModel {
   LanguageRepository repository;
 
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
-  late String? _language;
-  String? get language => _language;
+  late ParleraLanguage? _lang;
+  ParleraLanguage? get lang => _lang;
 
-  String? get savedLanguage => repository.getLanguage();
+  ParleraLanguage? get savedLang => repository.getLang();
 
   LanguageModel(this.repository);
 
   @override
   Future<void> initialize() async {
-    _language = repository.getLanguage();
+    _lang = repository.getLang();
     _isLoading = false;
     notifyListeners();
   }
 
   /// Saves the language to local settings and sets it as the UI language
-  Future<void> saveLanguage(String? language) async {
-    _language = await repository.setLanguage(language);
+  Future<void> saveLang(ParleraLanguage? lang) async {
+    _lang = await repository.setLang(lang);
     notifyListeners();
   }
 
   /// Sets the UI language, but doesn't save it as a setting. Appropriate for resolving a null language setting.
-  void setLanguage(String language) {
-    _language = language;
+  void setLanguage(ParleraLanguage lang) {
+    _lang = lang;
     notifyListeners();
   }
 

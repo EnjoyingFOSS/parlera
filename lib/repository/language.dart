@@ -38,6 +38,8 @@ import 'dart:core';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/language.dart';
+
 class LanguageRepository {
   static const String storageLanguageKey = 'language';
 
@@ -45,17 +47,18 @@ class LanguageRepository {
 
   LanguageRepository({required this.storage});
 
-  String? getLanguage() {
-    return storage.getString(storageLanguageKey);
+  ParleraLanguage? getLang() {
+    final langCode = storage.getString(storageLanguageKey);
+    return langCode == null ? null : ParleraLanguage.getLang(langCode);
   }
 
-  Future<String?> setLanguage(String? language) async {
-    if (language == null) {
+  Future<ParleraLanguage?> setLang(ParleraLanguage? lang) async {
+    if (lang == null) {
       await storage.remove(storageLanguageKey);
     } else {
-      await storage.setString(storageLanguageKey, language);
+      await storage.setString(storageLanguageKey, lang.langCode);
     }
 
-    return language;
+    return lang;
   }
 }

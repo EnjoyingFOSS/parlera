@@ -19,7 +19,7 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:parlera/helpers/language.dart';
+import 'package:parlera/models/language.dart';
 import 'package:parlera/store/language.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,7 +31,7 @@ class LanguageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final languages = LanguageHelper.codes.toList();
+    const languages = ParleraLanguage.values;
     final infoColor = Theme.of(context).colorScheme.onBackground.withAlpha(162);
     return Scaffold(
       appBar: AppBar(
@@ -42,14 +42,16 @@ class LanguageScreen extends StatelessWidget {
                 SliverList(
                     delegate: SliverChildListDelegate.fixed(
                         List.generate(languages.length + 1, (i) {
-                  final value = i == 0 ? null : languages[i - 1];
+                  final lang = i == 0 ? null : languages[i - 1];
                   return RadioListTile<String?>(
-                      title:
-                          Text(LanguageHelper.getLanguageName(context, value)),
-                      value: value,
-                      groupValue: model.savedLanguage,
-                      onChanged: (String? newLanguage) {
-                        model.saveLanguage(newLanguage);
+                      title: Text(lang?.getLanguageName(context) ??
+                          AppLocalizations.of(context).languageSystem),
+                      value: lang?.langCode,
+                      groupValue: model.savedLang?.langCode,
+                      onChanged: (String? newLangCode) {
+                        model.saveLang(newLangCode == null
+                            ? null
+                            : ParleraLanguage.getLang(newLangCode));
                       });
                 }))),
                 SliverList(

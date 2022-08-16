@@ -124,7 +124,7 @@ class CategoryHeader extends StatelessWidget {
                   switch (value) {
                     case _menuDelete:
                       model.deleteCustomCategory(
-                          category.sembastPos, category.langCode);
+                          category.sembastPos, category.lang);
                       Navigator.pop(context);
                       break;
                     case _menuEdit:

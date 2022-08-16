@@ -20,9 +20,8 @@
 
 import 'dart:ui';
 
-import 'package:parlera/helpers/language.dart';
-
 import 'category.dart';
+import 'language.dart';
 
 class EditableCategory {
   static const _defaultEmoji = "❔";
@@ -33,18 +32,18 @@ class EditableCategory {
   List<String>? questions;
   Color bgColor;
   String emoji;
-  late String langCode;
+  late ParleraLanguage lang;
 
   EditableCategory(
       {this.name,
       this.emoji = _defaultEmoji,
       this.bgColor = _defaultBgColor,
       this.questions,
-      langCode,
+      ParleraLanguage? lang,
       this.sembastPos}) {
-    this.langCode = langCode ??
-        LanguageHelper.defaultLocale
-            .languageCode; //this is meant as just temporary, the langCode should be updated after
+    this.lang = lang ??
+        ParleraLanguage
+            .defaultLang; //this is meant as just temporary, the langCode should be updated after
   }
 
   EditableCategory.fromCategory(Category category)
@@ -52,10 +51,10 @@ class EditableCategory {
         name = category.name,
         questions = category.questions.map((q) => q.name).toList(),
         bgColor = category.bgColor,
-        langCode = category.langCode,
+        lang = category.lang,
         emoji = category.emoji;
 
-  EditableCategory.fromJson(Map<String, dynamic> json, this.langCode)
+  EditableCategory.fromJson(Map<String, dynamic> json, this.lang)
       : name = json[Category.jsonName],
         questions = (json[Category.jsonQs] as List<dynamic>)
             .map((e) => e.toString())

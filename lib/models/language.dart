@@ -17,49 +17,49 @@
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
-//
-// This file is derived from work covered by the following license notice:
-//
-//   Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and Ewa Osiecka
-//
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
-//   You may obtain a copy of the License at
-//
-//       http://www.apache.org/licenses/LICENSE-2.0
-//
-//   Unless required by applicable law or agreed to in writing, software
-//   distributed under the License is distributed on an "AS IS" BASIS,
-//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//   See the License for the specific language governing permissions and
-//   limitations under the License.
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class LanguageHelper {
-  static const _en = "en";
-  static const _cs = "cs";
-  static const _de = "de";
-  static const _fr = "fr";
+enum ParleraLanguage {
+  en("en"),
+  cs("cs"),
+  de("de"),
+  fr("fr");
 
-  static const defaultLocale = Locale(_en);
+  static const defaultLang = en;
+  final String langCode;
 
-  static const codes = {_en, _cs, _de, _fr};
+  const ParleraLanguage(this.langCode);
 
-  static String getLanguageName(BuildContext context, String? code) {
-    switch (code) {
-      case null:
-        return AppLocalizations.of(context).languageSystem;
-      case _en:
+  static ParleraLanguage getLang(String langCode) {
+    switch (langCode) {
+      case "en":
+        return en;
+      case "cs":
+        return cs;
+      case "de":
+        return de;
+      case "fr":
+        return fr;
+      default:
+        throw ArgumentError();
+    }
+  }
+
+  Locale toLocale() => Locale(langCode);
+
+  String getLanguageName(BuildContext context) {
+    switch (this) {
+      case en:
         return AppLocalizations.of(context).languageEnglish;
-      case _cs:
+      case cs:
         return AppLocalizations.of(context).languageCzech;
-      case _de:
+      case de:
         return AppLocalizations.of(context).languageGerman;
-      case _fr:
+      case fr:
         return AppLocalizations.of(context).languageFrench;
     }
-    throw Exception("Unsupported language code");
+    throw ArgumentError();
   }
 }

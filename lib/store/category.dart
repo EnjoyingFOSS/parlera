@@ -42,6 +42,7 @@ import 'package:parlera/repository/category.dart';
 import 'package:parlera/store/store.dart';
 
 import '../models/editable_category.dart';
+import '../models/language.dart';
 
 class CategoryModel extends StoreModel {
   CategoryRepository repository;
@@ -65,18 +66,18 @@ class CategoryModel extends StoreModel {
 
   CategoryModel(this.repository);
 
-  Future<void> load(String langCode) async {
+  Future<void> load(ParleraLanguage lang) async {
     _isLoading = true;
     notifyListeners();
 
-    _categories = await _loadCategories(langCode);
-    _favorites = repository.getFavoriteCategories(_categories, langCode);
+    _categories = await _loadCategories(lang);
+    _favorites = repository.getFavoriteCategories(_categories, lang);
     _isLoading = false;
     notifyListeners();
   }
 
-  Future<Map<String, Category>> _loadCategories(String langCode) async => {
-        for (var c in await repository.getAllCategories(langCode))
+  Future<Map<String, Category>> _loadCategories(ParleraLanguage lang) async => {
+        for (final c in await repository.getAllCategories(lang))
           c.getUniqueId(): c
       };
 
@@ -114,13 +115,13 @@ class CategoryModel extends StoreModel {
 
   Future<void> createOrUpdateCustomCategory(EditableCategory ec) async {
     await repository.createOrUpdateCategory(ec);
-    _categories = await _loadCategories(ec.langCode);
+    _categories = await _loadCategories(ec.lang);
     notifyListeners();
   }
 
-  Future<void> deleteCustomCategory(int id, String langCode) async {
-    await repository.deleteCustomCategory(langCode, id);
-    _categories = await _loadCategories(langCode);
+  Future<void> deleteCustomCategory(int id, ParleraLanguage lang) async {
+    await repository.deleteCustomCategory(lang, id);
+    _categories = await _loadCategories(lang);
     notifyListeners();
   }
 

@@ -41,23 +41,24 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:parlera/models/category.dart';
 
 import '../models/editable_category.dart';
+import '../models/language.dart';
 
 class CategoryRepository {
   final SharedPreferences storage;
 
-  String _getFavoritesKey(String langCode) =>
-      'category_favorite_list_$langCode';
+  String _getFavoritesKey(ParleraLanguage lang) =>
+      'category_favorite_list_${lang.langCode}';
   String _getPlayedCountKey(Category category) =>
       'category_played_count_${category.getUniqueId()}';
 
   CategoryRepository({required this.storage});
 
-  Future<List<Category>> getAllCategories(String langCode) async =>
-      await DBHelper.db.getAllCategories(langCode);
+  Future<List<Category>> getAllCategories(ParleraLanguage lang) async =>
+      await DBHelper.db.getAllCategories(lang);
 
   List<String> getFavoriteCategories(
-      Map<String, Category> categories, String langCode) {
-    final favoriteIds = storage.getStringList(_getFavoritesKey(langCode));
+      Map<String, Category> categories, ParleraLanguage lang) {
+    final favoriteIds = storage.getStringList(_getFavoritesKey(lang));
     return favoriteIds?.where((id) => categories.containsKey(id)).toList() ??
         [];
   }
@@ -70,7 +71,7 @@ class CategoryRepository {
       favorites.add(selected.getUniqueId());
     }
 
-    await storage.setStringList(_getFavoritesKey(selected.langCode), favorites);
+    await storage.setStringList(_getFavoritesKey(selected.lang), favorites);
 
     return favorites;
   }
@@ -90,7 +91,7 @@ class CategoryRepository {
     return await DBHelper.db.addOrUpdateCustomCategory(ec);
   }
 
-  Future<int?> deleteCustomCategory(String langCode, int id) async {
-    return await DBHelper.db.deleteCustomCategory(langCode, id);
+  Future<int?> deleteCustomCategory(ParleraLanguage lang, int id) async {
+    return await DBHelper.db.deleteCustomCategory(lang, id);
   }
 }

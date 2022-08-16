@@ -38,7 +38,6 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:parlera/helpers/language.dart';
 import 'package:parlera/screens/category_creator/category_creator.dart';
 import 'package:parlera/widgets/empty_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -46,6 +45,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:parlera/store/category.dart';
 
 import '../../../helpers/import_export.dart';
+import '../../../models/language.dart';
 import '../../../store/language.dart';
 import 'category_list_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -137,9 +137,8 @@ class CategoryList extends StatelessWidget {
                                   await ImportExportHelper.importFile(
                                       inputFile,
                                       model,
-                                      langModel.language ??
-                                          LanguageHelper
-                                              .defaultLocale.languageCode);
+                                      langModel.lang ??
+                                          ParleraLanguage.defaultLang);
 
                                   scaffoldMessengerState.showSnackBar(SnackBar(
                                       content: Text(categoryImported)));
