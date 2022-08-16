@@ -57,8 +57,8 @@ class AnswerItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(80),
                     color: success
-                        ? ThemeHelper.successColor
-                        : ThemeHelper.failColor),
+                        ? ThemeHelper.successColorLighter
+                        : ThemeHelper.failColorLighter),
                 child: Icon(
                   success ? Icons.check_rounded : Icons.close_rounded,
                   size: 24.0,

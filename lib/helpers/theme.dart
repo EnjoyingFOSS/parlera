@@ -35,8 +35,10 @@ class ThemeHelper {
       brightness: Brightness.dark);
   static const _fontFamily = 'MontserratAlternates';
 
-  static const successColor = Color(0xFF417B5A); //91c9bb 6b8f71
-  static const failColor = Color(0xFFE33E46);
+  static const successColorLighter = Color(0xFF6b8f71); //417B5A 91c9bb 6b8f71
+  static const failColorLighter = Color(0xFFE33E46);
+  static const successColorDarker = Color(0xFF607B60);
+  static const failColorDarker = Color(0xFFC0393E);
 
   static final ThemeData darkTheme = _getThemeFromScheme(_darkColors);
 
