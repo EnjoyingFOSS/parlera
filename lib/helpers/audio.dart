@@ -39,20 +39,27 @@ import 'package:flutter/widgets.dart';
 import 'package:parlera/store/settings.dart';
 
 class AudioHelper {
-  static AudioCache audioCache = AudioCache(prefix: 'assets/audio/');
+  //todo test on Linux
+  static final AudioPlayer _player = AudioPlayer();
+
+  // static AudioCache audioCache = AudioCache(prefix: 'assets/audio/');
 
   static bool _audioEnabled(BuildContext context) =>
       SettingsModel.of(context).isAudioEnabled;
 
   static void playInvalid(context) {
     if (_audioEnabled(context)) {
-      audioCache.play('choice_incorrect.wav');
+      _player.play(AssetSource('audio/choice_incorrect.wav'));
+      _player
+          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
   static void playValid(context) {
     if (_audioEnabled(context)) {
-      audioCache.play('choice_correct.wav');
+      _player.play(AssetSource('audio/choice_correct.wav'));
+      _player
+          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 }

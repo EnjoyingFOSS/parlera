@@ -98,16 +98,14 @@ class SettingsList extends StatelessWidget {
               },
               secondary: const Icon(Icons.screen_rotation_rounded),
             ),
-          if (flutter_foundation.kIsWeb ||
-              (!flutter_foundation.kIsWeb && !Platform.isLinux))
-            SwitchListTile(
-              title: Text(AppLocalizations.of(context).settingsAudio),
-              value: model.isAudioEnabled,
-              onChanged: (bool value) {
-                model.toggleAudio();
-              },
-              secondary: const Icon(Icons.music_note_rounded),
-            ),
+          SwitchListTile(
+            title: Text(AppLocalizations.of(context).settingsAudio),
+            value: model.isAudioEnabled,
+            onChanged: (bool value) {
+              model.toggleAudio();
+            },
+            secondary: const Icon(Icons.music_note_rounded),
+          ),
           ListTile(
             title: Text(AppLocalizations.of(context).settingsLanguage),
             leading: const Icon(Icons.language_rounded),

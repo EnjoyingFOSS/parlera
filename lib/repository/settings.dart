@@ -57,10 +57,7 @@ class SettingsRepository {
   SettingsRepository({required this.storage});
 
   bool isAudioEnabled() {
-    return storage.getBool(_storageAudioEnabledKey) ??
-        ((!kIsWeb && Platform.isLinux)
-            ? false
-            : true); //todo use for Linux when audio is ported over
+    return storage.getBool(_storageAudioEnabledKey) ?? true;
   }
 
   Future<bool> toggleAudio() async {
