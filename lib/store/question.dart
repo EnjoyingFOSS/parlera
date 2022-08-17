@@ -85,7 +85,7 @@ class QuestionModel extends StoreModel {
   }
 
   void _initQuestions(Category category) {
-    for (var q in _currentQuestions) {
+    for (final q in _currentQuestions) {
       q.answeredCorrectly = null;
     }
     _latestQuestions.addAll(_currentQuestions);
@@ -99,7 +99,8 @@ class QuestionModel extends StoreModel {
       return false;
     }
 
-    var nextQuestion = repository.getNext(_currentQuestions, _currentQuestion!);
+    final nextQuestion =
+        repository.getNext(_currentQuestions, _currentQuestion!);
     if (nextQuestion == null) {
       return false;
     }

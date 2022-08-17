@@ -76,7 +76,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   int _secondsMax = -1;
   late int _secondsLeft;
   bool _isStarted = false;
-  bool _isPaused = false;
+  bool _isPausedForShowingResult = false;
   // bool _isCameraEnabled = false; // TODO CAMERA: Make it work and work well
   StreamSubscription<dynamic>? _rotateSubscription;
   late final Category _category;
@@ -108,7 +108,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
       _tiltService = TiltService(
           handleInvalid: _handleInvalid,
           handleValid: _handleValid,
-          isPlaying: () => !_isStarted || _isPaused);
+          isPlaying: () => !_isStarted || _isPausedForShowingResult);
       _secondsLeft = _secondsPrep;
     } else {
       _tiltService = null;
@@ -124,7 +124,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   AnimationController _createAnswerAnimationController() {
     const duration = Duration(milliseconds: 1500);
-    var controller = AnimationController(vsync: this, duration: duration);
+    final controller = AnimationController(vsync: this, duration: duration);
     controller.addStatusListener((listener) {
       if (listener == AnimationStatus.completed) {
         controller.reset();
@@ -176,16 +176,17 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   void _gameLoop(Timer timer) {
-    if (_isPaused) {
+    if (_isPausedForShowingResult) {
       return;
     }
 
-    if (_secondsLeft <= 0 && !_isPaused) {
-      return _handleTimeout();
+    if (_secondsLeft <= 0) {
+      _handleTimeout();
+      return;
     }
 
     setState(() {
-      _secondsLeft -= 1;
+      _secondsLeft--;
     });
   }
 
@@ -240,7 +241,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
 
     setState(() {
-      _isPaused = false;
+      _isPausedForShowingResult = false;
     });
 
     _startTimer();
@@ -253,7 +254,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     QuestionModel.of(context).answerQuestion(isValid);
 
     setState(() {
-      _isPaused = true;
+      _isPausedForShowingResult = true;
     });
 
     //   'valid': isValid,
@@ -263,7 +264,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   void _handleValid() {
-    if (_isPaused) {
+    if (_isPausedForShowingResult) {
       return;
     }
 
@@ -273,7 +274,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   void _handleInvalid() {
-    if (_isPaused) {
+    if (_isPausedForShowingResult) {
       return;
     }
 
@@ -305,7 +306,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
         child: Stack(children: [
           // if (_isCameraEnabled && _isStarted)
           //   const CameraPreviewScreen(), //TODO CAMERA: Make it work and work well; this is now hidden behind opaque answers — fix
-          if (_isPaused || _isStarted)
+          if (_isPausedForShowingResult || _isStarted)
             Stack(
               children: [
                 ScopedModelDescendant<QuestionModel>(

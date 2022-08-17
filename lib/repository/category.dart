@@ -81,7 +81,7 @@ class CategoryRepository {
   }
 
   Future<int> increasePlayedCount(Category category) async {
-    var gamesPlayed = getPlayedCount(category) + 1;
+    final gamesPlayed = getPlayedCount(category) + 1;
     await storage.setInt(_getPlayedCountKey(category), gamesPlayed);
 
     return gamesPlayed;

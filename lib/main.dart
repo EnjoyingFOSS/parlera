@@ -106,7 +106,7 @@ class Parlera extends StatelessWidget {
             LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
             // GalleryModel: GalleryModel(),
           });
-          for (var store in stores.values) {
+          for (final store in stores.values) {
             store.initialize();
           }
         }
@@ -148,7 +148,7 @@ class ParleraApp extends StatelessWidget {
           ParleraLanguage? resLang = model.lang;
           if (resLang == null) {
             // system language resolution
-            for (var locale in userLocales ?? const []) {
+            for (final locale in userLocales ?? const []) {
               try {
                 final lang = ParleraLanguage.getLang(locale.languageCode);
                 model.setLanguage(lang);
