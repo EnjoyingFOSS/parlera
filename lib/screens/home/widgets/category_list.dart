@@ -45,6 +45,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:parlera/store/category.dart';
 
 import '../../../helpers/import_export.dart';
+import '../../../helpers/url_launcher.dart';
 import '../../../models/language.dart';
 import '../../../store/language.dart';
 import 'category_list_item.dart';
@@ -55,6 +56,7 @@ enum CategoryFilter { all, favorites }
 class CategoryList extends StatelessWidget {
   static const String _menuCreate = "create";
   static const String _menuImport = "import";
+  static const String _menuGetOnline = "getOnline";
 
   final CategoryFilter type;
 
@@ -111,6 +113,10 @@ class CategoryList extends StatelessWidget {
                               value: _menuImport,
                               child: Text(AppLocalizations.of(context)
                                   .btnImportCategory)),
+                          PopupMenuItem<String>(
+                              value: _menuGetOnline,
+                              child: Text(AppLocalizations.of(context)
+                                  .btnGetCategoriesOnline))
                         ],
                         onSelected: (String value) async {
                           switch (value) {
@@ -120,6 +126,10 @@ class CategoryList extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (_) =>
                                           const CategoryCreatorScreen()));
+                              break;
+                            case _menuGetOnline:
+                              UrlLauncher.launchURL(context,
+                                  'https://gitlab.com/enjoyingfoss/parlera-categories');
                               break;
                             case _menuImport:
                               final scaffoldMessengerState =
