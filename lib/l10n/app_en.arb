@@ -35,6 +35,7 @@
   "btnDone": "Done", 
   "btnCreateCategory": "Create category",
   "btnImportCategory": "Import category",
+  "btnGetCategoriesOnline": "Get categories online...",
   "btnContributeLanguage": "Contribute your language",
   "preparationPlay": "Play",
   "gameTime": "Duration",

@@ -85,7 +85,7 @@ class Category {
         jsonName: name,
         jsonEmoji: emoji,
         jsonBgColor: bgColor.value,
-        jsonLangCode: lang,
+        jsonLangCode: lang.langCode,
         jsonQs: questions.map((q) => q.name).toList(),
       };
 
