@@ -165,5 +165,7 @@
   "txtCategoryAdded": "Categoria aggiunta",
   "@txtCategoryAdded": {},
   "txtCategoryEdited": "Categoria modificata",
-  "@txtCategoryEdited": {}
+  "@txtCategoryEdited": {},
+  "btnGetCategoriesOnline": "Ottieni categorie online...",
+  "@btnGetCategoriesOnline": {}
 }
