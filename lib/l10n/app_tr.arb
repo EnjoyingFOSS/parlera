@@ -163,5 +163,9 @@
   "txtCategoryAdded": "Kategori eklendi",
   "@txtCategoryAdded": {},
   "txtCategoryEdited": "Kategori düzenlendi",
-  "@txtCategoryEdited": {}
+  "@txtCategoryEdited": {},
+  "txtSwitchLanguageInSettings": "Farklı bir dil kullanmak için Ayarlar'da bu dile geçin.",
+  "@txtSwitchLanguageInSettings": {},
+  "txtWordsOnePerLine": "Kelimeler, satır başına bir tane",
+  "@txtWordsOnePerLine": {}
 }
