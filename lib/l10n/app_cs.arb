@@ -167,5 +167,7 @@
   "languageNorwegianBokmal": "Norština (Bokmål)",
   "@languageNorwegianBokmal": {},
   "txtSwitchLanguageInSettings": "Pro použití jiného jazyka je nutné přepnout jazyk v Nastavení.",
-  "@txtSwitchLanguageInSettings": {}
+  "@txtSwitchLanguageInSettings": {},
+  "btnGetCategoriesOnline": "Získat kategorie online...",
+  "@btnGetCategoriesOnline": {}
 }
