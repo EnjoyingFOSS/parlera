@@ -25,7 +25,9 @@ enum ParleraLanguage {
   en("en"),
   cs("cs"),
   de("de"),
-  fr("fr");
+  fr("fr"),
+  it("it"),
+  tr("tr");
 
   static const defaultLang = en;
   final String langCode;
@@ -42,6 +44,10 @@ enum ParleraLanguage {
         return de;
       case "fr":
         return fr;
+      case "it":
+        return it;
+      case "tr":
+        return tr;
       default:
         throw ArgumentError();
     }
@@ -59,11 +65,13 @@ enum ParleraLanguage {
         return "Zufällig";
       case fr:
         return "Aléatoire";
+      case it:
+        return "Casuale";
+      case tr:
+        return "Rastgele";
       //     case id: return "Acak";
-      // case it: return "Casuale";
       // case nb: return "Tilfeldig";
       // case pl: return "Losowa";
-      // case tr: return "Rastgele";
       // case zh: return "随机";
     }
     throw ArgumentError();
@@ -79,6 +87,10 @@ enum ParleraLanguage {
         return AppLocalizations.of(context).languageGerman;
       case fr:
         return AppLocalizations.of(context).languageFrench;
+      case it:
+        return AppLocalizations.of(context).languageItalian;
+      case tr:
+        return AppLocalizations.of(context).languageTurkish;
     }
     throw ArgumentError();
   }
