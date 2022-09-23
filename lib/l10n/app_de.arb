@@ -144,5 +144,28 @@
   "txtCategoryEdited": "Kategorie bearbeitet",
   "@txtCategoryEdited": {},
   "txtWordsOnePerLine": "Wörter, eins pro Zeile",
-  "@txtWordsOnePerLine": {}
+  "@txtWordsOnePerLine": {},
+  "btnContributeLanguage": "Ihre Sprache beitragen",
+  "@btnContributeLanguage": {},
+  "btnDuplicate": "Duplizieren",
+  "@btnDuplicate": {},
+  "btnDiscard": "Verwerfen",
+  "@btnDiscard": {},
+  "txtCreateCategory": "Kategorie erstellen",
+  "@txtCreateCategory": {},
+  "txtCategoryTitle": "Titel der Kategorie",
+  "@txtCategoryTitle": {},
+  "txtDiscardChangesQ": "Änderungen verwerfen?",
+  "@txtDiscardChangesQ": {},
+  "txtYourScore": "Ihre Punktzahl: {questionsPassed}/{questionCount}",
+  "@txtYourScore": {
+    "placeholders": {
+      "questionsPassed": {},
+      "questionCount": {}
+    }
+  },
+  "errorCouldNotFindEmoji": "Das zu diesem Emoji gehörende Bild konnte nicht gefunden werden.",
+  "@errorCouldNotFindEmoji": {},
+  "warnMustEnterQuestion": "Sie müssen mindestens ein Wort eingeben",
+  "@warnMustEnterQuestion": {}
 }
