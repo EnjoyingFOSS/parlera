@@ -97,7 +97,7 @@
   "@languageTurkish": {},
   "btnGetCategoriesOnline": "İnternetten kategori bul",
   "@btnGetCategoriesOnline": {},
-  "emptyCategoryQuestions": "Bu kategoride hiç kelime yok :(",
+  "emptyCategoryQuestions": "Bu kategoride tahmin edilecek sözcük yok :(",
   "@emptyCategoryQuestions": {},
   "languageHungarian": "Macarca",
   "@languageHungarian": {},
@@ -154,7 +154,7 @@
   "@errorCouldNotExport": {},
   "errorCouldNotImport": "Kategori içe aktarılamadı.",
   "@errorCouldNotImport": {},
-  "warnMustEnterQuestion": "En az bir kelime girmelisiniz",
+  "warnMustEnterQuestion": "En az bir sözcük girmelisiniz",
   "@warnMustEnterQuestion": {},
   "txtCategoryImported": "Kategori içe aktarıldı",
   "@txtCategoryImported": {},
@@ -164,8 +164,8 @@
   "@txtCategoryAdded": {},
   "txtCategoryEdited": "Kategori düzenlendi",
   "@txtCategoryEdited": {},
-  "txtSwitchLanguageInSettings": "Farklı bir dil kullanmak için Ayarlar'da bu dile geçin.",
+  "txtSwitchLanguageInSettings": "Farklı bir dil kullanmak için Ayarlar'da o dile geçin.",
   "@txtSwitchLanguageInSettings": {},
-  "txtWordsOnePerLine": "Kelimeler, satır başına bir tane",
+  "txtWordsOnePerLine": "Sözcükler, her satırda bir tane",
   "@txtWordsOnePerLine": {}
 }
