@@ -75,7 +75,10 @@ class GameButton extends StatelessWidget {
                             Icon(
                               arrowIcon,
                               size: 24,
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onBackground
+                                  .withAlpha(128),
                             )
                           ]),
                         ))))));
