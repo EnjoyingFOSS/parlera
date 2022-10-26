@@ -39,25 +39,55 @@ import 'package:flutter/widgets.dart';
 import 'package:parlera/store/settings.dart';
 
 class AudioHelper {
+  //todo might want to downgrade to 1.0.0 because of
   //todo test on Linux
-  static final AudioPlayer _player = AudioPlayer();
+  static final _player = AudioPlayer();
+  static final _soundIncorrect = AssetSource('audio/choice_incorrect.wav');
+  static final _soundCorrect = AssetSource('audio/choice_correct.wav');
+  static final _soundCountdown = AssetSource('audio/countdown.wav');
+  static final _soundStart = AssetSource('audio/start.wav');
+  static final _soundCountdownStart = AssetSource('audio/countdown_start.wav');
 
   // static AudioCache audioCache = AudioCache(prefix: 'assets/audio/');
 
   static bool _audioEnabled(BuildContext context) =>
       SettingsModel.of(context).isAudioEnabled;
 
-  static void playInvalid(context) {
+  static void playIncorrect(context) {
     if (_audioEnabled(context)) {
-      _player.play(AssetSource('audio/choice_incorrect.wav'));
+      _player.play(_soundIncorrect);
       _player
           .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
-  static void playValid(context) {
+  static void playCorrect(context) {
     if (_audioEnabled(context)) {
-      _player.play(AssetSource('audio/choice_correct.wav'));
+      _player.play(_soundCorrect);
+      _player
+          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+    }
+  }
+
+  static void playCountdown(context) {
+    if (_audioEnabled(context)) {
+      _player.play(_soundCountdown);
+      _player
+          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+    }
+  }
+
+  static void playStart(context) {
+    if (_audioEnabled(context)) {
+      _player.play(_soundStart);
+      _player
+          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+    }
+  }
+
+  static void playCountdownStart(context) {
+    if (_audioEnabled(context)) {
+      _player.play(_soundCountdownStart);
       _player
           .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }

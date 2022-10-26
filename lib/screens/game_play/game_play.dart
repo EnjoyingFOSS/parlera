@@ -72,6 +72,8 @@ class GamePlayScreenState extends State<GamePlayScreen>
     with TickerProviderStateMixin {
   static const _secondsPrep = 5;
 
+  late final Category _category;
+  late final TiltService? _tiltService;
   Timer? _gameTimer;
   int _secondsMax = -1;
   late int _secondsLeft;
@@ -79,8 +81,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
   bool _isPausedForShowingResult = false;
   // bool _isCameraEnabled = false; // TODO CAMERA: Make it work and work well
   StreamSubscription<dynamic>? _rotateSubscription;
-  late final Category _category;
-  late final TiltService? _tiltService;
 
   AnimationController? _invalidAC;
   late Animation<double> _invalidAnimation;
@@ -268,7 +268,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
       return;
     }
 
-    AudioHelper.playValid(context);
+    AudioHelper.playCorrect(context);
     _validAC!.forward();
     _postAnswer(isValid: true);
   }
@@ -278,7 +278,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
       return;
     }
 
-    AudioHelper.playInvalid(context);
+    AudioHelper.playIncorrect(context);
     _invalidAC!.forward();
     _postAnswer(isValid: false);
   }
@@ -296,6 +296,17 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
   @override
   Widget build(BuildContext context) {
+    if (!_isStarted) {
+      if (_secondsLeft == 0) {
+        if (_tiltService == null) {
+          AudioHelper.playCountdownStart(context);
+        } else {
+          AudioHelper.playStart(context);
+        }
+      } else {
+        AudioHelper.playCountdown(context);
+      }
+    }
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: WillPopScope(
