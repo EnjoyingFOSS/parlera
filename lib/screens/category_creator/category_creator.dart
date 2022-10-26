@@ -18,8 +18,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart'
-    show EmojiPicker;
+import 'dart:io';
+
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
@@ -213,6 +214,12 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
       builder: (BuildContext context) =>
           //todo add search
           EmojiPicker(
+            config: (!Platform.isLinux)
+                ? const Config(
+                    checkPlatformCompatibility: false,
+                    emojiTextStyle: TextStyle(
+                        fontFamily: "NotoEmoji", color: Colors.black87))
+                : const Config(checkPlatformCompatibility: false),
             onEmojiSelected: (_, emoji) async {
               var selectedEmoji = emoji.emoji;
               final imagePath = EmojiHelper.getImagePath(selectedEmoji);

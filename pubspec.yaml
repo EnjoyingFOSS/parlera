@@ -59,6 +59,9 @@ flutter:
     - assets/emoji/
 
   fonts:
+    - family: NotoEmoji
+      fonts:
+      - asset: assets/fonts/NotoEmoji-Regular.ttf
     - family: MontserratAlternates
       fonts:
         - asset: assets/fonts/MontserratAlternates-Medium.ttf
