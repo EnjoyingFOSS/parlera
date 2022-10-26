@@ -23,16 +23,18 @@ import 'dart:io';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:parlera/helpers/dynamic_color.dart';
 import 'package:parlera/helpers/emoji.dart';
+import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/screens/category_creator/widgets/creator_bottom_bar.dart';
+import 'package:parlera/screens/category_creator/widgets/emoji_painter.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/editable_category.dart';
 import '../../store/category.dart';
 import '../../store/language.dart';
+import 'widgets/emoji_paint_widget.dart';
 
 class CategoryCreatorScreen extends StatefulWidget {
   final EditableCategory? ec;
@@ -45,17 +47,12 @@ class CategoryCreatorScreen extends StatefulWidget {
 
 class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
   static const _standardTopAreaHeight = 60;
-  static const _missingEmoji = "❔";
-  static final _missingImageProvider =
-      Svg(EmojiHelper.getImagePath(_missingEmoji));
 
   late final EditableCategory _editableCategory;
-  late ImageProvider _imageProvider;
 
   @override
   void initState() {
     _editableCategory = widget.ec ?? EditableCategory();
-    _imageProvider = Svg(EmojiHelper.getImagePath(_editableCategory.emoji));
     super.initState();
   }
 
@@ -126,11 +123,20 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                                       child: Stack(
                                         children: [
                                           Center(
-                                              child: Image(
-                                            image: _imageProvider,
-                                            width: 120,
-                                            height: 120,
-                                          )),
+                                              child: Text(
+                                            _editableCategory.emoji,
+                                            style: ThemeHelper.emojiStyle
+                                                .copyWith(
+                                                    fontSize: 100 /
+                                                        MediaQuery.of(context)
+                                                            .textScaleFactor),
+                                          )
+                                              //     Image(
+                                              //   image: _imageProvider,
+                                              //   width: 120,
+                                              //   height: 120,
+                                              // )
+                                              ),
                                           Align(
                                               alignment: Alignment.bottomRight,
                                               child: Container(
@@ -214,29 +220,15 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
       builder: (BuildContext context) =>
           //todo add search
           EmojiPicker(
-            config: (Platform.isLinux)
-                ? const Config(
-                    checkPlatformCompatibility: false,
-                    emojiTextStyle: TextStyle(
-                        fontFamily: "NotoEmoji", color: Colors.black87))
-                : const Config(checkPlatformCompatibility: false),
+            config: const Config(
+                checkPlatformCompatibility: false,
+                emojiTextStyle: ThemeHelper.emojiStyle),
             onEmojiSelected: (_, emoji) async {
-              var selectedEmoji = emoji.emoji;
-              final imagePath = EmojiHelper.getImagePath(selectedEmoji);
+              final selectedEmoji = emoji.emoji;
 
-              if (await EmojiHelper.imageExists(context, imagePath)) {
-                _imageProvider = Svg(imagePath);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content:
-                      Text(AppLocalizations.of(context).errorCouldNotFindEmoji),
-                ));
-                selectedEmoji = _missingEmoji;
-                _imageProvider = _missingImageProvider;
-              }
-
-              final paletteGenerator =
-                  await PaletteGenerator.fromImageProvider(_imageProvider);
+              final paletteGenerator = await PaletteGenerator.fromImage(
+                  await EmojiPainter.getImage(
+                      emoji.emoji, MediaQuery.of(context).textScaleFactor));
 
               setState(() {
                 _editableCategory.emoji = selectedEmoji;

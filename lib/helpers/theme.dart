@@ -40,6 +40,11 @@ class ThemeHelper {
   static const successColorDarker = Color(0xFF607B60);
   static const failColorDarker = Color(0xFFC0393E);
 
+  static const emojiStyle = TextStyle(
+      decoration: TextDecoration.none,
+      textBaseline: TextBaseline.ideographic,
+      fontFamily: "NotoColorEmoji");
+
   static final ThemeData darkTheme = _getThemeFromScheme(_darkColors);
 
   static ThemeData _getThemeFromScheme(ColorScheme colors) {

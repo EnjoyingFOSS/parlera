@@ -35,7 +35,7 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/store/category.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -76,7 +76,6 @@ class GameSummaryScreen extends StatelessWidget {
       return ScopedModelDescendant<QuestionModel>(
         builder: (context, _, model) {
           final category = categoryModel.currentCategory!;
-          final imageProvider = Svg(EmojiHelper.getImagePath(category.emoji));
           return Scaffold(
               backgroundColor: Theme.of(context).colorScheme.surface,
               body: SingleChildScrollView(
@@ -117,10 +116,11 @@ class GameSummaryScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Hero(
                             tag: HeroHelper.categoryImage(category),
-                            child: Image(
-                              image: imageProvider,
-                              width: 120,
-                              height: 120,
+                            child: Text(
+                              category.emoji,
+                              style: ThemeHelper.emojiStyle.copyWith(
+                                  fontSize: 96 /
+                                      MediaQuery.of(context).textScaleFactor),
                             )))
                   ]),
                   const SizedBox(height: 16),

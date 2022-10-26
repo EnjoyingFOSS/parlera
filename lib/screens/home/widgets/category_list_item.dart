@@ -35,7 +35,7 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:parlera/helpers/theme.dart';
 
 import 'package:parlera/models/category.dart';
 
@@ -53,21 +53,26 @@ class CategoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imagePath = EmojiHelper.getImagePath(category.emoji);
     return ParleraCard(
         onTap: onTap,
         child: (Stack(children: [
           Positioned.directional(
-              end: -6,
-              top: 4,
-              bottom: 4,
-              textDirection: Directionality.of(context),
-              child: AspectRatio(
-                aspectRatio: 1,
+            end: -8,
+            top: 4,
+            bottom: 4,
+            textDirection: Directionality.of(context),
+            child: Center(
                 child: Hero(
                     tag: HeroHelper.categoryImage(category),
-                    child: SvgPicture.asset(imagePath)),
-              )),
+                    child: Text(
+                      category.emoji,
+                      style: ThemeHelper.emojiStyle.copyWith(
+                        fontSize: 56 /
+                            MediaQuery.of(context)
+                                .textScaleFactor, //todo do I want this to scale with text or not? if so, the tile height should be more flexible
+                      ),
+                    ))),
+          ),
           Positioned.directional(
               start: 16,
               end: 80,
@@ -109,30 +114,3 @@ class CategoryListItem extends StatelessWidget {
         ])));
   }
 }
-
-// class _MetaItem extends StatelessWidget {
-//   final int playedCount;
-//
-//   const _MetaItem({Key? key, required this.playedCount}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Opacity(
-//       opacity: 0.7,
-//       child: Row(
-//         children: [
-//           const Padding(
-//               padding: EdgeInsets.symmetric(horizontal: 4.0),
-//               child: Icon(Icons.play_arrow, size: 14)),
-//           Text(
-//             playedCount.toString(),
-//             style: const TextStyle(
-//               color: Colors.white,
-//               fontSize: 12,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

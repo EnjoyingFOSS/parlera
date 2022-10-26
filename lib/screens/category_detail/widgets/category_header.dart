@@ -35,10 +35,9 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/import_export.dart';
+import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/models/category.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/models/category_type.dart';
@@ -70,7 +69,6 @@ class CategoryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageProvider = Svg(EmojiHelper.getImagePath(category.emoji));
     return Container(
         color: category.bgColor,
         padding: const EdgeInsets.only(bottom: 32),
@@ -164,10 +162,10 @@ class CategoryHeader extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8),
             child: Hero(
               tag: HeroHelper.categoryImage(category),
-              child: Image(
-                image: imageProvider,
-                height: 160,
-                width: 160,
+              child: Text(
+                category.emoji,
+                style: ThemeHelper.emojiStyle.copyWith(
+                    fontSize: 100 / (MediaQuery.of(context).textScaleFactor)),
               ),
             ),
           ),
