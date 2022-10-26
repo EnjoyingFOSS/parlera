@@ -124,6 +124,12 @@ class SettingsList extends StatelessWidget {
                 "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
           ),
           ListTile(
+            leading: const Icon(Icons.attach_money),
+            title: Text(AppLocalizations.of(context).donate),
+            onTap: () => UrlLauncher.launchURL(
+                context, "https://en.liberapay.com/Parlera/"),
+          ),
+          ListTile(
             leading: const Icon(Icons.info_rounded),
             title: Text(AppLocalizations.of(context).aboutParlera),
             onTap: () => _showAboutDialog(context),
