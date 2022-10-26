@@ -114,6 +114,8 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ? Scaffold(
                 body: Row(children: [
                 NavigationRail(
+                    // leading: SizedBox(
+                    //     height: MediaQuery.of(context).viewPadding.top - 16), //todo some bug makes this crash sometime after a screen rotation
                     unselectedIconTheme: IconThemeData(
                         color: Theme.of(context).colorScheme.onSecondary),
                     backgroundColor: Theme.of(context).colorScheme.secondary,
