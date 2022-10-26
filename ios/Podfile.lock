@@ -1,5 +1,5 @@
 PODS:
-  - audioplayers (0.0.1):
+  - audioplayers_darwin (0.0.1):
     - Flutter
   - DKImagePickerController/Core (4.3.4):
     - DKImagePickerController/ImageDataManager
@@ -60,7 +60,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
+  - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
   - emoji_picker_flutter (from `.symlinks/plugins/emoji_picker_flutter/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
@@ -81,8 +81,8 @@ SPEC REPOS:
     - SwiftyGif
 
 EXTERNAL SOURCES:
-  audioplayers:
-    :path: ".symlinks/plugins/audioplayers/ios"
+  audioplayers_darwin:
+    :path: ".symlinks/plugins/audioplayers_darwin/ios"
   emoji_picker_flutter:
     :path: ".symlinks/plugins/emoji_picker_flutter/ios"
   file_picker:
@@ -107,12 +107,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/wakelock/ios"
 
 SPEC CHECKSUMS:
-  audioplayers: 455322b54050b30ea4b1af7cd9e9d105f74efa8c
+  audioplayers_darwin: 877d9a4d06331c5c374595e46e16453ac7eafa40
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   emoji_picker_flutter: df19dac03a2b39ac667dc8d1da939ef3a9e21347
   file_picker: 817ab1d8cd2da9d2da412a417162deee3500fc95
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
@@ -124,6 +124,6 @@ SPEC CHECKSUMS:
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
 COCOAPODS: 1.11.3
