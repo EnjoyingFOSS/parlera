@@ -20,6 +20,7 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:cross_file/cross_file.dart';
 import 'package:path/path.dart' show join;
 
 import 'package:path_provider/path_provider.dart';
@@ -52,8 +53,8 @@ class ImportExportHelper {
 
       final outputFile = File(outputPath);
       await outputFile.writeAsString(outputContent, flush: true);
-      await Share.shareFiles([outputPath],
-          mimeTypes: const ["application/json"], subject: shareSubject);
+      await Share.shareXFiles([XFile(outputPath, mimeType: "application/json")],
+          subject: shareSubject);
     }
   }
 
