@@ -58,7 +58,7 @@ class CategoryListItem extends StatelessWidget {
         onTap: onTap,
         child: (Stack(children: [
           Positioned.directional(
-              start: -6,
+              end: -6,
               top: 4,
               bottom: 4,
               textDirection: Directionality.of(context),
@@ -69,8 +69,8 @@ class CategoryListItem extends StatelessWidget {
                     child: SvgPicture.asset(imagePath)),
               )),
           Positioned.directional(
-              start: 80,
-              end: 8,
+              start: 16,
+              end: 80,
               top: 2,
               bottom: 2,
               textDirection: Directionality.of(context),
@@ -79,7 +79,7 @@ class CategoryListItem extends StatelessWidget {
                   child: Text(
                     category.name,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 21,
                     ),
                   )))
           // todo incorporate this information into category detail
