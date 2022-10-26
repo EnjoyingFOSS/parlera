@@ -214,7 +214,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
       builder: (BuildContext context) =>
           //todo add search
           EmojiPicker(
-            config: (!Platform.isLinux)
+            config: (Platform.isLinux)
                 ? const Config(
                     checkPlatformCompatibility: false,
                     emojiTextStyle: TextStyle(
