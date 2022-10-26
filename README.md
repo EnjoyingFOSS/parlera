@@ -12,6 +12,7 @@ You can help through:
 
 - **Programming.** Just take an [issue](https://gitlab.com/enjoyingfoss/parlera/-/issues) and assign it to yourself. If you want to work on a feature that doesn't have an associated issue yet, report a new issue first.
 - **Translating.** Go to [Weblate](https://hosted.weblate.org/projects/parlera/) and choose or add your language.
+- **Contributing word list.** Create a new word list inside of Parlera, export it as a file, and submit the file via an issue report at the [Parlera Categories repository](https://gitlab.com/enjoyingfoss/parlera-categories/-/tree/main/). (More info in the README there.)
 
 ### Words you can submit
 
