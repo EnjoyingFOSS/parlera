@@ -1,0 +1,7 @@
+Editable categories are here!
+
+There is now:
+- An option to create custom categories
+- An option to export and import categories
+- Slight design changes
+- Now in 6 languages, thanks to amazing volunteers: English, Czech, German, French, Italian, and Turkish!
