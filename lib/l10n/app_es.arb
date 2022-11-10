@@ -1,1 +1,20 @@
-{}
+{
+  "tutorialFirstSectionHeader": "¡Adivina la palabra!",
+  "@tutorialFirstSectionHeader": {},
+  "gameCancelDeny": "Permanecer",
+  "@gameCancelDeny": {},
+  "aboutParlera": "Acerca de Parlera",
+  "@aboutParlera": {},
+  "emptyCategories": "No se pudo cargar las categorías :(",
+  "@emptyCategories": {},
+  "labelGo": "¡Vamos!",
+  "@labelGo": {},
+  "settingsAudio": "Reproducir sonidos",
+  "@settingsAudio": {},
+  "gameCancelConfirmation": "¿Salir del juego actual?",
+  "@gameCancelConfirmation": {},
+  "settingsAccelerometer": "Inclinar teléfono para responder",
+  "@settingsAccelerometer": {},
+  "gameCancelApprove": "Salir",
+  "@gameCancelApprove": {}
+}
