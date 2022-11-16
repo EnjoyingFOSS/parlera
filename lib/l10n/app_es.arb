@@ -27,7 +27,7 @@
   "@tutorialSecondSectionHeaderPhone": {},
   "btnNext": "Siguiente",
   "@btnNext": {},
-  "tutorialSecondSectionHeaderDesktop": "Presiona el lado rojo para pasar",
+  "tutorialSecondSectionHeaderDesktop": "Toca el lado rojo para pasar",
   "@tutorialSecondSectionHeaderDesktop": {},
   "tutorialFourthSectionHeader": "¿Quieres dibujar, hacer mímicas o cantar?",
   "@tutorialFourthSectionHeader": {},
@@ -94,5 +94,11 @@
   "languageTurkish": "Turco",
   "@languageTurkish": {},
   "languageGerman": "Alemán",
-  "@languageGerman": {}
+  "@languageGerman": {},
+  "tutorialThirdSectionHeaderPhone": "Inclina hacia abajo si sabes la respuesta",
+  "@tutorialThirdSectionHeaderPhone": {},
+  "tutorialSecondSectionDescriptionPhone": "¿No tienes idea de lo que es? Sólo tienes que inclinar el teléfono hacia arriba para saltar esta palabra.",
+  "@tutorialSecondSectionDescriptionPhone": {},
+  "tutorialSecondSectionDescriptionDesktop": "¿No tienes idea de lo que es? Toca o haz click sobre el lado rojo de la pantalla o presiona la tecla Arriba para pasar la palabra.",
+  "@tutorialSecondSectionDescriptionDesktop": {}
 }
