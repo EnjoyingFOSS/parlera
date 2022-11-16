@@ -1,1 +1,18 @@
-{}
+{
+  "labelGo": "آ جاؤ جی!؜",
+  "@labelGo": {},
+  "btnNext": "اگے",
+  "@btnNext": {},
+  "btnBack": "پچھے",
+  "@btnBack": {},
+  "btnCancel": "رد کرو",
+  "@btnCancel": {},
+  "btnDelete": "مٹاؤ",
+  "@btnDelete": {},
+  "aboutParlera": "گپ شڑپ بارے",
+  "@aboutParlera": {},
+  "emptyCategories": "گٹھاں لبھ نہیں سکدیاں 😢",
+  "@emptyCategories": {},
+  "btnEdit": "سودھو",
+  "@btnEdit": {}
+}
