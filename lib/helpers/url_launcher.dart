@@ -24,11 +24,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UrlLauncher {
   static void launchURL(BuildContext context, String url) async {
+    //todo launch in a new window
     final uri = Uri.parse(url);
-    await canLaunchUrl(uri)
-        ? await launchUrl(uri)
-        : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(context).urlCantOpen),
-          ));
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final couldNotOpenString = AppLocalizations.of(context).urlCantOpen;
+    final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    if (!launched) {
+      scaffoldMessenger.showSnackBar(SnackBar(
+        content: Text(couldNotOpenString),
+      ));
+    }
   }
 }
