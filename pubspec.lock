@@ -727,7 +727,7 @@ packages:
     source: hosted
     version: "3.1.1"
   xdg_directories:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: xdg_directories
       url: "https://pub.dartlang.org"

@@ -27,6 +27,7 @@ import 'package:sembast/sembast.dart';
 import 'package:path/path.dart' show join;
 import 'package:sembast/sembast_io.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:xdg_directories/xdg_directories.dart';
 
 import '../models/category.dart';
 import '../models/editable_category.dart';
@@ -86,7 +87,9 @@ class DBHelper {
       _questionStoreSuffix;
 
   Future<String> _getPath() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    Directory documentsDirectory = (Platform.isLinux)
+        ? Directory(dataHome.path)
+        : await getApplicationDocumentsDirectory();
     return join(documentsDirectory.path, _dbFile);
   }
 
