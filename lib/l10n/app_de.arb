@@ -167,5 +167,7 @@
   "errorCouldNotFindEmoji": "Das zu diesem Emoji gehörende Bild konnte nicht gefunden werden.",
   "@errorCouldNotFindEmoji": {},
   "warnMustEnterQuestion": "Sie müssen mindestens ein Wort eingeben",
-  "@warnMustEnterQuestion": {}
+  "@warnMustEnterQuestion": {},
+  "donate": "Spende",
+  "@donate": {}
 }
