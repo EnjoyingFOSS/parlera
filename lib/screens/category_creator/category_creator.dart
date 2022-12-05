@@ -178,7 +178,11 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                             return null;
                           },
                           onSaved: (value) {
-                            _editableCategory.questions = value?.split("\n");
+                            _editableCategory.questions = value
+                                ?.split("\n")
+                                .map((s) => s.trim())
+                                .where((s) => s.isNotEmpty)
+                                .toList();
                           },
                         )),
                   ],
