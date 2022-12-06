@@ -16,6 +16,11 @@
 	<url type="bugtracker">https://gitlab.com/enjoyingfoss/parlera/-/issues</url>
 	<url type="donation">https://liberapay.com/Parlera/donate</url>
 
+	<custom>
+		<value key="Purism::form_factor">workstation</value>
+		<value key="Purism::form_factor">mobile</value>
+	</custom>
+
 	<description>
 		<p>A party game where your friends describe and you guess. Or vice versa.</p>
 		<p>Features:</p>

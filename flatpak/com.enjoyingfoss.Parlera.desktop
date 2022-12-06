@@ -7,3 +7,6 @@ Categories=Game;
 Icon=com.enjoyingfoss.Parlera
 Exec=parlera
 StartupWMClass=parlera
+X-Purism-FormFactor=Workstation;Mobile;
+X-KDE-FormFactors=desktop;tablet;handset;mediacenter;
+
