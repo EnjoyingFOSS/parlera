@@ -76,12 +76,14 @@ class Category {
 
   Category.fromJson(
       this.lang, this.sembastPos, this.type, Map<String, dynamic> json)
-      : name = json[jsonName],
-        emoji = json[jsonEmoji] ?? "❔",
-        bgColor = Color(json[jsonBgColor] ?? 0xFFFFFFFF),
-        questions = (json[jsonQs] as List).map((q) => Question(q)).toList();
+      : name = json[jsonName] as String? ?? "",
+        emoji = json[jsonEmoji] as String? ?? "❔",
+        bgColor = Color(json[jsonBgColor] as int? ?? 0xFFFFFFFF),
+        questions = (json[jsonQs] as List<dynamic>)
+            .map((dynamic q) => Question(q as String))
+            .toList();
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         jsonName: name,
         jsonEmoji: emoji,
         jsonBgColor: bgColor.value,

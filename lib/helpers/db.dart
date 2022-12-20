@@ -64,11 +64,13 @@ class DBHelper {
         await stringMapStoreFactory
             .store(_getQStoreName(lang, isBundled: true))
             .drop(database); //todo ok even if the store doesn't exist?
-        final List jsonMapList = (json
-            .decode(await rootBundle.loadString(_getBundledJsonPath(lang))));
+        final List jsonMapList =
+            (json.decode(await rootBundle.loadString(_getBundledJsonPath(lang)))
+                as List<dynamic>);
 
         final newMap = jsonMapList
-            .map((dynamic map) => Map<String, Object?>.from(map))
+            .map((dynamic map) =>
+                Map<String, Object?>.from(map as Map<dynamic, dynamic>))
             .toList();
 
         final newStore =

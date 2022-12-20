@@ -28,10 +28,11 @@ import 'widgets/settings_modal.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
-  static showBottomSheet(BuildContext context) => showModalBottomSheet<void>(
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (context) => const SettingsModal());
+  static void showBottomSheet(BuildContext context) =>
+      showModalBottomSheet<void>(
+          backgroundColor: Colors.transparent,
+          context: context,
+          builder: (context) => const SettingsModal());
 
   @override
   Widget build(BuildContext context) {

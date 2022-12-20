@@ -84,7 +84,9 @@ class ImportExportHelper {
     }
 
     final ec = EditableCategory.fromJson(
-        jsonDecode(await File(inputPath).readAsString()), lang);
+        jsonDecode(await File(inputPath).readAsString())
+            as Map<String, dynamic>,
+        lang);
     model.createOrUpdateCustomCategory(ec);
   }
 }

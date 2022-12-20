@@ -55,15 +55,15 @@ class EditableCategory {
         emoji = category.emoji;
 
   EditableCategory.fromJson(Map<String, dynamic> json, this.lang)
-      : name = json[Category.jsonName],
+      : name = json[Category.jsonName] as String?,
         questions = (json[Category.jsonQs] as List<dynamic>)
-            .map((e) => e.toString())
+            .map((dynamic e) => e.toString())
             .toList(),
-        bgColor = Color(json[Category.jsonBgColor]),
-        emoji = json[Category.jsonEmoji];
+        bgColor = Color(json[Category.jsonBgColor] as int),
+        emoji = json[Category.jsonEmoji] as String;
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       Category.jsonName: name,
       Category.jsonQs: questions,
       Category.jsonEmoji: emoji,

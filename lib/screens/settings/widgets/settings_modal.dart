@@ -38,7 +38,7 @@ class SettingsModal extends StatelessWidget {
           child: FloatingActionButton.small(
             onPressed: () => Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute<void>(
                     builder: (context) => const SettingsScreen())),
             child: const Icon(Icons.expand_less),
           ))

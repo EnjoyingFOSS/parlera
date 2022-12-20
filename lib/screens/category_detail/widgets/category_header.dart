@@ -128,7 +128,7 @@ class CategoryHeader extends StatelessWidget {
                       Navigator.pop(context);
                       break;
                     case _menuEdit:
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).push(MaterialPageRoute<void>(
                           builder: (context) => CategoryCreatorScreen(
                                 ec: EditableCategory.fromCategory(category),
                               )));
@@ -136,7 +136,7 @@ class CategoryHeader extends StatelessWidget {
                     case _menuDuplicate:
                       final ec = EditableCategory.fromCategory(category);
                       ec.sembastPos = null;
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).push(MaterialPageRoute<void>(
                           builder: (context) => CategoryCreatorScreen(
                                 ec: ec,
                               )));

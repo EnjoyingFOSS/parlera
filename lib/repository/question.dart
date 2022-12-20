@@ -77,7 +77,7 @@ class QuestionRepository {
       //todo THIS CAN LEAD TO FEWER QUESTIONS IF I PICK CATEGORIES WITH JUST 1 QUESTION EACH (but is that really a problem worth solving, though?)
       categories
           .map((cat) => _getShuffledQuestions(cat.questions, (limit ~/ 3) + 1))
-          .expand((i) => i),
+          .expand<Question>((i) => i),
     );
 
     return _getShuffledQuestions(result, limit);

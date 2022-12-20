@@ -123,7 +123,7 @@ class CategoryList extends StatelessWidget {
                             case _menuCreate:
                               Navigator.push(
                                   context,
-                                  MaterialPageRoute(
+                                  MaterialPageRoute<void>(
                                       builder: (_) =>
                                           const CategoryCreatorScreen()));
                               break;

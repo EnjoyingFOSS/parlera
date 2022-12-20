@@ -53,7 +53,7 @@ class AudioHelper {
   static bool _audioEnabled(BuildContext context) =>
       SettingsModel.of(context).isAudioEnabled;
 
-  static void playIncorrect(context) {
+  static void playIncorrect(BuildContext context) {
     if (_audioEnabled(context)) {
       _player.play(_soundIncorrect);
       _player
@@ -61,7 +61,7 @@ class AudioHelper {
     }
   }
 
-  static void playCorrect(context) {
+  static void playCorrect(BuildContext context) {
     if (_audioEnabled(context)) {
       _player.play(_soundCorrect);
       _player
@@ -69,7 +69,7 @@ class AudioHelper {
     }
   }
 
-  static void playCountdown(context) {
+  static void playCountdown(BuildContext context) {
     if (_audioEnabled(context)) {
       _player.play(_soundCountdown);
       _player
@@ -77,7 +77,7 @@ class AudioHelper {
     }
   }
 
-  static void playStart(context) {
+  static void playStart(BuildContext context) {
     if (_audioEnabled(context)) {
       _player.play(_soundStart);
       _player
@@ -85,7 +85,7 @@ class AudioHelper {
     }
   }
 
-  static void playCountdownStart(context) {
+  static void playCountdownStart(BuildContext context) {
     if (_audioEnabled(context)) {
       _player.play(_soundCountdownStart);
       _player
