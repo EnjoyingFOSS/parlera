@@ -5,7 +5,158 @@ abstract_name: Wyrazy abstrakcyjne
 food-and-drink_name: Jedzenie i napoje
 idioms_name: Przysłowia
 historical-figures_name: Postacie historyczne
-classic-characters_questions: "Alladyn\nAlicja (z Alicji w Krainie Czarów)\nBambi\n\
-  Wielki Zły Wilk\nKapitan Hook\nRobin Hood\nKopciuszek\nTchórzliwy Lew"
-food-and-drink_questions: "migdały\nprzystawki\njabłko\nsok jabłkowy\nmorela\nawokado\n\
-  boczek\nbajgiel\nbanan\ngrill\npanierka\nfasola\nwołowina\npapryka\nczarna porzeczka"
+classic-characters_questions: "Aladyn\nAlicja\nBambi\nWielki zły wilk\nKapitan Hak\n\
+  Krzyś\nKopciuszek\nTchórzliwy Lew\nD'Artagnan\nDorotka\nDracula\nDr Watson\nScrooge\n\
+  Kłapouchy\nFrankenstein\nJaś\nMałgosia\nHuckleberry Finn\nWańka wstańka\nKajko i\
+  \ kokosz\nJohn Carter\nReksio\nCzerwony Kapturek\nMowgli\nPiotruś Pan\nGrzegorz\
+  \ Brzęczyszczykiewicz\nProsiaczek\nPinokio\nKsiążę Czaruś\nRoszpunka\nCzerwona Królowa\n\
+  Robinson Crusoe\nRumpelsztyk\nStrach na wróble\nSherlock Holmes\nSindbad\nŚpiąca\
+  \ Królewna\nŚnieżka\nTarzan\nKot z Cheshire\nŻabi Książę\nDuch minionych świąt\n\
+  Piernikowy ludzik\nDzwonnik z Notre-Dame\nSmerf Maruda\nMała Syrenka\nSzalony Kapelusznik\n\
+  Babeczka\nKrólowa Kier\nSiedmiu krasnoludków\nKrólowa Śniegu\nTrzy ślepe myszy\n\
+  Trzy małe świnki\nTrzej muszkieterowie\nBrzydkie kaczątko\nTygrys\nBlaszany Drwal\n\
+  Dzwoneczek\nTom Sawyer\nPapa Smerf\nKubuś Puchatek\nCzarnoksiężnik z Oz\nZorro"
+food-and-drink_questions: "migdał\nprzystawka\njabłko\nsok jabłkowy\nmorela\nawokado\n\
+  bekon\nbajgiel\nbanan\ngrill\nciasto\nfasola\nwołowina\npapryka\njeżyna\njagoda\n\
+  orzech brazylijski\nchleb\nśniadanie\nbrie\nbrokuły\nrosół\nbabka\nburger\nburrito\n\
+  masło\nciasto\nmarchewka\nnerkowiec\nkalafior\nseler\nser\nkanapka z serem\nwiśnia\n\
+  guma do żucia\nkurczak\nciecierzyca\npapryka chili\nczekolada\npłatki czekoladowe\n\
+  kokos\nmleko kokosowe\nkawa\nciasteczko\nkukurydza\ntwaróg\nżurawina\nśmietana\n\
+  rogalik\nogórek\nbabeczka\ncurry\nnabiał\ndeser\nobiad\npączek\nciasto\ndressing\n\
+  napój\njajko\njajecznica\nbakłażan\ndziki bez\nnapój energetyczny\nfalafel\nryba\n\
+  filet rybny\npatyczek rybny\nmąka\nfrytki\nmrożony jogurt\nowoce\nczosnek\npiernik\n\
+  lukier\ngouda\nzboże\nwinogrono\ngrejpfrut\nzielona fasola\nszynka\nhamburger\n\
+  orzech laskowy\nzioła\nmiód\nlody\nkanapka z lodami\nsok\njarmuż\nkebab\nketchup\n\
+  fasolka\nkimchi\nkiwi\ncytryna\nlemoniada\nsoczewica\nsałata\nlimonka\nlunch\nmango\n\
+  syrop klonowy\nposiłek\nmięso\nmleko\nszejk\nwoda mineralna\nmięta\nmuffin\ngrzybek\n\
+  musztarda\norzech\nowsianka\npłatki owsiane\nolej\noliwka\ncebula\nkrążki cebulowe\n\
+  pomarańcza\nsok pomarańczowy\nostryga\nnaleśnik\nmakaron\nbrzoskwinia\norzechowy\n\
+  gruszka\npapryka\npepperoni\nogórki\nplacek\norzeszki piniowe\nananas\npistacja\n\
+  pizza\nśliwka\ngranat\npopcorn\nschabowy\nkaszka\nziemniak\nchips ziemniaczany\n\
+  łódeczki ziemniaczane\nprecel\ndynia\nquesadilla\nrodzynka\nmalina\nczerwona soczewica\n\
+  ryż\nbułka\nsałatka\nsalami\nłosoś\nsól\nkanapka\nsardynka\nsos\nkapusta kiszona\n\
+  kiełbasa\nowoce morza\nposypka\nboczniak\nsmoothie\nsoda\nsorbet\nzupa\nsos sojowy\n\
+  spaghetti\nprzyprawa\nposypka\nkalafior\nprzystawka\nstek\ntruskawka\nsushi\nsyrop\n\
+  taco\nherbata\ntost\ntofu\npomidor\ntortilla\ntuńczyk\nwarzywo\nwafel\norzech włoski\n\
+  woda\narbuz\nserwatka\nbita śmietana\njogurt\nzuccini"
+abstract_questions: "działanie\nwygląd\naspiracja\nateizm\nautonomia\npiękno\nwiara\n\
+  buddyzm\nwypalenie\ndziecinność\nchrześcijaństwo\nspryt\nbanał\nkomfort\nwspólnota\n\
+  połączenie\nniebezpieczeństwo\nśmierć\nprzeznaczenie\nróżnica\ntrudność\nwysiłek\n\
+  element\nszyfrowanie\nrówność\noszacowanie\nprzykład\nwyrażenie\nniepowodzenie\n\
+  sprawiedliwość\nwiara\nlos\nfunkcja\nwolność słowa\nwolny czas\nwolna wola\nwolność\n\
+  geografia\nzgadnij\nharmonia\nnienawiść\nzdrowie\nnadzieja\nprawo człowieka\npokora\n\
+  humor\npomysł\nwpływ\nznaczenie\nnieskończoność\nobraza\nIslam\njęzyk\nlokalizacja\n\
+  miłość\nmatematyka\nmetafora\nnieporozumienie\nmoment\nnastrój\npotrzeba\nobiektywizm\n\
+  część mowy\npasja\npokój\nspokój\nfilozofia\npopularność\nwolność prasy\nprywatność\n\
+  problem\npsychologia\ncytat\nreakcja\nrzeczywistość\nodniesienie\nrelaks\nszacunek\n\
+  reakcja\nbezpieczeństwo\nzadowolenie\nochrona\npoczucie humoru\nkształt\nznaczenie\n\
+  chytrość\nukojenie\ndusza\nstres\nwalka\nsymbol\nsukces\ntrend\nprawda\nzrozumienie\n\
+  wakacje\nofiarność\ndobre samopoczucie\nmądrość"
+classic-literature_questions: "Opowieść wigilijna\nKsiężniczka z Marsa\nBaśń o dwóch\
+  \ miastach\nPrzygody Huckleberry'ego Finna\nBaśnie Ezopa\nPrzygody Alicji w Krainie\
+  \ Czarów\nAnna Karenina\nW osiemdziesiąt dni dookoła świata\nBeowulf\nKopciuszek\n\
+  Zbrodnia i kara\nDavid Copperfield\nDon Kichot\nDracula\nEmma\nFrankenstein\nWielkie\
+  \ nadzieje\nPodróże Guliwera\nHamlet\nJaś i Małgosia\nPotop\nJaś i magiczna fasola\n\
+  Podróż do wnętrza ziemi\nNędznicy\nCzerwony Kapturek\nMałe kobietki\nMakbet\nMoby\
+  \ Dick\nOliver Twist\nOtello\nPiotruś Pan\nDuma i uprzedzenie\nRoszpunka\nRobinson\
+  \ Crusoe\nRomeo i Julia\nRumpelsztyk \nRozważna i romantyczna\nŚpiąca Królewna\n\
+  Królewna Śnieżka\nSherlock Holmes\nPrzygody Tomka Sawyera\nCzarny kot\nBracia Karamazow\n\
+  Opowieści kanterberyjskie\nBeczka Amontillado\nHrabia Monte Cristo\nNowe szaty cesarza\n\
+  Upadek domu Usherów\nŻabi książę\nWielki Gatsby\nDzwonnik z Notre-Dame\nIdiota\n\
+  Iliada\nNiewidzialny człowiek\nKsięga dżungli\nMała Syrenka\nZaginiony świat\nMetamorfoza\n\
+  Słowik\nOdyseja\nPortret Doriana Graya\nKsiężniczka na ziarnku grochu\nKruk\nSzkarłatna\
+  \ litera\nDoktor Jekyll i pan Hyde\nSerce oskarżycielem\nTrzej muszkieterowie\n\
+  Wehikuł czasu\nWojna światów\nCzarnoksiężnik z Oz\nPo drugiej stronie lustra \n\
+  Zniewolony\nDwadzieścia tysięcy mil podmorskiej żeglugi\nWojna i pokój\nKubuś Puchatek\n\
+  Wichrowe Wzgórza\nPan Tadeusz\nW pustyni i w puszczy\nPożegnanie z Afryką\nMistrz\
+  \ i Małgorzata\nSolaris\nRok 1984\nRomeo i Julia\nPrzedwiośnie\nAntygona"
+historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert\
+  \ Einstein\nAleksander Wielki\nAmadeusz Mozart\nAndy Warhol\nAnna Frank\nArystoteles\n\
+  Józef Piłsudski\nBenito Mussolini\nJan Paweł II\nBob Ross\nBracia Grimm\nBudda\n\
+  Karol Wielki\nCharles Darwin\nCharles Dickens\nCharlie Chaplin\nKrzysztof Kolumb\n\
+  Claude Monet\nKleopatra\nDante Alighieri\nWalt Disney\nHenryk Sienkiewicz\nElvis\
+  \ Presley\nErnest Hemingway\nFrank Sinatra\nFranklin D. Roosevelt\nFriedrich Nietzsche\n\
+  Galileo Galilei\nCzyngis-chan\nGeorge Washington\nAdam Mickiewicz\nWisława Szymborska\n\
+  Helen Keller\nHenry Ford\nImmanuel Kant\nIsaac Newton\nAdam Małysz\nJezus\nJoanna\
+  \ d'Arc\nJan Sebastian Bach\nEliza Orzeszkowa\nJohn F. Kennedy\nJohn Lennon\nJuliusz\
+  \ Verne\nJuliusz Cezar\nKról Artur\nMieszko\nLeonardo DaVinci\nKazimierz Wielki\n\
+  Louis Armstrong\nLudwig van Beethoven\nMahatma Gandhi\nLech Wałęsa\nMaria Antonina\n\
+  Maria Curie\nMark Twain\nMartin Luther King Jr.\nTadeusz Mazowiecki\nIgnacy Jan\
+  \ Paderewski\nMichael Jackson\nMichelangelo\nMuhammad\nMuhammad Ali\nNapoleon Bonaparte\n\
+  Neil Armstrong\nNelson Mandela\nMikołaj Kopernik\nNikola Tesla\nMaria Skłodowska‑Curie\n\
+  Zbigniew Religa\nPlaton\nPocahontas\nPitagoras\nCzesław Miłosz\nRichard Nixon\n\
+  Rosa Parks\nSalvador Dalí\nZygmunt Freud\nJan III Sobieski\nSokrates\nStephen Hawking\n\
+  Bolesław Chrobry\nTadeusz Kościuszko\nVincent Van Gogh\nStanisław Moniuszko\nFryderyk\
+  \ Chopin\nWilliam Shakespeare\nBracia Wright\nLudwig Zamenhoff\nAndrzej Gołota\n\
+  Robert Korzeniowski\nRoman Polański\nAndrzej Wajda\nIzabella Scorupco"
+jobs_questions: "księgowy\naktor\nredaktor naczelny\narchitekt\nasystent\nastronauta\n\
+  pisarz\nopiekunka do dzieci\npiekarz\nbaletnica\nfryzjer\nbaseballista\nkoszykarz\n\
+  kierowca autobusu\nlokaj\nkasjer\nprezes zarządu\nkucharz\nklaun\nkomik\nkompozytor\n\
+  konsultant\nkucharz\ndoradca\ntancerz\ndoręczyciel\ndentysta\nprojektant\ndetektyw\n\
+  deweloper\ndietetyk\ndyrektor\nlekarz\nkierowca\nelektryk\ninżynier\nprzedsiębiorca\n\
+  okulista\nrolnik\nprojektant mody\nstewardesa\nflorysta\nstrażak\npiłkarz\nśmieciarz\n\
+  ogrodnik\nlekarz ogólny\ngolfista\ngrafik\nstrażnik\nfryzjer\nwoźny\ndziennikarz\n\
+  prawnik\nbibliotekarz\npokojówka\nmagik\nlistonosz\nwizażysta\nkierownik\nmatematyk\n\
+  mechanik\nminister\nmodelka\nmuzyk\nniania\nneurolog\npielęgniarka\nmalarz\nartysta\
+  \ estradowy\nfarmaceuta\nfizyk\ndramaturg\nhydraulik\npoeta\npolicjant\npolityk\n\
+  ksiądz\nstrażnik więzienny\nprofesor\nprogramista\npsycholog\npośrednik\nrecepcjonista\n\
+  serwisant\nbadacz\nsprzedawca\nnaukowiec\nscenarzysta\npiłkarz\nartysta uliczny\n\
+  kaskader\nchirurg\nkrawiec\ntatuażysta\nnauczyciel\nprzewodnik turystyczny\ntrener\n\
+  tłumacz\nweterynarz\naktor głosowy\nkelner"
+animals_questions: "skowronek\naligator\nmrówka\nantylopa\npawian\nnietoperz\nniedźwiedź\n\
+  pszczoła\nchrząszcz\nptak\nczarna pantera\nczarna wdowa\nkozioł\nrobak\nbyk\nkrólik\n\
+  motyl\nwielbłąd\nkot\ngąsienica\nstonoga\nkameleon\ngepard\nkurczak\nchihuahua\n\
+  szympans\npłaszczka\nkaraluch\npuma\nkrowa\nkojot\nkrab\nświerszcz\nkrokodyl\nkukułka\n\
+  jeleń\ndinozaur\ndodo\npies\ndelfin\nosioł\ngołąb\nważka\nkaczka\nżuk gnojownik\n\
+  orzeł\nwęgorz\nsłoń\nfretka\nmucha ognista\nryba\nlis\nżaba\nmuszka owocowa\ngazela\n\
+  gekon\nżyrafa\nkoza\nzłota rybka\ngęś\nświstak\nniedźwiedź grizzly\nświnka morska\n\
+  chomik\nzając\nhipcio\nhipopotam\nszerszeń\nkoń\nczłowiek\njaguar\nkangur\nbiedronka\n\
+  lampart\nlew\njaszczurka\nlama\nhomar\nssak\nkret\nmałpa\nłoś\nkomar\nćma\nmysz\n\
+  narwal\nośmiornica\norangutan\nstruś\nsowa\nostryga\npantera\npapuga\npaw\npelikan\n\
+  pingwin\nświnia\ngołąb\nniedźwiedź polarny\nkucyk\npuma\nkrólik\nszczur\nkruk\n\
+  renifer\ndrozd\ngryzoń\nkogut\nłosoś\nsardynka\nskorpion\nstrzykwa\nkonik morski\n\
+  żółw morski\nmewa\nfoka\nrekin\nowca\nwąż\npantera śnieżna\npająk\nkałamarnica\n\
+  wiewiórka\nrozgwiazda\nmiecznik\ntyranozaur\ntarantula\ntygrys\nropucha\nżółw\n\
+  tukan\npstrąg\nżółw\nosa\nłasica\nwieloryb\nwilk\ndzięcioł\nrobak\njak\nzebra"
+jobs_name: Zawody
+mythical-creatures_name: Mityczne stwory
+mythical-creatures_questions: "dziadek mróz\nanioł\nWielka Stopa\nKrwawa Mary\ncentaur\n\
+  kupidyn\ndiabeł\nelf\nwróżka\nwróżka chrzestna\nOjciec Czas\ndżin\nduch\nghul\n\
+  gigant\ngnom\ngoblin\nponury żniwiarz\nhydra\nKraken\nleprechaun\npotwór z Loch\
+  \ Ness\nsyrena\ntryton\nogr\npegaz\nfeniks\ndzwoneczek\npiaskowy człowiek\nsatyr\n\
+  potwór morski\nsyrena\nczarodziej\nsfinks\nduch\nzębowa wróżka\ntroll\njednorożec\n\
+  walkiria\nwampir\nczarnoksiężnik\nwilkołak\nczarownica\nczarodziej\nyeti\nzombie"
+idioms_questions: "Gwóźdź do trumny\nJedzie mi tu pociąg?\nJuż po ptakach\nBądź mądry\
+  \ i pisz wiersze\nByć w proszku\nBez dwóch zdań\nCzuć miętę do kogoś\nRzucać grochem\
+  \ o ścianę\nGonić w piętkę\nByć nie w sosie\nChodzić na rzęsach\npiąte koło u wozu\n\
+  ręka rękę myje\nurwanie głowy\nflaki z olejem\nJasne jak słońce\nCo ma piernik do\
+  \ wiatraka?\nNie mój cyrk, nie moje małpy\nNie wywołuj wilka z lasu\nNudne jak flaki\
+  \ z olejem\nBułka z masłem\nNie dziel skóry na niedźwiedziu\nWiercić komuś dziurę w\
+  \ brzuch\nRaz na ruski rok\nPorywać się z motyką na słońce\nNabić kogoś w butelkę\n\
+  Ręce opadają\nByć między młotem, a kowadłem\nGdyby kózka nie skakała, to by nóżki\
+  \ nie złamała.\nKażdy sądzi według siebie.\nBóg pomaga temu, który sam rozwiązuje\
+  \ własne problemy.\nZa dziękuję nic się nie kupuje.\nBaba z wozu, koniom lżej.\n\
+  Jak sobie pościelisz, tak się wyśpisz.\nDziecko, pijany i głupi zawsze prawdę powie.\n\
+  Historia się powtarza.\nCo kraj, to obyczaj.\nSzczęście jest pomiędzy ustami a brzegiem\
+  \ kielicha.\nPotrzeba jest matką wynalazków.\nSwój ciągnie do swojego.\nProsta droga\
+  \ najkrótsza.\nCiekawość to pierwszy stopień do piekła.\nKwiat bez zapachu jest\
+  \ jak człowiek bez duszy.\nJaką miarką mierzysz, taką ci odmierzą.\nZiarnko do ziarnka\
+  \ i zbierze się miarka.\nKto pod kim dołki kopie, ten sam w nie wpada.\nLepszy wróbel\
+  \ w garści niż gołąb na dachu.\nModli się pod figurą, a diabła ma za skórą.\nOkazja\
+  \ na nikogo nie czeka.\nMusi to na Rusi, a w Polsce jak kto chce.\nGdy kota nie\
+  \ ma, myszy harcują.\nBez potrzeby wymówka, gotowe oskarżenie.\nDla chcącego nic\
+  \ trudnego.\nKomu pora, temu czas.\nKto rano wstaje, temu Pan Bóg daje.\nGdzie dwóch\
+  \ się bije, tam trzeci korzysta.\nZ kim się zadajesz, takim się stajesz.\nBez pracy\
+  \ nie ma kołaczy.\nKuj żelazo, póki gorące.\nJak cię widzą, tak cię piszą.\nLepsza\
+  \ rozwaga niż odwaga.\nNie chwal dnia przed zachodem słońca.\nCo nagle, to po diable.\n\
+  Kto nie idzie naprzód, ten się cofa.\nŁatwo przyszło, łatwo poszło.\nDo tanga trzeba\
+  \ dwojga.\nKto się czubi, ten się lubi.\nCo po trzeźwemu myśli, to po pijanemu powie.\n\
+  Kto sieje wiatr, zbiera burzę.\nBogatemu to i diabeł dziecko kołysze.\nOkazja łysa\
+  \ z tyłu, z przodu ją brać trzeba.\nGdzie zgoda, tam i siła.\nRęka rękę myje.\n\
+  Co mnie dziś, tobie jutro.\nKto dwa zające goni, żadnego nie złapie.\nDopóty dzban\
+  \ wodę nosi, dopóki mu się ucho nie urwie.\nW zdrowym ciele zdrowy duch.\nCo ciało\
+  \ lubi, to duszę zgubi.\nPotrzebny jak dziura w moście.\nSukces ma wielu ojców,\
+  \ porażka jest sierotą.\nŁadnemu we wszystkim ładnie.\nWszędzie dobrze, ale w domu\
+  \ najlepiej.\nDobrego i karczma nie zepsuje, a złego i kościół nie naprawi.\nKruk\
+  \ krukowi oka nie wykole.\nGdzie diabeł nie może, tam babę pośle.\nNiedaleko pada\
+  \ jabłko od jabłoni.\nKłamcy dobrej pamięci i dowcipu prędkiego potrzeba."
