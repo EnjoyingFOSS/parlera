@@ -264,7 +264,6 @@ classic-characters_questions: |-
     Huckleberry Finn
     Humpty Dumpty
     Jack and Jill
-    John Carter
     Little Bo-Peep
     Little Red Riding Hood
     Mowgli
@@ -611,7 +610,6 @@ historical-figures_questions: |-
     Ernest Hemingway
     Frank Sinatra
     Franklin D. Roosevelt
-    Friedrich Nietzsche
     Galileo Galilei
     Genghis Khan
     George Washington
@@ -845,7 +843,6 @@ jobs_questions: |-
     neurologist
     nurse
     painter
-    performance artist
     pharmacist
     physicist
     playwright
@@ -893,7 +890,6 @@ mythical-creatures_questions: |-
     Father Time
     genie
     ghost
-    ghoul
     giant
     gnome
     goblin
@@ -926,3 +922,42 @@ mythical-creatures_questions: |-
     wizard
     yeti
     zombie
+folk-melodies_name: Folk melodies
+folk-melodies_questions: |-
+    Take Me Out to the Ball Game
+    Happy Birthday to You
+    For He's a Jolly Good Fellow
+    Ring Around the Rosie
+    Drunken Sailor
+    99 Bottles of Beer
+    Cotton-Eyed Joe
+    Twinkle, Twinkle, Little Star
+    Baa, Baa, Black Sheep
+    Mary Had a Little Lamb
+    Itsy Bitsy Spider
+    Deck the Halls
+    Jingle Bells
+    Silent Night
+    The Twelve Days of Christmas
+    We Wish You a Merry Christmas
+    Ode to Joy
+    Für Elise
+    Here Comes the Bride
+    My Bonnie Lies over the Ocean
+    This Land is Your Land
+    Yankee Doodle
+    Rhapsody In Blue
+    Swing Low, Sweet Chariot
+    O Christmas Tree
+    We Wish You a Merry Christmas
+    O Come All Ye Faithful
+    Joy to the World
+    Go Down Moses (Let My People Go)
+    Ave Maria
+    Amazing Grace
+    Bingo (Was His Name-O)
+    Hush, Little Baby
+    Old MacDonald Had a Farm
+    Frère Jacques
+    London Bridge Is Falling Down
+    Camptown Races
