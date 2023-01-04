@@ -100,5 +100,7 @@
   "tutorialSecondSectionDescriptionPhone": "¿No tienes idea de lo que es? Sólo tienes que inclinar el teléfono hacia arriba para saltar esta palabra.",
   "@tutorialSecondSectionDescriptionPhone": {},
   "tutorialSecondSectionDescriptionDesktop": "¿No tienes idea de lo que es? Toca o haz click sobre el lado rojo de la pantalla o presiona la tecla Arriba para pasar la palabra.",
-  "@tutorialSecondSectionDescriptionDesktop": {}
+  "@tutorialSecondSectionDescriptionDesktop": {},
+  "tutorialThirdSectionHeaderDesktop": "Presiona el lado verde si es correcto",
+  "@tutorialThirdSectionHeaderDesktop": {}
 }
