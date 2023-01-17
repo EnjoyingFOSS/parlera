@@ -94,5 +94,7 @@
   "donate": "Doniraj",
   "@donate": {},
   "txtCategoryTitle": "Naslov kategorije",
-  "@txtCategoryTitle": {}
+  "@txtCategoryTitle": {},
+  "tutorialThirdSectionHeaderDesktop": "Pritisni zelenu stranu ako je tačno",
+  "@tutorialThirdSectionHeaderDesktop": {}
 }
