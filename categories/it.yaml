@@ -47,26 +47,25 @@ historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlber
   Benedict Arnold\nBenito Mussolini\nBilly the Kid\nBob Ross\nFratelli Grimm\nBuddha\n\
   Carlo Magno\nCharles Darwin\nCharles Dickens\nCharlie Chaplin\nCristoforo Colombo\n\
   Claude Monet\nCleopatra\nDante Alighieri\nDr. Seuss\nEdgar Allan Poe\nElvis Presley\n\
-  Ernest Hemingway\nFrank Sinatra\nFranklin D. Roosevelt\nFriedrich Nietzsche\nGalileo\
-  \ Galilei\nGenghis Khan\nGeorge Washington\nH. G. Wells\nHarriet Tubman\nHelen Keller\n\
-  Henry Ford\nImmanuel Kant\nIsaac Newton\nJames Cook\nGesù\nGiovanna d'Arco\nJohann\
-  \ Sebastian Bach\nJohn Adams\nJohn F. Kennedy\nJohn Lennon\nJules Verne\nGiulio\
-  \ Cesare\nRe Artù\nTutankhamon\nLeonardo Da Vinci\nLewis Carroll\nLouis Armstrong\n\
-  Ludwig van Beethoven\nMahatma Gandhi\nMalcolm X\nMaria Antonietta\nMarie Curie\n\
-  Mark Twain\nMartin Luther King Jr.\nMary Shelley\nMaria Stuarda, Regina di Scozia\n\
-  Michael Jackson\nMichelangelo\nMaometto\nMuhammad Ali\nNapoleone Bonaparte\nNeil\
-  \ Armstrong\nNelson Mandela\nNiccolò Copernico\nNikola Tesla\nOscar Wilde\nOtto\
-  \ von Bismarck\nPlatone\nPocahontas\nPitagora\nRené Descartes\nRichard Nixon\nRosa\
-  \ Parks\nSalvador Dalí\nSigmund Freud\nToro Seduto\nSocrate\nStephen Hawking\nSusan\
-  \ B. Anthony\nTy Cobb\nVincent Van Gogh\nVladimir Lenin\nVoltaire\nWilliam Shakespeare\n\
-  Fratelli Wright"
+  Ernest Hemingway\nFrank Sinatra\nFranklin D. Roosevelt\nGalileo Galilei\nGenghis\
+  \ Khan\nGeorge Washington\nH. G. Wells\nHarriet Tubman\nHelen Keller\nHenry Ford\n\
+  Immanuel Kant\nIsaac Newton\nJames Cook\nGesù\nGiovanna d'Arco\nJohann Sebastian\
+  \ Bach\nJohn Adams\nJohn F. Kennedy\nJohn Lennon\nJules Verne\nGiulio Cesare\nRe\
+  \ Artù\nTutankhamon\nLeonardo Da Vinci\nLewis Carroll\nLouis Armstrong\nLudwig van\
+  \ Beethoven\nMahatma Gandhi\nMalcolm X\nMaria Antonietta\nMarie Curie\nMark Twain\n\
+  Martin Luther King Jr.\nMary Shelley\nMaria Stuarda, Regina di Scozia\nMichael Jackson\n\
+  Michelangelo\nMaometto\nMuhammad Ali\nNapoleone Bonaparte\nNeil Armstrong\nNelson\
+  \ Mandela\nNiccolò Copernico\nNikola Tesla\nOscar Wilde\nOtto von Bismarck\nPlatone\n\
+  Pocahontas\nPitagora\nRené Descartes\nRichard Nixon\nRosa Parks\nSalvador Dalí\n\
+  Sigmund Freud\nToro Seduto\nSocrate\nStephen Hawking\nSusan B. Anthony\nTy Cobb\n\
+  Vincent Van Gogh\nVladimir Lenin\nVoltaire\nWilliam Shakespeare\nFratelli Wright"
 idioms_name: Modi di dire
 jobs_name: Mestieri
 mythical-creatures_name: Creature mitiche
 mythical-creatures_questions: "abominevole uomo delle nevi\nangelo\nBigfoot\nBloody\
   \ Mary\ncentauro\nCupido\ndiavolo\nelfo\nFata\nFata Madrina\nPadre Tempo\ngenio\n\
-  fantasma\nghoul\ngigante\ngnomo\nfolletto\nTriste Mietitore\nidra\nKraken\nfolletto\n\
-  Mostro di Loch Ness\nsirena\ntritone\norco\npegaso\nFenice\nfolletto\nuomo di sabbia\n\
+  fantasma\ngigante\ngnomo\nfolletto\nTriste Mietitore\nidra\nKraken\nfolletto\nMostro\
+  \ di Loch Ness\nsirena\ntritone\norco\npegaso\nFenice\nfolletto\nuomo di sabbia\n\
   sasquatch\nmostro marino\nsirena\nstregone\nsfinge\nspirito\nfatina dei denti\n\
   troll\nunicorno\nvalchiria\nvampiro\nstregone\nlupo mannaro\nstrega\nstregone\n\
   yeti\nzombie"
@@ -86,12 +85,12 @@ abstract_questions: "azione\naspetto\naspirazione\nateismo\nautonomia\nbellezza\
 classic-characters_questions: "Aladino\nAlice (da Alice nel paese delle meraviglie)\n\
   Bambi\nGrande Lupo Cattivo\nCapitan Uncino\nChristopher Robin\nCenerentola\nLeone\
   \ codardo\nD'Artagnan\nDorotea\nDracula\nDott. Watson\nEbenezer Scrooge\nEhiore\n\
-  Frankenstein\nGretel\nHansel\nHuckleberry Finn\nHumpty Dumpty\nJack e Jill\nJohn\
-  \ Carter\nPiccolo Bo Peep\nCappuccetto Rosso\nMowgli\nPeter Pan\nPeter Piper\nMaialino\n\
-  Pinocchio\nPrincipe Azzurro\nRapunzel\nRegina Rossa\nRobinson Crusoe\nTremotino\n\
-  Spaventapasseri\nSherlock Holmes\nSindbad il marinaio\nLa bella addormentata\nBiancaneve\n\
-  Tarzan\nIl gatto del Cheshire\nIl principe ranocchio\nIl fantasma del Natale passato\n\
-  L'Omino di Pan di Zenzero\nIl gobbo di Notre Dame\nIl Ragno Itsy Bitsy\nLa Sirenetta\n\
+  Frankenstein\nGretel\nHansel\nHuckleberry Finn\nHumpty Dumpty\nJack e Jill\nPiccolo\
+  \ Bo Peep\nCappuccetto Rosso\nMowgli\nPeter Pan\nPeter Piper\nMaialino\nPinocchio\n\
+  Principe Azzurro\nRapunzel\nRegina Rossa\nRobinson Crusoe\nTremotino\nSpaventapasseri\n\
+  Sherlock Holmes\nSindbad il marinaio\nLa bella addormentata\nBiancaneve\nTarzan\n\
+  Il gatto del Cheshire\nIl principe ranocchio\nIl fantasma del Natale passato\nL'Omino\
+  \ di Pan di Zenzero\nIl gobbo di Notre Dame\nIl Ragno Itsy Bitsy\nLa Sirenetta\n\
   Il Cappellaio Matto\nL'uomo dei muffin\nLa Regina di Cuori\nI sette nani\nLa regina\
   \ della neve\nI tre topi ciechi\nI tre porcellini\nI tre moschettieri\nIl brutto\
   \ anatroccolo\nTigro\nBoscaiolo di latta\nCampanellino\nTom Sawyer\nTweedledum e\
@@ -169,9 +168,20 @@ jobs_questions: "contabile\nattore\nconduttore\narchitetto\nassistente\nastronau
   medico generico\ngiocatore di golf\ngrafico\nguardia\nparrucchiere\naddetto alle\
   \ pulizie\ngiornalista\navvocato\nbibliotecario\ndomestica\nmago\npostino\ntruccatore\n\
   gestore\nmatematico\nmeccanico\nministro\nmodello\nmusicista\nbambinaia\nneurologo\n\
-  infermiere\npittore\nartista performativo\nfarmacista\nfisico\ndrammaturgo\nidraulico\n\
-  poeta\npoliziotto\npolitico\nsacerdote\nguardia carceraria\nprofessore\nprogrammatore\n\
-  psicologo\nagente immobiliare\naddetto alla reception\nriparatore\nricercatore\n\
-  venditore\nscienziato\nsceneggiatore\ncalciatore\nartista di strada\ncontrofigura\n\
-  chirurgo\nsarto\ntatuatore\ninsegnante\nguida turistica\nallenatore\ntraduttore\n\
-  veterinario\ndoppiatore\ncameriere"
+  infermiere\npittore\nfarmacista\nfisico\ndrammaturgo\nidraulico\npoeta\npoliziotto\n\
+  politico\nsacerdote\nguardia carceraria\nprofessore\nprogrammatore\npsicologo\n\
+  agente immobiliare\naddetto alla reception\nriparatore\nricercatore\nvenditore\n\
+  scienziato\nsceneggiatore\ncalciatore\nartista di strada\ncontrofigura\nchirurgo\n\
+  sarto\ntatuatore\ninsegnante\nguida turistica\nallenatore\ntraduttore\nveterinario\n\
+  doppiatore\ncameriere"
+folk-melodies_questions: "Tarantella\nTanti auguri a te\nPerché è un bravo ragazzo\n\
+  Giro girotondo\nCiuri ciuri\nTanto pe’ cantà\nFunicolì funicolà\nBrilla, brilla\
+  \ la stellina\nRomagna mia\nO mia bela Madunina\nMary aveva un agnellino\nAmbarabà\
+  \ ciccì coccò\nJingle Bells\nAstro del ciel\nI dodici giorni del Natale\nAuguri\
+  \ di buon Natale\nInno alla gioia\nPer Elisa\nCoro nuziale\nIl pompiere paura non\
+  \ ne ha\nOh che bel castello\n44 gatti\nRapsodia in blu\nNella vecchia fattoria\n\
+  O albero di natale\nLe tagliatelle di Nonna Pina\nLa Peppina fa il caffé\nLa Befana\
+  \ vien di notte\nIl coccodrillo come fa?\nAve Maria\nI due liocorni\nCi vuole un\
+  \ fiore\nNinna nanna ninna oh\nTrenta giorni ha novembre\nBella ciao\n'O sole mio\n\
+  'O surdato 'nnammurato"
+folk-melodies_name: Melodie popolari
