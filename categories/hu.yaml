@@ -2,27 +2,29 @@ classic-characters_name: Klasszikus figurák
 classic-literature_name: Klasszikus irodalmi művek
 food-and-drink_name: Étel és Ital
 food-and-drink_questions: "mandula\nelőétel\nalma\nalmalé\nsárgabarack\navokádó\n\
-  bacon\nbagel\nbanán\nbarbecue\ntészta\nbab\nmarhahús\npaprika\nszeder\náfonya\n\
-  brazil dió\nkenyér\nreggeli\nbrie\nbrokkoli\nhúsleves\nsütemény\nburger\nburrito\n\
-  vaj\ntorta\nrépa\nkesudió\nkarfiol\nzeller\nsajt\nsajtburger\ncseresznye\nrágógumi\n\
-  csirke\ncsicseriborsó\ncsili paprika\ncsokoládé\ncsokoládé csipsz\nkókusz\nkókusztej\n\
-  kávé\nsüti\nkukorica\ntúró\náfonya\nkrém\ncroissant\nuborka\nmuffin\ncurry\ntejtermék\n\
-  desszert\nvacsora\nfánk\ntészta\nöntet\nital\ntojás\ntojáslikőr\npadlizsán\nbodza\n\
-  energiaital\nfalafel\nhal\nhalfilé\nhalrudacska\nliszt\nsült krumpli\nfagyasztott\
-  \ joghurt\ngyümölcs\nfokhagyma\nmézeskalács\nmáz\ngouda\ngabona\nszőlő\ngrapefruit\n\
-  zöldbab\nsonka\nhamburger\nmogyoró\ngyógynövény\nméz\nfagylalt\nfagylaltos szendvics\n\
-  gyümölcslé\nkelkáposzta\nkebab\nketchup\nvesebab\nkimcsi\nkiwi\ncitrom\nlimonádé\n\
-  lencse\nsaláta\nlime\nebéd\nmangó\njuharszirup\nétel\nhús\ntej\nturmix\násványvíz\n\
-  menta\nmuffin\ngomba\nmustár\ndió\nzab\nzabpehely\nolaj\nolívaolaj\nhagyma\nhagymakarika\n\
-  narancs\nnarancslé\nosztriga\npalacsinta\ntészta\nbarack\nmogyoró\nkörte\npaprika\n\
-  pepperoni\nsavanyúság\npite\nfenyőmag\nananász\npisztácia\npizza\nszilva\ngránátalma\n\
-  pattogatott kukorica\nsertéshús\nzabkása\nburgonya\nburgonya csipsz\nburgonya szelet\n\
-  perec\nsütőtök\nquesadilla\nmazsola\nmálna\nvörös lencse\nrizs\ntekercs\nsaláta\n\
-  szalámi\nlazac\nsó\nszendvics\nszardínia\nszósz\nsavanyú káposzta\nkolbász\ntenger\
-  \ gyümölcsei\nsörbet\noldalas\nturmix\nszóda\nsorbet\nleves\nszójaszósz\nspagetti\n\
-  fűszer\nszórás\ntök\nelőétel\nsteak\neper\nsub\nsushi\nszirup\ntaco\ntea\npirítós\n\
-  tofu\nparadicsom\ntortilla\ntonhal\nzöldség\ngofri\ndió\nvíz\ngörögdinnye\nsavó\n\
-  tejszínhab\njoghurt\ncukkini"
+  bacon\nbagel (kerek sütemény)\nbanán\nbarbecue\ntészta\nbab\nmarhahús\npaprika\n\
+  szeder\náfonya\nbrazil dió\nkenyér\nreggeli\nbrie (sajt)\nbrokkoli\nhúsleves\nsütemény\n\
+  hamburger\nburrito\nvaj\ntorta\nrépa\nkesudió\nkarfiol\nzeller\nsajt\nsajtburger\n\
+  cseresznye\nrágógumi\ncsirke\ncsicseriborsó\ncsili paprika\ncsokoládé\ncsokoládé\
+  \ csipsz\nkókusz\nkókusztej\nkávé\nsüti\nkukorica\ntúró\náfonya\nkrém\ncroissant\n\
+  uborka\nmuffin\ncurry\ntejtermék\ndesszert\nvacsora\nfánk\ntészta\nöntet\nital\n\
+  tojás\ntojáslikőr\npadlizsán\nbodza\nenergiaital\nfalafel\nhal\nhalfilé\nhalrudacska\n\
+  liszt\nsült krumpli\nfagyasztott joghurt\ngyümölcs\nfokhagyma\nmézeskalács\nmáz\n\
+  gouda\ngabona\nszőlő\nvérnarancs\nzöldbab\nsonka\nhamburger\nmogyoró\ngyógynövény\n\
+  méz\nfagylalt\nfagylaltos szendvics\ngyümölcslé\nkelkáposzta\nkebab\nketchup\nvesebab\n\
+  kimcsi (Koreai csípős töltött káposzta)\nkiwi\ncitrom\nlimonádé\nlencse\nsaláta\n\
+  lime\nebéd\nmangó\njuharszirup\nétel\nhús\ntej\nturmix\násványvíz\nmenta\nmuffin\n\
+  gomba\nmustár\ndió\nzab\nzabpehely\nolaj\nolívaolaj\nhagyma\nhagymakarika\nnarancs\n\
+  narancslé\nosztriga\npalacsinta\ntészta\nbarack\nmogyoró\nkörte\npaprika\npepperoni\
+  \ (fűszeres olasz kolbász)\nsavanyúság\npite\nfenyőmag\nananász\npisztácia\npizza\n\
+  szilva\ngránátalma\npattogatott kukorica\nsertéshús\nzabkása\nburgonya\nburgonya\
+  \ csipsz\nburgonya szelet\nperec\nsütőtök\nquesadilla (töltött palacsinta felvágva\
+  \ háromszögre)\nmazsola\nmálna\nvörös lencse\nrizs\ntekercs\nsaláta\nszalámi\nlazac\n\
+  só\nszendvics\nszardínia\nszósz\nsavanyú káposzta\nkolbász\ntenger gyümölcsei\n\
+  sörbet\noldalas\nturmix\nszóda\nsörbet\nleves\nszójaszósz\nspagetti\nfűszer\nszórás\n\
+  tök\nelőétel\nsteak\neper\nsub (jó nagy szendvics)\nszusi\nszirup\ntacco (mexikói\
+  \ töltött lepényke)\ntea\npirítós\ntofu\nparadicsom\ntortilla\ntonhal\nzöldség\n\
+  gofri\ndió\nvíz\ngörögdinnye\nsavó\ntejszínhab\njoghurt\ncukkini"
 historical-figures_name: Történelmi személyek
 jobs_name: Munkák
 jobs_questions: "könyvelő\nszínész\nműsorvezető\népítész\nasszisztens\nűrhajós\nszerző\n\
@@ -43,9 +45,9 @@ mythical-creatures_name: Mitikus lények
 mythical-creatures_questions: "utálatos hóember\nangyal\nNagy láb\nBloody Mary\nkentaur\n\
   Ámor\nördög\nmanó\ntündér\ntündér keresztanya\nApa idő\ndzsinn\nszellem\nghoul\n\
   óriás\ngnóm\ngoblin\nKaszás\nhydra\nKraken\nkobold\nLoch Ness-i szörny\nsellő\n\
-  hableány\nogre\npegazus\nfőnix\ntündér\nhomokember\njeti\ntengeri szörny\nszirén\n\
-  varázsló\nszfinx\nszellem\nfogtündér\ntroll\negyszarvú\nvalkűr\nvámpír\nwarlock\n\
-  vérfarkas\nboszorkány\nvarázsló\nyeti\nzombi"
+  hableány\nogre\nunikornis\nfőnix\ntündér\nhomokember\njeti\ntengeri szörny\nszirén\n\
+  varázsló\nszfinx\nszellem\nfogtündér\ntroll\negyszarvú\nvalkűr\nvámpír\nboszorkánymester\n\
+  vérfarkas\nboszorkány\nvarázsló\njeti\nzombi"
 idioms_name: Idiómák
 abstract_name: Elvont
 animals_name: Állatok
@@ -73,7 +75,7 @@ animals_questions: "földi cápa\naligátor\nhangya\nantilop\npávián\ndenevér
   leopárd\noroszlán\ngyík\nláma\nhomár\nemlős\nvakond\nmajom\njávorszarvas\nszúnyog\n\
   moly\negér\nnarvál\npolip\norangután\nstrucc\nbagoly\nosztriga\npárduc\npapagáj\n\
   páva\npelikán\npingvin\nmalac\ngalamb\njegesmedve\npóni\npuma\nnyúl\npatkány\nholló\n\
-  rénszarvas\nroadrunner\nrágcsáló\nkakas\nlazac\nszardínia\nskorpió\ntengeri uborka\n\
+  rénszarvas\ngyalogkakukk\nrágcsáló\nkakas\nlazac\nszardínia\nskorpió\ntengeri uborka\n\
   tengeri ló\ntengeri teknős\nsirály\nfóka\ncápa\njuh\nkígyó\nhópárduc\npók\ntintahal\n\
   mókus\ntengeri csillag\nkardhal\nT. rex\ntarantula\ntigris\nvarangy\nteknősbéka\n\
   tukán\npisztráng\nteknős\ndarázs\nmenyét\nbálna\nfarkas\nharkály\nféreg\njak\nzebra"
@@ -151,3 +153,15 @@ idioms_questions: "egy híd túl messze van\negy tízcentes egy tucat\nSúlyosb�
   \ a szobában\nAz utolsó csepp a pohárban\naz egész kilenc méter\nhogy rövidre zárjam\
   \ a történetet\na legjobb\nszemet hunyni\namikor a kényszerhelyzet elérkezik\nvadliba\
   \ hajsza\nszájról szájra\nMegéri a sót\nMondhatod ezt újra."
+folk-melodies_questions: "Take Me Out to the Ball Game\nHappy Birthday to You\nFor\
+  \ He's a Jolly Good Fellow\nRing Around the Rosie\nDrunken Sailor\n99 Bottles of\
+  \ Beer\nCotton-Eyed Joe\nTwinkle, Twinkle, Little Star\nBaa, Baa, Black Sheep\n\
+  Mary Had a Little Lamb\nItsy Bitsy Spider\nDeck the Halls\nJingle Bells\nSilent\
+  \ Night\nThe Twelve Days of Christmas\nWe Wish You a Merry Christmas\nOde to Joy\n\
+  Für Elise\nHere Comes the Bride\nMy Bonnie Lies over the Ocean\nThis Land is Your\
+  \ Land\nYankee Doodle\nRhapsody In Blue\nSwing Low, Sweet Chariot\nO Christmas Tree\n\
+  We Wish You a Merry Christmas\nO Come All Ye Faithful\nJoy to the World\nGo Down\
+  \ Moses (Let My People Go)\nAve Maria\nAmazing Grace\nBingo (Was His Name-O)\nHush,\
+  \ Little Baby\nOld MacDonald Had a Farm\nFrère Jacques\nLondon Bridge Is Falling\
+  \ Down\nCamptown Races"
+folk-melodies_name: Népi dallamok
