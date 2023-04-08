@@ -36,7 +36,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:parlera/helpers/emoji.dart';
+import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/theme.dart';
+import 'package:parlera/models/category.dart';
 import 'package:parlera/models/question.dart';
 import 'game_button.dart';
 
@@ -52,7 +56,7 @@ class GameContent extends StatelessWidget {
   final void Function() handleValid;
   final void Function() handleInvalid;
   final Question currentQuestion;
-  final String categoryName;
+  final Category category;
   final String secondsLeft;
 
   const GameContent(
@@ -61,11 +65,12 @@ class GameContent extends StatelessWidget {
       required this.handleInvalid,
       required this.currentQuestion,
       required this.secondsLeft,
-      required this.categoryName})
+      required this.category})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final safeAreaTop = MediaQuery.of(context).padding.top;
     return Shortcuts(
         //todo use CallbackShortcuts instead
         shortcuts: {
@@ -88,13 +93,13 @@ class GameContent extends StatelessWidget {
                     Row(
                       children: [
                         GameButton(
-                          color: ThemeHelper.failColorDarker,
+                          color: ThemeHelper.failColorDarkest,
                           onTap: handleInvalid,
                           emojiIcon: Icons.sentiment_dissatisfied_rounded,
                           arrowIcon: Icons.arrow_upward,
                         ),
                         GameButton(
-                          color: ThemeHelper.successColorDarker,
+                          color: ThemeHelper.successColorDarkest,
                           onTap: handleValid,
                           emojiIcon: Icons.sentiment_satisfied_alt_rounded,
                           arrowIcon: Icons.arrow_downward,
@@ -106,17 +111,44 @@ class GameContent extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 16.0),
-                            child: SafeArea(
-                              child: Text(
-                                categoryName,
-                                style: const TextStyle(
-                                  fontSize: 24.0,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                              padding: EdgeInsets.only(top: safeAreaTop + 24),
+                              child:
+                                  Stack(fit: StackFit.passthrough, children: [
+                                Positioned(
+                                    top: 6,
+                                    bottom: 6,
+                                    left: 12,
+                                    right: 0,
+                                    child: Container(
+                                      decoration: ShapeDecoration(
+                                        shape: const StadiumBorder(),
+                                        color: category.bgColor,
+                                      ),
+                                    )),
+                                Row(mainAxisSize: MainAxisSize.min, children: [
+                                  Hero(
+                                      tag: HeroHelper.categoryImage(category),
+                                      child: Image(
+                                        image: Svg(EmojiHelper.getImagePath(
+                                            category.emoji)),
+                                        width: 48,
+                                        height: 48,
+                                      )),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    category.name,
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 12,
+                                  ),
+                                ])
+                              ])),
                           Expanded(
                             child: Center(
                                 child: Padding(
@@ -148,7 +180,7 @@ class GameContent extends StatelessWidget {
                     ),
                     Positioned.directional(
                         textDirection: Directionality.of(context),
-                        top: MediaQuery.of(context).padding.top + 8,
+                        top: safeAreaTop + 24,
                         start: 8,
                         child: const BackButton()),
                   ],
