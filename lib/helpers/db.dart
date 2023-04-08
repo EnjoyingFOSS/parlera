@@ -35,7 +35,7 @@ import '../models/language.dart';
 
 class DBHelper {
   static const _dbFile = "parlera.db";
-  static const _dbVersion = 1;
+  static const _dbVersion = 2;
 
   static const _bundledSignifier = "_bundled";
   static const _customSignifier = "_custom";

@@ -40,6 +40,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+import 'package:l10n_esperanto/l10n_esperanto.dart';
 import 'package:parlera/screens/category_detail/category_detail.dart';
 // import 'package:parlera/screens/game_gallery/game_gallery.dart'; // TODO CAMERA: Make it work and work well
 import 'package:parlera/screens/game_play/game_play.dart';
@@ -170,6 +172,9 @@ class ParleraApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
+          MaterialLocalizationsEo.delegate,
+          CupertinoLocalizationsEo.delegate,
+          LocaleNamesLocalizationsDelegate()
         ],
         supportedLocales: ParleraLanguage.values.map((lang) => lang.toLocale()),
         theme: ThemeHelper.darkTheme,

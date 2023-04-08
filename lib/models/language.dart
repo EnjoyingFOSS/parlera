@@ -19,15 +19,23 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 
 enum ParleraLanguage {
   en("en"),
+  bg("bg"),
   cs("cs"),
   de("de"),
+  eo("eo"),
+  es("es"),
   fr("fr"),
+  hu("hu"),
   it("it"),
-  tr("tr");
+  pl("pl"),
+  ru("ru"),
+  tr("tr"),
+  uk("uk"),
+  zh("zh");
 
   static const defaultLang = en;
   final String langCode;
@@ -38,16 +46,32 @@ enum ParleraLanguage {
     switch (langCode) {
       case "en":
         return en;
+      case "bg":
+        return bg;
       case "cs":
         return cs;
       case "de":
         return de;
+      case "eo":
+        return eo;
+      case "es":
+        return es;
       case "fr":
         return fr;
+      case "hu":
+        return hu;
       case "it":
         return it;
+      case "pl":
+        return pl;
+      case "ru":
+        return ru;
       case "tr":
         return tr;
+      case "uk":
+        return uk;
+      case "zh":
+        return zh;
       default:
         throw ArgumentError();
     }
@@ -59,39 +83,36 @@ enum ParleraLanguage {
     switch (this) {
       case en:
         return "Random";
+      case bg:
+        return "Случайна";
       case cs:
         return "Náhodné";
       case de:
         return "Zufällig";
+      case es:
+        return "Aleatorio";
+      case eo:
+        return "Hazarde";
       case fr:
         return "Aléatoire";
+      case hu:
+        return "Random";
       case it:
         return "Casuale";
+      case pl:
+        return "Losowa";
+      case ru:
+        return "Случайно";
       case tr:
         return "Rastgele";
-      //     case id: return "Acak";
-      // case nb: return "Tilfeldig";
-      // case pl: return "Losowa";
-      // case zh: return "随机";
+      case uk:
+        return "Випадково";
+      case zh:
+        return "随机";
     }
     throw ArgumentError();
   }
 
-  String getLanguageName(BuildContext context) {
-    switch (this) {
-      case en:
-        return AppLocalizations.of(context).languageEnglish;
-      case cs:
-        return AppLocalizations.of(context).languageCzech;
-      case de:
-        return AppLocalizations.of(context).languageGerman;
-      case fr:
-        return AppLocalizations.of(context).languageFrench;
-      case it:
-        return AppLocalizations.of(context).languageItalian;
-      case tr:
-        return AppLocalizations.of(context).languageTurkish;
-    }
-    throw ArgumentError();
-  }
+  String getLanguageName(BuildContext context) =>
+      LocaleNames.of(context)!.nameOf(langCode) ?? langCode;
 }

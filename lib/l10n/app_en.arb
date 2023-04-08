@@ -74,17 +74,5 @@
   "txtSwitchLanguageInSettings": "To use a different language, switch to it in Settings.",
   "emptyCategoryQuestions": "This category doesn't contain any words to guess :(",
   "languageSystem": "Default (requires restart)",
-  "languageEnglish": "English",
-  "languageCzech": "Czech",
-  "languageFrench": "French",
-  "languageGerman": "German",
-  "languageHungarian": "Hungarian",
-  "languageIndonesian": "Indonesian",
-  "languageItalian": "Italian",
-  "languageNorwegianBokmal": "Norwegian Bokmål",
-  "languagePolish": "Polish",
-  "languageRussian": "Russian",
-  "languageTurkish": "Turkish",
-  "languageChineseSimplified": "Chinese (simplified)",
   "languagesVaryNotice": "Categories and words vary across languages."
 }

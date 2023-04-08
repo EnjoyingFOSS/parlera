@@ -7,11 +7,20 @@
 	<key>CFBundleLocalizations</key>
 		<array>
 			<string>en</string>
+			<string>bg</string>
 			<string>cs</string>
 			<string>de</string>
+			<string>eo</string>
+			<string>es</string>
 			<string>fr</string>
+			<string>hu</string>
+			<string>id</string>
 			<string>it</string>
+			<string>pl</string>
+			<string>ru</string>
 			<string>tr</string>
+			<string>uk</string>
+			<string>zh</string>
 		</array>
 	<key>CFBundleDisplayName</key>
 	<string>Parlera</string>

@@ -37,6 +37,11 @@ dependencies:
   file_picker: ^5.2.7
   path: ^1.8.2
   xdg_directories: ^1.0.0
+  flutter_localized_locales: ^2.0.4
+  l10n_esperanto: #TODO replace with pubdev version once PR is accepted
+    git:
+      url: https://github.com/12people/l10n_esperanto
+      ref: master
 
   # TODO CAMERA: Make it work and work well
   # camera: ^0.9.4
