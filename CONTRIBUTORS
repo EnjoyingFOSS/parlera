@@ -3,6 +3,12 @@
 ## English - ui and category strings
 - Miroslav Mazel
 
+## Arabic - ui strings
+- H
+
+## Bulgarian - ui and category strings
+- мачко
+
 ## Chinese (simplified) - ui and category strings
 - poi
 
@@ -23,6 +29,9 @@
 - mondstern
 - J. Lavoie
 - tysino
+
+## Hungarian - ui strings
+- Mári Martin
 
 ## Hungarian - category strings
 - Viktória Nagy
@@ -46,9 +55,31 @@
 
 ## Polish - ui and category strings
 - N S
+- Michał Nowak
+
+## Portuguese - ui and category strings
+- Rodrigo
+
+## Punjabi - ui and category strings
+- عثمان
+
+## Russian - ui strings
+- Xelizyz
 
 ## Russian - category strings
 - tosha
+- Xelizyz
+
+## Serbian - ui and category strings
+- Mirsen Kahrovic
+
+## Spanish - ui strings
+- Renzo
+- "-" (andre.24)
+- Neftali Dominguez
+
+## Spanish - category strings
+- Renzo
 
 ## Turkish - ui strings
 - d3idt calavera
@@ -56,3 +87,6 @@
 
 ## Turkish - category strings
 - Oğuz Ersen
+
+## Ukranian - ui and category strings
+- Skrripy
