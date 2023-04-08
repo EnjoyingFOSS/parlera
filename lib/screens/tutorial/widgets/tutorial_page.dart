@@ -63,12 +63,12 @@ class TutorialPage extends StatelessWidget {
                       Text(
                         title,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headline4,
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       const SizedBox(height: 16),
                       Text(description,
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.subtitle1)
+                          style: Theme.of(context).textTheme.titleMedium)
                     ]))
               ],
             )
@@ -84,12 +84,12 @@ class TutorialPage extends StatelessWidget {
                 Text(
                   title,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 16),
                 Text(description,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.subtitle1)
+                    style: Theme.of(context).textTheme.titleMedium)
               ],
             ),
     );

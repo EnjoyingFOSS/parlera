@@ -33,7 +33,7 @@ class EmptyCategory extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Text(
                 AppLocalizations.of(context).emptyCategoryQuestions,
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ))),
     );

@@ -70,7 +70,7 @@ class AnswerItem extends StatelessWidget {
             Flexible(
                 child: Text(
               question.name,
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             )),
           ],
         ));
