@@ -116,7 +116,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     }
 
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
     ]);
 
     _initAnimations();
@@ -328,7 +328,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
                           handleValid: _handleValid,
                           handleInvalid: _handleInvalid,
                           currentQuestion: currentQuestion,
-                          categoryName: model.currentCategory?.name ?? "",
+                          category: model.currentCategory!,
                           secondsLeft: _secondsLeft.toString());
                     } else {
                       return const SizedBox();
