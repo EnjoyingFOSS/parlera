@@ -20,7 +20,6 @@
 
 import 'dart:convert';
 import 'dart:io';
-import 'package:cross_file/cross_file.dart';
 import 'package:path/path.dart' show join;
 
 import 'package:path_provider/path_provider.dart';

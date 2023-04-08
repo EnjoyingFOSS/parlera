@@ -76,7 +76,6 @@ class GameSummaryScreen extends StatelessWidget {
       return ScopedModelDescendant<QuestionModel>(
         builder: (context, _, model) {
           final category = categoryModel.currentCategory!;
-          final imageProvider = Svg(EmojiHelper.getImagePath(category.emoji));
           return Scaffold(
               backgroundColor: Theme.of(context).colorScheme.surface,
               body: SingleChildScrollView(
@@ -118,7 +117,8 @@ class GameSummaryScreen extends StatelessWidget {
                         child: Hero(
                             tag: HeroHelper.categoryImage(category),
                             child: Image(
-                              image: imageProvider,
+                              image:
+                                  Svg(EmojiHelper.getImagePath(category.emoji)),
                               width: 120,
                               height: 120,
                             )))
@@ -131,7 +131,7 @@ class GameSummaryScreen extends StatelessWidget {
                             model.questionsPassed.length,
                             model.currentQuestions.length),
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headline4,
+                        style: Theme.of(context).textTheme.headlineMedium,
                       )),
                   AnswerGrid(
                     questionsAnswered: model.questionsAnswered,
