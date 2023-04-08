@@ -39,71 +39,102 @@ class ThemeHelper {
   static const failColorLighter = Color(0xFFE33E46);
   static const successColorDarker = Color(0xFF607B60);
   static const failColorDarker = Color(0xFFC0393E);
+  static const successColorDarkest = Color(0xFF49523F);
+  static const failColorDarkest = Color(0xFF7A312E);
 
   static final ThemeData darkTheme = _getThemeFromScheme(_darkColors);
 
-  static ThemeData _getThemeFromScheme(ColorScheme colors) {
+  static ThemeData _getThemeFromScheme(ColorScheme colorScheme) {
     return ThemeData(
-        useMaterial3: false,
-        colorScheme: colors,
-        visualDensity: VisualDensity.comfortable,
-        backgroundColor: colors.background,
-        brightness: colors.brightness,
-        primaryColor: colors.primary,
-        scaffoldBackgroundColor: colors.background,
-        cardColor: colors.surface,
-        errorColor: colors.error,
-        dialogBackgroundColor: colors.surface,
-        dialogTheme: DialogTheme(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-        toggleableActiveColor: colors.primary,
-        fontFamily: _fontFamily,
-        inputDecorationTheme: const InputDecorationTheme(
-          border: InputBorder.none,
-          filled: true,
-        ),
-        navigationRailTheme: NavigationRailThemeData(
-            useIndicator: false,
-            backgroundColor: colors.secondary,
-            unselectedIconTheme: IconThemeData(
-                color: colors.onSecondary
-                    .withAlpha(90)), //todo use with material 3, opacity: 0.35),
-            selectedIconTheme: IconThemeData(color: colors.primary)),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(100))),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            unselectedItemColor: colors.onSecondary.withAlpha(90),
-            backgroundColor: colors.secondary,
-            selectedItemColor: colors.primary),
-        bottomSheetTheme: BottomSheetThemeData(backgroundColor: colors.surface),
-        snackBarTheme: SnackBarThemeData(
-          actionTextColor: colors.onSecondary,
-          backgroundColor: colors.secondary,
-        ),
-        buttonTheme: ButtonThemeData(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(100),
-            ),
-            height: 48),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(20),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
-                ))),
-        textTheme: TextTheme(headline4: TextStyle(color: colors.onBackground)),
-        canvasColor: colors.surface,
-        appBarTheme: AppBarTheme(
-            color: colors.background,
-            iconTheme: IconThemeData(color: colors.onBackground),
-            titleTextStyle: TextStyle(
-                fontFamily: _fontFamily,
-                fontSize: 32,
-                fontWeight: FontWeight.w900,
-                color: colors.onBackground),
-            centerTitle: false,
-            elevation: 0));
+      useMaterial3: false,
+      colorScheme: colorScheme,
+      visualDensity: VisualDensity.comfortable,
+      backgroundColor: colorScheme.background,
+      brightness: colorScheme.brightness,
+      primaryColor: colorScheme.primary,
+      scaffoldBackgroundColor: colorScheme.background,
+      cardColor: colorScheme.surface,
+      errorColor: colorScheme.error,
+      dialogBackgroundColor: colorScheme.surface,
+      dialogTheme: DialogTheme(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+      toggleableActiveColor: colorScheme.primary,
+      fontFamily: _fontFamily,
+      inputDecorationTheme: const InputDecorationTheme(
+        border: InputBorder.none,
+        filled: true,
+      ),
+      navigationRailTheme: NavigationRailThemeData(
+          useIndicator: false,
+          backgroundColor: colorScheme.secondary,
+          unselectedIconTheme: IconThemeData(
+              color: colorScheme.onSecondary
+                  .withAlpha(90)), //todo use with material 3, opacity: 0.35),
+          selectedIconTheme: IconThemeData(color: colorScheme.primary)),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          unselectedItemColor: colorScheme.onSecondary.withAlpha(90),
+          backgroundColor: colorScheme.secondary,
+          selectedItemColor: colorScheme.primary),
+      bottomSheetTheme:
+          BottomSheetThemeData(backgroundColor: colorScheme.surface),
+      snackBarTheme: SnackBarThemeData(
+        actionTextColor: colorScheme.onSecondary,
+        backgroundColor: colorScheme.secondary,
+      ),
+      buttonTheme: ButtonThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          height: 48),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(20),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
+              ))),
+      textTheme:
+          TextTheme(headlineMedium: TextStyle(color: colorScheme.onBackground)),
+      canvasColor: colorScheme.surface,
+      appBarTheme: AppBarTheme(
+          color: colorScheme.background,
+          iconTheme: IconThemeData(color: colorScheme.onBackground),
+          titleTextStyle: TextStyle(
+              fontFamily: _fontFamily,
+              fontSize: 32,
+              fontWeight: FontWeight.w900,
+              color: colorScheme.onBackground),
+          centerTitle: false,
+          elevation: 0),
+      switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.resolveWith<Color?>((states) =>
+              (!states.contains(MaterialState.disabled) &&
+                      states.contains(MaterialState.selected))
+                  ? colorScheme.primary
+                  : null),
+          trackColor: MaterialStateProperty.resolveWith<Color?>(
+              (states) => //todo check
+                  (!states.contains(MaterialState.disabled) &&
+                          states.contains(MaterialState.selected))
+                      ? colorScheme.primary.withAlpha(80)
+                      : null)),
+      radioTheme: RadioThemeData(
+        fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
+            (!states.contains(MaterialState.disabled) &&
+                    states.contains(MaterialState.selected))
+                ? colorScheme.primary
+                : null),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
+            (!states.contains(MaterialState.disabled) &&
+                    states.contains(MaterialState.selected))
+                ? colorScheme.primary
+                : null),
+      ),
+    );
   }
 }
