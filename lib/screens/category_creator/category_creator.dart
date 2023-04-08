@@ -44,7 +44,8 @@ class CategoryCreatorScreen extends StatefulWidget {
 }
 
 class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
-  static const _standardTopAreaHeight = 60;
+  static const _standardTopAreaHeight = 60.0;
+  static const _creatorBottomBarHeight = 48.0;
   static const _missingEmoji = "❔";
   static final _missingImageProvider =
       Svg(EmojiHelper.getImagePath(_missingEmoji));
@@ -65,7 +66,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
   Widget build(BuildContext context) {
     final safeAreaTop = MediaQuery.of(context).padding.top;
     final topAreaHeight =
-        MediaQuery.of(context).size.height < 400 ? 8 : _standardTopAreaHeight;
+        MediaQuery.of(context).size.height < 400 ? 8.0 : _standardTopAreaHeight;
 
     return ScopedModelDescendant<LanguageModel>(builder: (context, _, model) {
       final modelLanguage = model.lang;
@@ -93,6 +94,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
               },
               colors: colors,
               lang: _editableCategory.lang,
+              height: _creatorBottomBarHeight,
             ),
             body: Form(
                 key: _formKey,
@@ -159,12 +161,12 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                           onSaved: (value) => _editableCategory.name = value,
                         )),
                     Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 6),
+                        padding: const EdgeInsets.fromLTRB(
+                            16, 6, 16, _creatorBottomBarHeight + 16),
                         child: TextFormField(
                           expands: false,
-                          minLines: null,
-                          maxLines: 10,
+                          minLines: 10,
+                          maxLines: null,
                           initialValue: _editableCategory.questions?.join("\n"),
                           decoration: InputDecoration(
                               label: Text(AppLocalizations.of(context)

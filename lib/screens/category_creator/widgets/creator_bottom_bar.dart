@@ -7,12 +7,14 @@ class CreatorBottomBar extends StatelessWidget {
   final void Function() onDone;
   final ColorScheme colors;
   final ParleraLanguage lang;
+  final double height;
 
   const CreatorBottomBar(
       {Key? key,
       required this.onDone,
       required this.colors,
-      required this.lang})
+      required this.lang,
+      required this.height})
       : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class CreatorBottomBar extends StatelessWidget {
         offset: Offset(0, -1 * MediaQuery.of(context).viewInsets.bottom),
         child: BottomAppBar(
             child: Container(
-                height: 48,
+                height: height,
                 color: colors.secondary,
                 child: Row(children: [
                   Tooltip(
