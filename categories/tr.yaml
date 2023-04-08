@@ -29,18 +29,18 @@ jobs_questions: "muhasebeci\naktör\nhaber sunucusu\nmimar\nasistan\nastronot\ny
   çöpçü\nbahçıvan\npratisyen\ngolf oyuncusu\ngrafik tasarımcı\nkoruma görevlisi\n\
   kuaför\nkapıcı\ngazeteci\navukat\nkütüphaneci\nhizmetçi\nbüyücü\npostacı\nmakyaj\
   \ sanatçısı\nmüdür\nmatematikçi\nteknisyen\nbakan\nmodel\nmüzisyen\ndadı\nnörolog\n\
-  hemşire\nressam\nperformans sanatçısı\neczacı\nfizik uzmanı\noyun yazarı\ntesisatçı\n\
-  şair\npolis\npolitikacı\nrahip\ngardiyan\nprofesör\nprogramcı\npsikolog\nemlakçı\n\
-  resepsiyonist\ntamirci\naraştırmacı\nsatış elemanı\nbilim insanı\nsenaryo yazarı\n\
-  futbolcu\nsokak sanatçısı\ndublör\ncerrah\nterzi\ndövmeci\nöğretmen\ntur rehberi\n\
-  eğitmen\nçevirmen\nveteriner hekim\nseslendirme sanatçısı\ngarson"
+  hemşire\nressam\neczacı\nfizik uzmanı\noyun yazarı\ntesisatçı\nşair\npolis\npolitikacı\n\
+  rahip\ngardiyan\nprofesör\nprogramcı\npsikolog\nemlakçı\nresepsiyonist\ntamirci\n\
+  araştırmacı\nsatış elemanı\nbilim insanı\nsenaryo yazarı\nfutbolcu\nsokak sanatçısı\n\
+  dublör\ncerrah\nterzi\ndövmeci\nöğretmen\ntur rehberi\neğitmen\nçevirmen\nveteriner\
+  \ hekim\nseslendirme sanatçısı\ngarson"
 mythical-creatures_name: Efsanevi yaratıklar
 mythical-creatures_questions: "kar adam\nmelek\nKoca Ayak\nKanlı Mary\ninsan başlı\
   \ at\naşk tanrısı\nşeytan\nelf\nperi\niyilik perisi\nZaman Baba\ncin\nhayalet\n\
-  gulyabani\ndev\ncüce\ncüce cin\nAzrail\nhidra\nkraken\nleprikon\nLoch Ness canavarı\n\
-  deniz kızı\ndeniz adamı\nogre\npegasus\nanka kuşu\npixie\nuyku perisi\nsasquatch\n\
-  deniz canavarı\nsiren\nbüyücü\nsfenks\nruh\ndiş perisi\ntrol\ntek boynuzlu at\n\
-  valkür\nvampir\nfalcı\nkurt adam\ncadı\nsihirbaz\nyeti\nzombi"
+  dev\ncüce\ncüce cin\nAzrail\nhidra\nkraken\nleprikon\nLoch Ness canavarı\ndeniz\
+  \ kızı\ndeniz adamı\nogre\npegasus\nanka kuşu\npixie\nuyku perisi\nsasquatch\ndeniz\
+  \ canavarı\nsiren\nbüyücü\nsfenks\nruh\ndiş perisi\ntrol\ntek boynuzlu at\nvalkür\n\
+  vampir\nfalcı\nkurt adam\ncadı\nsihirbaz\nyeti\nzombi"
 abstract_name: Soyut
 abstract_questions: "eylem\ngörünüm\narzu\nateizm\nözerklik\ngüzellik\ninanış\nBudizm\n\
   bıkkınlık\nçocuksuluk\nHristiyanlık\nzeka\nbasmakalıp\nrahatlık\nortak nokta\nbağ\n\
@@ -75,10 +75,10 @@ animals_questions: "karıncayiyen\namerika timsahı\nkarınca\nantilop\nbabun\ny
 classic-characters_questions: "Alaaddin\nAlice (Alice Harikalar Diyarında'dan)\nBambi\n\
   Büyük Kötü Kurt\nKaptan Hook\nChristopher Robin\nKül Kedisi\nKorkak Aslan\nD'Artagnan\n\
   Dorothy\nDrakula\nDr. Watson\nEbenezer Scrooge\nEeyore\nFrankenstein\nGretel\nHansel\n\
-  Huckleberry Finn\nHumpty Dumpty\nJack ve Jill\nJohn Carter\nKüçük Bo-Peep\nKırmızı\
-  \ Başlıklı Kız\nMowgli\nPeter Pan\nPeter Piper\nDomuzcuk\nPinokyo\nBeyaz Atlı Prens\n\
-  Rapunzel\nKızıl Kraliçe\nRobinson Crusoe\nRumpelstiltskin\nKorkuluk\nSherlock Holmes\n\
-  Denizci Sinbad\nUyuyan Güzel\nPamuk Prenses\nTarzan\nCheshire Kedisi\nKurbağa Prens\n\
+  Huckleberry Finn\nHumpty Dumpty\nJack ve Jill\nKüçük Bo-Peep\nKırmızı Başlıklı Kız\n\
+  Mowgli\nPeter Pan\nPeter Piper\nDomuzcuk\nPinokyo\nBeyaz Atlı Prens\nRapunzel\n\
+  Kızıl Kraliçe\nRobinson Crusoe\nRumpelstiltskin\nKorkuluk\nSherlock Holmes\nDenizci\
+  \ Sinbad\nUyuyan Güzel\nPamuk Prenses\nTarzan\nCheshire Kedisi\nKurbağa Prens\n\
   Noel Geçmişinin Hayaleti\nZencefil Adam\nNotre Dame'ın Kamburu\nUfak Tefek Örümcek\n\
   Küçük Denizkızı\nÇılgın Şapkacı\nKek Adam\nKupa Kraliçesi\nYedi Cüceler\nKar Kraliçesi\n\
   Üç Kör Fare\nÜç Küçük Domuzcuk\nÜç Silahşörler\nÇirkin Ördek Yavrusu\nKaplan Tigger\n\
@@ -113,18 +113,18 @@ historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlber
   \ Arnold\nBenito Mussolini\nBilly the Kid\nBob Ross\nGrimm Kardeşler\nBuda\nŞarlman\n\
   Charles Darwin\nCharles Dickens\nCharlie Chaplin\nKristof Kolomb\nClaude Monet\n\
   Kleopatra\nDante Alighieri\nDr. Seuss\nEdgar Allan Poe\nElvis Presley\nErnest Hemingway\n\
-  Frank Sinatra\nFranklin D. Roosevelt\nFriedrich Nietzsche\nGalileo Galilei\nCengiz\
-  \ Han\nGeorge Washington\nH.G. Wells\nHarriet Tubman\nHelen Keller\nHenry Ford\n\
-  Immanuel Kant\nIsaac Newton\nJames Cook\nHz. İsa\nJeanne d'Arc\nJohann Sebastian\
-  \ Bach\nJohn Adams\nJohn F. Kennedy\nJohn Lennon\nJules Verne\nJül Sezar\nKral Arthur\n\
-  Kral Tut\nLeonardo da Vinci\nLewis Carroll\nLouis Armstrong\nLudwig van Beethoven\n\
-  Mahatma Gandi\nMalcolm X\nMarie Antoinette\nMarie Curie\nMark Twain\nMartin Luther\
-  \ King Jr.\nMary Shelley\nMary, İskoçya Kraliçesi\nMichael Jackson\nMichelangelo\n\
-  Hz. Muhammed\nMuhammed Ali\nNapolyon Bonapart\nNeil Armstrong\nNelson Mandela\n\
-  Nikolas Kopernik\nNikola Tesla\nOscar Wilde\nOtto von Bismarck\nPlaton\nPocahontas\n\
-  Pisagor\nRene Descartes\nRichard Nixon\nRosa Parks\nSalvador Dali\nSigmund Freud\n\
-  Oturan Boğa\nSokrates\nStephen Hawking\nSusan B. Anthony\nTy Cobb\nVincent van Gogh\n\
-  Vladimir Lenin\nVoltaire\nWilliam Shakespeare\nWright Kardeşler"
+  Frank Sinatra\nFranklin D. Roosevelt\nGalileo Galilei\nCengiz Han\nGeorge Washington\n\
+  H.G. Wells\nHarriet Tubman\nHelen Keller\nHenry Ford\nImmanuel Kant\nIsaac Newton\n\
+  James Cook\nHz. İsa\nJeanne d'Arc\nJohann Sebastian Bach\nJohn Adams\nJohn F. Kennedy\n\
+  John Lennon\nJules Verne\nJül Sezar\nKral Arthur\nKral Tut\nLeonardo da Vinci\n\
+  Lewis Carroll\nLouis Armstrong\nLudwig van Beethoven\nMahatma Gandi\nMalcolm X\n\
+  Marie Antoinette\nMarie Curie\nMark Twain\nMartin Luther King Jr.\nMary Shelley\n\
+  Mary, İskoçya Kraliçesi\nMichael Jackson\nMichelangelo\nHz. Muhammed\nMuhammed Ali\n\
+  Napolyon Bonapart\nNeil Armstrong\nNelson Mandela\nNikolas Kopernik\nNikola Tesla\n\
+  Oscar Wilde\nOtto von Bismarck\nPlaton\nPocahontas\nPisagor\nRene Descartes\nRichard\
+  \ Nixon\nRosa Parks\nSalvador Dali\nSigmund Freud\nOturan Boğa\nSokrates\nStephen\
+  \ Hawking\nSusan B. Anthony\nTy Cobb\nVincent van Gogh\nVladimir Lenin\nVoltaire\n\
+  William Shakespeare\nWright Kardeşler"
 idioms_questions: "başarılması zor şey\nbeş para etmez\ntuz biber ekmek\ndarmadağın\n\
   öyle olsa bile\nlafı dolandırmak\ndişini sıkmak\nboyundan büyük işe kalkışmak\n\
   şer içinde hayır\niçini döküp rahatlamak\nşeytanın bacağını kırmak\nbugünlük bu\
@@ -150,3 +150,4 @@ idioms_questions: "başarılması zor şey\nbeş para etmez\ntuz biber ekmek\nda
   görmezden gelinen aşikar gerçek\nbardağı taşıran son damla\nne var ne yoksa\nuzun\
   \ lafın kısası\nüstün kaliteli\ngörmezlikten gelmek\nbıçak kemiğe dayandığında\n\
   boşa kürek çekme\nağızdan ağıza\naldığı parayı hak etmek\ndoğru söze ne denir"
+folk-melodies_name: Halk ezgileri
