@@ -56,6 +56,13 @@ class ThemeHelper {
       cardColor: colorScheme.surface,
       errorColor: colorScheme.error,
       dialogBackgroundColor: colorScheme.surface,
+      pageTransitionsTheme: const PageTransitionsTheme(
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.android: ZoomPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.macOS: CupertinoPageTransitionsBuilder()
+          }),
       dialogTheme: DialogTheme(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
