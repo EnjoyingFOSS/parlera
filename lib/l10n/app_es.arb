@@ -102,5 +102,9 @@
   "tutorialSecondSectionDescriptionDesktop": "¿No tienes idea de lo que es? Toca o haz click sobre el lado rojo de la pantalla o presiona la tecla Arriba para pasar la palabra.",
   "@tutorialSecondSectionDescriptionDesktop": {},
   "tutorialThirdSectionHeaderDesktop": "Presiona el lado verde si es correcto",
-  "@tutorialThirdSectionHeaderDesktop": {}
+  "@tutorialThirdSectionHeaderDesktop": {},
+  "tutorialThirdSectionDescriptionPhone": "¿Lo adivinaste? Gira el teléfono hacia abajo para pasar a la siguiente palabra.",
+  "@tutorialThirdSectionDescriptionPhone": {},
+  "tutorialThirdSectionDescriptionDesktop": "¿Lo adivinaste? Haz click o toca el lado verde de la pantalla o presiona la tecla con la flecha hacia abajo.",
+  "@tutorialThirdSectionDescriptionDesktop": {}
 }
