@@ -1,0 +1,44 @@
+{
+    "appId": "com.enjoyingfoss.parlera",
+    "lowercaseAppName": "parlera",
+    "githubReleaseOrganization": "EnjoyingFOSS",
+    "githubReleaseProject": "parlera",
+    "localReleases": [
+        {
+            "version": "3.0.0",
+            "date": "2023-05-01"
+        },
+        {
+            "version": "2.4.1",
+            "date": "2022-11-16"
+        }
+    ],
+    "localReleaseAssets": [
+        {
+            "arch": "x86_64",
+            "tarballPath": "./scripts/flatpak_generator exports/parlera-linux-x86_64.tar.gz"
+        },
+        {
+            "arch": "aarch64",
+            "tarballPath": "./scripts/flatpak_generator exports/parlera-linux-aarch64.tar.gz"
+        }
+    ],
+    "localLinuxBuildDir": "../build/linux",
+    "appDataPath": "com.enjoyingfoss.Parlera.appdata.xml",
+    "desktopPath": "com.enjoyingfoss.Parlera.desktop",
+    "icons": {
+        "symbolic": "com.enjoyingfoss.Parlera-symbolic.svg",
+        "scalable": "com.enjoyingfoss.Parlera.svg"
+    },
+    "freedesktopRuntime": "22.08",
+    "buildCommandsAfterUnpack": [
+        "if [ $(arch)=\"aarch64\"  ]; then sed -si \"/Exec=/cExec=env LIBGL_ALWAYS_SOFTWARE=1 parlera\" parlera/com.enjoyingfoss.Parlera.desktop; fi"
+    ],
+    "finishArgs": [
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--device=dri",
+        "--socket=pulseaudio"
+    ]
+}
