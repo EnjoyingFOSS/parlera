@@ -5,23 +5,11 @@
     "githubReleaseProject": "parlera",
     "localReleases": [
         {
-            "version": "3.0.0",
-            "date": "2023-05-01"
-        },
-        {
-            "version": "2.4.1",
-            "date": "2022-11-16"
+            "version": "2.0.0",
+            "date": "2022-11-10"
         }
     ],
     "localReleaseAssets": [
-        {
-            "arch": "x86_64",
-            "tarballPath": "./scripts/flatpak_generator exports/parlera-linux-x86_64.tar.gz"
-        },
-        {
-            "arch": "aarch64",
-            "tarballPath": "./scripts/flatpak_generator exports/parlera-linux-aarch64.tar.gz"
-        }
     ],
     "localLinuxBuildDir": "../build/linux",
     "appDataPath": "com.enjoyingfoss.Parlera.appdata.xml",
