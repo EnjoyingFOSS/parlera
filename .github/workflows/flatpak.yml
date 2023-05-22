@@ -46,18 +46,12 @@ jobs:
 
       - name: Get latest release
         run: |
-          RELEASE_ID=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.id')
-          echo "RELEASE_ID=${RELEASE_ID}" >> $GITHUB_ENV
-
-      - name: Upload package
-        uses: svenstaro/upload-release-action@v2
-        with:
-          file: flatpak/scripts/flatpak_generator exports/
-          tag: ${{ env.RELEASE_ID }}
+          RELEASE_TAG=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.tag_name')
+          echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
 
       - name: Upload package and its SHA
-        uses: softprops/action-gh-release@v1
+        uses: svenstaro/upload-release-action@v2
         with:
-          tag_name: ${{ env.VERSION }}
           file_glob: true
           file: flatpak/scripts/flatpak_generator exports/parlera-*
+          tag: ${{ env.RELEASE_TAG }}
