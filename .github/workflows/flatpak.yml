@@ -28,7 +28,7 @@ jobs:
           git config --global --add safe.directory /opt/hostedtoolcache/flutter/stable-*
           sudo apt update
           sudo apt install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
-          sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev # audioplayers package
+          sudo apt install -y libunwind-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev # audioplayers package
 
       - name: Build for Linux
         run: |
