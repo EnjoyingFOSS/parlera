@@ -109,7 +109,7 @@ class SettingsList extends StatelessWidget {
           ListTile(
             title: Text(AppLocalizations.of(context).settingsLanguage),
             leading: const Icon(Icons.language_rounded),
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+            onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
                 builder: (context) => const LanguageScreen())),
           ),
           ListTile(

@@ -39,16 +39,12 @@ import 'package:flutter/widgets.dart';
 import 'package:parlera/store/settings.dart';
 
 class AudioHelper {
-  //todo might want to downgrade to 1.0.0 because of
-  //todo test on Linux
   static final _player = AudioPlayer();
   static final _soundIncorrect = AssetSource('audio/choice_incorrect.wav');
   static final _soundCorrect = AssetSource('audio/choice_correct.wav');
   static final _soundCountdown = AssetSource('audio/countdown.wav');
   static final _soundStart = AssetSource('audio/start.wav');
   static final _soundCountdownStart = AssetSource('audio/countdown_start.wav');
-
-  // static AudioCache audioCache = AudioCache(prefix: 'assets/audio/');
 
   static bool _audioEnabled(BuildContext context) =>
       SettingsModel.of(context).isAudioEnabled;
