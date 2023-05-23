@@ -57,6 +57,7 @@ class HomeScreen extends StatefulWidget {
 enum _NavItem { all, favorites, menu }
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  static const _navigationRailPaddingVert = 16.0;
   CategoryFilter _currentCategory = CategoryFilter.all;
 
   @override
@@ -126,16 +127,22 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       switch (navItem) {
                         case _NavItem.all:
                           return const NavigationRailDestination(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: _navigationRailPaddingVert),
                               //todo use for material3 with each item: padding: EdgeInsets.symmetric(vertical: (72 - 24) / 2),
                               icon: Icon(Icons.home_rounded),
                               label: Text("Parlera"));
                         case _NavItem.favorites:
                           return NavigationRailDestination(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: _navigationRailPaddingVert),
                               icon: const Icon(Icons.favorite_rounded),
                               label:
                                   Text(AppLocalizations.of(context).favorites));
                         case _NavItem.menu:
                           return NavigationRailDestination(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: _navigationRailPaddingVert),
                               icon: const Icon(Icons.menu),
                               label:
                                   Text(AppLocalizations.of(context).settings));
@@ -147,26 +154,24 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ))
               ]))
             : Scaffold(
-                bottomNavigationBar: BottomNavigationBar(
-                  showSelectedLabels: false,
-                  showUnselectedLabels: false,
-                  items: _NavItem.values.map((navItem) {
+                bottomNavigationBar: NavigationBar(
+                  destinations: _NavItem.values.map((navItem) {
                     switch (navItem) {
                       case _NavItem.all:
-                        return const BottomNavigationBarItem(
+                        return const NavigationDestination(
                             icon: Icon(Icons.home_rounded), label: "Parlera");
                       case _NavItem.favorites:
-                        return BottomNavigationBarItem(
+                        return NavigationDestination(
                             icon: const Icon(Icons.favorite_rounded),
                             label: AppLocalizations.of(context).favorites);
                       case _NavItem.menu:
-                        return BottomNavigationBarItem(
+                        return NavigationDestination(
                             icon: const Icon(Icons.menu),
                             label: AppLocalizations.of(context).settings);
                     }
                   }).toList(),
-                  currentIndex: currentIndex,
-                  onTap: (i) {
+                  selectedIndex: currentIndex,
+                  onDestinationSelected: (i) {
                     switch (_NavItem.values[i]) {
                       case _NavItem.all:
                         setState(() {

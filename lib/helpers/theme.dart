@@ -46,7 +46,7 @@ class ThemeHelper {
 
   static ThemeData _getThemeFromScheme(ColorScheme colorScheme) {
     return ThemeData(
-      useMaterial3: false,
+      useMaterial3: true,
       colorScheme: colorScheme,
       visualDensity: VisualDensity.comfortable,
       backgroundColor: colorScheme.background,
@@ -54,7 +54,6 @@ class ThemeHelper {
       primaryColor: colorScheme.primary,
       scaffoldBackgroundColor: colorScheme.background,
       cardColor: colorScheme.surface,
-      errorColor: colorScheme.error,
       dialogBackgroundColor: colorScheme.surface,
       pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{
@@ -65,27 +64,38 @@ class ThemeHelper {
           }),
       dialogTheme: DialogTheme(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-      toggleableActiveColor: colorScheme.primary,
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(28))),
       fontFamily: _fontFamily,
       inputDecorationTheme: const InputDecorationTheme(
         border: InputBorder.none,
         filled: true,
       ),
       navigationRailTheme: NavigationRailThemeData(
-          useIndicator: false,
+          useIndicator: true,
           backgroundColor: colorScheme.secondary,
           unselectedIconTheme: IconThemeData(
               color: colorScheme.onSecondary
                   .withAlpha(90)), //todo use with material 3, opacity: 0.35),
           selectedIconTheme: IconThemeData(color: colorScheme.primary)),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: colorScheme.secondary,
+          foregroundColor: colorScheme.onSecondary,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          unselectedItemColor: colorScheme.onSecondary.withAlpha(90),
+      bottomAppBarTheme:
+          const BottomAppBarTheme(height: 48, padding: EdgeInsets.all(0)),
+      navigationBarTheme: NavigationBarThemeData(
+          height: 56,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          indicatorColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
           backgroundColor: colorScheme.secondary,
-          selectedItemColor: colorScheme.primary),
+          elevation: 8,
+          iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
+              (states) => (states.contains(MaterialState.selected)
+                  ? IconThemeData(color: colorScheme.primary)
+                  : IconThemeData(
+                      color: colorScheme.onSecondary.withAlpha(90))))),
       bottomSheetTheme:
           BottomSheetThemeData(backgroundColor: colorScheme.surface),
       snackBarTheme: SnackBarThemeData(
@@ -109,6 +119,7 @@ class ThemeHelper {
       appBarTheme: AppBarTheme(
           color: colorScheme.background,
           iconTheme: IconThemeData(color: colorScheme.onBackground),
+          surfaceTintColor: Colors.transparent,
           titleTextStyle: TextStyle(
               fontFamily: _fontFamily,
               fontSize: 32,

@@ -29,8 +29,11 @@ class SettingsModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(24), topRight: Radius.circular(24))),
           margin: const EdgeInsets.only(top: 20),
-          color: Theme.of(context).colorScheme.surface,
           child: const SettingsList(topMargin: 28)),
       Positioned.directional(
           textDirection: Directionality.of(context),

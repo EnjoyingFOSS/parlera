@@ -48,14 +48,14 @@ class GameSetings extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<SettingsModel>(
         builder: (context, child, settingsModel) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: RichText(
                     text: TextSpan(
                       text: AppLocalizations.of(context).gameTime,
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                 ),
