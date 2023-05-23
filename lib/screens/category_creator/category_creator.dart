@@ -19,6 +19,7 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
@@ -215,44 +216,62 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
             ));
   }
 
-  Future<void> _showEmojiSheet() => showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) =>
-          //todo add search
-          EmojiPicker(
-            config: (Platform.isLinux)
-                ? const Config(
-                    checkPlatformCompatibility: false,
-                    emojiTextStyle: TextStyle(
-                        fontFamily: "NotoEmoji", color: Colors.black87))
-                : const Config(checkPlatformCompatibility: false),
-            onEmojiSelected: (_, emoji) async {
-              var selectedEmoji = emoji.emoji;
-              final imagePath = EmojiHelper.getImagePath(selectedEmoji);
+  Future<void> _showEmojiSheet() {
+    final columnCount =
+        min(MediaQuery.of(context).size.width.toInt() ~/ 60, 12);
+    return showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) =>
+            //todo add search
+            EmojiPicker(
+              config: Config(
+                  replaceEmojiOnLimitExceed: true,
+                  buttonMode: (Platform.isMacOS || Platform.isIOS)
+                      ? ButtonMode.CUPERTINO
+                      : ButtonMode.MATERIAL,
+                  bgColor: Theme.of(context).colorScheme.surface,
+                  iconColor:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                  iconColorSelected: Theme.of(context).colorScheme.secondary,
+                  indicatorColor: Theme.of(context).colorScheme.secondary,
+                  skinToneDialogBgColor: Theme.of(context).colorScheme.surface,
+                  skinToneIndicatorColor:
+                      Theme.of(context).colorScheme.onSurface,
+                  checkPlatformCompatibility: false,
+                  columns: columnCount,
+                  emojiTextStyle: Platform.isLinux
+                      ? const TextStyle(
+                          fontFamily: "NotoEmoji", color: Colors.black87)
+                      : null),
+              onEmojiSelected: (_, emoji) async {
+                var selectedEmoji = emoji.emoji;
+                final imagePath = EmojiHelper.getImagePath(selectedEmoji);
+                final scaffoldMessenger = ScaffoldMessenger.of(context);
+                final l10n = AppLocalizations.of(context);
 
-              if (await EmojiHelper.imageExists(context, imagePath)) {
-                _imageProvider = Svg(imagePath);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content:
-                      Text(AppLocalizations.of(context).errorCouldNotFindEmoji),
-                ));
-                selectedEmoji = _missingEmoji;
-                _imageProvider = _missingImageProvider;
-              }
+                if (await EmojiHelper.imageExists(context, imagePath)) {
+                  _imageProvider = Svg(imagePath);
+                } else {
+                  scaffoldMessenger.showSnackBar(SnackBar(
+                    content: Text(l10n.errorCouldNotFindEmoji),
+                  ));
+                  selectedEmoji = _missingEmoji;
+                  _imageProvider = _missingImageProvider;
+                }
 
-              final paletteGenerator =
-                  await PaletteGenerator.fromImageProvider(_imageProvider);
+                final paletteGenerator =
+                    await PaletteGenerator.fromImageProvider(_imageProvider);
 
-              setState(() {
-                _editableCategory.emoji = selectedEmoji;
+                setState(() {
+                  _editableCategory.emoji = selectedEmoji;
 
-                _editableCategory.bgColor =
-                    DynamicColorHelper.backgroundColorDark(paletteGenerator);
-              });
-              if (!mounted) return;
-              Navigator.of(context)
-                  .pop(); //todo add a warning about emojis not looking the same on iOS
-            },
-          ));
+                  _editableCategory.bgColor =
+                      DynamicColorHelper.backgroundColorDark(paletteGenerator);
+                });
+                if (!mounted) return;
+                Navigator.of(context)
+                    .pop(); //todo add a warning about emojis not looking the same on iOS
+              },
+            ));
+  }
 }
