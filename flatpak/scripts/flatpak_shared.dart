@@ -105,6 +105,8 @@ class GithubReleases {
 
     if (releases.isNotEmpty) {
       _releases = releases;
+    } else {
+      throw Exception("Github must contain at least 1 release.");
     }
   }
 
