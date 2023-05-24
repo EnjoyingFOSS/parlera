@@ -239,9 +239,17 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                       Theme.of(context).colorScheme.onSurface,
                   checkPlatformCompatibility: false,
                   columns: columnCount,
+                  noRecents: Text(
+                    AppLocalizations.of(context).txtNoRecentEmoji,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Theme.of(context).colorScheme.onSurface),
+                    textAlign: TextAlign.center,
+                  ),
                   emojiTextStyle: Platform.isLinux
-                      ? const TextStyle(
-                          fontFamily: "NotoEmoji", color: Colors.black87)
+                      ? TextStyle(
+                          fontFamily: "NotoEmoji",
+                          color: Theme.of(context).colorScheme.onSurface)
                       : null),
               onEmojiSelected: (_, emoji) async {
                 var selectedEmoji = emoji.emoji;

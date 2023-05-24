@@ -74,5 +74,6 @@
   "txtSwitchLanguageInSettings": "To use a different language, switch to it in Settings.",
   "emptyCategoryQuestions": "This category doesn't contain any words to guess :(",
   "languageSystem": "Default (requires restart)",
-  "languagesVaryNotice": "Categories and words vary across languages."
+  "languagesVaryNotice": "Categories and words vary across languages.",
+  "txtNoRecentEmoji": "No recent emoji"
 }
