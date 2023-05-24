@@ -26,9 +26,10 @@ void main(List<String> arguments) async {
     throw Exception('The provided metadata file does not exist.');
   }
 
-  final meta = FlatpakMeta.fromJson(metaFile);
-
   final fetchFromGithub = arguments.contains('--github');
+
+  final meta =
+      FlatpakMeta.fromJson(metaFile, skipLocalReleases: fetchFromGithub);
 
   final outputDir =
       Directory('${Directory.current.path}/flatpak_generator exports');

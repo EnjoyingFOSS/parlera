@@ -12,7 +12,7 @@ class Release {
 
 enum CPUArchitecture {
   x86_64('x86_64', 'x64'),
-  aarch64('aarch64', 'aarch64');
+  aarch64('aarch64', 'arm64');
 
   final String flatpakArchCode;
   final String flutterDirName;
@@ -256,7 +256,7 @@ class FlatpakMeta {
     }
   }
 
-  static FlatpakMeta fromJson(File jsonFile) {
+  static FlatpakMeta fromJson(File jsonFile, {bool skipLocalReleases = false}) {
     try {
       final dynamic json = jsonDecode(jsonFile.readAsStringSync());
       return FlatpakMeta(
@@ -265,39 +265,43 @@ class FlatpakMeta {
           githubReleaseOrganization:
               json['githubReleaseOrganization'] as String?,
           githubReleaseProject: json['githubReleaseProject'] as String?,
-          localReleases: (json['localReleases'] as List?)?.map((dynamic r) {
-            final rMap = r as Map;
-            return Release(
-                version: rMap['version'] as String,
-                date: rMap['date'] as String);
-          }).toList(),
-          localReleaseAssets:
-              (json['localReleaseAssets'] as List?)?.map((dynamic ra) {
-            final raMap = ra as Map;
-            final archString = raMap['arch'] as String;
-            final arch = (archString == CPUArchitecture.x86_64.flatpakArchCode)
-                ? CPUArchitecture.x86_64
-                : (archString == CPUArchitecture.aarch64.flatpakArchCode)
-                    ? CPUArchitecture.aarch64
-                    : null;
-            if (arch == null) {
-              throw Exception(
-                  'Architecture must be either "${CPUArchitecture.x86_64.flatpakArchCode}" or "${CPUArchitecture.aarch64.flatpakArchCode}"');
-            }
-            final tarballPath =
-                '${jsonFile.parent.path}/${raMap['tarballPath'] as String}';
-            final preShasum =
-                Process.runSync('shasum', ['-a', '256', tarballPath]);
-            final shasum = preShasum.stdout.toString().split(' ').first;
-            if (preShasum.exitCode != 0) {
-              throw Exception(preShasum.stderr);
-            }
-            return ReleaseAsset(
-                arch: arch,
-                tarballUrlOrPath: tarballPath,
-                isRelativeLocalPath: true,
-                tarballSha256: shasum);
-          }).toList(),
+          localReleases: skipLocalReleases
+              ? null
+              : (json['localReleases'] as List?)?.map((dynamic r) {
+                  final rMap = r as Map;
+                  return Release(
+                      version: rMap['version'] as String,
+                      date: rMap['date'] as String);
+                }).toList(),
+          localReleaseAssets: skipLocalReleases
+              ? null
+              : (json['localReleaseAssets'] as List?)?.map((dynamic ra) {
+                  final raMap = ra as Map;
+                  final archString = raMap['arch'] as String;
+                  final arch = (archString ==
+                          CPUArchitecture.x86_64.flatpakArchCode)
+                      ? CPUArchitecture.x86_64
+                      : (archString == CPUArchitecture.aarch64.flatpakArchCode)
+                          ? CPUArchitecture.aarch64
+                          : null;
+                  if (arch == null) {
+                    throw Exception(
+                        'Architecture must be either "${CPUArchitecture.x86_64.flatpakArchCode}" or "${CPUArchitecture.aarch64.flatpakArchCode}"');
+                  }
+                  final tarballPath =
+                      '${jsonFile.parent.path}/${raMap['tarballPath'] as String}';
+                  final preShasum =
+                      Process.runSync('shasum', ['-a', '256', tarballPath]);
+                  final shasum = preShasum.stdout.toString().split(' ').first;
+                  if (preShasum.exitCode != 0) {
+                    throw Exception(preShasum.stderr);
+                  }
+                  return ReleaseAsset(
+                      arch: arch,
+                      tarballUrlOrPath: tarballPath,
+                      isRelativeLocalPath: true,
+                      tarballSha256: shasum);
+                }).toList(),
           localLinuxBuildDir: json['localLinuxBuildDir'] as String,
           appDataPath: json['appDataPath'] as String,
           desktopPath: json['desktopPath'] as String,
