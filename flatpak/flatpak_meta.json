@@ -1,5 +1,5 @@
 {
-    "appId": "com.enjoyingfoss.parlera",
+    "appId": "com.enjoyingfoss.Parlera",
     "lowercaseAppName": "parlera",
     "githubReleaseOrganization": "EnjoyingFOSS",
     "githubReleaseProject": "parlera",
@@ -12,7 +12,7 @@
     "localReleaseAssets": [
         {
             "arch": "aarch64",
-            "tarballPath": "./scripts/flatpak_generator exports/parlera-linux-aarch64.tar.gz"
+            "tarballPath": "scripts/flatpak_generator exports/parlera-linux-aarch64.tar.gz"
         }
     ],
     "localLinuxBuildDir": "../build/linux",

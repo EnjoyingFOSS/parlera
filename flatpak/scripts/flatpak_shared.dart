@@ -92,7 +92,8 @@ class GithubReleases {
 
       if (latestReleaseAssetDate == null ||
           (latestReleaseAssetDate?.compareTo(releaseDateAndTime) == -1)) {
-        final assets = await _parseReleaseAssets(releaseMap['assets'] as List);
+        final assets =
+            await _parseGithubReleaseAssets(releaseMap['assets'] as List);
         if (assets != null) {
           _latestReleaseAssets = assets;
           latestReleaseAssetDate = releaseDateAndTime;
@@ -110,7 +111,7 @@ class GithubReleases {
     }
   }
 
-  Future<List<ReleaseAsset>?> _parseReleaseAssets(List assetMaps) async {
+  Future<List<ReleaseAsset>?> _parseGithubReleaseAssets(List assetMaps) async {
     String? x64TarballUrl;
     String? x64Sha;
     String? aarch64TarballUrl;
@@ -288,8 +289,9 @@ class FlatpakMeta {
                     throw Exception(
                         'Architecture must be either "${CPUArchitecture.x86_64.flatpakArchCode}" or "${CPUArchitecture.aarch64.flatpakArchCode}"');
                   }
-                  final tarballPath =
-                      '${jsonFile.parent.path}/${raMap['tarballPath'] as String}';
+                  final tarballFile = File(
+                      '${jsonFile.parent.path}/${raMap['tarballPath'] as String}');
+                  final tarballPath = tarballFile.absolute.path;
                   final preShasum =
                       Process.runSync('shasum', ['-a', '256', tarballPath]);
                   final shasum = preShasum.stdout.toString().split(' ').first;
