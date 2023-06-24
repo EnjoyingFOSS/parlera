@@ -18,10 +18,6 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'dart:io';
-import 'dart:math';
-
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
@@ -29,6 +25,7 @@ import 'package:palette_generator/palette_generator.dart';
 import 'package:parlera/helpers/dynamic_color.dart';
 import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/screens/category_creator/widgets/creator_bottom_bar.dart';
+import 'package:parlera/widgets/emoji_sheet.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/editable_category.dart';
@@ -122,7 +119,52 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                               color: Colors.transparent,
                               child: InkWell(
                                   borderRadius: BorderRadius.circular(8),
-                                  onTap: _showEmojiSheet,
+                                  onTap: () => showModalBottomSheet(
+                                      context: context,
+                                      builder: (_) => EmojiSheet(
+                                              onEmojiSelected:
+                                                  (_, emoji) async {
+                                            var selectedEmoji = emoji.emoji;
+                                            final imagePath =
+                                                EmojiHelper.getImagePath(
+                                                    selectedEmoji);
+                                            final scaffoldMessenger =
+                                                ScaffoldMessenger.of(context);
+                                            final l10n =
+                                                AppLocalizations.of(context);
+
+                                            if (await EmojiHelper.imageExists(
+                                                context, imagePath)) {
+                                              _imageProvider = Svg(imagePath);
+                                            } else {
+                                              scaffoldMessenger
+                                                  .showSnackBar(SnackBar(
+                                                content: Text(l10n
+                                                    .errorCouldNotFindEmoji),
+                                              ));
+                                              selectedEmoji = _missingEmoji;
+                                              _imageProvider =
+                                                  _missingImageProvider;
+                                            }
+
+                                            final paletteGenerator =
+                                                await PaletteGenerator
+                                                    .fromImageProvider(
+                                                        _imageProvider);
+
+                                            setState(() {
+                                              _editableCategory.emoji =
+                                                  selectedEmoji;
+
+                                              _editableCategory.bgColor =
+                                                  DynamicColorHelper
+                                                      .backgroundColorDark(
+                                                          paletteGenerator);
+                                            });
+                                            if (!mounted) return;
+                                            Navigator.of(context)
+                                                .pop(); //TODO add a warning about emojis not looking the same on iOS
+                                          })),
                                   child: SizedBox(
                                       width: 136,
                                       height: 120,
@@ -213,73 +255,6 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                     },
                     child: Text(AppLocalizations.of(context).btnDiscard))
               ],
-            ));
-  }
-
-  Future<void> _showEmojiSheet() {
-    final columnCount =
-        min(MediaQuery.of(context).size.width.toInt() ~/ 60, 12);
-    return showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) =>
-            //todo add search
-            EmojiPicker(
-              config: Config(
-                  replaceEmojiOnLimitExceed: true,
-                  buttonMode: (Platform.isMacOS || Platform.isIOS)
-                      ? ButtonMode.CUPERTINO
-                      : ButtonMode.MATERIAL,
-                  bgColor: Theme.of(context).colorScheme.surface,
-                  iconColor:
-                      Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
-                  iconColorSelected: Theme.of(context).colorScheme.secondary,
-                  indicatorColor: Theme.of(context).colorScheme.secondary,
-                  skinToneDialogBgColor: Theme.of(context).colorScheme.surface,
-                  skinToneIndicatorColor:
-                      Theme.of(context).colorScheme.onSurface,
-                  checkPlatformCompatibility: false,
-                  columns: columnCount,
-                  noRecents: Text(
-                    AppLocalizations.of(context).txtNoRecentEmoji,
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Theme.of(context).colorScheme.onSurface),
-                    textAlign: TextAlign.center,
-                  ),
-                  emojiTextStyle: Platform.isLinux
-                      ? TextStyle(
-                          fontFamily: "NotoEmoji",
-                          color: Theme.of(context).colorScheme.onSurface)
-                      : null),
-              onEmojiSelected: (_, emoji) async {
-                var selectedEmoji = emoji.emoji;
-                final imagePath = EmojiHelper.getImagePath(selectedEmoji);
-                final scaffoldMessenger = ScaffoldMessenger.of(context);
-                final l10n = AppLocalizations.of(context);
-
-                if (await EmojiHelper.imageExists(context, imagePath)) {
-                  _imageProvider = Svg(imagePath);
-                } else {
-                  scaffoldMessenger.showSnackBar(SnackBar(
-                    content: Text(l10n.errorCouldNotFindEmoji),
-                  ));
-                  selectedEmoji = _missingEmoji;
-                  _imageProvider = _missingImageProvider;
-                }
-
-                final paletteGenerator =
-                    await PaletteGenerator.fromImageProvider(_imageProvider);
-
-                setState(() {
-                  _editableCategory.emoji = selectedEmoji;
-
-                  _editableCategory.bgColor =
-                      DynamicColorHelper.backgroundColorDark(paletteGenerator);
-                });
-                if (!mounted) return;
-                Navigator.of(context)
-                    .pop(); //todo add a warning about emojis not looking the same on iOS
-              },
             ));
   }
 }
