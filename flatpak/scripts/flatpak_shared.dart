@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class Release {
   final String version;
-  final String date; //todo add resources
+  final String date; //TODO add resources
 
   Release({required this.version, required this.date});
 }
@@ -55,21 +55,21 @@ class GithubReleases {
 
   GithubReleases(this.githubReleaseOrganization, this.githubReleaseProject);
 
-  Future<List<Release>> getReleases() async {
+  Future<List<Release>> getReleases(bool canBeEmpty) async {
     if (_releases == null) {
-      await _fetchReleasesAndAssets();
+      await _fetchReleasesAndAssets(canBeEmpty);
     }
     return _releases!;
   }
 
   Future<List<ReleaseAsset>?> getLatestReleaseAssets() async {
     if (_releases == null) {
-      await _fetchReleasesAndAssets();
+      await _fetchReleasesAndAssets(false);
     }
     return _latestReleaseAssets;
   }
 
-  Future<void> _fetchReleasesAndAssets() async {
+  Future<void> _fetchReleasesAndAssets(bool canBeEmpty) async {
     final releaseJsonContent = (await http.get(Uri(
             scheme: 'https',
             host: 'api.github.com',
@@ -104,7 +104,7 @@ class GithubReleases {
           version: releaseMap['name'] as String, date: releaseDateString));
     });
 
-    if (releases.isNotEmpty) {
+    if (releases.isNotEmpty || canBeEmpty) {
       _releases = releases;
     } else {
       throw Exception("Github must contain at least 1 release.");
@@ -224,20 +224,28 @@ class FlatpakMeta {
     }
   }
 
-  Future<List<Release>> getReleases(bool fetchReleasesFromGithub) async {
+  Future<List<Release>> getReleases(
+      bool fetchReleasesFromGithub, String? addedTodaysVersion) async {
+    List<Release> releases;
     if (fetchReleasesFromGithub) {
       if (_githubReleases == null) {
         throw Exception(
             'Metadata must include Github repository info if fetching releases from Github.');
       }
-      return await _githubReleases!.getReleases();
+      releases = await _githubReleases!.getReleases(addedTodaysVersion != null);
     } else {
-      if (_localReleases == null) {
+      if (_localReleases == null && addedTodaysVersion == null) {
         throw Exception(
             'Metadata must include releases if not fetching releases from Github.');
       }
-      return _localReleases!;
+      releases = _localReleases ?? [];
     }
+    if (addedTodaysVersion != null) {
+      releases.add(Release(
+          version: addedTodaysVersion,
+          date: DateTime.now().toIso8601String().split("T").first));
+    }
+    return releases;
   }
 
   Future<List<ReleaseAsset>?> getReleaseAssets(

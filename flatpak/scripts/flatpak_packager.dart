@@ -6,11 +6,13 @@ import 'flatpak_shared.dart';
 /// arguments:
 /// --meta [file]
 /// --github
+/// --addTodaysVersion [version]
 void main(List<String> arguments) async {
   if (!Platform.isLinux) {
-    throw Exception('Must be run under x86_64 Linux');
+    throw Exception('Must be run under Linux');
   }
 
+  // PARSE ARGUMENTS
   final metaIndex = arguments.indexOf('--meta');
   if (metaIndex == -1) {
     throw Exception(
@@ -28,6 +30,18 @@ void main(List<String> arguments) async {
 
   final fetchFromGithub = arguments.contains('--github');
 
+  final addTodaysVersionIndex = arguments.indexOf('--addTodaysVersion');
+  if (addTodaysVersionIndex != -1 &&
+      arguments.length == addTodaysVersionIndex + 1) {
+    throw Exception(
+        'The --addTodaysVersion flag must be followed by the version name.');
+  }
+
+  final addedTodaysVersion =
+      addTodaysVersionIndex != -1 ? arguments[addTodaysVersionIndex + 1] : null;
+
+  // GENERATE PACKAGE
+
   final meta =
       FlatpakMeta.fromJson(metaFile, skipLocalReleases: fetchFromGithub);
 
@@ -35,8 +49,10 @@ void main(List<String> arguments) async {
       Directory('${Directory.current.path}/flatpak_generator exports');
   await outputDir.create();
 
-  final packageGenerator =
-      PackageGenerator(inputDir: metaFile.parent, meta: meta);
+  final packageGenerator = PackageGenerator(
+      inputDir: metaFile.parent,
+      meta: meta,
+      addedTodaysVersion: addedTodaysVersion);
 
   await packageGenerator.generatePackage(
       outputDir,
@@ -49,8 +65,12 @@ void main(List<String> arguments) async {
 class PackageGenerator {
   final Directory inputDir;
   final FlatpakMeta meta;
+  final String? addedTodaysVersion;
 
-  PackageGenerator({required this.inputDir, required this.meta});
+  PackageGenerator(
+      {required this.inputDir,
+      required this.meta,
+      required this.addedTodaysVersion});
 
   Future<void> generatePackage(Directory outputDir, CPUArchitecture arch,
       bool fetchReleasesFromGithub) async {
@@ -89,7 +109,7 @@ class PackageGenerator {
 
     final editedAppDataContent = AppDataModifier.replaceVersions(
         await origAppDataFile.readAsString(),
-        await meta.getReleases(fetchReleasesFromGithub));
+        await meta.getReleases(fetchReleasesFromGithub, addedTodaysVersion));
 
     final editedAppDataFile = File('${tempDir.path}/$appId.appdata.xml');
     await editedAppDataFile.writeAsString(editedAppDataContent);
@@ -142,7 +162,7 @@ class AppDataModifier {
         .map((v) => '\t\t<release version="${v.version}" date="${v.date}" />')
         .join('\n');
     final releasesSection =
-        '<releases>\n$joinedReleases\n\t</releases>'; //todo check this
+        '<releases>\n$joinedReleases\n\t</releases>'; //TODO check this
     if (origAppDataContent.contains('<releases')) {
       return origAppDataContent
           .replaceAll('\n', '<~>')
