@@ -1,4 +1,4 @@
-abstract_name: Abstrakt
+abstract_name: Abstraktes
 abstract_questions: |-
   Absaugen
   Agnostizismus
@@ -69,6 +69,7 @@ abstract_questions: |-
   Realität
   Referenz
   Respekt
+  Rufmord
   Schicksal
   Schutz
   Schwierigkeit
@@ -103,6 +104,7 @@ animals_questions: |-
   Adler
   Affe
   Ameise
+  Ameisenbär
   Antilope
   Austern
   Biene
@@ -113,12 +115,14 @@ animals_questions: |-
   Chamäleon
   Chihuahua
   Clownfisch
+  Dachs
   Delphin
   Dinosaurier
   Dodo
   Eichhörnchen
   Eidechse
   Einhorn
+  Eisbär
   Elch
   Elefant
   Ente
@@ -127,6 +131,7 @@ animals_questions: |-
   Eule
   Fisch
   Fledermaus
+  Fliege
   Forelle
   Frettchen
   Frosch
@@ -150,6 +155,7 @@ animals_questions: |-
   Huhn
   Hummer
   Hund
+  Husky
   Jaguar
   Kakerlake
   Kamel
@@ -167,6 +173,7 @@ animals_questions: |-
   Lama
   Leopard
   Libelle
+  Luchs
   Löwe
   Marienkäfer
   Maulwurf
@@ -176,18 +183,20 @@ animals_questions: |-
   Mistkäfer
   Motte
   Möwe
+  Mücke
   Nagetier
   Nilpferd
-  Oltopus
+  Oktopus
+  Orka
   Orang-Utan
   Panther
   Papagei
+  Papageientaucher
   Pavian
   Pelikan
   Pfau
   Pferd
   Pinguin
-  Polarbiener
   Pony
   Puma
   Rabe
@@ -201,6 +210,7 @@ animals_questions: |-
   Schlange
   Schmetterling
   Schneeleopard
+  Schwalbe
   Schwarze Witwe
   Schwein
   Schwertfisch
@@ -221,6 +231,7 @@ animals_questions: |-
   Tiger
   Tintenfisch
   Tukan
+  Vielfraß
   Vogel
   Vogelspinne
   Wal
@@ -231,6 +242,7 @@ animals_questions: |-
   Wurm
   Yak
   Zebra
+  Zecke
   Ziege
   Ziesel
 food-and-drink_name: Essen und Trinken
@@ -239,7 +251,9 @@ food-and-drink_questions: |-
   Ahornsirup
   Ananas
   Apfel
+  Apfelkuchen
   Apfelsaft
+  Apfelschorle
   Aprikose
   Aubergine
   Auster
@@ -247,6 +261,7 @@ food-and-drink_questions: |-
   Banane
   Barbecue
   Beilage
+  Berliner
   Birne
   Blaubeere
   Blumenkohl
@@ -267,6 +282,7 @@ food-and-drink_questions: |-
   Creme
   Curry
   Donut
+  Döner
   Ei
   Eierlikör
   Erdbeere
@@ -276,6 +292,7 @@ food-and-drink_questions: |-
   Fisch
   Fischfilet
   Fischstäbchen
+  Flammkuchen
   Fleisch
   Frühstück
   Gemüse
@@ -320,6 +337,8 @@ food-and-drink_questions: |-
   Knoblauch
   Kokosnuss
   Kokosnussmilch
+  Kompott
+  Konfitüre
   Kopfsalat
   Kräuter
   Kuchen
@@ -331,12 +350,16 @@ food-and-drink_questions: |-
   Limo
   Limonade
   Linsen
+  Lolli
   Mahlzeit
   Mais
   Mandel
   Mango
+  Marmelade
+  Marzipan
   Mehl
   Milch
+  Milchreis
   Milchshake
   Mineralwasser
   Minze
@@ -373,11 +396,14 @@ food-and-drink_questions: |-
   Rosine
   Rote Linsen
   Roulade
+  Rührei
   Saft
+  Sahnetorte
   Salami
   Salat
   Salz
   Sandwich
+  Sandkuchen
   Sardine
   Sauce
   Sauerkraut
@@ -391,11 +417,13 @@ food-and-drink_questions: |-
   Senf
   Sirup
   Smoothie
+  Snack
   Sojasoße
   Sorbet
   Spaghetti
   Speck
   Speiseeis
+  Spiegelei
   Squash
   Steak
   Sub
@@ -432,8 +460,8 @@ jobs_questions: |-
   Autor
   Babysitter
   Balletttänzer
-  Baseball Spieler
-  Basketball Spieler
+  Baseballspieler
+  Basketballspieler
   Bauer
   Berater
   Betreuer
@@ -449,15 +477,17 @@ jobs_questions: |-
   Designer
   Detektiv
   Dichter
+  Dienstbote
   Dienstmädchen
   Direktor
   Diätassistent
   Dramatiker
   Drehbuchautor
   Elektriker
+  Erzieher
   Fahrer
   Feuerwehrmann
-  Fißballspieler
+  Fußballspieler
   Flugbegleiter
   Forscher
   Friseur
@@ -465,9 +495,11 @@ jobs_questions: |-
   Fußballspieler
   Gefängniswärter
   Geschäftsführer
+  Glaser
   Golfer
   Grafikdesigner
   Gärtner
+  Hals-Nasen-Ohren-Arzt
   Hausmeister
   Immobilienmakler
   Ingenieur
@@ -480,6 +512,7 @@ jobs_questions: |-
   Komiker
   Komponist
   Krankenschwester
+  Krankenpfleger
   Lehrer
   Magier
   Maler
@@ -494,7 +527,9 @@ jobs_questions: |-
   Musiker
   Müllmann
   Neurologe
+  Paketbote
   Performance-Künstler
+  Pfleger
   Physiker
   Politiker
   Polizist
@@ -508,24 +543,30 @@ jobs_questions: |-
   Rezeptionist
   Schauspieler
   Schneider
+  Schulleiter
   Straßenkünstler
   Stuntman
   Synchronsprecher
+  Tagesmutter
+  Taucher
+  Taxifahrer
   Tierarzt
   Trainer
   Tänzer
   Tätowierer
   Unternehmer
   Verkäufer
+  Vertriebler
   Wachmann
   Wissenschaftler
+  Wächter
   Zahnarzt
   Zusteller
   Übersetzer
 mythical-creatures_name: Fabelwesen
 mythical-creatures_questions: |-
-  abscheulicher Schneemann
-  Assistent
+  Amor
+  Böse Fee
   Chupacabra
   Einhorn
   Elfe
@@ -535,7 +576,8 @@ mythical-creatures_questions: |-
   Geist
   Genie
   Großfuß
-  gute Fee
+  Gute Fee
+  Heinzelmännchen
   Hexe
   Hexenmeister
   Hydra
@@ -544,6 +586,7 @@ mythical-creatures_questions: |-
   Kuppler
   Leichenfledderer
   Leprechaun
+  Meerjungfrau
   Nixe
   Oger
   Pegasus
@@ -553,7 +596,7 @@ mythical-creatures_questions: |-
   Seeungeheuer
   Sensenmann
   Sirene
-  'Sphinx '
+  Sphinx
   Teufel
   Troll
   Ungeheuer von Loch Ness
@@ -561,6 +604,7 @@ mythical-creatures_questions: |-
   Väterchen Frost
   Walküre
   Werwolf
+  Wichtel
   Yeti
   Zauberer
   Zentaur
@@ -569,37 +613,57 @@ mythical-creatures_questions: |-
 classic-characters_name: Klassische Charaktere
 classic-literature_name: Klassische Literatur
 historical-figures_name: Historische Persönlichkeiten
-classic-literature_questions: "Äsops Fabeln\nAlices Abenteuer im Wunderland\nAnna\
-  \ Karenina\nIn achtzig Tagen um die Welt\nAschenputtel\nVerbrechen und Strafe\n\
-  David Copperfield\nDon Quijote\nDracula\nEmma\nFrankenstein\nGroße Erwartungen\n\
-  Gulliver's Reisen\nHamlet\nHänsel und Gretel\nIvanhoe\nJack and the Beanstalk\n\
-  Die Reise zum Mittelpunkt der Erde\nDie Elenden\nRotkäppchen\nKleine Frauen\nMacbeth\n\
-  Moby Dick\nOliver Twist\nOthello\nPeter Pan\nStolz und Vorurteil\nRapunzel\nRobinson\
-  \ Crusoe\nRomeo und Julia\nRumpelstilzchen\nNibelungenlied\nDornröschen\nSchneewittchen\n\
-  Die Abenteuer des Sherlock Holmes\nDie Abenteuer von Tom Sawyer\nDie schwarze Katze\n\
-  Die Brüder Karamasow\nGrimms Märchen\nDas Fass von Amontillado\nDer Graf von Monte\
-  \ Cristo\nDes Kaisers neue Kleider\nDer Froschkönig\nDer große Gatsby\nDer Glöckner\
-  \ von Notre-Dame\nDer Idiot\nDie Ilias\nDer unsichtbare Mann\nDas Dschungelbuch\n\
-  Die kleine Meerjungfrau\nDie verlorene Welt\nDie Metamorphose\nDie Nachtigall\n\
-  Die Odyssee\nDas Bildnis des Dorian Gray\nDie Prinzessin auf der Erbse\nDer Rabe\n\
-  Der scharlachrote Buchstabe\nDer seltsame Fall des Dr. Jekyll und Mr. Hyde\nDas\
-  \ verräterische Herz\nDie drei Musketiere\nDie Zeitmaschine\nDer Krieg der Welten\n\
-  Die Rote Zora\nDurch das Spiegelkabinett\nZwölf Jahre Sklave\nZwanzigtausend Meilen\
-  \ unter dem Meer\nKrieg und Frieden\nEmil und die Detektive\nPippi Langstrumpf"
-historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert\
-  \ Einstein\nAlexander der Große\nAmadeus Mozart\nAndy Warhol\nAnne Frank\nAristoteles\n\
-  Benedikt Arnold\nBenito Mussolini\nBilly the Kid\nBob Ross\nGebrüder Grimm\nBuddha\n\
-  Karl der Große\nCharles Darwin\nCharlie Chaplin\nChristoph Kolumbus\nClaude Monet\n\
-  Kleopatra\nNena\nMarlene Dietrich\nErnest Hemingway\nFrank Sinatra\nAngela Merkel\n\
-  Friedrich Nietzsche\nGalileo Galilei\nDschingis Khan\nBrüder Grimm\nBertolt Brecht\n\
-  Gustav Klimt\nHelen Keller\nHeinrich Ford\nImmanuel Kant\nIsaac Newton\nAlexander\
-  \ von Humboldt\nJesus\nJeanne d'Arc\nJohann Sebastian Bach\nOtto von Bismarck\n\
-  Sissi\nJohn Lennon\nJules Verne\nJulius Cäsar\nKönig Artus\nKönig Tut\nLeonardo\
-  \ da Vinci\nErich Kästner\nGerhard Schröder\nLudwig van Beethoven\nMahatma Gandhi\n\
-  Malcolm X\nMarie Antoinette\nMarie Curie\nMark Twain\nMartin Luther King Jr.\nLou\
-  \ Andreas-Salomé\nMaria, Königin der Schotten\nMichelangelo\nMuhammad\nNapoléon\
-  \ Bonaparte\nNeil Armstrong\nNelson Mandela\nNicolaus Kopernikus\nNikola Tesla\n\
-  Nina Hagen\nPlaton\nPocahontas\nPythagoras\nRené Descartes\nSalvador Dalí\nSigmund\
-  \ Freud\nSokrates\nSophie Scholl\nVincent Van Gogh\nWladimir Lenin\nVoltaire\nFriedrich\
-  \ Schiller\nGebrüder Wright"
+classic-literature_questions: "Äsops Fabeln\nAlice im Wunderland\nAnna Karenina\n
+  In achtzig Tagen um die Welt\nAschenputtel\nVerbrechen und Strafe\nDavid Copperfield\n
+  Don Quijote\nDracula\nEmma\nFrankenstein\nGroße Erwartungen\nGulliver's Reisen\n
+  Hamlet\nHänsel und Gretel\nIvanhoe\nJack and the Beanstalk\nDie Reise zum Mittelpunkt
+  der Erde\nDie Elenden\nRotkäppchen\nLittle Women\nMacbeth\nMoby Dick\nOliver Twist\n
+  Othello\nPeter Pan\nStolz und Vorurteil\nRapunzel\nRobinson Crusoe\nRomeo und Julia\n
+  Rumpelstilzchen\nNibelungenlied\nDornröschen\nSchneewittchen\nDie Abenteuer des
+  Sherlock Holmes\nDie Abenteuer von Tom Sawyer\nDie schwarze Katze\nDie Brüder Karamasow\n
+  Grimms Märchen\nDas Fass von Amontillado\nDer Graf von Monte Cristo\nDes Kaisers
+  neue Kleider\nDer Froschkönig\nDer große Gatsby\nDer Glöckner von Notre-Dame\nDer
+  Idiot\nDie Ilias\nDer unsichtbare Mann\nDas Dschungelbuch\nDie kleine Meerjungfrau\n
+  Die verlorene Welt\nDie Metamorphose\nDie Nachtigall\nDie Odyssee\nDas Bildnis des
+  Dorian Gray\nDie Prinzessin auf der Erbse\nDer Rabe\nDer scharlachrote Buchstabe\n
+  Der seltsame Fall des Dr. Jekyll und Mr. Hyde\nDas verräterische Herz\nDie drei
+  Musketiere\nDie Zeitmaschine\nDer Krieg der Welten\nDie Rote Zora\nDurch das Spiegelkabinett\n
+  Zwölf Jahre Sklave\nZwanzigtausend Meilen unter dem Meer\nKrieg und Frieden\nEmil
+  und die Detektive\nPippi Langstrumpf\nDie unendliche Geschichte\nHarry Potter\n
+  Das doppelte Lottchen\nDie Blechtrommel\nDie Verwandlung\nKrabat\nDas Nibelungenlied\n
+  Till Eulenspiegel\nEmilia Galotti\nDie Leiden des jungen Werther\nKabale und Liebe\n
+  Die Räuber\nDie Physiker\nFaust\nDer Sandmann\nAus dem Leben eines Taugenichts\n
+  Max und Moritz\nWinnetou\nDer Herr der Diebe\nTintenherz\nEffi Briest\nBuddenbrooks\n
+  Dreigroschenoper\nDer Prozess\nIm Westen nichts Neues\nDas fliegende Klassenzimmer\n
+  Pünktchen und Anton\nSchachnovelle\nHomo Faber\nDas Boot\nDie Klavierspielerin\n
+  Das Parfum\nDie Entdeckung der Langsamkeit\nDer Vorleser\nDie Vermessung der Welt\n\
+  Atemschaukel"
+historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert
+  Einstein\nAlexander der Große\nAlexander von Humboldt\nAndy Warhol\nAngela Merkel\n
+  Anne Frank\nAristoteles\nBenedikt Arnold\nBenito Mussolini\nBertolt Brecht\nBilly
+  the Kid\nBob Ross\nBuddha\nCharles Darwin\nCharlie Chaplin\nChristoph Kolumbus\n
+  Claude Monet\nDschingis Khan\nErich Kästner\nErnest Hemingway\nFrank Sinatra\nFriedrich
+  Nietzsche\nFriedrich Schiller\nGalileo Galilei\nGebrüder Grimm\nGustav Klimt\nGebrüder
+  Wright\nGerhard Schröder\nHelen Keller\nHeinrich Ford\nImmanuel Kant\nIsaac Newton\n
+  Jesus\nJeanne d'Arc\nJohann Sebastian Bach\nJohn Lennon\nJules Verne\nJulius Cäsar\n
+  Karl der Große\nKleopatra\nKönig Artus\nKönig Tut\nLeonardo da Vinci\nLou Andreas-Salomé\n
+  Ludwig van Beethoven\nMahatma Gandhi\nMalcolm X\nMarie Antoinette\nMarie Curie\n
+  Mark Twain\nMarlene Dietrich\nMartin Luther King Jr.\nMaria, Königin der Schotten\n
+  Michelangelo\nMuhammad\nNapoléon Bonaparte\nNeil Armstrong\nNelson Mandela\nNena\n
+  Nicolaus Kopernikus\nNikola Tesla\nNina Hagen\nOtto von Bismarck\nPlaton\nPocahontas\n
+  Pythagoras\nQueen Elizabeth\nRené Descartes\nSalvador Dalí\nSigmund Freud\nSissi\n
+  Sokrates\nSophie Scholl\nVincent Van Gogh\nVoltaire\nWladimir Lenin\nWolfgang Amadeus
+  Mozart"
 idioms_name: Redewendungen
+folk-melodies_name: Volkslieder
+idioms_questions: "Auf der Leitung stehen\nAlle Register ziehen\nAuf Tuchfühlung gehen\n
+  Auf Nummer sicher gehen\nAuge um Auge, Zahn um Zahn\nAm seidenen Faden hängen\n
+  Auf die Barrikaden gehen\nAuf dem Teppich bleiben\nAuf dem Schlauch stehen\nAuf
+  Holz klopfen\nAuf 180 sein\nAus allen Wolken fallen\nAuf Wellenlänge\nAuch nur mit
+  Wasser kochen\nAuf dem letzten Loch pfeifen\nAbwarten und Tee trinken\nAbends werden
+  die Bürgersteige hochgeklappt\nAm Hungertuch nagen\nAufpassen wie ein Schießhund\n
+  Am Pranger stehen\nAuf den Hund kommen\nAuf Wolke 7 schweben\nAlter Schwede\nAlte
+  Zöpfe abschneiden\nAus der Haut fahren\nAus dem Nähkästchen plaudern\nAuch ein blindes
+  Huhn findet mal ein Korn\nAuf den Nägeln brennen\nAuf keinen grünen Zweig kommen\n
+  Auf den Zahn fühlen\nAn der Nase herumführen\nAsche auf mein Haupt\nAlles über einen
+  Kamm scheren"
