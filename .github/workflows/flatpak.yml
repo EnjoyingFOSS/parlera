@@ -50,5 +50,5 @@ jobs:
         with:
           tag_name: ${{ env.VERSION }}
           files: |
-            flatpak/scripts/flatpak_generator_exports/parlera-linux-x86_64.tar.gz
-            flatpak/scripts/flatpak_generator_exports/parlera-linux-x86_64.sha256
+            flatpak/scripts/flatpak_generator exports/parlera-linux-x86_64.tar.gz
+            flatpak/scripts/flatpak_generator exports/parlera-linux-x86_64.sha256
