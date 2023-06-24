@@ -1,8 +1,9 @@
 name: flatpak
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 permissions:
   contents: write
@@ -16,7 +17,7 @@ jobs:
 
       - name: Extract version info
         run: |
-          echo "VERSION=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
+          echo "VERSION=$(echo $GITHUB_REF | cut -d / -f 3 | cut -c 2-)" >> $GITHUB_ENV
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -41,17 +42,13 @@ jobs:
         run: |
           cd flatpak/scripts
           dart pub get
-          dart flatpak_packager.dart --meta ../flatpak_meta.json --github
+          dart flatpak_packager.dart --meta ../flatpak_meta.json --github --addTodaysVersion ${{ env.VERSION }}
           cd ../..
 
-      - name: Get latest release
-        run: |
-          RELEASE_TAG=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.tag_name')
-          echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
-
-      - name: Upload package and its SHA
-        uses: svenstaro/upload-release-action@v2
+      - name: Create release
+        uses: softprops/action-gh-release@v1
         with:
-          file_glob: true
-          file: flatpak/scripts/flatpak_generator exports/parlera-*
-          tag: ${{ env.RELEASE_TAG }}
+          tag_name: ${{ env.VERSION }}
+          files: |
+            flatpak/scripts/flatpak_generator_exports/parlera-linux-x86_64.tar.gz
+            flatpak/scripts/flatpak_generator_exports/parlera-linux-x86_64.sha256
