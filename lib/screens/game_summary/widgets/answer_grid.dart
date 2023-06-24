@@ -26,7 +26,7 @@ class AnswerGrid extends StatelessWidget {
             children: List.generate(
               rowCount,
               (rowI) {
-                //todo turn into gridview, make whole page scrollable
+                //TODO turn into gridview, make whole page scrollable
                 if (rowI < rowCount - 1) {
                   return TableRow(
                     children: List.generate(

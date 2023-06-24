@@ -52,7 +52,7 @@ class CategoryModel extends StoreModel {
 
   Map<String, Category> _categories = {};
   List<Category> get categories => _categories.values
-      .toList(); //todo just store them as a list! _categories should equal categories
+      .toList(); //TODO just store them as a list! _categories should equal categories
 
   List<String> _favorites = [];
   List<Category> get favorites =>

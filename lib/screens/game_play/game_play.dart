@@ -92,7 +92,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
     super.initState();
     _startTimer();
     _category = CategoryModel.of(context)
-        .currentCategory!; //todo can I assume non-nullability?
+        .currentCategory!; //TODO can I assume non-nullability?
 
     if (_category.type == CategoryType.random) {
       QuestionModel.of(context)
@@ -359,7 +359,7 @@ class GamePlayScreenState extends State<GamePlayScreen>
             PrepScreen(
                 countdownText: _secondsLeft.toString(),
                 descriptionText: AppLocalizations.of(context)
-                    .preparationOrientationDescription), //todo remind users of directions each time
+                    .preparationOrientationDescription), //TODO remind users of directions each time
         ]),
       ),
     );

@@ -77,7 +77,7 @@ class Parlera extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!kIsWeb && !Platform.isLinux) {
-      //todo change after support is added
+      //TODO change after support is added
       Wakelock.enable();
     }
 

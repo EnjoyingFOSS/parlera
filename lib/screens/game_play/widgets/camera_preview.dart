@@ -154,7 +154,7 @@
 //         '${_pictureDir.path}/${DateTime.now().millisecondsSinceEpoch}.png');
 
 //     Future.delayed(const Duration(seconds: 1)).then((_) async {
-//       //todo test if can't just do directly, without delay
+//       //TODO test if can't just do directly, without delay
 //       List<FileSystemEntity?> files = await PicturesHelper.getFiles(context);
 //       setState(() {
 //         _lastImageOpacity = 1;

@@ -24,7 +24,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UrlLauncher {
   static void launchURL(BuildContext context, String url) async {
-    //todo launch in a new window
+    //TODO launch in a new window
     final uri = Uri.parse(url);
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final couldNotOpenString = AppLocalizations.of(context).urlCantOpen;

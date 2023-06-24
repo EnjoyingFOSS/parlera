@@ -25,7 +25,7 @@ import 'package:parlera/helpers/orientation.dart';
 
 class TutorialPage extends StatelessWidget {
   static const _minImageHeight = 320.0;
-  final Color bgColor; //todo remove bgColor?
+  final Color bgColor; //TODO remove bgColor?
   final String title;
   final String description;
   final String imagePath;

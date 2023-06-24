@@ -75,7 +75,7 @@ class ThemeHelper {
           backgroundColor: colorScheme.secondary,
           unselectedIconTheme: IconThemeData(
               color: colorScheme.onSecondary
-                  .withAlpha(90)), //todo use with material 3, opacity: 0.35),
+                  .withAlpha(90)), //TODO use with material 3, opacity: 0.35),
           selectedIconTheme: IconThemeData(color: colorScheme.primary)),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: colorScheme.secondary,
@@ -134,7 +134,7 @@ class ThemeHelper {
                   ? colorScheme.primary
                   : null),
           trackColor: MaterialStateProperty.resolveWith<Color?>(
-              (states) => //todo check
+              (states) => //TODO check
                   (!states.contains(MaterialState.disabled) &&
                           states.contains(MaterialState.selected))
                       ? colorScheme.primary.withAlpha(80)

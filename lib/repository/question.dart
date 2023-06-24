@@ -74,7 +74,7 @@ class QuestionRepository {
     categories = categories.sublist(0, 3);
 
     List<Question> result = List.from(
-      //todo THIS CAN LEAD TO FEWER QUESTIONS IF I PICK CATEGORIES WITH JUST 1 QUESTION EACH (but is that really a problem worth solving, though?)
+      //TODO THIS CAN LEAD TO FEWER QUESTIONS IF I PICK CATEGORIES WITH JUST 1 QUESTION EACH (but is that really a problem worth solving, though?)
       categories
           .map((cat) => _getShuffledQuestions(cat.questions, (limit ~/ 3) + 1))
           .expand<Question>((i) => i),

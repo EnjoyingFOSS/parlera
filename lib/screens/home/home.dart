@@ -116,7 +116,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 body: Row(children: [
                 NavigationRail(
                     // leading: SizedBox(
-                    //     height: MediaQuery.of(context).viewPadding.top - 16), //todo some bug makes this crash sometime after a screen rotation
+                    //     height: MediaQuery.of(context).viewPadding.top - 16), //TODO some bug makes this crash sometime after a screen rotation
                     unselectedIconTheme: IconThemeData(
                         color: Theme.of(context).colorScheme.onSecondary),
                     backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -129,7 +129,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           return const NavigationRailDestination(
                               padding: EdgeInsets.symmetric(
                                   vertical: _navigationRailPaddingVert),
-                              //todo use for material3 with each item: padding: EdgeInsets.symmetric(vertical: (72 - 24) / 2),
+                              //TODO use for material3 with each item: padding: EdgeInsets.symmetric(vertical: (72 - 24) / 2),
                               icon: Icon(Icons.home_rounded),
                               label: Text("Parlera"));
                         case _NavItem.favorites:

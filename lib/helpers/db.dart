@@ -63,7 +63,7 @@ class DBHelper {
       for (final lang in ParleraLanguage.values) {
         await stringMapStoreFactory
             .store(_getQStoreName(lang, isBundled: true))
-            .drop(database); //todo ok even if the store doesn't exist?
+            .drop(database); //TODO ok even if the store doesn't exist?
         final List jsonMapList =
             (json.decode(await rootBundle.loadString(_getBundledJsonPath(lang)))
                 as List<dynamic>);

@@ -72,7 +72,7 @@ class GameContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final safeAreaTop = MediaQuery.of(context).padding.top;
     return Shortcuts(
-        //todo use CallbackShortcuts instead
+        //TODO use CallbackShortcuts instead
         shortcuts: {
           LogicalKeySet(LogicalKeyboardKey.arrowUp):
               const _KeyboardHandleInvalidIntent(),

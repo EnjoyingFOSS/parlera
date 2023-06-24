@@ -21,6 +21,7 @@
 import 'package:flutter/material.dart';
 
 class EmojiHelper {
+  // TODO add search!
   static String getImagePath(String emoji) {
     if (emoji.runes.length > 1) {
       var nameString = "assets/emoji/${emoji.runes.first.toRadixString(16)}";

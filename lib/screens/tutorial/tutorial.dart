@@ -106,7 +106,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
           bgColor: Theme.of(context).colorScheme.surface),
     ];
     return Scaffold(
-        //todo use CallbackShortcuts instead
+        //TODO use CallbackShortcuts instead
         body: Shortcuts(
             shortcuts: {
           LogicalKeySet(LogicalKeyboardKey.arrowLeft):

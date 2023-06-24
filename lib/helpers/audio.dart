@@ -53,7 +53,7 @@ class AudioHelper {
     if (_audioEnabled(context)) {
       _player.play(_soundIncorrect);
       _player
-          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
@@ -61,7 +61,7 @@ class AudioHelper {
     if (_audioEnabled(context)) {
       _player.play(_soundCorrect);
       _player
-          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
@@ -69,7 +69,7 @@ class AudioHelper {
     if (_audioEnabled(context)) {
       _player.play(_soundCountdown);
       _player
-          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
@@ -77,7 +77,7 @@ class AudioHelper {
     if (_audioEnabled(context)) {
       _player.play(_soundStart);
       _player
-          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
@@ -85,7 +85,7 @@ class AudioHelper {
     if (_audioEnabled(context)) {
       _player.play(_soundCountdownStart);
       _player
-          .stop(); //todo this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 }
