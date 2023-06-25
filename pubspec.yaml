@@ -23,7 +23,7 @@ dependencies:
   package_info_plus: ^4.0.2
   scoped_model: ^2.0.0-nullsafety.0
   sensors_plus: ^3.0.2
-  audioplayers: ^4.0.1 #TODO test on ARM Linux
+  audioplayers: 3.0.1 #TODO test on ARM Linux
   vibration: ^1.8.1
   wakelock: ^0.6.1
   flutter_device_type: ^0.4.0
