@@ -46,7 +46,7 @@ void main(List<String> arguments) async {
       FlatpakMeta.fromJson(metaFile, skipLocalReleases: fetchFromGithub);
 
   final outputDir =
-      Directory('${Directory.current.path}/flatpak_generator exports');
+      Directory('${Directory.current.path}/flatpak_generator_exports');
   await outputDir.create();
 
   final packageGenerator = PackageGenerator(
@@ -100,19 +100,19 @@ class PackageGenerator {
       await iconFile.copy('${iconSubdir.path}/${icon.getFilename(appId)}');
     }
 
-    // appdata file
-    final origAppDataFile = File('${inputDir.path}/${meta.appDataPath}');
-    if (!(await origAppDataFile.exists())) {
+    // AppStream metainfo file
+    final origAppStreamFile = File('${inputDir.path}/${meta.appStreamPath}');
+    if (!(await origAppStreamFile.exists())) {
       throw Exception(
-          'The app data file does not exist under the specified path: ${origAppDataFile.path}');
+          'The app data file does not exist under the specified path: ${origAppStreamFile.path}');
     }
 
-    final editedAppDataContent = AppDataModifier.replaceVersions(
-        await origAppDataFile.readAsString(),
+    final editedAppStreamContent = AppStreamModifier.replaceVersions(
+        await origAppStreamFile.readAsString(),
         await meta.getReleases(fetchReleasesFromGithub, addedTodaysVersion));
 
-    final editedAppDataFile = File('${tempDir.path}/$appId.appdata.xml');
-    await editedAppDataFile.writeAsString(editedAppDataContent);
+    final editedAppStreamFile = File('${tempDir.path}/$appId.metainfo.xml');
+    await editedAppStreamFile.writeAsString(editedAppStreamContent);
 
     // build files
     final bundlePath =
@@ -154,22 +154,22 @@ class PackageGenerator {
   }
 }
 
-// updates releases in ${appName}.appdata.xml
-class AppDataModifier {
+// updates releases in ${appName}.metainfo.xml
+class AppStreamModifier {
   static String replaceVersions(
-      String origAppDataContent, List<Release> versions) {
+      String origAppStreamContent, List<Release> versions) {
     final joinedReleases = versions
         .map((v) => '\t\t<release version="${v.version}" date="${v.date}" />')
         .join('\n');
     final releasesSection =
         '<releases>\n$joinedReleases\n\t</releases>'; //TODO check this
-    if (origAppDataContent.contains('<releases')) {
-      return origAppDataContent
+    if (origAppStreamContent.contains('<releases')) {
+      return origAppStreamContent
           .replaceAll('\n', '<~>')
           .replaceFirst(RegExp('<releases.*</releases>'), releasesSection)
           .replaceAll('<~>', '\n');
     } else {
-      return origAppDataContent.replaceFirst(
+      return origAppStreamContent.replaceFirst(
           '</component>', '\n\t$releasesSection\n</component>');
     }
   }

@@ -30,7 +30,7 @@ void main(List<String> arguments) async {
       FlatpakMeta.fromJson(metaFile, skipLocalReleases: fetchFromGithub);
 
   final outputDir =
-      Directory('${Directory.current.path}/flatpak_generator exports');
+      Directory('${Directory.current.path}/flatpak_generator_exports');
   outputDir.createSync();
 
   final manifestGenerator = FlatpakManifestGenerator(meta);
@@ -94,7 +94,7 @@ class FlatpakManifestGenerator {
             ...meta.icons.map((icon) =>
                 'install -Dm644 $appName/icons/${icon.type}/${icon.getFilename(appId)} /app/share/icons/hicolor/${icon.type}/apps/${icon.getFilename(appId)}'),
             'install -Dm644 $appName/$appId.desktop /app/share/applications/$appId.desktop',
-            'install -Dm644 $appName/$appId.appdata.xml /app/share/applications/$appId.appdata.xml'
+            'install -Dm644 $appName/$appId.metainfo.xml /app/share/metainfo/$appId.metainfo.xml'
           ],
           'sources': assets
               .map((a) => {

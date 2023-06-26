@@ -181,7 +181,7 @@ class GithubReleases {
 class FlatpakMeta {
   final String appId;
   final String lowercaseAppName;
-  final String appDataPath;
+  final String appStreamPath;
   final String desktopPath;
   final List<Icon> icons;
 
@@ -209,7 +209,7 @@ class FlatpakMeta {
       required List<Release>? localReleases,
       required List<ReleaseAsset>? localReleaseAssets,
       required this.localLinuxBuildDir,
-      required this.appDataPath,
+      required this.appStreamPath,
       required this.desktopPath,
       required this.icons,
       required this.freedesktopRuntime,
@@ -313,7 +313,7 @@ class FlatpakMeta {
                       tarballSha256: shasum);
                 }).toList(),
           localLinuxBuildDir: json['localLinuxBuildDir'] as String,
-          appDataPath: json['appDataPath'] as String,
+          appStreamPath: json['appStreamPath'] as String,
           desktopPath: json['desktopPath'] as String,
           icons: (json['icons'] as Map).entries.map((mapEntry) {
             return Icon(

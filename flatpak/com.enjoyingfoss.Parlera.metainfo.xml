@@ -12,9 +12,13 @@
 		<control>keyboard</control>
 	</recommends>
 	<developer_name>Enjoying FOSS</developer_name>
+
 	<url type="homepage">https://gitlab.com/enjoyingfoss/parlera</url>
 	<url type="bugtracker">https://gitlab.com/enjoyingfoss/parlera/-/issues</url>
 	<url type="donation">https://liberapay.com/Parlera/donate</url>
+	<url type="translate">https://hosted.weblate.org/projects/parlera/</url>
+
+	<update_contact>contact.mirek+parlera_AT_protonmail.com</update_contact>
 
 	<custom>
 		<value key="Purism::form_factor">workstation</value>
