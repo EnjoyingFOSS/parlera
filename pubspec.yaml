@@ -3,7 +3,7 @@ description: A party game where your friends describe and you guess; or vice ver
 
 publish_to: "none"
 
-version: 3.0.1+8
+version: 3.0.2+9
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
