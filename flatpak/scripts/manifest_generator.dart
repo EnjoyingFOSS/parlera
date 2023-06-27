@@ -62,7 +62,7 @@ class FlatpakManifestGenerator {
   Future<String> generateFlatpakManifest(bool fetchFromGithub) async {
     final appName = meta.lowercaseAppName;
     final appId = meta.appId;
-    final assets = await meta.getReleaseAssets(fetchFromGithub);
+    final assets = await meta.getLatestReleaseAssets(fetchFromGithub);
 
     if (assets == null) {
       throw Exception('There are no associated assets.');
@@ -111,7 +111,7 @@ class FlatpakManifestGenerator {
   }
 
   Future<String?> generateFlathubJson(bool fetchFromGithub) async {
-    final assets = await meta.getReleaseAssets(fetchFromGithub);
+    final assets = await meta.getLatestReleaseAssets(fetchFromGithub);
 
     if (assets == null) {
       throw Exception('There are no associated assets.');

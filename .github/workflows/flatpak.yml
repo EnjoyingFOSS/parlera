@@ -17,7 +17,7 @@ jobs:
 
       - name: Extract version info
         run: |
-          echo "VERSION=$(echo $GITHUB_REF | cut -d / -f 3 | cut -c 2-)" >> $GITHUB_ENV
+          echo "VERSION=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2

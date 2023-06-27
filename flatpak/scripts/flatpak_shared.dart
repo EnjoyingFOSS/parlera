@@ -226,29 +226,32 @@ class FlatpakMeta {
 
   Future<List<Release>> getReleases(
       bool fetchReleasesFromGithub, String? addedTodaysVersion) async {
-    List<Release> releases;
-    if (fetchReleasesFromGithub) {
-      if (_githubReleases == null) {
-        throw Exception(
-            'Metadata must include Github repository info if fetching releases from Github.');
-      }
-      releases = await _githubReleases!.getReleases(addedTodaysVersion != null);
-    } else {
-      if (_localReleases == null && addedTodaysVersion == null) {
-        throw Exception(
-            'Metadata must include releases if not fetching releases from Github.');
-      }
-      releases = _localReleases ?? [];
-    }
+    final releases = List<Release>.empty(growable: true);
     if (addedTodaysVersion != null) {
       releases.add(Release(
           version: addedTodaysVersion,
           date: DateTime.now().toIso8601String().split("T").first));
     }
+    if (fetchReleasesFromGithub) {
+      if (_githubReleases == null) {
+        throw Exception(
+            'Metadata must include Github repository info if fetching releases from Github.');
+      }
+      releases.addAll(
+          await _githubReleases!.getReleases(addedTodaysVersion != null));
+    } else {
+      if (_localReleases == null && addedTodaysVersion == null) {
+        throw Exception(
+            'Metadata must include releases if not fetching releases from Github.');
+      }
+      if (_localReleases?.isNotEmpty ?? false) {
+        releases.addAll(_localReleases!);
+      }
+    }
     return releases;
   }
 
-  Future<List<ReleaseAsset>?> getReleaseAssets(
+  Future<List<ReleaseAsset>?> getLatestReleaseAssets(
       bool fetchReleasesFromGithub) async {
     if (fetchReleasesFromGithub) {
       if (_githubReleases == null) {
