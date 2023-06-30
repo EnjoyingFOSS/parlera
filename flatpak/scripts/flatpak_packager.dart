@@ -5,8 +5,14 @@ import 'flatpak_shared.dart';
 
 /// arguments:
 /// --meta [file]
+///   Required argument for providing the metadata file for this script.
+
 /// --github
+///   Use this option to pull release info from Github rather than the metadata file.
+
 /// --addTodaysVersion [version]
+///   If pulling data from Github, this provides a way to specify the release to be released today.
+
 void main(List<String> arguments) async {
   if (!Platform.isLinux) {
     throw Exception('Must be run under Linux');

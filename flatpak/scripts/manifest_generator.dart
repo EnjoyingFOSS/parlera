@@ -4,6 +4,13 @@ import 'dart:convert';
 import 'dart:io';
 import 'flatpak_shared.dart';
 
+/// arguments:
+/// --meta [file]
+///   Required argument for providing the metadata file for this script.
+
+/// --github
+///   Use this option to pull release info from Github rather than the metadata file.
+
 void main(List<String> arguments) async {
   if (Platform.isWindows) {
     throw Exception('Must be run under a UNIX-like operating system.');
