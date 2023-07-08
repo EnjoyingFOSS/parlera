@@ -19,6 +19,7 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 class ParleraCard extends StatelessWidget {
   final Widget child;
@@ -31,16 +32,19 @@ class ParleraCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
-        height: height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Theme.of(context).colorScheme.surface,
-        ),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(8),
-          child: child,
-        ));
+    return Bounceable(
+        scaleFactor: 0.75,
+        onTap: () {},
+        child: Ink(
+            height: height,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Theme.of(context).colorScheme.surface,
+            ),
+            child: InkWell(
+              onTap: onTap,
+              borderRadius: BorderRadius.circular(8),
+              child: child,
+            )));
   }
 }

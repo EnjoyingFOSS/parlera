@@ -48,6 +48,8 @@ class CategoryDetailScreen extends StatelessWidget {
       builder: (context, _, model) {
         final category = model.currentCategory!;
 
+        final scheme = category.getDarkColorScheme();
+
         if (category.questions.isEmpty &&
             category.type != CategoryType.random) {
           return const EmptyCategory();
@@ -56,7 +58,7 @@ class CategoryDetailScreen extends StatelessWidget {
         final stronglyLandscape =
             OrientationHelper.isStronglyLandscape(context);
         return Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.surface,
+            backgroundColor: scheme.surface,
             body: stronglyLandscape
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +74,7 @@ class CategoryDetailScreen extends StatelessWidget {
                       const SizedBox(
                         width: 32,
                       ),
-                      const Expanded(child: GameSetings()),
+                      Expanded(child: GameSetings(scheme: scheme)),
                     ],
                   )
                 : SingleChildScrollView(
@@ -88,7 +90,7 @@ class CategoryDetailScreen extends StatelessWidget {
                         const SizedBox(
                           height: 32,
                         ),
-                        const GameSetings(),
+                        GameSetings(scheme: scheme),
                       ],
                     ),
                   ));

@@ -19,6 +19,10 @@ dependencies:
   url_launcher: ^6.1.10
   emoji_picker_flutter: ^1.6.1
   share_plus: ^7.0.2
+
+  flutter_bounceable: ^1.1.0
+  molten_navigationbar_flutter: ^1.0.1
+  shimmer_animation: ^2.1.0+1
   
   package_info_plus: ^4.0.2
   scoped_model: ^2.0.0-nullsafety.0

@@ -36,13 +36,16 @@
 
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/store/settings.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 
 class GameSetings extends StatelessWidget {
-  const GameSetings({Key? key}) : super(key: key);
+  final ColorScheme scheme;
+  const GameSetings({Key? key, required this.scheme}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +64,8 @@ class GameSetings extends StatelessWidget {
                 ),
                 AnimatedToggleSwitch<int>.rolling(
                   innerColor: Colors.transparent,
+                  indicatorColor: scheme.secondary,
+                  borderColor: scheme.secondary,
                   iconBuilder: (int value, _, bool active) {
                     return Center(
                         child: Text(
@@ -68,9 +73,8 @@ class GameSetings extends StatelessWidget {
                           .secondsTemplate
                           .replaceFirst('%d', value.toString()),
                       style: TextStyle(
-                          color: active
-                              ? Theme.of(context).colorScheme.onSecondary
-                              : Theme.of(context).colorScheme.onSurface),
+                          color:
+                              active ? scheme.onSecondary : scheme.onSurface),
                     ));
                   },
                   current: settingsModel.roundTime,
@@ -81,20 +85,36 @@ class GameSetings extends StatelessWidget {
                   },
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 32),
-                  child: FloatingActionButton.extended(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    label: Text(AppLocalizations.of(context).preparationPlay),
-                    icon: const Icon(Icons.play_arrow_rounded),
-                    onPressed: () {
-                      SettingsModel.of(context).increaseGamesPlayed();
-                      Navigator.pushReplacementNamed(
-                        context,
-                        '/game-play',
-                      );
-                    },
-                  ),
-                ),
+                    padding: const EdgeInsets.symmetric(vertical: 32),
+                    child: Bounceable(
+                        scaleFactor: 0.7,
+                        onTap: () {},
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(800),
+                            child: Shimmer(
+                                colorOpacity: 0.5,
+                                child: SizedBox(
+                                    height: 64,
+                                    child: FittedBox(
+                                        child: FloatingActionButton.extended(
+                                      backgroundColor: scheme.primary,
+                                      label: Text(
+                                        AppLocalizations.of(context)
+                                            .preparationPlay,
+                                        style:
+                                            TextStyle(color: scheme.onPrimary),
+                                      ),
+                                      icon:
+                                          const Icon(Icons.play_arrow_rounded),
+                                      onPressed: () {
+                                        SettingsModel.of(context)
+                                            .increaseGamesPlayed();
+                                        Navigator.pushReplacementNamed(
+                                          context,
+                                          '/game-play',
+                                        );
+                                      },
+                                    ))))))),
               ],
             ));
   }
