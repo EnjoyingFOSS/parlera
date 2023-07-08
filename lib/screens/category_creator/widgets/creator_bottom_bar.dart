@@ -5,26 +5,25 @@ import '../../../models/language.dart';
 
 class CreatorBottomBar extends StatelessWidget {
   final void Function() onDone;
-  final ColorScheme colors;
   final ParleraLanguage lang;
   final double height;
 
   const CreatorBottomBar(
       {Key? key,
       required this.onDone,
-      required this.colors,
       required this.lang,
       required this.height})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final onSecondary = Theme.of(context).colorScheme.onSecondary;
     return Transform.translate(
         offset: Offset(0, -1 * MediaQuery.of(context).viewInsets.bottom),
         child: BottomAppBar(
             child: Container(
                 height: height,
-                color: colors.secondary,
+                color: Theme.of(context).colorScheme.secondary,
                 child: Row(children: [
                   Tooltip(
                       verticalOffset: -64,
@@ -36,8 +35,8 @@ class CreatorBottomBar extends StatelessWidget {
                           width: 16,
                         ),
                         Icon(
-                          Icons.language,
-                          color: colors.onSecondary,
+                          Icons.language_rounded,
+                          color: onSecondary,
                           size: 16,
                         ),
                         const SizedBox(
@@ -46,19 +45,19 @@ class CreatorBottomBar extends StatelessWidget {
                         Text(
                           lang.getLanguageName(context),
                           style: TextStyle(
-                            color: colors.onSecondary,
+                            color: onSecondary,
                           ),
                         ),
                         const SizedBox(
                           width: 4,
                         ),
-                        Icon(Icons.info_outline,
-                            size: 16, color: colors.onSecondary),
+                        Icon(Icons.info_outline_rounded,
+                            size: 16, color: onSecondary),
                       ])),
                   const Spacer(),
                   TextButton.icon(
                       onPressed: onDone,
-                      icon: const Icon(Icons.done),
+                      icon: const Icon(Icons.done_rounded),
                       label: Text(AppLocalizations.of(context).btnDone)),
                   const SizedBox(
                     width: 16,

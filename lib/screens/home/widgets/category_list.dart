@@ -81,11 +81,19 @@ class CategoryList extends StatelessWidget {
             case CategoryFilter.favorites:
               return EmptyScreen(
                   title: AppLocalizations.of(context).emptyFavorites,
-                  icon: const Icon(Icons.favorite_border_rounded, size: 96));
+                  icon: Icon(
+                    Icons.favorite_border_rounded,
+                    size: 96,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ));
             case CategoryFilter.all:
               return EmptyScreen(
                   title: AppLocalizations.of(context).emptyCategories,
-                  icon: const Icon(Icons.apps_rounded, size: 96));
+                  icon: Icon(
+                    Icons.apps_rounded,
+                    size: 96,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ));
           }
         } else {
           final title = (type == CategoryFilter.favorites)
@@ -101,7 +109,7 @@ class CategoryList extends StatelessWidget {
                     title: Text(title, style: const TextStyle(fontSize: 52)),
                     actions: [
                       PopupMenuButton(
-                        icon: const Icon(Icons.add),
+                        icon: const Icon(Icons.add_rounded),
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         tooltip: AppLocalizations.of(context).menuAddCategory,
                         itemBuilder: (context) => [

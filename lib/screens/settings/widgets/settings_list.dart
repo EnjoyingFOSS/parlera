@@ -41,32 +41,16 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:parlera/screens/languages/languages.dart';
 import 'package:scoped_model/scoped_model.dart';
-// import 'package:permission_handler/permission_handler.dart'; // TODO CAMERA: Make it work and work well
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-// import 'package:parlera/helpers/language.dart';
 import 'package:parlera/store/settings.dart';
 
 import '../../../helpers/url_launcher.dart';
-// import 'package:parlera/store/language.dart';
 
 class SettingsList extends StatelessWidget {
   final double topMargin;
 
   const SettingsList({Key? key, this.topMargin = 8}) : super(key: key);
-
-  // Future<bool> requestCameraPermissions() async { // TODO CAMERA: Make it work and work well
-  //   Map<Permission, PermissionStatus> statuses = await [
-  //     Permission.camera,
-  //   ].request();
-  //   var res = true;
-  //   for (var status in statuses.values) {
-  //     if (status != PermissionStatus.granted) {
-  //       res = false;
-  //     }
-  //   }
-  //   return res;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,19 +59,6 @@ class SettingsList extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 8, top: topMargin),
         shrinkWrap: true,
         children: [
-          // if (!flutter_foundation.kIsWeb && // TODO CAMERA: Make it work and work well
-          //     (Platform.isIOS || Platform.isAndroid))
-          //   SwitchListTile(
-          //     title: Text(AppLocalizations.of(context).settingsCamera),
-          //     value: model.isCameraEnabled,
-          //     onChanged: (bool value) async {
-          //       if (value && !await requestCameraPermissions()) {
-          //         return;
-          //       }
-          //       model.toggleCamera();
-          //     },
-          //     secondary: const Icon(Icons.camera_alt_rounded),
-          //   ),
           if (!flutter_foundation.kIsWeb &&
               (Platform.isIOS || Platform.isAndroid))
             SwitchListTile(
@@ -118,13 +89,13 @@ class SettingsList extends StatelessWidget {
             onTap: () => _openTutorial(context),
           ),
           ListTile(
-            leading: const Icon(Icons.volunteer_activism),
+            leading: const Icon(Icons.volunteer_activism_rounded),
             title: Text(AppLocalizations.of(context).contribute),
             onTap: () => UrlLauncher.launchURL(context,
                 "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
           ),
           ListTile(
-            leading: const Icon(Icons.attach_money),
+            leading: const Icon(Icons.attach_money_rounded),
             title: Text(AppLocalizations.of(context).donate),
             onTap: () => UrlLauncher.launchURL(
                 context, "https://en.liberapay.com/Parlera/"),
@@ -148,16 +119,18 @@ class SettingsList extends StatelessWidget {
 
   void _showAboutDialog(BuildContext context) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    showAboutDialog(
-        context: context,
-        applicationIcon: const SizedBox(
-          width: 48,
-          height: 48,
-          child: Image(
-            image: AssetImage('assets/images/icon_generic.webp'),
+    if (context.mounted) {
+      showAboutDialog(
+          context: context,
+          applicationIcon: const SizedBox(
+            width: 48,
+            height: 48,
+            child: Image(
+              image: AssetImage('assets/images/icon_generic.webp'),
+            ),
           ),
-        ),
-        applicationName: packageInfo.appName,
-        applicationVersion: packageInfo.version);
+          applicationName: packageInfo.appName,
+          applicationVersion: packageInfo.version);
+    }
   }
 }

@@ -43,7 +43,7 @@ class SettingsModal extends StatelessWidget {
                 context,
                 MaterialPageRoute<void>(
                     builder: (context) => const SettingsScreen())),
-            child: const Icon(Icons.expand_less),
+            child: const Icon(Icons.expand_less_rounded),
           ))
     ]);
   }

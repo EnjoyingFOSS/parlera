@@ -62,7 +62,7 @@ class LanguageScreen extends StatelessWidget {
                       ),
                       leading: const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 6),
-                          child: Icon(Icons.add)),
+                          child: Icon(Icons.add_rounded)),
                       onTap: () => UrlLauncher.launchURL(context,
                           'https://hosted.weblate.org/projects/parlera/ui/'),
                     ),

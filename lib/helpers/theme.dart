@@ -47,9 +47,9 @@ class ThemeHelper {
   static ThemeData _getThemeFromScheme(ColorScheme colorScheme) {
     return ThemeData(
       useMaterial3: true,
+      iconTheme: const IconThemeData(weight: 700.0, grade: 200.0),
       colorScheme: colorScheme,
       visualDensity: VisualDensity.comfortable,
-      backgroundColor: colorScheme.background,
       brightness: colorScheme.brightness,
       primaryColor: colorScheme.primary,
       scaffoldBackgroundColor: colorScheme.background,
@@ -70,13 +70,6 @@ class ThemeHelper {
         border: InputBorder.none,
         filled: true,
       ),
-      navigationRailTheme: NavigationRailThemeData(
-          useIndicator: true,
-          backgroundColor: colorScheme.secondary,
-          unselectedIconTheme: IconThemeData(
-              color: colorScheme.onSecondary
-                  .withAlpha(90)), //TODO use with material 3, opacity: 0.35),
-          selectedIconTheme: IconThemeData(color: colorScheme.primary)),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: colorScheme.secondary,
           foregroundColor: colorScheme.onSecondary,
@@ -84,20 +77,9 @@ class ThemeHelper {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))),
       bottomAppBarTheme:
           const BottomAppBarTheme(height: 48, padding: EdgeInsets.all(0)),
-      navigationBarTheme: NavigationBarThemeData(
-          height: 56,
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-          indicatorColor: Colors.transparent,
-          surfaceTintColor: Colors.transparent,
-          backgroundColor: colorScheme.secondary,
-          elevation: 8,
-          iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
-              (states) => (states.contains(MaterialState.selected)
-                  ? IconThemeData(color: colorScheme.primary)
-                  : IconThemeData(
-                      color: colorScheme.onSecondary.withAlpha(90))))),
-      bottomSheetTheme:
-          BottomSheetThemeData(backgroundColor: colorScheme.surface),
+      bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: colorScheme.surface,
+          surfaceTintColor: Colors.transparent),
       snackBarTheme: SnackBarThemeData(
         actionTextColor: colorScheme.onSecondary,
         backgroundColor: colorScheme.secondary,
