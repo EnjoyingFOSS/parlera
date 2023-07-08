@@ -44,9 +44,6 @@ class SettingsModel extends StoreModel {
   SettingsRepository repository;
 
   static const String androidId = 'com.enjoyingfoss.parlera';
-  static const String appleId = '1181083547';
-  static const String privacyPolicyUrl =
-      'https://github.com/vintage/party_flutter/blob/master/PRIVACY_POLICY.md';
 
   bool _isLoading = true;
   bool get isLoading => _isLoading;
@@ -84,7 +81,6 @@ class SettingsModel extends StoreModel {
 
     _isAudioEnabled = repository.isAudioEnabled();
     _isRotationControlEnabled = repository.isRotationControlEnabled();
-    // _isCameraEnabled = repository.isCameraEnabled(); // TODO CAMERA: Make it work and work well
     _roundTime = repository.getRoundTime();
     _version = await repository.getAppVersion();
     _gamesPlayed = repository.getGamesPlayed();
@@ -104,12 +100,6 @@ class SettingsModel extends StoreModel {
     notifyListeners();
   }
 
-  // TODO CAMERA: Make it work and work well
-  // Future<void> toggleCamera() async {
-  //   _isCameraEnabled = await repository.toggleCamera();
-  //   notifyListeners();
-  // }
-
   Future<void> changeRoundTime(int roundTime) async {
     _roundTime = await repository.setRoundTime(roundTime);
     notifyListeners();
@@ -124,13 +114,6 @@ class SettingsModel extends StoreModel {
     _gamesFinished = await repository.increaseGamesFinished();
     notifyListeners();
   }
-
-  // enableNotifications() {
-  //   NotificationsService.register();
-  //   _areNotificationsEnabled = true;
-  //   repository.enableNotifications();
-  //   notifyListeners();
-  // }
 
   static SettingsModel of(BuildContext context) =>
       ScopedModel.of<SettingsModel>(context);

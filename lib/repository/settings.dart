@@ -45,7 +45,6 @@ class SettingsRepository {
   static const String _storageAudioEnabledKey = 'is_audio_enabled';
   static const String _storageRotationControlEnabledKey =
       'is_rotation_control_enabled';
-  // static const String storageCameraEnabledKey = 'is_camera_enabled'; // TODO CAMERA: Make it work and work well
   static const String _storageRoundTimeKey = 'round_time';
   static const String _storageGamesPlayedKey = 'games_played';
   static const String _storageGamesFinishedKey = 'games_finished';
@@ -80,19 +79,6 @@ class SettingsRepository {
 
     return value;
   }
-
-  // TODO CAMERA: Make it work and work well
-  // bool isCameraEnabled() {
-  //   return storage.getBool(storageCameraEnabledKey) ?? false;
-  // }
-
-  // bool toggleCamera() {
-  //   final value = !isCameraEnabled();
-
-  //   storage.setBool(storageCameraEnabledKey, value);
-
-  //   return value;
-  // }
 
   int getRoundTime() {
     return storage.getInt(_storageRoundTimeKey) ?? 60;

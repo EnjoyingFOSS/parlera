@@ -43,7 +43,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:l10n_esperanto/l10n_esperanto.dart';
 import 'package:parlera/screens/category_detail/category_detail.dart';
-// import 'package:parlera/screens/game_gallery/game_gallery.dart'; // TODO CAMERA: Make it work and work well
 import 'package:parlera/screens/game_play/game_play.dart';
 import 'package:parlera/screens/game_summary/game_summary.dart';
 import 'package:parlera/screens/home/home.dart';
@@ -67,7 +66,6 @@ import 'store/question.dart';
 import 'store/tutorial.dart';
 import 'store/settings.dart';
 import 'store/language.dart';
-// import 'store/gallery.dart'; // TODO CAMERA: Make it work and work well
 
 class Parlera extends StatelessWidget {
   final Map<Type, StoreModel> stores = {};
@@ -123,8 +121,6 @@ class Parlera extends StatelessWidget {
                 model: stores[SettingsModel] as SettingsModel,
                 child: ScopedModel<LanguageModel>(
                   model: stores[LanguageModel] as LanguageModel,
-                  // child: ScopedModel<GalleryModel>( // TODO CAMERA: Make it work and work well
-                  //   model: stores[GalleryModel] as GalleryModel,
                   child: const ParleraApp(),
                   // ),
                 ),
@@ -184,7 +180,6 @@ class ParleraApp extends StatelessWidget {
           '/category': (context) => const CategoryDetailScreen(),
           '/game-play': (context) => const GamePlayScreen(),
           '/game-summary': (context) => const GameSummaryScreen(),
-          // '/game-gallery': (context) => const GameGalleryScreen(), // TODO CAMERA: Make it work and work well
           '/tutorial': (context) => const TutorialScreen(),
         },
       );
