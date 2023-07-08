@@ -35,7 +35,7 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:parlera/helpers/orientation.dart';
+import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 import 'package:parlera/screens/home/widgets/category_list.dart';
 import 'package:parlera/screens/settings/settings.dart';
 import 'package:parlera/widgets/screen_loader.dart';
@@ -57,7 +57,6 @@ class HomeScreen extends StatefulWidget {
 enum _NavItem { all, favorites, menu }
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  static const _navigationRailPaddingVert = 16.0;
   CategoryFilter _currentCategory = CategoryFilter.all;
 
   @override
@@ -73,24 +72,6 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   bool isTutorialWatched() {
     return TutorialModel.of(context).isWatched;
-  }
-
-  void _switchScreen(int i) {
-    switch (_NavItem.values[i]) {
-      case _NavItem.all:
-        setState(() {
-          _currentCategory = CategoryFilter.all;
-        });
-        break;
-      case _NavItem.favorites:
-        setState(() {
-          _currentCategory = CategoryFilter.favorites;
-        });
-        break;
-      case _NavItem.menu:
-        SettingsScreen.showBottomSheet(context);
-        break;
-    }
   }
 
   @override
@@ -111,87 +92,63 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             break;
         }
 
-        return (OrientationHelper.isStronglyLandscape(context))
-            ? Scaffold(
-                body: Row(children: [
-                NavigationRail(
-                    // leading: SizedBox(
-                    //     height: MediaQuery.of(context).viewPadding.top - 16), //TODO some bug makes this crash sometime after a screen rotation
-                    unselectedIconTheme: IconThemeData(
-                        color: Theme.of(context).colorScheme.onSecondary),
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    selectedIndex: currentIndex,
-                    onDestinationSelected: _switchScreen,
-                    labelType: NavigationRailLabelType.none,
-                    destinations: _NavItem.values.map((navItem) {
-                      switch (navItem) {
-                        case _NavItem.all:
-                          return const NavigationRailDestination(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: _navigationRailPaddingVert),
-                              //TODO use for material3 with each item: padding: EdgeInsets.symmetric(vertical: (72 - 24) / 2),
-                              icon: Icon(Icons.home_rounded),
-                              label: Text("Parlera"));
-                        case _NavItem.favorites:
-                          return NavigationRailDestination(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: _navigationRailPaddingVert),
-                              icon: const Icon(Icons.favorite_rounded),
-                              label:
-                                  Text(AppLocalizations.of(context).favorites));
-                        case _NavItem.menu:
-                          return NavigationRailDestination(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: _navigationRailPaddingVert),
-                              icon: const Icon(Icons.menu),
-                              label:
-                                  Text(AppLocalizations.of(context).settings));
-                      }
-                    }).toList()),
-                Expanded(
-                    child: CategoryList(
-                  type: _currentCategory,
-                ))
-              ]))
-            : Scaffold(
-                bottomNavigationBar: NavigationBar(
-                  destinations: _NavItem.values.map((navItem) {
-                    switch (navItem) {
-                      case _NavItem.all:
-                        return const NavigationDestination(
-                            icon: Icon(Icons.home_rounded), label: "Parlera");
-                      case _NavItem.favorites:
-                        return NavigationDestination(
-                            icon: const Icon(Icons.favorite_rounded),
-                            label: AppLocalizations.of(context).favorites);
-                      case _NavItem.menu:
-                        return NavigationDestination(
-                            icon: const Icon(Icons.menu),
-                            label: AppLocalizations.of(context).settings);
-                    }
-                  }).toList(),
-                  selectedIndex: currentIndex,
-                  onDestinationSelected: (i) {
-                    switch (_NavItem.values[i]) {
-                      case _NavItem.all:
-                        setState(() {
-                          _currentCategory = CategoryFilter.all;
-                        });
-                        break;
-                      case _NavItem.favorites:
-                        setState(() {
-                          _currentCategory = CategoryFilter.favorites;
-                        });
-                        break;
-                      case _NavItem.menu:
-                        SettingsScreen.showBottomSheet(context);
-                        break;
-                    }
-                  },
-                ),
-                body: CategoryList(
-                  type: _currentCategory,
-                ));
+        return Scaffold(
+            bottomNavigationBar: MoltenBottomNavigationBar(
+              curve: Curves.easeOutExpo,
+              domeWidth: 80,
+              domeHeight: 12,
+              duration: const Duration(milliseconds: 500),
+              barColor: Theme.of(context).colorScheme.secondary,
+              tabs: _NavItem.values.map((navItem) {
+                switch (navItem) {
+                  case _NavItem.all:
+                    return MoltenTab(
+                      unselectedColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      icon: Semantics(
+                          label: "Parlera",
+                          child: const Icon(Icons.home_rounded)),
+                    );
+                  case _NavItem.favorites:
+                    return MoltenTab(
+                      unselectedColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      icon: Semantics(
+                          label: AppLocalizations.of(context).favorites,
+                          child: const Icon(Icons.favorite_rounded)),
+                    );
+                  case _NavItem.menu:
+                    return MoltenTab(
+                      unselectedColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      icon: Semantics(
+                          label: AppLocalizations.of(context).settings,
+                          child: const Icon(Icons.menu_rounded)),
+                    );
+                }
+              }).toList(),
+              selectedIndex: currentIndex,
+              onTabChange: (i) {
+                switch (_NavItem.values[i]) {
+                  case _NavItem.all:
+                    setState(() {
+                      _currentCategory = CategoryFilter.all;
+                    });
+                    break;
+                  case _NavItem.favorites:
+                    setState(() {
+                      _currentCategory = CategoryFilter.favorites;
+                    });
+                    break;
+                  case _NavItem.menu:
+                    SettingsScreen.showBottomSheet(context);
+                    break;
+                }
+              },
+            ),
+            body: CategoryList(
+              type: _currentCategory,
+            ));
       },
     );
   }
