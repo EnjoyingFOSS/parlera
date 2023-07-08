@@ -18,7 +18,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 import 'category.dart';
 import 'language.dart';
@@ -32,6 +32,7 @@ class EditableCategory {
   List<String>? questions;
   Color bgColor;
   String emoji;
+  ColorScheme? darkColorScheme;
   late ParleraLanguage lang;
 
   EditableCategory(
@@ -61,6 +62,12 @@ class EditableCategory {
             .toList(),
         bgColor = Color(json[Category.jsonBgColor] as int),
         emoji = json[Category.jsonEmoji] as String;
+
+  ColorScheme getDarkColorScheme() {
+    darkColorScheme ??=
+        ColorScheme.fromSeed(seedColor: bgColor, brightness: Brightness.dark);
+    return darkColorScheme!;
+  }
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{

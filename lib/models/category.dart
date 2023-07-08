@@ -34,8 +34,7 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:parlera/models/category_type.dart';
 import 'package:parlera/models/question.dart';
 
@@ -55,8 +54,9 @@ class Category {
   final Color bgColor;
   final ParleraLanguage lang;
   final List<Question> questions;
+  ColorScheme? _darkColorScheme;
 
-  const Category({
+  Category({
     required this.type, //type and sembast ID together are the key
     required this.sembastPos,
     required this.name,
@@ -92,6 +92,12 @@ class Category {
       };
 
   String getUniqueId() => getUniqueIdFromInputs(lang, type, sembastPos);
+
+  ColorScheme getDarkColorScheme() {
+    _darkColorScheme ??=
+        ColorScheme.fromSeed(seedColor: bgColor, brightness: Brightness.dark);
+    return _darkColorScheme!;
+  }
 
   static String getUniqueIdFromInputs(
           ParleraLanguage lang, CategoryType type, int sembastPos) =>
