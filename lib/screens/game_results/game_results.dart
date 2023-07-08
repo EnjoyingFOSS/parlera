@@ -47,11 +47,11 @@ import '../../helpers/emoji.dart';
 import '../../helpers/hero.dart';
 import 'widgets/answer_grid.dart';
 
-class GameSummaryScreen extends StatelessWidget {
+class GameResultsScreen extends StatelessWidget {
   static const _maxAnswerWidth = 400;
   static const _standardTopAreaHeight = 60;
 
-  const GameSummaryScreen({Key? key}) : super(key: key);
+  const GameResultsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

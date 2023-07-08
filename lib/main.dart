@@ -42,9 +42,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:l10n_esperanto/l10n_esperanto.dart';
-import 'package:parlera/screens/category_detail/category_detail.dart';
-import 'package:parlera/screens/game_play/game_play.dart';
-import 'package:parlera/screens/game_summary/game_summary.dart';
+import 'package:parlera/screens/game_cover/game_cover.dart';
+import 'package:parlera/screens/game_player/game_player.dart';
+import 'package:parlera/screens/game_results/game_results.dart';
 import 'package:parlera/screens/home/home.dart';
 import 'package:parlera/screens/tutorial/tutorial.dart';
 import 'package:parlera/widgets/screen_loader.dart';
@@ -177,9 +177,9 @@ class ParleraApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => const HomeScreen(),
-          '/category': (context) => const CategoryDetailScreen(),
-          '/game-play': (context) => const GamePlayScreen(),
-          '/game-summary': (context) => const GameSummaryScreen(),
+          '/category': (context) => const GameCoverScreen(),
+          '/game-play': (context) => const GamePlayerScreen(),
+          '/game-summary': (context) => const GameResultsScreen(),
           '/tutorial': (context) => const TutorialScreen(),
         },
       );

@@ -77,7 +77,9 @@ class CategoryHeader extends StatelessWidget {
         clipper: isLandscape ? RightWaveClipper() : BottomWaveClipper(),
         child: Container(
             color: category.bgColor,
-            padding: const EdgeInsets.only(bottom: 32),
+            padding: isLandscape
+                ? const EdgeInsets.fromLTRB(8, 0, 8, 32)
+                : const EdgeInsets.only(bottom: 32),
             width: double.infinity,
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [

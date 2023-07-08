@@ -21,16 +21,16 @@
 import 'package:flutter/material.dart';
 import 'package:parlera/helpers/orientation.dart';
 import 'package:parlera/models/category_type.dart';
-import 'package:parlera/screens/category_detail/widgets/empty_category.dart';
-import 'package:parlera/screens/category_detail/widgets/game_settings.dart';
+import 'package:parlera/screens/game_cover/widgets/empty_category.dart';
+import 'package:parlera/screens/game_cover/widgets/game_settings.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
 
 import 'widgets/category_header.dart';
 
-class CategoryDetailScreen extends StatelessWidget {
-  const CategoryDetailScreen({Key? key}) : super(key: key);
+class GameCoverScreen extends StatelessWidget {
+  const GameCoverScreen({Key? key}) : super(key: key);
 
   Widget buildRoundTimeSelectItem(String text) {
     return Padding(
@@ -71,9 +71,6 @@ class CategoryDetailScreen extends StatelessWidget {
                         isFavorite: model.isFavorite(category),
                         isLandscape: stronglyLandscape,
                       )),
-                      const SizedBox(
-                        width: 32,
-                      ),
                       Expanded(child: GameSetings(scheme: scheme)),
                     ],
                   )

@@ -43,8 +43,8 @@ import 'package:flutter/services.dart';
 import 'package:parlera/helpers/audio.dart';
 import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/helpers/vibration.dart';
-import 'package:parlera/screens/game_play/widgets/game_content.dart';
-import 'package:parlera/screens/game_play/widgets/prep_screen.dart';
+import 'package:parlera/screens/game_player/widgets/game_content.dart';
+import 'package:parlera/screens/game_player/widgets/prep_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
@@ -57,14 +57,14 @@ import '../../models/category_type.dart';
 import 'tilt_service.dart';
 import 'widgets/splash_content.dart';
 
-class GamePlayScreen extends StatefulWidget {
-  const GamePlayScreen({Key? key}) : super(key: key);
+class GamePlayerScreen extends StatefulWidget {
+  const GamePlayerScreen({Key? key}) : super(key: key);
 
   @override
-  GamePlayScreenState createState() => GamePlayScreenState();
+  GamePlayerScreenState createState() => GamePlayerScreenState();
 }
 
-class GamePlayScreenState extends State<GamePlayScreen>
+class GamePlayerScreenState extends State<GamePlayerScreen>
     with TickerProviderStateMixin {
   static const _secondsPrep = 5;
 
