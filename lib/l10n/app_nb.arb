@@ -153,5 +153,7 @@
   "txtDiscardChangesQ": "Vil du forkaste endringene?",
   "@txtDiscardChangesQ": {},
   "btnGetCategoriesOnline": "Hent kategorier på nett...",
-  "@btnGetCategoriesOnline": {}
+  "@btnGetCategoriesOnline": {},
+  "txtNoRecentEmoji": "Ingen nylig emoji",
+  "@txtNoRecentEmoji": {}
 }
