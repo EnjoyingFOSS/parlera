@@ -36,13 +36,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:parlera/clippers/bottom_wave_clipper.dart';
 import 'package:parlera/store/category.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-// TODO CAMERA: Make it work and work well
-// import 'package:parlera/store/gallery.dart';
-// import 'widgets/gallery_horizontal.dart';
 import 'package:parlera/store/question.dart';
 
 import '../../helpers/emoji.dart';
@@ -55,16 +53,6 @@ class GameSummaryScreen extends StatelessWidget {
 
   const GameSummaryScreen({Key? key}) : super(key: key);
 
-  // TODO CAMERA: Make it work and work well
-  // void openGallery(BuildContext context, FileSystemEntity item) {
-  //   GalleryModel.of(context).setActive(item);
-
-  //   Navigator.pushNamed(
-  //     context,
-  //     '/game-gallery',
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     final safeAreaTop = MediaQuery.of(context).padding.top;
@@ -76,39 +64,27 @@ class GameSummaryScreen extends StatelessWidget {
       return ScopedModelDescendant<QuestionModel>(
         builder: (context, _, model) {
           final category = categoryModel.currentCategory!;
+          final scheme = category.getDarkColorScheme();
           return Scaffold(
-              backgroundColor: Theme.of(context).colorScheme.surface,
+              backgroundColor: scheme.surface,
               body: SingleChildScrollView(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // ScopedModelDescendant<GalleryModel>( // TODO CAMERA: Make it work and work well
-                  //   builder: (context, child, model) {
-                  //     if (model.images.isEmpty) {
-                  //       return Container();
-                  //     }
-
-                  //     return Padding(
-                  //       padding: const EdgeInsets.only(top: 16.0),
-                  //       child: GalleryHorizontal(
-                  //         items: model.images,
-                  //         onTap: (item) {
-                  //           if (item != null) openGallery(context, item);
-                  //         },
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
                   Stack(children: [
-                    Container(
-                      height: topAreaHeight + 90 + safeAreaTop,
-                      color: category.bgColor,
-                    ),
+                    ClipPath(
+                        clipper: BottomWaveClipper(),
+                        child: Container(
+                          height: topAreaHeight + 90 + safeAreaTop,
+                          color: category.bgColor,
+                        )),
                     Positioned.directional(
                       start: 8,
                       top: 8 + safeAreaTop,
                       textDirection: Directionality.of(context),
-                      child: (const BackButton()),
+                      child: (const BackButton(
+                        color: Colors.white,
+                      )),
                     ),
                     Container(
                         margin:

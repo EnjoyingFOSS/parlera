@@ -22,6 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'package:parlera/clippers/bottom_wave_clipper.dart';
 import 'package:parlera/helpers/dynamic_color.dart';
 import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/screens/category_creator/widgets/creator_bottom_bar.dart';
@@ -68,7 +69,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
 
     return ScopedModelDescendant<LanguageModel>(builder: (context, _, model) {
       final modelLanguage = model.lang;
-      final colors = Theme.of(context).colorScheme;
+      final colors = _editableCategory.getDarkColorScheme();
       if (modelLanguage != null) _editableCategory.lang = modelLanguage;
       return WillPopScope(
           onWillPop: () async {
@@ -76,6 +77,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
             return false;
           },
           child: Scaffold(
+            backgroundColor: colors.background,
             bottomNavigationBar: CreatorBottomBar(
               onDone: () async {
                 final form = _formKey.currentState;
@@ -90,7 +92,6 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                           : AppLocalizations.of(context).txtCategoryEdited)));
                 }
               },
-              colors: colors,
               lang: _editableCategory.lang,
               height: _creatorBottomBarHeight,
             ),
@@ -101,15 +102,19 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Stack(children: [
-                      Container(
-                        height: topAreaHeight + 90 + safeAreaTop,
-                        color: _editableCategory.bgColor,
-                      ),
+                      ClipPath(
+                          clipper: BottomWaveClipper(),
+                          child: Container(
+                            height: topAreaHeight + 90 + safeAreaTop,
+                            color: _editableCategory.bgColor,
+                          )),
                       Positioned.directional(
                         start: 8,
                         top: 8 + safeAreaTop,
                         textDirection: Directionality.of(context),
-                        child: (const CloseButton()),
+                        child: (const CloseButton(
+                          color: Colors.white,
+                        )),
                       ),
                       Container(
                           margin:
@@ -185,7 +190,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                                                       color: colors.secondary,
                                                       shape: BoxShape.circle),
                                                   child: Icon(
-                                                    Icons.edit,
+                                                    Icons.edit_rounded,
                                                     size: 18,
                                                     color: colors.onSecondary,
                                                   )))
@@ -198,6 +203,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                             horizontal: 16, vertical: 6),
                         child: TextFormField(
                           decoration: InputDecoration(
+                              fillColor: colors.surfaceVariant,
                               label: Text(AppLocalizations.of(context)
                                   .txtCategoryTitle)),
                           initialValue: _editableCategory.name,
@@ -212,6 +218,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                           maxLines: null,
                           initialValue: _editableCategory.questions?.join("\n"),
                           decoration: InputDecoration(
+                              fillColor: colors.surfaceVariant,
                               label: Text(AppLocalizations.of(context)
                                   .txtWordsOnePerLine),
                               alignLabelWithHint: true),

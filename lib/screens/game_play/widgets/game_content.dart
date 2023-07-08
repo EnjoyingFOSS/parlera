@@ -37,6 +37,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:parlera/clippers/bottom_wave_clipper.dart';
 import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/theme.dart';
@@ -94,18 +95,29 @@ class GameContent extends StatelessWidget {
                       children: [
                         GameButton(
                           color: ThemeHelper.failColorDarkest,
+                          hoverColor: ThemeHelper.failColorLighter,
                           onTap: handleInvalid,
                           emojiIcon: Icons.sentiment_dissatisfied_rounded,
-                          arrowIcon: Icons.arrow_upward,
+                          arrowIcon: Icons.arrow_upward_rounded,
                         ),
                         GameButton(
                           color: ThemeHelper.successColorDarkest,
+                          hoverColor: ThemeHelper.successColorLighter,
                           onTap: handleValid,
                           emojiIcon: Icons.sentiment_satisfied_alt_rounded,
-                          arrowIcon: Icons.arrow_downward,
+                          arrowIcon: Icons.arrow_downward_rounded,
                         ),
                       ],
                     ),
+                    IgnorePointer(
+                        child: Padding(
+                            padding: const EdgeInsets.only(bottom: 56, top: 8),
+                            child: ClipPath(
+                                clipper: BottomWaveClipper(),
+                                child: Container(
+                                    color: category
+                                        .getDarkColorScheme()
+                                        .surface)))),
                     IgnorePointer(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -182,7 +194,9 @@ class GameContent extends StatelessWidget {
                         textDirection: Directionality.of(context),
                         top: safeAreaTop + 24,
                         start: 8,
-                        child: const BackButton()),
+                        child: const BackButton(
+                          color: Colors.white,
+                        )),
                   ],
                 ))));
   }

@@ -41,10 +41,6 @@ import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:parlera/helpers/audio.dart';
-// TODO CAMERA: Make it work and work well
-// import 'package:parlera/helpers/pictures.dart';
-// import 'package:parlera/store/gallery.dart';
-// import 'widgets/camera_preview.dart';
 import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/helpers/vibration.dart';
 import 'package:parlera/screens/game_play/widgets/game_content.dart';
@@ -79,7 +75,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
   late int _secondsLeft;
   bool _isStarted = false;
   bool _isPausedForShowingResult = false;
-  // bool _isCameraEnabled = false; // TODO CAMERA: Make it work and work well
   StreamSubscription<dynamic>? _rotateSubscription;
 
   AnimationController? _invalidAC;
@@ -103,7 +98,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
 
     SettingsModel settings = SettingsModel.of(context);
     _secondsMax = settings.roundTime;
-    // _isCameraEnabled = settings.isCameraEnabled; // TODO CAMERA: Make it work and work well
     if (settings.isRotationControlEnabled) {
       _tiltService = TiltService(
           handleInvalid: _handleInvalid,
@@ -190,11 +184,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
     });
   }
 
-  // TODO CAMERA: Make it work and work well
-  // Future<void> savePictures() async {
-  //   GalleryModel.of(context).update(await PicturesHelper.getFiles(context));
-  // }
-
   void _showScore() {
     SettingsModel.of(context).increaseGamesFinished();
     CategoryModel.of(context).increasePlayedCount(_category);
@@ -223,9 +212,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
   }
 
   void _gameOver() {
-    //   if (_isCameraEnabled) { // TODO CAMERA: Make it work and work well
-    //     savePictures();
-    //   }
     _showScore();
   }
 
@@ -256,11 +242,6 @@ class GamePlayScreenState extends State<GamePlayScreen>
     setState(() {
       _isPausedForShowingResult = true;
     });
-
-    //   'valid': isValid,
-    //   'question': QuestionModel.of(context).currentQuestion.name,
-    //   'category': category.name,
-    // });
   }
 
   void _handleValid() {
@@ -308,15 +289,13 @@ class GamePlayScreenState extends State<GamePlayScreen>
       }
     }
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: _category.getDarkColorScheme().surface,
       body: WillPopScope(
         onWillPop: () async {
           _onClose();
           return false;
         },
         child: Stack(children: [
-          // if (_isCameraEnabled && _isStarted)
-          //   const CameraPreviewScreen(), //TODO CAMERA: Make it work and work well; this is now hidden behind opaque answers — fix
           if (_isPausedForShowingResult || _isStarted)
             Stack(
               children: [

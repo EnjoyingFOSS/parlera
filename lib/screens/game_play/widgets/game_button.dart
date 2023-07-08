@@ -40,6 +40,7 @@ class GameButton extends StatelessWidget {
   final IconData emojiIcon;
   final IconData arrowIcon;
   final Color color;
+  final Color hoverColor;
   final void Function()? onTap;
 
   const GameButton({
@@ -47,6 +48,7 @@ class GameButton extends StatelessWidget {
     required this.emojiIcon,
     required this.arrowIcon,
     required this.color,
+    required this.hoverColor,
     this.onTap,
   }) : super(key: key);
 
@@ -58,6 +60,7 @@ class GameButton extends StatelessWidget {
             child: Material(
                 color: color,
                 child: InkWell(
+                    hoverColor: hoverColor,
                     onTap: onTap,
                     child: Align(
                         alignment: Alignment.bottomCenter,

@@ -36,6 +36,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:parlera/clippers/right_wave_clipper.dart';
 import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/import_export.dart';
@@ -44,6 +45,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/models/category_type.dart';
 import 'package:parlera/models/editable_category.dart';
 import 'package:parlera/screens/category_creator/category_creator.dart';
+import 'package:parlera/clippers/bottom_wave_clipper.dart';
 
 import '../../../store/category.dart';
 
@@ -71,112 +73,119 @@ class CategoryHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageProvider = Svg(EmojiHelper.getImagePath(category.emoji));
-    return Container(
-        color: category.bgColor,
-        padding: const EdgeInsets.only(bottom: 32),
-        width: double.infinity,
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          AppBar(
-            backgroundColor: Colors.transparent,
-            actions: [
-              IconButton(
-                tooltip: AppLocalizations.of(context).btnFavorite,
-                onPressed: onFavorite,
-                icon: Icon(
-                  isFavorite
-                      ? Icons.favorite_rounded
-                      : Icons.favorite_border_rounded,
+    return ClipPath(
+        clipper: isLandscape ? RightWaveClipper() : BottomWaveClipper(),
+        child: Container(
+            color: category.bgColor,
+            padding: const EdgeInsets.only(bottom: 32),
+            width: double.infinity,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              AppBar(
+                backgroundColor: Colors.transparent,
+                actions: [
+                  IconButton(
+                    tooltip: AppLocalizations.of(context).btnFavorite,
+                    onPressed: onFavorite,
+                    icon: Icon(
+                      isFavorite
+                          ? Icons.favorite_rounded
+                          : Icons.favorite_border_rounded,
+                    ),
+                  ),
+                  PopupMenuButton(
+                    itemBuilder: (context) {
+                      return category.type == CategoryType.custom
+                          ? [
+                              PopupMenuItem<String>(
+                                  value: _menuEdit,
+                                  child: Text(
+                                      AppLocalizations.of(context).btnEdit)),
+                              PopupMenuItem<String>(
+                                  value: _menuDuplicate,
+                                  child: Text(AppLocalizations.of(context)
+                                      .btnDuplicate)),
+                              PopupMenuItem<String>(
+                                  value: _menuExport,
+                                  child: Text(
+                                      AppLocalizations.of(context).btnExport)),
+                              PopupMenuItem<String>(
+                                  value: _menuDelete,
+                                  child: Text(
+                                      AppLocalizations.of(context).btnDelete)),
+                            ]
+                          : [
+                              PopupMenuItem<String>(
+                                  value: _menuDuplicate,
+                                  child: Text(AppLocalizations.of(context)
+                                      .btnDuplicate)),
+                              PopupMenuItem<String>(
+                                  value: _menuExport,
+                                  child: Text(
+                                      AppLocalizations.of(context).btnExport)),
+                            ];
+                    },
+                    onSelected: (String value) async {
+                      switch (value) {
+                        case _menuDelete:
+                          model.deleteCustomCategory(
+                              category.sembastPos, category.lang);
+                          Navigator.pop(context);
+                          break;
+                        case _menuEdit:
+                          Navigator.of(context).push(MaterialPageRoute<void>(
+                              builder: (context) => CategoryCreatorScreen(
+                                    ec: EditableCategory.fromCategory(category),
+                                  )));
+                          break;
+                        case _menuDuplicate:
+                          final ec = EditableCategory.fromCategory(category);
+                          ec.sembastPos = null;
+                          Navigator.of(context).push(MaterialPageRoute<void>(
+                              builder: (context) => CategoryCreatorScreen(
+                                    ec: ec,
+                                  )));
+                          break;
+                        case _menuExport:
+                          try {
+                            await ImportExportHelper.exportJson(
+                                category.toJson(),
+                                "${category.name}.parlera",
+                                "[Parlera export] ${category.name}");
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(AppLocalizations.of(context)
+                                  .errorCouldNotExport),
+                            ));
+                          }
+                          break;
+                      }
+                    },
+                  ),
+                  if (isLandscape)
+                    const SizedBox(
+                      width: 8,
+                    )
+                ],
+              ),
+              if (isLandscape) const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Hero(
+                  tag: HeroHelper.categoryImage(category),
+                  child: Image(
+                    image: imageProvider,
+                    height: 160,
+                    width: 160,
+                  ),
                 ),
               ),
-              PopupMenuButton(
-                itemBuilder: (context) {
-                  return category.type == CategoryType.custom
-                      ? [
-                          PopupMenuItem<String>(
-                              value: _menuEdit,
-                              child:
-                                  Text(AppLocalizations.of(context).btnEdit)),
-                          PopupMenuItem<String>(
-                              value: _menuDuplicate,
-                              child: Text(
-                                  AppLocalizations.of(context).btnDuplicate)),
-                          PopupMenuItem<String>(
-                              value: _menuExport,
-                              child:
-                                  Text(AppLocalizations.of(context).btnExport)),
-                          PopupMenuItem<String>(
-                              value: _menuDelete,
-                              child:
-                                  Text(AppLocalizations.of(context).btnDelete)),
-                        ]
-                      : [
-                          PopupMenuItem<String>(
-                              value: _menuDuplicate,
-                              child: Text(
-                                  AppLocalizations.of(context).btnDuplicate)),
-                          PopupMenuItem<String>(
-                              value: _menuExport,
-                              child:
-                                  Text(AppLocalizations.of(context).btnExport)),
-                        ];
-                },
-                onSelected: (String value) async {
-                  switch (value) {
-                    case _menuDelete:
-                      model.deleteCustomCategory(
-                          category.sembastPos, category.lang);
-                      Navigator.pop(context);
-                      break;
-                    case _menuEdit:
-                      Navigator.of(context).push(MaterialPageRoute<void>(
-                          builder: (context) => CategoryCreatorScreen(
-                                ec: EditableCategory.fromCategory(category),
-                              )));
-                      break;
-                    case _menuDuplicate:
-                      final ec = EditableCategory.fromCategory(category);
-                      ec.sembastPos = null;
-                      Navigator.of(context).push(MaterialPageRoute<void>(
-                          builder: (context) => CategoryCreatorScreen(
-                                ec: ec,
-                              )));
-                      break;
-                    case _menuExport:
-                      try {
-                        await ImportExportHelper.exportJson(
-                            category.toJson(),
-                            "${category.name}.parlera",
-                            "[Parlera export] ${category.name}");
-                      } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(
-                              AppLocalizations.of(context).errorCouldNotExport),
-                        ));
-                      }
-                      break;
-                  }
-                },
-              )
-            ],
-          ),
-          if (isLandscape) const Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Hero(
-              tag: HeroHelper.categoryImage(category),
-              child: Image(
-                image: imageProvider,
-                height: 160,
-                width: 160,
+              Text(
+                category.name,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
-            ),
-          ),
-          Text(
-            category.name,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-          if (isLandscape) const Spacer(),
-        ]));
+              if (isLandscape) const Spacer(),
+            ])));
   }
 }
