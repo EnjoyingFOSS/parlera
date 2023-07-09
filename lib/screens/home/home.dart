@@ -97,6 +97,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               curve: Curves.easeOutExpo,
               domeWidth: 80,
               domeHeight: 12,
+              borderRaduis: BorderRadius.zero,
               duration: const Duration(milliseconds: 500),
               barColor: Theme.of(context).colorScheme.secondary,
               tabs: _NavItem.values.map((navItem) {
