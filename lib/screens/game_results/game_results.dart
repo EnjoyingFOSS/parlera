@@ -99,9 +99,8 @@ class GameResultsScreen extends StatelessWidget {
                               height: 120,
                             )))
                   ]),
-                  const SizedBox(height: 16),
                   Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                      padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
                       child: Text(
                         AppLocalizations.of(context).txtYourScore(
                             model.questionsPassed.length,
