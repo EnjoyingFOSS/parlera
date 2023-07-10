@@ -1,33 +1,33 @@
 abstract_name: Abstract
 animals_name: Dieren
-abstract_questions: "aktie\nuiterlijk\nstreven\natheïsme\nautonomie\nschoonheid\n
-  geloof\nBoeddhisme\noverspannenheid\nkinderlijkheid\nChristendom\nslimheid\ncliché\n
-  comfort\ngemeenschappelijkheid\nverbinding\ngevaar\ndood\nbestemming\nverschil\n
-  moeilijkheid\nmoeite\nelement\nversleuteling\ngelijkheid\ninschatting\nvoorbeeld\n
-  uitdrukking\nmislukking\neerlijkheid\nvertrouwen\nlot\nkenmerk\nhet vrije woord\n
-  vrije tijd\nvrije wil\nvrijheid\naardrijkskunde\ngok\nharmonie\nhaat\ngezondheid\n
-  hoop\nmensenrecht\nonderdanigheid\nhumor\nidee\nindruk\nbelang\noneindigheid\nbelediging\n
-  Islam\ntaal\nplaats\nliefde\nwiskunde\nmetafoor\nmisverstand\nmoment\nhumeur\nnoodzaak\n
-  objectiviteit\npassie\nvrede\ngemoedsrust\nfilosofie\npopulariteit\npersvrijheid\n
-  privacy\nprobleem\npsychologie\ncitaat\nreactie\nrealiteit\nreferentie\nontspanning\n
-  respect\nantwoord\nveiligheid\nbevrediging\nbeveiliging\ngevoel voor humor\nvorm\n\
-  belang\nsluwheid\ntroost\nziel\nstress\nmoeite\nsymbool\nsucces\ntrend\nwaarheid\n\
-  begrip\nvakantie\nslachtofferschap\nwelzijn\nwijsheid"
-animals_questions: "aardvark\nalligator\nmier\nantilope\nbaviaan\nvleermuis\nbeer\n
-  bij\nkever\nvogel\nzwarte panter\nzwarte weduwe\nreebok\nstier\nkonijn\nvlinder\n\
-  kameel\nkat\nrups\nduizendpoot\nkameleon\ncheetah\nkip\nchihuahua\nchimpansee\n\
-  anemoonvis\nkakkerlak\npoema\nkoe\nprairiewolf\nkrab\nkrekel\nkrokodil\nkoekoek\n\
-  hert\ndinosaurus\ndodo\nhond\ndolfijn\naap\nduif\nlibelle\neend\nmestkever\nadelaar\n\
-  paling\nolifant\nfret\nvuurvliegje\nvis\nvos\nkikker\nfruitvliegje\ngazelle\ngecko\n\
-  giraffe\ngeit\ngoudvis\ngans\ngrizzlybeer\ncavia\nhamster\nhaas\nnijlpaard\nhoornaar\n\
-  paard\nmens\njaguar\nkangeroe\nlieveheersbeestje\nluipaard\nleeuw\nhagedis\nlama\n\
-  kreeft\nzoogdier\nmol\naap\neland\nmug\nmot\nmuis\nnarwal\noctopus\norang-oetan\n\
-  struisvogel\nuil\noester\npanter\npapegaai\npauw\npelikaan\npinguïn\nvarken\nduif\n\
-  ijsbeer\npony\npoema\nkonijn\nrat\nraaf\nrendier\nkoekoek\nknaagdier\nhaan\nzalm\n\
-  sardien\nschorpioen\nzeekomkommer\nzeepaardje\nzeeschildpad\nzeemeeuw\nzeehond\n\
-  haai\nschaap\nslang\nsneeuwluipaard\nspin\ninktvis\neekhoorn\nzeester\nzwaardvis\n\
-  T-rex\nvogelspin\ntijger\npad\nschildpad\ntoekan\nforel\nwesp\nwezel\nwalvis\nwolf\n\
-  specht\nregenworm\njak\nzebra\nmus\nreiger\nbromvlieg\npissebed"
+abstract_questions: "aardrijkskunde\naktie\nantwoord\natheïsme\nautonomie\nbegrip\n
+  belang\nbelediging\nbestemming\nbeveiliging\nbevrediging\nBoeddhisme\nChristendom\n
+  citaat\ncliché\ncomfort\ndood\neerlijkheid\nelement\nfilosofie\ngelijkheid\ngeloof\n
+  gemeenschappelijkheid\ngemoedsrust\ngevaar\ngevoel voor humor\ngezondheid\ngok\n
+  haat\nharmonie\nhet vrije woord\nhoop\nhumeur\nhumor\nidee\nindruk\ninschatting\n
+  Islam\nkenmerk\nkinderlijkheid\nliefde\nlot\nmensenrecht\nmetafoor\nmislukking\n
+  misverstand\nmoeilijkheid\nmoeite\nmoment\nnoodzaak\nobjectiviteit\nonderdanigheid\n
+  oneindigheid\nontspanning\noverspannenheid\npassie\npersvrijheid\nplaats\npopulariteit\n
+  privacy\nprobleem\npsychologie\nreactie\nrealiteit\nreferentie\nrespect\nschoonheid\n
+  slachtofferschap\nslimheid\nsluwheid\nstress\nstreven\nsucces\nsymbool\ntaal\ntrend\n
+  troost\nuitdrukking\nuiterlijk\nvakantie\nveiligheid\nverbinding\nverschil\nversleuteling\n
+  vertrouwen\nvoorbeeld\nvorm\nvrede\nvrije tijd\nvrije wil\nvrijheid\nwaarheid\n\
+  welzijn\nwijsheid\nwiskunde\nziel"
+animals_questions: "aap\naardvark\nadelaar\nalligator\nanemoonvis\nantilope\nbaviaan\n
+  beer\nbij\nbromvlieg\ncavia\ncheetah\nchihuahua\nchimpansee\ndinosaurus\ndodo\n
+  dolfijn\nduif\nduizendpoot\neekhoorn\neend\neland\nforel\nfret\nfruitvliegje\ngans\n
+  gazelle\ngecko\ngeit\ngiraffe\ngoudvis\ngrizzlybeer\nhaai\nhaan\nhaas\nhagedis\n
+  hamster\nhert\nhond\nhoornaar\nijsbeer\ninktvis\njaguar\njak\nkakkerlak\nkameel\n
+  kameleon\nkangeroe\nkat\nkever\nkikker\nkip\nknaagdier\nkoe\nkoekoek\nkonijn\nkrab\n
+  kreeft\nkrekel\nkrokodil\nlama\nleeuw\nlibelle\nlieveheersbeestje\nluipaard\nmeeuw\n
+  mens\nmestkever\nmier\nmol\nmot\nmug\nmuis\nmus\nnarwal\nnijlpaard\noctopus\noester\n
+  olifant\norang-oetan\npaard\npad\npaling\npanter\npapegaai\npauw\npelikaan\npinguïn\n
+  pissebed\npoema\npony\nprairiewolf\nraaf\nrat\nreebok\nregenworm\nreiger\nrendier\n
+  roodborstje\nrups\nsardien\nschaap\nschildpad\nschorpioen\nslang\nsneeuwluipaard\n
+  specht\nspin\nstier\nstruisvogel\ntijger\ntoekan\nT-rex\nuil\nvarken\nvis\nvleermuis\n
+  vlinder\nvogel\nvogelspin\nvos\nvuurvliegje\nwalvis\nwesp\nwezel\nwolf\nzalm\nzebra\n
+  zeehond\nzeekomkommer\nzeemeeuw\nzeepaardje\nzeeschildpad\nzeester\nzoogdier\nzwaardvis\n
+  zwarte panter\nzwarte weduwe"
 classic-characters_name: Bekende personages
 food-and-drink_questions: "amandel\nappel\nappelsap\nabrikoos\navocado\nspek\nBossche
   bol\nbanaan\nbarbecue\nsperzieboon\nbiefstuk\nzwarte bes\nbosbes\nbrood\nontbijt\n
