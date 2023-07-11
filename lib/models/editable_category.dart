@@ -33,6 +33,7 @@ class EditableCategory {
   Color bgColor;
   String emoji;
   ColorScheme? darkColorScheme;
+  int? standardGameTime;
   late ParleraLanguage lang;
 
   EditableCategory(
@@ -41,7 +42,8 @@ class EditableCategory {
       this.bgColor = _defaultBgColor,
       this.questions,
       ParleraLanguage? lang,
-      this.sembastPos}) {
+      this.sembastPos,
+      this.standardGameTime}) {
     this.lang = lang ??
         ParleraLanguage
             .defaultLang; //this is meant as just temporary, the langCode should be updated after
@@ -53,7 +55,8 @@ class EditableCategory {
         questions = category.questions.map((q) => q.name).toList(),
         bgColor = category.bgColor,
         lang = category.lang,
-        emoji = category.emoji;
+        emoji = category.emoji,
+        standardGameTime = category.standardGameTime;
 
   EditableCategory.fromJson(Map<String, dynamic> json, this.lang)
       : name = json[Category.jsonName] as String?,
@@ -61,7 +64,8 @@ class EditableCategory {
             .map((dynamic e) => e.toString())
             .toList(),
         bgColor = Color(json[Category.jsonBgColor] as int),
-        emoji = json[Category.jsonEmoji] as String;
+        emoji = json[Category.jsonEmoji] as String,
+        standardGameTime = json[Category.jsonStandardGameTime] as int?;
 
   ColorScheme getDarkColorScheme() {
     darkColorScheme ??=
@@ -74,7 +78,8 @@ class EditableCategory {
       Category.jsonName: name,
       Category.jsonQs: questions,
       Category.jsonEmoji: emoji,
-      Category.jsonBgColor: bgColor.value
+      Category.jsonBgColor: bgColor.value,
+      Category.jsonStandardGameTime: standardGameTime
     };
   }
 }

@@ -71,7 +71,7 @@ class GameCoverScreen extends StatelessWidget {
                         isFavorite: model.isFavorite(category),
                         isLandscape: stronglyLandscape,
                       )),
-                      Expanded(child: GameSetings(scheme: scheme)),
+                      Expanded(child: GameSetings(category: category)),
                     ],
                   )
                 : SingleChildScrollView(
@@ -87,7 +87,7 @@ class GameCoverScreen extends StatelessWidget {
                         const SizedBox(
                           height: 32,
                         ),
-                        GameSetings(scheme: scheme),
+                        GameSetings(category: category),
                       ],
                     ),
                   ));

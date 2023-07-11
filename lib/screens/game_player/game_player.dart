@@ -71,7 +71,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
   late final Category _category;
   late final TiltService? _tiltService;
   Timer? _gameTimer;
-  int _secondsMax = -1;
+  late final int _gameTime;
   late int _secondsLeft;
   bool _isStarted = false;
   bool _isPausedForShowingResult = false;
@@ -97,11 +97,14 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     }
 
     SettingsModel settings = SettingsModel.of(context);
-    _secondsMax = settings.roundTime;
+
+    _gameTime =
+        _category.getGameTime(settings.gameTimeType, settings.customGameTime);
+
     if (settings.isRotationControlEnabled) {
       _tiltService = TiltService(
-          handleInvalid: _handleInvalid,
-          handleValid: _handleValid,
+          handleInvalid: _handleIncorrect,
+          handleValid: _handleCorrect,
           isPlaying: () => !_isStarted || _isPausedForShowingResult);
       _secondsLeft = _secondsPrep;
     } else {
@@ -175,7 +178,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     }
 
     if (_secondsLeft <= 0) {
-      _handleTimeout();
+      _handleGameStart();
       return;
     }
 
@@ -233,46 +236,46 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     _startTimer();
   }
 
-  void _postAnswer({required bool isValid}) {
+  void _postAnswer({required bool isCorrect}) {
     if (!flutter_foundation.kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
       VibrationHelper.vibrate();
     }
-    QuestionModel.of(context).answerQuestion(isValid);
+    QuestionModel.of(context).answerQuestion(isCorrect);
 
     setState(() {
       _isPausedForShowingResult = true;
     });
   }
 
-  void _handleValid() {
+  void _handleGameStart() {
+    if (_isStarted) {
+      _handleIncorrect();
+    } else {
+      setState(() {
+        _isStarted = true;
+        _secondsLeft = _gameTime;
+      });
+    }
+  }
+
+  void _handleCorrect() {
     if (_isPausedForShowingResult) {
       return;
     }
 
     AudioHelper.playCorrect(context);
     _validAC!.forward();
-    _postAnswer(isValid: true);
+    _postAnswer(isCorrect: true);
   }
 
-  void _handleInvalid() {
+  void _handleIncorrect() {
     if (_isPausedForShowingResult) {
       return;
     }
 
     AudioHelper.playIncorrect(context);
     _invalidAC!.forward();
-    _postAnswer(isValid: false);
-  }
-
-  void _handleTimeout() {
-    if (_isStarted) {
-      _handleInvalid();
-    } else {
-      setState(() {
-        _isStarted = true;
-        _secondsLeft = _secondsMax;
-      });
-    }
+    _postAnswer(isCorrect: false);
   }
 
   @override
@@ -304,8 +307,8 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                     final currentQuestion = model.currentQuestion;
                     if (currentQuestion != null) {
                       return GameContent(
-                          handleValid: _handleValid,
-                          handleInvalid: _handleInvalid,
+                          handleValid: _handleCorrect,
+                          handleInvalid: _handleIncorrect,
                           currentQuestion: currentQuestion,
                           category: model.currentCategory!,
                           secondsLeft: _secondsLeft.toString());

@@ -36,6 +36,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:parlera/models/category_type.dart';
+import 'package:parlera/models/game_time_type.dart';
 import 'package:parlera/models/question.dart';
 
 import 'language.dart';
@@ -46,6 +47,10 @@ class Category {
   static const jsonEmoji = "emoji";
   static const jsonBgColor = "bgColor";
   static const jsonLangCode = "langCode";
+  static const jsonStandardGameTime = "gameTime";
+
+  static const maxGameTime = 9999;
+  static const defaultGameTime = 60;
 
   final CategoryType type;
   final int sembastPos;
@@ -54,17 +59,20 @@ class Category {
   final Color bgColor;
   final ParleraLanguage lang;
   final List<Question> questions;
-  ColorScheme? _darkColorScheme;
+  final int? standardGameTime;
 
-  Category({
-    required this.type, //type and sembast ID together are the key
-    required this.sembastPos,
-    required this.name,
-    required this.lang,
-    required this.emoji,
-    required this.bgColor,
-    required this.questions,
-  });
+  ColorScheme? _darkColorScheme;
+  Map<GameTimeType, int>? _gameTimes;
+
+  Category(
+      {required this.type, //type and sembast ID together are the key
+      required this.sembastPos,
+      required this.name,
+      required this.lang,
+      required this.emoji,
+      required this.bgColor,
+      required this.questions,
+      this.standardGameTime});
 
   Category.random(this.lang)
       : sembastPos = 0,
@@ -72,7 +80,8 @@ class Category {
         emoji = "🎲",
         bgColor = const Color(0xFF282828),
         name = lang.randomName(),
-        questions = [];
+        questions = [],
+        standardGameTime = null;
 
   Category.fromJson(
       this.lang, this.sembastPos, this.type, Map<String, dynamic> json)
@@ -81,7 +90,8 @@ class Category {
         bgColor = Color(json[jsonBgColor] as int? ?? 0xFFFFFFFF),
         questions = (json[jsonQs] as List<dynamic>)
             .map((dynamic q) => Question(q as String))
-            .toList();
+            .toList(),
+        standardGameTime = json[jsonStandardGameTime] as int?;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         jsonName: name,
@@ -89,7 +99,28 @@ class Category {
         jsonBgColor: bgColor.value,
         jsonLangCode: lang.langCode,
         jsonQs: questions.map((q) => q.name).toList(),
+        jsonStandardGameTime: standardGameTime
       };
+
+  int getGameTime(GameTimeType type, int settingsCustomGameTime) {
+    if (_gameTimes == null) {
+      final mediumGameTime = standardGameTime ?? defaultGameTime;
+      final mediumGameTimeDiv2 = mediumGameTime ~/ 2;
+      _gameTimes = {
+        GameTimeType.short: mediumGameTimeDiv2,
+        GameTimeType.medium: mediumGameTime,
+        GameTimeType.long: mediumGameTime + mediumGameTimeDiv2
+      };
+    }
+    switch (type) {
+      case GameTimeType.short:
+      case GameTimeType.medium:
+      case GameTimeType.long:
+        return _gameTimes![type]!;
+      case GameTimeType.custom:
+        return settingsCustomGameTime;
+    }
+  }
 
   String getUniqueId() => getUniqueIdFromInputs(lang, type, sembastPos);
 

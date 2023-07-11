@@ -24,6 +24,7 @@
   "btnSkip": "Skip",
   "btnNext": "Next",
   "btnBack": "Back",
+  "btnOK": "OK",
   "btnCancel": "Cancel",
   "btnEdit": "Edit",
   "btnDelete": "Delete",
@@ -38,12 +39,11 @@
   "btnGetCategoriesOnline": "Get categories online...",
   "btnContributeLanguage": "Contribute your language",
   "preparationPlay": "Play",
-  "gameTime": "Duration",
+  "gameTime": "Game time (s.)",
   "favorites": "Favorites",
   "settings": "Settings",
   "settingsLanguage": "Language",
   "emptyFavorites": "Favorite a category to find it here.",
-  "secondsTemplate": "%d s.",
   "preparationOrientationDescription": "Hold your phone up to your forehead",
   "lastQuestion": "Final question",
   "settingsStartTutorial": "How to play?",
@@ -75,5 +75,6 @@
   "emptyCategoryQuestions": "This category doesn't contain any words to guess :(",
   "languageSystem": "Default (requires restart)",
   "languagesVaryNotice": "Categories and words vary across languages.",
-  "txtNoRecentEmoji": "No recent emoji"
+  "txtNoRecentEmoji": "No recent emoji",
+  "txtCustomGameTime": "Custom game time (s.)"
 }

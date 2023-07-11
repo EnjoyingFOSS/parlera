@@ -39,13 +39,15 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:parlera/models/game_time_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsRepository {
   static const String _storageAudioEnabledKey = 'is_audio_enabled';
   static const String _storageRotationControlEnabledKey =
       'is_rotation_control_enabled';
-  static const String _storageRoundTimeKey = 'round_time';
+  static const String _storageGameTimeTypeKey = 'game_time_type';
+  static const String _storageCustomGameTimeKey = 'custom_game_time';
   static const String _storageGamesPlayedKey = 'games_played';
   static const String _storageGamesFinishedKey = 'games_finished';
   static const String _storageNotificationsEnabledKey =
@@ -80,14 +82,23 @@ class SettingsRepository {
     return value;
   }
 
-  int getRoundTime() {
-    return storage.getInt(_storageRoundTimeKey) ?? 60;
+  GameTimeType getGameTimeType() {
+    final typePos = storage.getInt(_storageGameTimeTypeKey);
+    return typePos == null ? GameTimeType.medium : GameTimeType.values[typePos];
   }
 
-  Future<int> setRoundTime(int roundTime) async {
-    await storage.setInt(_storageRoundTimeKey, roundTime);
+  Future<GameTimeType> setGameTimeType(GameTimeType gameTimeType) async {
+    await storage.setInt(_storageGameTimeTypeKey, gameTimeType.index);
 
-    return roundTime;
+    return gameTimeType;
+  }
+
+  int getCustomGameTime() => storage.getInt(_storageCustomGameTimeKey) ?? 120;
+
+  Future<int> setCustomGameTime(int customGameTime) async {
+    await storage.setInt(_storageCustomGameTimeKey, customGameTime);
+
+    return customGameTime;
   }
 
   int getGamesPlayed() {

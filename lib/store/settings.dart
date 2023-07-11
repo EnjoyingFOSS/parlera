@@ -34,6 +34,7 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
+import 'package:parlera/models/game_time_type.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:parlera/repository/settings.dart';
@@ -57,8 +58,11 @@ class SettingsModel extends StoreModel {
   // late bool _isCameraEnabled;
   // bool get isCameraEnabled => _isCameraEnabled;
 
-  late int _roundTime;
-  int get roundTime => _roundTime;
+  late GameTimeType _gameTimeType;
+  GameTimeType get gameTimeType => _gameTimeType;
+
+  late int _customGameTime;
+  int get customGameTime => _customGameTime;
 
   String? _version;
   String? get version => _version;
@@ -81,7 +85,8 @@ class SettingsModel extends StoreModel {
 
     _isAudioEnabled = repository.isAudioEnabled();
     _isRotationControlEnabled = repository.isRotationControlEnabled();
-    _roundTime = repository.getRoundTime();
+    _gameTimeType = repository.getGameTimeType();
+    _customGameTime = repository.getCustomGameTime();
     _version = await repository.getAppVersion();
     _gamesPlayed = repository.getGamesPlayed();
     _gamesFinished = repository.getGamesFinished();
@@ -100,8 +105,13 @@ class SettingsModel extends StoreModel {
     notifyListeners();
   }
 
-  Future<void> changeRoundTime(int roundTime) async {
-    _roundTime = await repository.setRoundTime(roundTime);
+  Future<void> setGameTimeType(GameTimeType gameTimeType) async {
+    _gameTimeType = await repository.setGameTimeType(gameTimeType);
+    notifyListeners();
+  }
+
+  Future<void> setCustomGameTime(int customGameTime) async {
+    _customGameTime = await repository.setCustomGameTime(customGameTime);
     notifyListeners();
   }
 
