@@ -44,81 +44,75 @@ import 'package:parlera/store/store.dart';
 import '../models/category.dart';
 
 class QuestionModel extends StoreModel {
-  //TODO convert to static helper
-  static const _perGameQuestionLimit = 10;
-
   QuestionRepository repository;
 
-  List<Question> _currentQuestions = [];
-  List<Question> get currentQuestions => _currentQuestions;
-  List<Question> get questionsAnswered =>
-      _currentQuestions.where((q) => q.answeredCorrectly != null).toList();
-  List<Question> get questionsPassed =>
-      questionsAnswered.where((q) => q.answeredCorrectly!).toList();
-  List<Question> get questionsFailed =>
-      questionsAnswered.where((q) => !q.answeredCorrectly!).toList();
-  final List<Question> _latestQuestions = [];
-  List<Question> get latestQuestions => _latestQuestions;
+  List<Question> _currentCards = [];
+  List<Question> get currentCards => _currentCards;
+  List<Question> get cardsAnswered =>
+      _currentCards.where((q) => q.answeredCorrectly != null).toList();
+  List<Question> get correctCards =>
+      cardsAnswered.where((q) => q.answeredCorrectly!).toList();
+  List<Question> get incorrectCards =>
+      cardsAnswered.where((q) => !q.answeredCorrectly!).toList();
+  final List<Question> _latestCards = [];
+  List<Question> get latestCards => _latestCards;
 
   Category? _currentCategory;
   Category? get currentCategory => _currentCategory;
-  Question? _currentQuestion;
-  Question? get currentQuestion => _currentQuestion;
+  Question? _currentCard;
+  Question? get currentCard => _currentCard;
 
   QuestionModel(this.repository);
 
-  void pickRandomQuestions(
-      Category randomCategory, List<Category> allCategories) {
-    _currentQuestions =
-        repository.getRandomSelection(allCategories, _perGameQuestionLimit);
-    _initQuestions(randomCategory);
+  void pickRandomCards(
+      Category randomCategory, List<Category> allCategories, int cardsPerGame) {
+    _currentCards = repository.getRandomSelection(allCategories, cardsPerGame);
+    _initCards(randomCategory);
   }
 
-  void pickQuestionsFromCategory(Category category) {
-    _currentQuestions = repository.getSelection(
+  void pickCardsFromCategory(Category category, int cardsPerGame) {
+    _currentCards = repository.getSelection(
       category.questions,
       category.getUniqueId(),
-      _perGameQuestionLimit,
-      askedRecently: _latestQuestions,
+      cardsPerGame,
+      askedRecently: _latestCards,
     );
-    _initQuestions(category);
+    _initCards(category);
   }
 
-  void _initQuestions(Category category) {
-    for (final q in _currentQuestions) {
+  void _initCards(Category category) {
+    for (final q in _currentCards) {
       q.answeredCorrectly = null;
     }
-    _latestQuestions.addAll(_currentQuestions);
+    _latestCards.addAll(_currentCards);
     _currentCategory = category;
-    _currentQuestion = _currentQuestions[0];
+    _currentCard = _currentCards[0];
     notifyListeners();
   }
 
-  bool isPreLastQuestion() {
-    if (_currentQuestion == null) {
+  bool isPreLastCard() {
+    if (_currentCard == null) {
       return false;
     }
 
-    final nextQuestion =
-        repository.getNext(_currentQuestions, _currentQuestion!);
-    if (nextQuestion == null) {
+    final nextCard = repository.getNext(_currentCards, _currentCard!);
+    if (nextCard == null) {
       return false;
     }
 
-    return repository.getNext(_currentQuestions, nextQuestion) == null;
+    return repository.getNext(_currentCards, nextCard) == null;
   }
 
-  void setNextQuestion() {
-    if (_currentQuestion != null) {
-      _currentQuestion =
-          repository.getNext(_currentQuestions, _currentQuestion!);
+  void setNextCard() {
+    if (_currentCard != null) {
+      _currentCard = repository.getNext(_currentCards, _currentCard!);
       notifyListeners();
     }
   }
 
-  void answerQuestion(bool isValid) {
-    if (_currentQuestion != null) {
-      _currentQuestion!.answeredCorrectly = isValid;
+  void answerCard(bool isValid) {
+    if (_currentCard != null) {
+      _currentCard!.answeredCorrectly = isValid;
       notifyListeners();
     }
   }

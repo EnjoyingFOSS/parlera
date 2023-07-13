@@ -96,7 +96,10 @@ class GameSetings extends StatelessWidget {
                   ),
                   Expanded(
                       child: Text(
-                    category.getGameTime(value, customGameTime).toString(),
+                    category
+                        .getGameTime(value, settingsModel.gameTimeMultiplier,
+                            customGameTime)
+                        .toString(),
                     textAlign: TextAlign.center,
                     style: textStyle,
                   )),
@@ -104,7 +107,10 @@ class GameSetings extends StatelessWidget {
               } else {
                 return Center(
                     child: Text(
-                  category.getGameTime(value, customGameTime).toString(),
+                  category
+                      .getGameTime(value, settingsModel.gameTimeMultiplier,
+                          customGameTime)
+                      .toString(),
                   style: textStyle,
                 ));
               }
@@ -161,13 +167,16 @@ class GameSetings extends StatelessWidget {
     return await showDialog<int?>(
         builder: (context) {
           final textController = TextEditingController();
+          final focusNode = FocusNode();
+          focusNode.requestFocus();
           return AlertDialog(
               content: TextField(
-                decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context).txtCustomGameTime),
-                keyboardType: TextInputType.number,
-                controller: textController,
-              ),
+                  decoration: InputDecoration(
+                      labelText:
+                          AppLocalizations.of(context).txtCustomGameTime),
+                  keyboardType: TextInputType.number,
+                  controller: textController,
+                  focusNode: focusNode),
               actions: [
                 TextButton(
                     child: Text(AppLocalizations.of(context).btnCancel),

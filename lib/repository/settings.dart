@@ -43,15 +43,17 @@ import 'package:parlera/models/game_time_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsRepository {
-  static const String _storageAudioEnabledKey = 'is_audio_enabled';
-  static const String _storageRotationControlEnabledKey =
+  static const defaultCardsPerGame = 10;
+
+  static const _storageAudioEnabledKey = 'is_audio_enabled';
+  static const _storageRotationControlEnabledKey =
       'is_rotation_control_enabled';
-  static const String _storageGameTimeTypeKey = 'game_time_type';
-  static const String _storageCustomGameTimeKey = 'custom_game_time';
-  static const String _storageGamesPlayedKey = 'games_played';
-  static const String _storageGamesFinishedKey = 'games_finished';
-  static const String _storageNotificationsEnabledKey =
-      'is_notifications_enabled';
+  static const _storageGameTimeTypeKey = 'game_time_type';
+  static const _storageCustomGameTimeKey = 'custom_game_time';
+  static const _storageGamesPlayedKey = 'games_played';
+  static const _storageGamesFinishedKey = 'games_finished';
+  static const _cardsPerGameKey = 'cards_per_game';
+  static const _storageNotificationsEnabledKey = 'is_notifications_enabled';
 
   final SharedPreferences storage;
 
@@ -99,6 +101,15 @@ class SettingsRepository {
     await storage.setInt(_storageCustomGameTimeKey, customGameTime);
 
     return customGameTime;
+  }
+
+  int getCardsPerGame() =>
+      storage.getInt(_cardsPerGameKey) ?? defaultCardsPerGame;
+
+  Future<int> setCardsPerGame(int cardsPerGame) async {
+    await storage.setInt(_cardsPerGameKey, cardsPerGame);
+
+    return cardsPerGame;
   }
 
   int getGamesPlayed() {

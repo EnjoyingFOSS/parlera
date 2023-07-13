@@ -35,6 +35,7 @@
 //   limitations under the License.
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
@@ -48,6 +49,7 @@ import 'package:parlera/store/settings.dart';
 import '../../../helpers/url_launcher.dart';
 
 class SettingsList extends StatelessWidget {
+  static const _maxCardsPerGame = 100;
   final double topMargin;
 
   const SettingsList({Key? key, this.topMargin = 8}) : super(key: key);
@@ -76,6 +78,20 @@ class SettingsList extends StatelessWidget {
               model.toggleAudio();
             },
             secondary: const Icon(Icons.music_note_rounded),
+          ),
+          ListTile(
+            title: Text(AppLocalizations.of(context).txtCardsPerGame),
+            leading: const Icon(Icons.style_rounded),
+            trailing: Text(
+              model.cardsPerGame.toString(),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            onTap: () async {
+              final cardsPerGame = await _showCardsPerGameDialog(context);
+              if (cardsPerGame != null) {
+                model.setCardsPerGame(cardsPerGame);
+              }
+            },
           ),
           ListTile(
             title: Text(AppLocalizations.of(context).settingsLanguage),
@@ -132,5 +148,40 @@ class SettingsList extends StatelessWidget {
           applicationName: packageInfo.appName,
           applicationVersion: packageInfo.version);
     }
+  }
+
+  Future<int?> _showCardsPerGameDialog(BuildContext context) async {
+    return await showDialog<int?>(
+        builder: (context) {
+          final textController = TextEditingController();
+          final focusNode = FocusNode();
+          focusNode.requestFocus();
+          return AlertDialog(
+              content: TextField(
+                  decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context).txtCardsPerGame),
+                  keyboardType: TextInputType.number,
+                  controller: textController,
+                  focusNode: focusNode),
+              actions: [
+                TextButton(
+                    child: Text(AppLocalizations.of(context).btnCancel),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
+                TextButton(
+                  child: Text(AppLocalizations.of(context).btnOK),
+                  onPressed: () {
+                    final value = int.tryParse(textController.text.toString());
+                    if (value == null || value <= 0) {
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context, min(value, _maxCardsPerGame));
+                    }
+                  },
+                )
+              ]);
+        },
+        context: context);
   }
 }

@@ -45,7 +45,7 @@
   "settingsLanguage": "Language",
   "emptyFavorites": "Favorite a category to find it here.",
   "preparationOrientationDescription": "Hold your phone up to your forehead",
-  "lastQuestion": "Final question",
+  "lastQuestion": "Final card",
   "settingsStartTutorial": "How to play?",
   "contribute": "Contribute",
   "donate": "Donate",
@@ -76,5 +76,6 @@
   "languageSystem": "Default (requires restart)",
   "languagesVaryNotice": "Categories and words vary across languages.",
   "txtNoRecentEmoji": "No recent emoji",
-  "txtCustomGameTime": "Custom game time (s.)"
+  "txtCustomGameTime": "Custom game time (s.)",
+  "txtCardsPerGame": "Cards per game"
 }

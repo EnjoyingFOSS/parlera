@@ -34,6 +34,8 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:parlera/models/category_type.dart';
 import 'package:parlera/models/game_time_type.dart';
@@ -62,7 +64,6 @@ class Category {
   final int? standardGameTime;
 
   ColorScheme? _darkColorScheme;
-  Map<GameTimeType, int>? _gameTimes;
 
   Category(
       {required this.type, //type and sembast ID together are the key
@@ -102,21 +103,18 @@ class Category {
         jsonStandardGameTime: standardGameTime
       };
 
-  int getGameTime(GameTimeType type, int settingsCustomGameTime) {
-    if (_gameTimes == null) {
-      final mediumGameTime = standardGameTime ?? defaultGameTime;
-      final mediumGameTimeDiv2 = mediumGameTime ~/ 2;
-      _gameTimes = {
-        GameTimeType.short: mediumGameTimeDiv2,
-        GameTimeType.medium: mediumGameTime,
-        GameTimeType.long: mediumGameTime + mediumGameTimeDiv2
-      };
-    }
+  int getGameTime(GameTimeType type, double gameTimeMultiplier,
+      int settingsCustomGameTime) {
+    final mediumGameTime =
+        ((standardGameTime ?? defaultGameTime) * gameTimeMultiplier).ceil();
+    final mediumGameTimeDiv2 = max(mediumGameTime ~/ 2, 1);
     switch (type) {
       case GameTimeType.short:
+        return mediumGameTimeDiv2;
       case GameTimeType.medium:
+        return mediumGameTime;
       case GameTimeType.long:
-        return _gameTimes![type]!;
+        return mediumGameTime + mediumGameTimeDiv2;
       case GameTimeType.custom:
         return settingsCustomGameTime;
     }

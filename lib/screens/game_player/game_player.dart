@@ -89,17 +89,18 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     _category = CategoryModel.of(context)
         .currentCategory!; //TODO can I assume non-nullability?
 
-    if (_category.type == CategoryType.random) {
-      QuestionModel.of(context)
-          .pickRandomQuestions(_category, CategoryModel.of(context).categories);
-    } else {
-      QuestionModel.of(context).pickQuestionsFromCategory(_category);
-    }
-
     SettingsModel settings = SettingsModel.of(context);
 
-    _gameTime =
-        _category.getGameTime(settings.gameTimeType, settings.customGameTime);
+    if (_category.type == CategoryType.random) {
+      QuestionModel.of(context).pickRandomCards(_category,
+          CategoryModel.of(context).categories, settings.cardsPerGame);
+    } else {
+      QuestionModel.of(context)
+          .pickCardsFromCategory(_category, settings.cardsPerGame);
+    }
+
+    _gameTime = _category.getGameTime(settings.gameTimeType,
+        settings.gameTimeMultiplier, settings.customGameTime);
 
     if (settings.isRotationControlEnabled) {
       _tiltService = TiltService(
@@ -224,8 +225,8 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       return _gameOver();
     }
 
-    QuestionModel.of(context).setNextQuestion();
-    if (QuestionModel.of(context).currentQuestion == null) {
+    QuestionModel.of(context).setNextCard();
+    if (QuestionModel.of(context).currentCard == null) {
       return _gameOver();
     }
 
@@ -240,7 +241,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     if (!flutter_foundation.kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
       VibrationHelper.vibrate();
     }
-    QuestionModel.of(context).answerQuestion(isCorrect);
+    QuestionModel.of(context).answerCard(isCorrect);
 
     setState(() {
       _isPausedForShowingResult = true;
@@ -304,7 +305,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
               children: [
                 ScopedModelDescendant<QuestionModel>(
                   builder: (context, child, model) {
-                    final currentQuestion = model.currentQuestion;
+                    final currentQuestion = model.currentCard;
                     if (currentQuestion != null) {
                       return GameContent(
                           handleValid: _handleCorrect,
@@ -320,7 +321,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                 ScaleTransition(
                   scale: _invalidAnimation,
                   child: SplashContent(
-                    isNextToLast: QuestionModel.of(context).isPreLastQuestion(),
+                    isNextToLast: QuestionModel.of(context).isPreLastCard(),
                     background: ThemeHelper.failColorLighter,
                     iconData: Icons.sentiment_dissatisfied_rounded,
                   ),
@@ -328,7 +329,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                 ScaleTransition(
                   scale: _validAnimation,
                   child: SplashContent(
-                    isNextToLast: QuestionModel.of(context).isPreLastQuestion(),
+                    isNextToLast: QuestionModel.of(context).isPreLastCard(),
                     background: ThemeHelper.successColorLighter,
                     iconData: Icons.sentiment_satisfied_alt_rounded,
                   ),

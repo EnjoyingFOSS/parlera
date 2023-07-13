@@ -64,6 +64,12 @@ class SettingsModel extends StoreModel {
   late int _customGameTime;
   int get customGameTime => _customGameTime;
 
+  late int _cardsPerGame;
+  int get cardsPerGame => _cardsPerGame;
+
+  double get gameTimeMultiplier =>
+      _cardsPerGame / SettingsRepository.defaultCardsPerGame;
+
   String? _version;
   String? get version => _version;
 
@@ -87,6 +93,7 @@ class SettingsModel extends StoreModel {
     _isRotationControlEnabled = repository.isRotationControlEnabled();
     _gameTimeType = repository.getGameTimeType();
     _customGameTime = repository.getCustomGameTime();
+    _cardsPerGame = repository.getCardsPerGame();
     _version = await repository.getAppVersion();
     _gamesPlayed = repository.getGamesPlayed();
     _gamesFinished = repository.getGamesFinished();
@@ -112,6 +119,11 @@ class SettingsModel extends StoreModel {
 
   Future<void> setCustomGameTime(int customGameTime) async {
     _customGameTime = await repository.setCustomGameTime(customGameTime);
+    notifyListeners();
+  }
+
+  Future<void> setCardsPerGame(int cardsPerGame) async {
+    _cardsPerGame = await repository.setCardsPerGame(cardsPerGame);
     notifyListeners();
   }
 
