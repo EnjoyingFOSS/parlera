@@ -89,12 +89,6 @@ class ThemeHelper {
             borderRadius: BorderRadius.circular(100),
           ),
           height: 48),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(100),
-              ))),
       textTheme:
           TextTheme(headlineMedium: TextStyle(color: colorScheme.onBackground)),
       canvasColor: colorScheme.surface,
