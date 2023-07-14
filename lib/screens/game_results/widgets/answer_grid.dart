@@ -19,52 +19,47 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:parlera/models/question.dart';
 
 import 'answer_item.dart';
 
 class AnswerGrid extends StatelessWidget {
+  final List<Question> cardsAnswered;
   final int answersPerRow;
-  final List<Question> questionsAnswered;
 
   const AnswerGrid(
-      {Key? key, required this.questionsAnswered, required this.answersPerRow})
-      : super(key: key);
+      {super.key, required this.cardsAnswered, required this.answersPerRow});
 
   @override
   Widget build(BuildContext context) {
     if (answersPerRow < 1) return const SizedBox();
 
-    final rowCount = (questionsAnswered.length / answersPerRow).ceil();
-    var lastCellCount = questionsAnswered.length % answersPerRow;
+    final rowCount = (cardsAnswered.length / answersPerRow).ceil();
+    var lastCellCount = cardsAnswered.length % answersPerRow;
     if (lastCellCount == 0) lastCellCount = answersPerRow;
 
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-        child: Table(
-            defaultColumnWidth: const FlexColumnWidth(1.0),
-            children: List.generate(
-              rowCount,
-              (rowI) {
-                if (rowI < rowCount - 1) {
-                  return TableRow(
-                    children: List.generate(
-                        answersPerRow,
-                        (columnI) => AnswerItem(
-                            question: questionsAnswered[
-                                rowI * answersPerRow + columnI])),
-                  );
-                } else {
-                  return TableRow(
-                      children: List.generate(
-                          answersPerRow,
-                          (columnI) => (columnI < lastCellCount)
-                              ? AnswerItem(
-                                  question: questionsAnswered[
-                                      rowI * answersPerRow + columnI])
-                              : const SizedBox()));
-                }
-              },
-            )));
+    return SliverList.list(
+        children: List.generate(
+      rowCount,
+      (rowI) {
+        return Row(
+            children: List.generate(answersPerRow, (columnI) {
+          final pos = rowI * answersPerRow + columnI;
+
+          return Flexible(
+              child: AnimationConfiguration.staggeredGrid(
+                  //TODO if I fork it, can just edit _computeStaggeredGridDuration() in animation_configurator.dart
+                  columnCount: answersPerRow,
+                  position: pos,
+                  child: FadeInAnimation(
+                      child: (rowI < rowCount - 1 || columnI < lastCellCount)
+                          ? AnswerItem(
+                              question: cardsAnswered[pos],
+                            )
+                          : const SizedBox())));
+        }));
+      },
+    ));
   }
 }

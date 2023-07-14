@@ -35,89 +35,159 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:parlera/clippers/bottom_wave_clipper.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:parlera/screens/game_results/widgets/results_header.dart';
 import 'package:parlera/store/category.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/store/question.dart';
-
-import '../../helpers/emoji.dart';
-import '../../helpers/hero.dart';
 import 'widgets/answer_grid.dart';
 
 class GameResultsScreen extends StatelessWidget {
   static const _maxAnswerWidth = 400;
-  static const _standardTopAreaHeight = 60;
 
   const GameResultsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final safeAreaTop = MediaQuery.of(context).padding.top;
-    final topAreaHeight =
-        MediaQuery.of(context).size.height < 400 ? 8 : _standardTopAreaHeight;
-
     return ScopedModelDescendant<CategoryModel>(
         builder: (context, _, categoryModel) {
       return ScopedModelDescendant<QuestionModel>(
         builder: (context, _, model) {
           final category = categoryModel.currentCategory!;
           final scheme = category.getDarkColorScheme();
+
           return Scaffold(
               backgroundColor: scheme.surface,
-              body: SingleChildScrollView(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Stack(children: [
-                    ClipPath(
-                        clipper: BottomWaveClipper(),
-                        child: Container(
-                          height: topAreaHeight + 90 + safeAreaTop,
-                          color: category.bgColor,
-                        )),
-                    Positioned.directional(
-                      start: 8,
-                      top: 8 + safeAreaTop,
-                      textDirection: Directionality.of(context),
-                      child: (const BackButton(
-                        color: Colors.white,
-                      )),
-                    ),
-                    Container(
-                        margin:
-                            EdgeInsets.only(top: topAreaHeight + safeAreaTop),
-                        alignment: Alignment.center,
-                        child: Hero(
-                            tag: HeroHelper.categoryImage(category),
-                            child: Image(
-                              image:
-                                  Svg(EmojiHelper.getImagePath(category.emoji)),
-                              width: 120,
-                              height: 120,
-                            )))
-                  ]),
-                  Padding(
+              body: AnimationLimiter(
+                  child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                      child: ResultsHeader(
+                    category: category,
+                    scoreRatio: model.correctCards.length.toDouble() /
+                        model.currentCards.length,
+                  )),
+                  SliverPadding(
                       padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
-                      child: Text(
+                      sliver: SliverToBoxAdapter(
+                          child: Text(
                         AppLocalizations.of(context).txtYourScore(
-                            model.questionsPassed.length,
-                            model.currentQuestions.length),
+                            model.correctCards.length,
+                            model.currentCards.length),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headlineMedium,
+                      ))),
+                  SliverPadding(
+                      padding: const EdgeInsets.fromLTRB(8, 16, 8, 32),
+                      sliver: AnswerGrid(
+                        cardsAnswered: model.cardsAnswered,
+                        answersPerRow:
+                            MediaQuery.of(context).size.width.toInt() ~/
+                                    _maxAnswerWidth +
+                                1,
                       )),
-                  AnswerGrid(
-                    questionsAnswered: model.questionsAnswered,
-                    answersPerRow: MediaQuery.of(context).size.width.toInt() ~/
-                            _maxAnswerWidth +
-                        1,
-                  ),
+                  SliverPadding(
+                      padding:
+                          const EdgeInsetsDirectional.symmetric(horizontal: 8),
+                      sliver: SliverToBoxAdapter(
+                          child: Container(
+                        color: scheme.onBackground.withAlpha(47),
+                        height: 1,
+                        width: double.infinity,
+                      ))),
+                  SliverPadding(
+                      padding: const EdgeInsets.fromLTRB(8, 32, 8, 16),
+                      sliver: SliverToBoxAdapter(
+                        child: (false) //TODO custom breakpoints!!!
+                            ? Row(mainAxisSize: MainAxisSize.min, children: [
+                                Expanded(
+                                    child: _ResultsButton(
+                                        scheme: scheme,
+                                        iconData: Icons.refresh,
+                                        onTap: () => _playAgain(context),
+                                        labelText: AppLocalizations.of(context)
+                                            .btnPlayAgain)),
+                                const SizedBox(
+                                  width: 16,
+                                ),
+                                Expanded(
+                                    child: _ResultsButton(
+                                        scheme: scheme,
+                                        iconData: Icons.arrow_back,
+                                        onTap: () =>
+                                            _backToAllCategories(context),
+                                        labelText: AppLocalizations.of(context)
+                                            .btnBackToAllCategories))
+                              ])
+                            : Column(children: [
+                                SizedBox(
+                                    width: double.infinity,
+                                    child: _ResultsButton(
+                                        scheme: scheme,
+                                        iconData: Icons.refresh,
+                                        onTap: () => _playAgain(context),
+                                        labelText: AppLocalizations.of(context)
+                                            .btnPlayAgain)),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                SizedBox(
+                                    width: double.infinity,
+                                    child: _ResultsButton(
+                                        scheme: scheme,
+                                        iconData: Icons.arrow_back,
+                                        onTap: () =>
+                                            _backToAllCategories(context),
+                                        labelText: AppLocalizations.of(context)
+                                            .btnBackToAllCategories))
+                              ]),
+                      )),
                 ],
               )));
         },
       );
     });
+  }
+
+  void _backToAllCategories(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
+  void _playAgain(BuildContext context) {
+    Navigator.pushReplacementNamed(
+      context,
+      '/category',
+    );
+  }
+}
+
+class _ResultsButton extends StatelessWidget {
+  final ColorScheme scheme;
+  final String labelText;
+  final IconData iconData;
+  final Function() onTap;
+
+  const _ResultsButton(
+      {required this.scheme,
+      required this.labelText,
+      required this.iconData,
+      required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+        icon: Icon(iconData, color: scheme.onBackground),
+        onPressed: onTap,
+        style: TextButton.styleFrom(foregroundColor: scheme.primary),
+        label: Text(
+          labelText,
+          textAlign: TextAlign.center,
+          style: Theme.of(context)
+              .textTheme
+              .labelLarge
+              ?.copyWith(color: scheme.onBackground),
+        ));
   }
 }
