@@ -1,1 +1,59 @@
-{}
+abstract_name: Trừu tượng
+animals_name: Động vật
+food-and-drink_name: Đồ ăn, thức uống
+classic-characters_name: Nhân vật cổ điển
+animals_questions: "lợn đất\ncá sấu\nkiến\nlinh dương\nkhỉ đầu chó\ndơi\ngấu\nong\n
+  bọ cánh cứng\nchim\nbáo đen\nnhện góa phụ\nhươu nai\nsâu bọ\nbò đực\nthỏ con\nbươm
+  bướm\nlạc đà\nmèo\nsâu róm\nrết\ntắc kè hoa\nbáo cheetah\ngà\nchihuahua\ntinh tinh\n
+  cá hề\ngián\nbáo cuga\nbò\nsói đồng cỏ\ncua\ndế mèn\nCá sấu mõm ngắn\nchim cu\n
+  con nai\nkhủng long\ndodo\nchó\ncá heo\ncon lừa\nchim cu\nchuồn chuồn\nvịt\nbọ hung\n
+  chim ưng\nlươn\nvoi\nchồn hôi\nđom đóm\ncá\ncáo\ncon ếch\nruồi giấm\nlinh dương
+  gazen\ntắc kè\nhươu cao cổ\ndê\ncá vàng\nngỗng\nchuột nang\ncon gấu\nchuột bạch\n
+  chuột đồng\nthỏ rừng\ncon hà mã\nHà mã\nong bắp cày\nngựa\ncon người\nbáo đốm\n
+  chuột túi\nbọ rùa\nbáo\nsư tử\nthằn lằn\nlạc đà không bướu\ntôm\nđộng vật có vú\n
+  chuột chũi\ncon khỉ\nnai sừng tấm\ncon muỗi\nbướm đêm\nchuột\nkỳ lân biển\nbạch
+  tuộc\nđười ươi\nđà điểu\ncon cú\ncon hàu\ncon beo\ncon vẹt\ncon công\nBồ nông\n
+  chim cánh cụt\nlợn\nbồ câu\ngấu Bắc cực\nkì lân\nbáo sư tử\nthỏ\nchuột đồng\nquạ\n
+  tuần lộc\ncu cu\nloài gặm nhấm\ngà trống\ncá hồi nước ngọt\ncá mòi\nbọ cạp\nhải
+  sâm\ncá ngựa\nrùa biển\nmòng biển\nhải cẩu\ncá mập\ncừu\nrắn\nbáo tuyết\nnhện\n
+  mực ống\ncon sóc\nsao biển\ncá kiếm\nkhủng long bạo chúa\nnhện Tarantula\nhổ\ncóc\n
+  rùa cạn\nsơn ca\ncá hồi\nrùa\nOng vò vẽ\nchồn\ncá voi\nchó sói\ngõ kiến\nsâu\nbò
+  tây tạng\nngựa vằn"
+food-and-drink_questions: "hạnh nhân\nMón khai vị\ntáo\nnước táo\nquả mơ\ntrái bơ\n
+  thịt xông khói\nbánh mì tròn\nchuối\nđồ nướng\nBột nhồi\nhạt đậu\nthịt bò\nớt chuông\n
+  dâu đen\nviệt quất\nhạt điều brazil\nbánh mỳ\nbữa sáng\nphô mai brie\nbông cải xanh\n
+  nước dùng\nbánh bundt\nbánh mì kẹp thịt\nburrito\nbơ\nbánh ngọt\ncà rốt\nhạt điều\n
+  súp lơ\nrau cần tây\nphô mai\nbánh mì kẹp pho mát\nquả anh đào\nkẹo cao su\nthịt
+  gà\nđậu gà\nớt\nsô cô la\nbánh quy socola\ndừa\nsữa dừa\ncà phê\nbánh quy\nngô\n
+  phô mai\ncây Nam việt quất\nkem\nbánh sừng bò\nquả dưa chuột\nbánh nướng nhỏ\ncà
+  ri\nsản phẩm bơ sữa\nmón tráng miệng\nbữa tối\nbánh vòng\nbột\nnước chấm salad\n
+  uống\ntrứng\nrượu trứng\ncà tím\ncơm cháy\nnước uống tăng lực\nchim ưng\ncá\nphi
+  lê cá\nthanh cá\nbột mì\nkhoai tây chiên\nsữa chua đông lạnh\nhoa quả\ntỏi\nbánh
+  gừng\nKem phủ lên bánh\ngouda\nngũ cốc\nquả nho\nbưởi\nđậu xanh\ngiăm bông\nbánh
+  hamburger\nquả phỉ\nthảo mộc\nMật ong\nkem lạnh\nbánh sandwich kem\nnước ép\ncải
+  xoăn\nkebab\nsốt cà chua\nđậu thận\nkim chi\nQuả kiwi\nchanh vàng\nNước chanh\n
+  đậu lăng\nrau xà lách\nchanh xanh\nbữa trưa\nquả xoài\nxi-rô phong\nbữa ăn\nthịt\n
+  sữa\nsữa lắc\nnước khoáng\ncây bạc hà\nbánh nướng xốp\nnấm\nmù tạt\nhạt\nyến mạch\n
+  cháo bột yến mạch\ndầu\nÔliu\ncủ hành\nlát hành\nquả cam\nnước cam\ncon hàu\nbánh
+  kếp\nmỳ ống\nquả đào\nđậu phụng\nquả lê\nhạt tiêu\nxúc xích hun khói\ndưa chua\n
+  bánh\nhạt thông\nquả dứa\nhạt dẻ cười\npizza\nmận\ntrái thạch lựu\nbắp rang bơ\n
+  thịt lợn\ncháo\nkhoai tây\nkhoai tây lát mỏng\nkhoai tây cắt múi\nbánh quy xoắn\n
+  quả bí ngô\nquesadilla\nNho khô\ndâu rừng\nđậu lăng đỏ\ncơm\ncuộn\nxa lát\nxúc xích
+  Ý\ncá hồi\nmuối\nbánh mì sandwich\ncá mòi\nnước xốt\ndưa cải bắp\nLạp xưởng\nHải
+  sản\nnước giải khát\nmón ăn phụ\nsinh tố\nNước ngọt\nkem trái cây\ncanh\nxì dầu\n
+  mì ống Ý\ngia vị\nrắc\nbí đao\nmón ăn nhẹ\nbít tết\nquả dâu\nphụ\nsushi\nxi-rô\n
+  taco\ntrà\nnướng\nđậu hũ\ncà chua\nbánh ngô\ncá ngừ\nrau quả\nbánh quế\nóc chó\n
+  nước\ndưa hấu\nváng sữa\nkem đánh\nSữa chua\nquả bí xanh"
+classic-characters_questions: "Aladdin\nAlice (trong Alice ở Xứ sở thần tiên)\nNai
+  Bambi\nSói (Cô bé quàng khăn đỏ)\nThuyền trưởng Hook\nChristopher Robin\nLọ Lem\n
+  Sử tử nhút nhát\n3 Chàng lính ngự lâm\nDorothy\nDracula\nBác sĩ Watson\nScrooge\n
+  Lợn Eeyore\nFrankenstein\nGretel\nHansel\nHuckleberry Finn\nHumpty Dumpty\nJack
+  and Jill\nLittle Bo-Peep\nLittle Red Riding Hood\nMowgli\nPeter Pan\nPeter Piper\n
+  Piglet\nPinocchio\nPrince Charming\nRapunzel\nRed Queen\nRobinson Crusoe\nRumpelstiltskin\n
+  Scarecrow\nSherlock Holmes\nSindbad the Sailor\nSleeping Beauty\nSnow White\nTặc
+  giăng\nThe Cheshire Cat\nHoàng tử ếch\nThe Ghost of Christmas Past\nThe Gingerbread
+  Man\nThằng gù ở nhà thờ Đức bà\nThe Itsy Bitsy Spider\nNàng tiên cá\nNgười bán nón
+  điên\nThe Muffin Man\nHoàng hậu Q cơ\n7 chú lùn\nBà chúa tuyết\nThe Three Blind
+  Mice\nThe Three Little Pigs\nThe Three Musketeers\nThe Ugly Duckling\nTigger\nTin
+  Woodman\nTinker Bell\nTom Sawyer\nTweedledum and Tweedledee\nGấu Winnie\nWizard
+  of Oz\nZorro"
