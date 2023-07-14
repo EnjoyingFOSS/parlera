@@ -167,5 +167,7 @@
   "settings": "Налаштування",
   "@settings": {},
   "preparationOrientationDescription": "Піднесіть телефон до лоба",
-  "@preparationOrientationDescription": {}
+  "@preparationOrientationDescription": {},
+  "txtNoRecentEmoji": "Немає нещодавніх емодзі",
+  "@txtNoRecentEmoji": {}
 }
