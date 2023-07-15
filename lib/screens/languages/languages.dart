@@ -21,6 +21,7 @@
 import 'package:flutter/material.dart';
 import 'package:parlera/models/language.dart';
 import 'package:parlera/store/language.dart';
+import 'package:parlera/widgets/max_width_container.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -34,11 +35,13 @@ class LanguageScreen extends StatelessWidget {
     const languages = ParleraLanguage.values;
     final infoColor = Theme.of(context).colorScheme.onBackground.withAlpha(162);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context).settingsLanguage),
-      ),
       body: ScopedModelDescendant<LanguageModel>(
-          builder: (context, _, model) => CustomScrollView(slivers: [
+          //TODO check whether I'm within safe area
+          builder: (context, _, model) => MaxWidthContainer(
+                  child: CustomScrollView(slivers: [
+                SliverAppBar(
+                  title: Text(AppLocalizations.of(context).settingsLanguage),
+                ),
                 SliverList(
                     delegate: SliverChildListDelegate.fixed(
                         List.generate(languages.length + 1, (i) {
@@ -95,7 +98,7 @@ class LanguageScreen extends StatelessWidget {
                         )),
                   ]),
                 )
-              ])),
+              ]))),
     );
   }
 }

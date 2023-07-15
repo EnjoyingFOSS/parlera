@@ -18,35 +18,22 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:flutter/material.dart';
-import 'package:parlera/widgets/max_width_container.dart';
+import 'package:flutter/widgets.dart';
+import 'package:parlera/helpers/layout.dart';
 
-import 'widgets/settings_list.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+class MaxWidthContainer extends StatelessWidget {
+  final Widget child;
+  final AlignmentGeometry alignment;
 
-import 'widgets/settings_modal.dart';
-
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
-
-  static void showBottomSheet(BuildContext context) =>
-      showModalBottomSheet<void>(
-          backgroundColor: Colors.transparent,
-          context: context,
-          builder: (context) => const SettingsModal());
+  const MaxWidthContainer(
+      {super.key, required this.child, this.alignment = Alignment.topCenter});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: MaxWidthContainer(
-          child: CustomScrollView(
-        slivers: [
-          SliverAppBar(title: Text(AppLocalizations.of(context).settings)),
-          const SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              sliver: SettingsList())
-        ],
-      )),
-    );
+    return Align(
+        alignment: alignment,
+        child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: LayoutXL.cols12.width),
+            child: child));
   }
 }

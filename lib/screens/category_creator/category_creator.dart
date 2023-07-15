@@ -25,8 +25,10 @@ import 'package:palette_generator/palette_generator.dart';
 import 'package:parlera/clippers/bottom_wave_clipper.dart';
 import 'package:parlera/helpers/dynamic_color.dart';
 import 'package:parlera/helpers/emoji.dart';
+import 'package:parlera/helpers/layout.dart';
 import 'package:parlera/screens/category_creator/widgets/creator_bottom_bar.dart';
 import 'package:parlera/widgets/emoji_sheet.dart';
+import 'package:parlera/widgets/max_width_container.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../models/editable_category.dart';
@@ -69,7 +71,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
 
     return ScopedModelDescendant<LanguageModel>(builder: (context, _, model) {
       final modelLanguage = model.lang;
-      final colors = _editableCategory.getDarkColorScheme();
+      final colors = _editableCategory.generateDarkColorScheme();
       if (modelLanguage != null) _editableCategory.lang = modelLanguage;
       return WillPopScope(
           onWillPop: () async {
@@ -108,14 +110,17 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                             height: topAreaHeight + 90 + safeAreaTop,
                             color: _editableCategory.bgColor,
                           )),
-                      Positioned.directional(
-                        start: 8,
-                        top: 8 + safeAreaTop,
-                        textDirection: Directionality.of(context),
-                        child: (const CloseButton(
-                          color: Colors.white,
-                        )),
-                      ),
+                      Align(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            padding:
+                                EdgeInsets.fromLTRB(8, 8 + safeAreaTop, 8, 0),
+                            alignment: AlignmentDirectional.topStart,
+                            width: LayoutXL.cols12.width,
+                            child: const CloseButton(
+                              color: Colors.white,
+                            ),
+                          )),
                       Container(
                           margin:
                               EdgeInsets.only(top: topAreaHeight + safeAreaTop),
@@ -198,45 +203,49 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                                       )))))
                     ]),
                     const SizedBox(height: 16),
-                    Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 6),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                              fillColor: colors.surfaceVariant,
-                              label: Text(AppLocalizations.of(context)
-                                  .txtCategoryTitle)),
-                          initialValue: _editableCategory.name,
-                          onSaved: (value) => _editableCategory.name = value,
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(
-                            16, 6, 16, _creatorBottomBarHeight + 16),
-                        child: TextFormField(
-                          expands: false,
-                          minLines: 10,
-                          maxLines: null,
-                          initialValue: _editableCategory.questions?.join("\n"),
-                          decoration: InputDecoration(
-                              fillColor: colors.surfaceVariant,
-                              label: Text(AppLocalizations.of(context)
-                                  .txtWordsOnePerLine),
-                              alignLabelWithHint: true),
-                          validator: (value) {
-                            if (value == null || value.trim() == "") {
-                              return AppLocalizations.of(context)
-                                  .warnMustEnterQuestion;
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            _editableCategory.questions = value
-                                ?.split("\n")
-                                .map((s) => s.trim())
-                                .where((s) => s.isNotEmpty)
-                                .toList();
-                          },
-                        )),
+                    MaxWidthContainer(
+                        child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 6),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  fillColor: colors.surfaceVariant,
+                                  label: Text(AppLocalizations.of(context)
+                                      .txtCategoryTitle)),
+                              initialValue: _editableCategory.name,
+                              onSaved: (value) =>
+                                  _editableCategory.name = value,
+                            ))),
+                    MaxWidthContainer(
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(
+                                16, 6, 16, _creatorBottomBarHeight + 16),
+                            child: TextFormField(
+                              expands: false,
+                              minLines: 10,
+                              maxLines: null,
+                              initialValue:
+                                  _editableCategory.questions?.join("\n"),
+                              decoration: InputDecoration(
+                                  fillColor: colors.surfaceVariant,
+                                  label: Text(AppLocalizations.of(context)
+                                      .txtWordsOnePerLine),
+                                  alignLabelWithHint: true),
+                              validator: (value) {
+                                if (value == null || value.trim() == "") {
+                                  return AppLocalizations.of(context)
+                                      .warnMustEnterQuestion;
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                _editableCategory.questions = value
+                                    ?.split("\n")
+                                    .map((s) => s.trim())
+                                    .where((s) => s.isNotEmpty)
+                                    .toList();
+                              },
+                            ))),
                   ],
                 ))),
           ));

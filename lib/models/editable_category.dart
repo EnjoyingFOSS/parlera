@@ -67,8 +67,8 @@ class EditableCategory {
         emoji = json[Category.jsonEmoji] as String,
         standardGameTime = json[Category.jsonStandardGameTime] as int?;
 
-  ColorScheme getDarkColorScheme() {
-    darkColorScheme ??=
+  ColorScheme generateDarkColorScheme() {
+    darkColorScheme =
         ColorScheme.fromSeed(seedColor: bgColor, brightness: Brightness.dark);
     return darkColorScheme!;
   }

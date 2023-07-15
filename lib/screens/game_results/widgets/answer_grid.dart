@@ -21,6 +21,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:parlera/models/question.dart';
+import 'package:parlera/widgets/max_width_container.dart';
 
 import 'answer_item.dart';
 
@@ -43,8 +44,9 @@ class AnswerGrid extends StatelessWidget {
         children: List.generate(
       rowCount,
       (rowI) {
-        return Row(
-            children: List.generate(answersPerRow, (columnI) {
+        return MaxWidthContainer(
+            child: Row(
+                children: List.generate(answersPerRow, (columnI) {
           final pos = rowI * answersPerRow + columnI;
 
           return Flexible(
@@ -58,7 +60,7 @@ class AnswerGrid extends StatelessWidget {
                               question: cardsAnswered[pos],
                             )
                           : const SizedBox())));
-        }));
+        })));
       },
     ));
   }

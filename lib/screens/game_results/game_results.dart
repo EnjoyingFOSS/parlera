@@ -36,8 +36,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:parlera/helpers/layout.dart';
 import 'package:parlera/screens/game_results/widgets/results_header.dart';
 import 'package:parlera/store/category.dart';
+import 'package:parlera/widgets/max_width_container.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -100,8 +102,10 @@ class GameResultsScreen extends StatelessWidget {
                   SliverPadding(
                       padding: const EdgeInsets.fromLTRB(8, 32, 8, 16),
                       sliver: SliverToBoxAdapter(
-                        child: (false) //TODO custom breakpoints!!!
-                            ? Row(mainAxisSize: MainAxisSize.min, children: [
+                        child: (MediaQuery.of(context).size.width >
+                                LayoutHelper.breakpointXL)
+                            ? MaxWidthContainer(
+                                child: Row(children: [
                                 Expanded(
                                     child: _ResultsButton(
                                         scheme: scheme,
@@ -120,7 +124,7 @@ class GameResultsScreen extends StatelessWidget {
                                             _backToAllCategories(context),
                                         labelText: AppLocalizations.of(context)
                                             .btnBackToAllCategories))
-                              ])
+                              ]))
                             : Column(children: [
                                 SizedBox(
                                     width: double.infinity,
@@ -152,7 +156,7 @@ class GameResultsScreen extends StatelessWidget {
   }
 
   void _backToAllCategories(BuildContext context) {
-    Navigator.of(context).pop();
+    Navigator.of(context).popUntil(ModalRoute.withName('/'));
   }
 
   void _playAgain(BuildContext context) {

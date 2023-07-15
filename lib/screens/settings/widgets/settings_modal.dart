@@ -34,7 +34,11 @@ class SettingsModal extends StatelessWidget {
               color: Theme.of(context).colorScheme.surface,
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(24), topRight: Radius.circular(24)),
-              child: const SettingsList(topMargin: 28))),
+              child: const CustomScrollView(slivers: [
+                SliverPadding(
+                    padding: EdgeInsets.only(bottom: 8, top: 28),
+                    sliver: SettingsList())
+              ]))),
       Positioned.directional(
           textDirection: Directionality.of(context),
           start: 8,

@@ -24,6 +24,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:parlera/clippers/bottom_wave_clipper.dart';
 import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/helpers/hero.dart';
+import 'package:parlera/helpers/layout.dart';
 import 'package:parlera/models/category.dart';
 
 class ResultsHeader extends StatefulWidget {
@@ -66,14 +67,16 @@ class _ResultsHeaderState extends State<ResultsHeader> {
             height: topAreaHeight + 90 + safeAreaTop,
             color: widget.category.bgColor,
           )),
-      Positioned.directional(
-        start: 8,
-        top: 8 + safeAreaTop,
-        textDirection: Directionality.of(context),
-        child: (const BackButton(
-          color: Colors.white,
-        )),
-      ),
+      Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            padding: EdgeInsets.fromLTRB(8, 8 + safeAreaTop, 8, 0),
+            alignment: AlignmentDirectional.topStart,
+            width: LayoutXL.cols12.width,
+            child: const BackButton(
+              color: Colors.white,
+            ),
+          )),
       if (confettiController != null)
         Align(
           alignment: Alignment.center,

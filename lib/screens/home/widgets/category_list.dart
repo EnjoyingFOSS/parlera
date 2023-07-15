@@ -35,11 +35,14 @@
 //   limitations under the License.
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:parlera/helpers/layout.dart';
 import 'package:parlera/screens/category_creator/category_creator.dart';
 import 'package:parlera/widgets/empty_screen.dart';
+import 'package:parlera/widgets/max_width_container.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:parlera/store/category.dart';
@@ -67,10 +70,12 @@ class CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final crossAxisCount = MediaQuery.of(context).size.width ~/ 480 + 1;
+    final containerWidth =
+        min(MediaQuery.of(context).size.width, LayoutXL.cols12.width);
+    final crossAxisCount = containerWidth ~/ 480 + 1;
 
-    return ScopedModelDescendant<LanguageModel>(
-        builder: (context, _, langModel) {
+    return MaxWidthContainer(child:
+        ScopedModelDescendant<LanguageModel>(builder: (context, _, langModel) {
       return ScopedModelDescendant<CategoryModel>(
           builder: (context, child, model) {
         final categories = (type == CategoryFilter.favorites)
@@ -179,8 +184,8 @@ class CategoryList extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   sliver: SliverGrid.count(
                       crossAxisCount: crossAxisCount,
-                      childAspectRatio:
-                          _getCardAspectRatio(context, crossAxisCount),
+                      childAspectRatio: _getCardAspectRatio(
+                          context, containerWidth, crossAxisCount),
                       //
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 8,
@@ -201,13 +206,13 @@ class CategoryList extends StatelessWidget {
           ));
         }
       });
-    });
+    }));
   }
 
-  double _getCardAspectRatio(BuildContext context, int crossAxisCount) {
+  double _getCardAspectRatio(
+      BuildContext context, double containerWidth, int crossAxisCount) {
     final itemWidth =
-        (MediaQuery.of(context).size.width - 32 - 8 * (crossAxisCount - 1)) /
-            crossAxisCount;
+        (containerWidth - 32 - 8 * (crossAxisCount - 1)) / crossAxisCount;
     const itemHeight = 80.0;
 
     return itemWidth / itemHeight;

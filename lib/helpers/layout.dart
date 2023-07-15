@@ -18,35 +18,25 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:flutter/material.dart';
-import 'package:parlera/widgets/max_width_container.dart';
+enum LayoutXL {
+  cols1(73.0),
+  cols2(170.0),
+  cols3(267.0),
+  cols4(364.0),
+  cols5(461.0),
+  cols6(558.0),
+  cols7(655.0),
+  cols8(752.0),
+  cols9(849.0),
+  cols10(946.0),
+  cols11(1043.0),
+  cols12(1140.0);
 
-import 'widgets/settings_list.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+  final double width;
 
-import 'widgets/settings_modal.dart';
+  const LayoutXL(this.width);
+}
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
-
-  static void showBottomSheet(BuildContext context) =>
-      showModalBottomSheet<void>(
-          backgroundColor: Colors.transparent,
-          context: context,
-          builder: (context) => const SettingsModal());
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: MaxWidthContainer(
-          child: CustomScrollView(
-        slivers: [
-          SliverAppBar(title: Text(AppLocalizations.of(context).settings)),
-          const SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              sliver: SettingsList())
-        ],
-      )),
-    );
-  }
+class LayoutHelper {
+  static const breakpointXL = 960;
 }
