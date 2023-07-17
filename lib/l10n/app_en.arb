@@ -62,6 +62,12 @@
       "questionCount": {}
     }
   },
+  "txtYourScoreSimple": "Your score: {questionsPassed}",
+  "@txtYourScoreSimple": {
+    "placeholders": {
+      "questionsPassed": {}
+    }
+  },
   "txtWordsOnePerLine": "Words, one per line",
   "errorCouldNotFindEmoji": "Could not find the image associated with this emoji.",
   "errorCouldNotExport": "Could not export this category.",
@@ -78,6 +84,9 @@
   "txtNoRecentEmoji": "No recent emoji",
   "txtCustomGameTime": "Custom game time (s.)",
   "txtCardsPerGame": "Cards per game",
+  "txtUnlimitedCards": "Unlimited",
+  "txtCustomCardNumber": "Custom",
   "btnPlayAgain": "Play again",
-  "btnBackToAllCategories": "All categories"
+  "btnBackToAllCategories": "All categories",
+  "txtTimesUp": "Time's up!"
 }
