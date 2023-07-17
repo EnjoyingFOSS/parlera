@@ -179,7 +179,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     }
 
     if (_secondsLeft <= 0) {
-      _handleGameStart();
+      _handleTimerZero();
       return;
     }
 
@@ -189,8 +189,6 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
   }
 
   void _showScore() {
-    SettingsModel.of(context).increaseGamesFinished();
-    CategoryModel.of(context).increasePlayedCount(_category);
     Navigator.pushReplacementNamed(context, '/game-summary');
   }
 
@@ -237,7 +235,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     _startTimer();
   }
 
-  void _postAnswer({required bool isCorrect}) {
+  void _postAnswer({required bool isCorrect, bool outOfTime = false}) {
     if (!flutter_foundation.kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
       VibrationHelper.vibrate();
     }
@@ -248,9 +246,9 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     });
   }
 
-  void _handleGameStart() {
+  void _handleTimerZero() {
     if (_isStarted) {
-      _handleIncorrect();
+      _handleOutOfTimeIncorrect();
     } else {
       setState(() {
         _isStarted = true;
@@ -277,6 +275,16 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     AudioHelper.playIncorrect(context);
     _invalidAC!.forward();
     _postAnswer(isCorrect: false);
+  }
+
+  void _handleOutOfTimeIncorrect() {
+    if (_isPausedForShowingResult) {
+      return;
+    }
+
+    AudioHelper.playIncorrect(context);
+    _invalidAC!.forward();
+    _postAnswer(isCorrect: false, outOfTime: true);
   }
 
   @override
@@ -321,14 +329,18 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                 ScaleTransition(
                   scale: _invalidAnimation,
                   child: SplashContent(
+                    isOutOfTime: _secondsLeft <= 0,
                     isNextToLast: QuestionModel.of(context).isPreLastCard(),
                     background: ThemeHelper.failColorLighter,
-                    iconData: Icons.sentiment_dissatisfied_rounded,
+                    iconData: _secondsLeft <= 0
+                        ? Icons.timer_rounded
+                        : Icons.sentiment_dissatisfied_rounded,
                   ),
                 ),
                 ScaleTransition(
                   scale: _validAnimation,
                   child: SplashContent(
+                    isOutOfTime: false,
                     isNextToLast: QuestionModel.of(context).isPreLastCard(),
                     background: ThemeHelper.successColorLighter,
                     iconData: Icons.sentiment_satisfied_alt_rounded,

@@ -98,21 +98,6 @@ class CategoryModel extends StoreModel {
     notifyListeners();
   }
 
-  int? getPlayedCount(Category category) {
-    if (!_playedCount.containsKey(category.getUniqueId())) {
-      _playedCount[category.getUniqueId()] =
-          repository.getPlayedCount(category);
-    }
-
-    return _playedCount[category.getUniqueId()];
-  }
-
-  Future<void> increasePlayedCount(Category category) async {
-    _playedCount[category.getUniqueId()] =
-        await repository.increasePlayedCount(category);
-    notifyListeners();
-  }
-
   Future<void> createOrUpdateCustomCategory(EditableCategory ec) async {
     await repository.createOrUpdateCategory(ec);
     _categories = await _loadCategories(ec.lang);

@@ -150,8 +150,6 @@ class GameSetings extends StatelessWidget {
                                 ),
                                 icon: const Icon(Icons.play_arrow_rounded),
                                 onPressed: () {
-                                  SettingsModel.of(context)
-                                      .increaseGamesPlayed();
                                   Navigator.pushReplacementNamed(
                                     context,
                                     '/game-play',

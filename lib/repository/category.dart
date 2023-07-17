@@ -48,8 +48,6 @@ class CategoryRepository {
 
   String _getFavoritesKey(ParleraLanguage lang) =>
       'category_favorite_list_${lang.langCode}';
-  String _getPlayedCountKey(Category category) =>
-      'category_played_count_${category.getUniqueId()}';
 
   CategoryRepository({required this.storage});
 
@@ -74,17 +72,6 @@ class CategoryRepository {
     await storage.setStringList(_getFavoritesKey(selected.lang), favorites);
 
     return favorites;
-  }
-
-  int getPlayedCount(Category category) {
-    return storage.getInt(_getPlayedCountKey(category)) ?? 0;
-  }
-
-  Future<int> increasePlayedCount(Category category) async {
-    final gamesPlayed = getPlayedCount(category) + 1;
-    await storage.setInt(_getPlayedCountKey(category), gamesPlayed);
-
-    return gamesPlayed;
   }
 
   Future createOrUpdateCategory(EditableCategory ec) async {

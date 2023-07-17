@@ -64,17 +64,15 @@ class SettingsModel extends StoreModel {
   late int _customGameTime;
   int get customGameTime => _customGameTime;
 
-  late int _cardsPerGame;
-  int get cardsPerGame => _cardsPerGame;
+  late int? _cardsPerGame;
+  int? get cardsPerGame => _cardsPerGame;
 
-  double get gameTimeMultiplier =>
-      _cardsPerGame / SettingsRepository.defaultCardsPerGame;
+  double get gameTimeMultiplier => _cardsPerGame != null
+      ? (_cardsPerGame! / SettingsRepository.defaultCardsPerGame)
+      : 1;
 
   String? _version;
   String? get version => _version;
-
-  late int _gamesPlayed;
-  int get gamesPlayed => _gamesPlayed;
 
   late int _gamesFinished;
   int get gamesFinished => _gamesFinished;
@@ -95,8 +93,6 @@ class SettingsModel extends StoreModel {
     _customGameTime = repository.getCustomGameTime();
     _cardsPerGame = repository.getCardsPerGame();
     _version = await repository.getAppVersion();
-    _gamesPlayed = repository.getGamesPlayed();
-    _gamesFinished = repository.getGamesFinished();
     _areNotificationsEnabled = repository.areNotificationsEnabled();
     _isLoading = false;
     notifyListeners();
@@ -122,18 +118,8 @@ class SettingsModel extends StoreModel {
     notifyListeners();
   }
 
-  Future<void> setCardsPerGame(int cardsPerGame) async {
+  Future<void> setCardsPerGame(int? cardsPerGame) async {
     _cardsPerGame = await repository.setCardsPerGame(cardsPerGame);
-    notifyListeners();
-  }
-
-  Future<void> increaseGamesPlayed() async {
-    _gamesPlayed = await repository.increaseGamesPlayed();
-    notifyListeners();
-  }
-
-  Future<void> increaseGamesFinished() async {
-    _gamesFinished = await repository.increaseGamesFinished();
     notifyListeners();
   }
 

@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SplashContent extends StatelessWidget {
   final bool isNextToLast;
+  final bool isOutOfTime;
   final Color background;
   final IconData iconData;
 
@@ -10,6 +11,7 @@ class SplashContent extends StatelessWidget {
       {Key? key,
       required this.background,
       required this.isNextToLast,
+      required this.isOutOfTime,
       required this.iconData})
       : super(key: key);
 
@@ -27,11 +29,13 @@ class SplashContent extends StatelessWidget {
             ),
           ),
         ),
-        if (isNextToLast)
+        if (isOutOfTime || isNextToLast)
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: Text(
-              AppLocalizations.of(context).lastQuestion,
+              isOutOfTime
+                  ? AppLocalizations.of(context).txtTimesUp
+                  : AppLocalizations.of(context).lastQuestion,
               style: const TextStyle(
                 fontSize: 36.0,
                 fontWeight: FontWeight.bold,
