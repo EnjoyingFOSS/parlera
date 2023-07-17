@@ -40,14 +40,14 @@ import 'package:sensors_plus/sensors_plus.dart';
 
 class TiltService {
   late StreamSubscription<AccelerometerEvent> _rotateSubscription;
-  final Function() handleValid;
-  final Function() handleInvalid;
+  final Function() handleCorrect;
+  final Function() handleIncorrect;
   final bool Function() isPlaying;
 
   TiltService(
       {required this.isPlaying,
-      required this.handleValid,
-      required this.handleInvalid}) {
+      required this.handleCorrect,
+      required this.handleIncorrect}) {
     bool safePosition = true;
     double rotationBorder = 9.5;
 
@@ -60,12 +60,12 @@ class TiltService {
       if (event.z > rotationBorder) {
         if (safePosition) {
           safePosition = false;
-          handleInvalid();
+          handleIncorrect();
         }
       } else if (event.z < -rotationBorder) {
         if (safePosition) {
           safePosition = false;
-          handleValid();
+          handleCorrect();
         }
       } else if (event.z.abs() > rotationBorder / 2) {
         safePosition = true;

@@ -77,10 +77,10 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
   bool _isPausedForShowingResult = false;
   StreamSubscription<dynamic>? _rotateSubscription;
 
-  AnimationController? _invalidAC;
-  late Animation<double> _invalidAnimation;
-  AnimationController? _validAC;
-  late Animation<double> _validAnimation;
+  AnimationController? _incorrectAC;
+  late Animation<double> _incorrectAnimation;
+  AnimationController? _correctAC;
+  late Animation<double> _correctAnimation;
 
   @override
   void initState() {
@@ -104,8 +104,8 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
 
     if (settings.isRotationControlEnabled) {
       _tiltService = TiltService(
-          handleInvalid: _handleIncorrect,
-          handleValid: _handleCorrect,
+          handleIncorrect: _handleIncorrect,
+          handleCorrect: _handleCorrect,
           isPlaying: () => !_isStarted || _isPausedForShowingResult);
       _secondsLeft = _secondsPrep;
     } else {
@@ -134,13 +134,13 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
   }
 
   void _initAnimations() {
-    _invalidAC = _createAnswerAnimationController();
-    _invalidAnimation =
-        CurvedAnimation(parent: _invalidAC!, curve: Curves.elasticOut);
+    _incorrectAC = _createAnswerAnimationController();
+    _incorrectAnimation =
+        CurvedAnimation(parent: _incorrectAC!, curve: Curves.elasticOut);
 
-    _validAC = _createAnswerAnimationController();
-    _validAnimation =
-        CurvedAnimation(parent: _validAC!, curve: Curves.elasticOut);
+    _correctAC = _createAnswerAnimationController();
+    _correctAnimation =
+        CurvedAnimation(parent: _correctAC!, curve: Curves.elasticOut);
   }
 
   @override
@@ -157,8 +157,8 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       DeviceOrientation.landscapeRight
     ]);
 
-    _validAC?.dispose();
-    _invalidAC?.dispose();
+    _correctAC?.dispose();
+    _incorrectAC?.dispose();
     _tiltService?.dispose();
 
     super.dispose();
@@ -263,7 +263,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     }
 
     AudioHelper.playCorrect(context);
-    _validAC!.forward();
+    _correctAC!.forward();
     _postAnswer(isCorrect: true);
   }
 
@@ -273,7 +273,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     }
 
     AudioHelper.playIncorrect(context);
-    _invalidAC!.forward();
+    _incorrectAC!.forward();
     _postAnswer(isCorrect: false);
   }
 
@@ -283,7 +283,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     }
 
     AudioHelper.playIncorrect(context);
-    _invalidAC!.forward();
+    _incorrectAC!.forward();
     _postAnswer(isCorrect: false, outOfTime: true);
   }
 
@@ -316,8 +316,8 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                     final currentQuestion = model.currentCard;
                     if (currentQuestion != null) {
                       return GameContent(
-                          handleValid: _handleCorrect,
-                          handleInvalid: _handleIncorrect,
+                          handleCorrect: _handleCorrect,
+                          handleIncorrect: _handleIncorrect,
                           currentQuestion: currentQuestion,
                           category: model.currentCategory!,
                           secondsLeft: _secondsLeft.toString());
@@ -327,7 +327,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                   },
                 ),
                 ScaleTransition(
-                  scale: _invalidAnimation,
+                  scale: _incorrectAnimation,
                   child: SplashContent(
                     isOutOfTime: _secondsLeft <= 0,
                     isNextToLast: QuestionModel.of(context).isPreLastCard(),
@@ -338,7 +338,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                   ),
                 ),
                 ScaleTransition(
-                  scale: _validAnimation,
+                  scale: _correctAnimation,
                   child: SplashContent(
                     isOutOfTime: false,
                     isNextToLast: QuestionModel.of(context).isPreLastCard(),

@@ -45,25 +45,25 @@ import 'package:parlera/models/category.dart';
 import 'package:parlera/models/question.dart';
 import 'game_button.dart';
 
-class _KeyboardHandleValidIntent extends Intent {
-  const _KeyboardHandleValidIntent();
+class _KeyboardHandleCorrectIntent extends Intent {
+  const _KeyboardHandleCorrectIntent();
 }
 
-class _KeyboardHandleInvalidIntent extends Intent {
-  const _KeyboardHandleInvalidIntent();
+class _KeyboardHandleIncorrectIntent extends Intent {
+  const _KeyboardHandleIncorrectIntent();
 }
 
 class GameContent extends StatelessWidget {
-  final void Function() handleValid;
-  final void Function() handleInvalid;
+  final void Function() handleCorrect;
+  final void Function() handleIncorrect;
   final Question currentQuestion;
   final Category category;
   final String secondsLeft;
 
   const GameContent(
       {Key? key,
-      required this.handleValid,
-      required this.handleInvalid,
+      required this.handleCorrect,
+      required this.handleIncorrect,
       required this.currentQuestion,
       required this.secondsLeft,
       required this.category})
@@ -76,16 +76,16 @@ class GameContent extends StatelessWidget {
         //TODO use CallbackShortcuts instead
         shortcuts: {
           LogicalKeySet(LogicalKeyboardKey.arrowUp):
-              const _KeyboardHandleInvalidIntent(),
+              const _KeyboardHandleIncorrectIntent(),
           LogicalKeySet(LogicalKeyboardKey.arrowDown):
-              const _KeyboardHandleValidIntent(),
+              const _KeyboardHandleCorrectIntent(),
         },
         child: Actions(
             actions: {
-              _KeyboardHandleValidIntent:
-                  CallbackAction(onInvoke: (_) => handleValid()),
-              _KeyboardHandleInvalidIntent:
-                  CallbackAction(onInvoke: (_) => handleInvalid()),
+              _KeyboardHandleCorrectIntent:
+                  CallbackAction(onInvoke: (_) => handleCorrect()),
+              _KeyboardHandleIncorrectIntent:
+                  CallbackAction(onInvoke: (_) => handleIncorrect()),
             },
             child: Focus(
                 autofocus: true,
@@ -96,14 +96,14 @@ class GameContent extends StatelessWidget {
                         GameButton(
                           color: ThemeHelper.failColorDarkest,
                           hoverColor: ThemeHelper.failColorLighter,
-                          onTap: handleInvalid,
+                          onTap: handleIncorrect,
                           emojiIcon: Icons.sentiment_dissatisfied_rounded,
                           arrowIcon: Icons.arrow_upward_rounded,
                         ),
                         GameButton(
                           color: ThemeHelper.successColorDarkest,
                           hoverColor: ThemeHelper.successColorLighter,
-                          onTap: handleValid,
+                          onTap: handleCorrect,
                           emojiIcon: Icons.sentiment_satisfied_alt_rounded,
                           arrowIcon: Icons.arrow_downward_rounded,
                         ),
