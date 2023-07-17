@@ -59,7 +59,7 @@ class EmojiSheet extends StatelessWidget {
                 ? TextStyle(
                     fontFamily: "NotoEmoji",
                     color: Theme.of(context).colorScheme.onSurface)
-                : null),
+                : TextStyle(color: Theme.of(context).colorScheme.onSurface)),
         onEmojiSelected: onEmojiSelected);
   }
 }
