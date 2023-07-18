@@ -64,18 +64,18 @@ class QuestionModel extends StoreModel {
 
   QuestionModel(this.repository);
 
-  void pickRandomCards(
-      Category randomCategory, List<Category> allCategories, int cardsPerGame) {
+  void pickRandomCards(Category randomCategory, List<Category> allCategories,
+      int? cardsPerGame) {
     _currentCards = repository.getRandomSelection(allCategories, cardsPerGame);
     _initCards(randomCategory);
   }
 
-  void pickCardsFromCategory(Category category, int cardsPerGame) {
+  void pickCardsFromCategory(Category category, int? cardsPerGame) {
     _currentCards = repository.getSelection(
       category.questions,
       category.getUniqueId(),
       cardsPerGame,
-      askedRecently: _latestCards,
+      askedRecently: cardsAnswered,
     );
     _initCards(category);
   }

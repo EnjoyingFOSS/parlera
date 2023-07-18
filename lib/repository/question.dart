@@ -42,11 +42,16 @@ import '../models/category.dart';
 class QuestionRepository {
   //TODO convert to static helper
 
-  List<Question> _getShuffledQuestions(List<Question> questions, int limit,
+  List<Question> _getShuffledQuestions(List<Question> questions, int? limit,
       {List<Question> excluded = const []}) {
     var allowedQuestions =
         questions.where((q) => !excluded.contains(q)).toList();
     allowedQuestions.shuffle();
+
+    if (limit == null) {
+      allowedQuestions.addAll(excluded);
+      return allowedQuestions;
+    }
 
     if (allowedQuestions.length < limit) {
       //include excluded recent questions if there aren't enough questions overall
@@ -68,7 +73,7 @@ class QuestionRepository {
 
   List<Question> getRandomSelection(
     List<Category> categories,
-    int limit,
+    int? limit,
   ) {
     categories.shuffle();
     categories = categories.sublist(0, 3);
@@ -76,7 +81,8 @@ class QuestionRepository {
     List<Question> result = List.from(
       //TODO THIS CAN LEAD TO FEWER QUESTIONS IF I PICK CATEGORIES WITH JUST 1 QUESTION EACH (but is that really a problem worth solving, though?)
       categories
-          .map((cat) => _getShuffledQuestions(cat.questions, (limit ~/ 3) + 1))
+          .map((cat) => _getShuffledQuestions(
+              cat.questions, limit == null ? null : (limit ~/ 3) + 1))
           .expand<Question>((i) => i),
     );
 
@@ -84,7 +90,7 @@ class QuestionRepository {
   }
 
   List<Question> getSelection(
-          List<Question> categoryQs, String categoryId, int limit,
+          List<Question> categoryQs, String categoryId, int? limit,
           {List<Question> askedRecently = const []}) =>
       _getShuffledQuestions(
         categoryQs,

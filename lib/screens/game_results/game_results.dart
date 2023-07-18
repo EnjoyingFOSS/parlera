@@ -39,6 +39,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:parlera/helpers/layout.dart';
 import 'package:parlera/screens/game_results/widgets/results_header.dart';
 import 'package:parlera/store/category.dart';
+import 'package:parlera/store/settings.dart';
 import 'package:parlera/widgets/max_width_container.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -53,105 +54,119 @@ class GameResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<CategoryModel>(
-        builder: (context, _, categoryModel) {
-      return ScopedModelDescendant<QuestionModel>(
-        builder: (context, _, model) {
-          final category = categoryModel.currentCategory!;
-          final scheme = category.getDarkColorScheme();
+    return ScopedModelDescendant<SettingsModel>(
+        builder: (context, _, settingsModel) {
+      return ScopedModelDescendant<CategoryModel>(
+          builder: (context, _, categoryModel) {
+        return ScopedModelDescendant<QuestionModel>(
+          builder: (context, _, cardModel) {
+            final isUnlimitedCardMode = settingsModel.cardsPerGame == null;
+            final cardTotal = isUnlimitedCardMode
+                ? cardModel.cardsAnswered.length
+                : cardModel.currentCards.length;
 
-          return Scaffold(
-              backgroundColor: scheme.surface,
-              body: AnimationLimiter(
-                  child: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                      child: ResultsHeader(
-                    category: category,
-                    scoreRatio: model.correctCards.length.toDouble() /
-                        model.currentCards.length,
-                  )),
-                  SliverPadding(
-                      padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
-                      sliver: SliverToBoxAdapter(
-                          child: Text(
-                        AppLocalizations.of(context).txtYourScore(
-                            model.correctCards.length,
-                            model.currentCards.length),
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ))),
-                  SliverPadding(
-                      padding: const EdgeInsets.fromLTRB(8, 16, 8, 32),
-                      sliver: AnswerGrid(
-                        cardsAnswered: model.cardsAnswered,
-                        answersPerRow:
-                            MediaQuery.of(context).size.width.toInt() ~/
-                                    _maxAnswerWidth +
-                                1,
-                      )),
-                  SliverPadding(
-                      padding:
-                          const EdgeInsetsDirectional.symmetric(horizontal: 8),
-                      sliver: SliverToBoxAdapter(
-                          child: Container(
-                        color: scheme.onBackground.withAlpha(47),
-                        height: 1,
-                        width: double.infinity,
-                      ))),
-                  SliverPadding(
-                      padding: const EdgeInsets.fromLTRB(8, 32, 8, 16),
-                      sliver: SliverToBoxAdapter(
-                        child: (MediaQuery.of(context).size.width >
-                                LayoutHelper.breakpointXL)
-                            ? MaxWidthContainer(
-                                child: Row(children: [
-                                Expanded(
-                                    child: _ResultsButton(
-                                        scheme: scheme,
-                                        iconData: Icons.refresh,
-                                        onTap: () => _playAgain(context),
-                                        labelText: AppLocalizations.of(context)
-                                            .btnPlayAgain)),
-                                const SizedBox(
-                                  width: 16,
-                                ),
-                                Expanded(
-                                    child: _ResultsButton(
-                                        scheme: scheme,
-                                        iconData: Icons.arrow_back,
-                                        onTap: () =>
-                                            _backToAllCategories(context),
-                                        labelText: AppLocalizations.of(context)
-                                            .btnBackToAllCategories))
-                              ]))
-                            : Column(children: [
-                                SizedBox(
-                                    width: double.infinity,
-                                    child: _ResultsButton(
-                                        scheme: scheme,
-                                        iconData: Icons.refresh,
-                                        onTap: () => _playAgain(context),
-                                        labelText: AppLocalizations.of(context)
-                                            .btnPlayAgain)),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                SizedBox(
-                                    width: double.infinity,
-                                    child: _ResultsButton(
-                                        scheme: scheme,
-                                        iconData: Icons.arrow_back,
-                                        onTap: () =>
-                                            _backToAllCategories(context),
-                                        labelText: AppLocalizations.of(context)
-                                            .btnBackToAllCategories))
-                              ]),
-                      )),
-                ],
-              )));
-        },
-      );
+            final category = categoryModel.currentCategory!;
+            final scheme = category.getDarkColorScheme();
+
+            return Scaffold(
+                backgroundColor: scheme.surface,
+                body: AnimationLimiter(
+                    child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                        child: ResultsHeader(
+                      category: category,
+                      scoreRatio:
+                          cardModel.correctCards.length.toDouble() / cardTotal,
+                    )),
+                    SliverPadding(
+                        padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
+                        sliver: SliverToBoxAdapter(
+                            child: Text(
+                          isUnlimitedCardMode
+                              ? AppLocalizations.of(context).txtYourScoreSimple(
+                                  cardModel.correctCards.length)
+                              : AppLocalizations.of(context).txtYourScore(
+                                  cardModel.correctCards.length, cardTotal),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ))),
+                    SliverPadding(
+                        padding: const EdgeInsets.fromLTRB(8, 16, 8, 32),
+                        sliver: AnswerGrid(
+                          cardsAnswered: cardModel.cardsAnswered,
+                          answersPerRow:
+                              MediaQuery.of(context).size.width.toInt() ~/
+                                      _maxAnswerWidth +
+                                  1,
+                        )),
+                    SliverPadding(
+                        padding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 8),
+                        sliver: SliverToBoxAdapter(
+                            child: Container(
+                          color: scheme.onBackground.withAlpha(47),
+                          height: 1,
+                          width: double.infinity,
+                        ))),
+                    SliverPadding(
+                        padding: const EdgeInsets.fromLTRB(8, 32, 8, 16),
+                        sliver: SliverToBoxAdapter(
+                          child: (MediaQuery.of(context).size.width >
+                                  LayoutHelper.breakpointXL)
+                              ? MaxWidthContainer(
+                                  child: Row(children: [
+                                  Expanded(
+                                      child: _ResultsButton(
+                                          scheme: scheme,
+                                          iconData: Icons.refresh,
+                                          onTap: () => _playAgain(context),
+                                          labelText:
+                                              AppLocalizations.of(context)
+                                                  .btnPlayAgain)),
+                                  const SizedBox(
+                                    width: 16,
+                                  ),
+                                  Expanded(
+                                      child: _ResultsButton(
+                                          scheme: scheme,
+                                          iconData: Icons.arrow_back,
+                                          onTap: () =>
+                                              _backToAllCategories(context),
+                                          labelText:
+                                              AppLocalizations.of(context)
+                                                  .btnBackToAllCategories))
+                                ]))
+                              : Column(children: [
+                                  SizedBox(
+                                      width: double.infinity,
+                                      child: _ResultsButton(
+                                          scheme: scheme,
+                                          iconData: Icons.refresh,
+                                          onTap: () => _playAgain(context),
+                                          labelText:
+                                              AppLocalizations.of(context)
+                                                  .btnPlayAgain)),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  SizedBox(
+                                      width: double.infinity,
+                                      child: _ResultsButton(
+                                          scheme: scheme,
+                                          iconData: Icons.arrow_back,
+                                          onTap: () =>
+                                              _backToAllCategories(context),
+                                          labelText:
+                                              AppLocalizations.of(context)
+                                                  .btnBackToAllCategories))
+                                ]),
+                        )),
+                  ],
+                )));
+          },
+        );
+      });
     });
   }
 

@@ -50,8 +50,7 @@ class SettingsRepository {
       'is_rotation_control_enabled';
   static const _storageGameTimeTypeKey = 'game_time_type';
   static const _storageCustomGameTimeKey = 'custom_game_time';
-  static const _storageGamesPlayedKey = 'games_played';
-  static const _storageGamesFinishedKey = 'games_finished';
+  static const _unlimitedCardsPerGameKey = 'unlimited_cards';
   static const _cardsPerGameKey = 'cards_per_game';
   static const _storageNotificationsEnabledKey = 'is_notifications_enabled';
 
@@ -103,36 +102,19 @@ class SettingsRepository {
     return customGameTime;
   }
 
-  int getCardsPerGame() =>
-      storage.getInt(_cardsPerGameKey) ?? defaultCardsPerGame;
+  int? getCardsPerGame() =>
+      (storage.getBool(_unlimitedCardsPerGameKey) ?? false)
+          ? null
+          : storage.getInt(_cardsPerGameKey) ?? defaultCardsPerGame;
 
-  Future<int> setCardsPerGame(int cardsPerGame) async {
-    await storage.setInt(_cardsPerGameKey, cardsPerGame);
+  Future<int?> setCardsPerGame(int? cardsPerGame) async {
+    final isUnlimited = cardsPerGame == null;
+    if (!isUnlimited) {
+      await storage.setInt(_cardsPerGameKey, cardsPerGame);
+    }
+    await storage.setBool(_unlimitedCardsPerGameKey, isUnlimited);
 
     return cardsPerGame;
-  }
-
-  int getGamesPlayed() {
-    return storage.getInt(_storageGamesPlayedKey) ?? 0;
-  }
-
-  Future<int> increaseGamesPlayed() async {
-    final gamesPlayed = getGamesPlayed() + 1;
-    await storage.setInt(_storageGamesPlayedKey, gamesPlayed);
-
-    return gamesPlayed;
-  }
-
-  int getGamesFinished() {
-    return storage.getInt(_storageGamesFinishedKey) ?? 0;
-  }
-
-  Future<int> increaseGamesFinished() async {
-    final gamesFinished = getGamesFinished() + 1;
-
-    await storage.setInt(_storageGamesFinishedKey, gamesFinished);
-
-    return gamesFinished;
   }
 
   bool areNotificationsEnabled() {
