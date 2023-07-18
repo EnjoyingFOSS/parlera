@@ -78,7 +78,7 @@
   "@btnContributeLanguage": {},
   "preparationPlay": "Spelen",
   "@preparationPlay": {},
-  "gameTime": "Duur",
+  "gameTime": "Gametijd (s.)",
   "@gameTime": {},
   "favorites": "Favorieten",
   "@favorites": {},
@@ -145,5 +145,9 @@
   "tutorialSecondSectionDescriptionDesktop": "Geen idee wat het is? Tik of klik op de rode kant van het scherm of druk op het pijltje naar boven om dit woord over te slaan.",
   "@tutorialSecondSectionDescriptionDesktop": {},
   "tutorialFourthSectionDescriptionDesktop": "Draai de monitor zodat slechts één persoon het woord ziet, laat de andere spelers raden.",
-  "@tutorialFourthSectionDescriptionDesktop": {}
+  "@tutorialFourthSectionDescriptionDesktop": {},
+  "btnOK": "OK",
+  "@btnOK": {},
+  "txtCustomGameTime": "Aangepaste gametijd (s.)",
+  "@txtCustomGameTime": {}
 }
