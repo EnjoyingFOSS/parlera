@@ -7,12 +7,12 @@ abstract_questions: "aardrijkskunde\naktie\nantwoord\natheïsme\nautonomie\nbegr
   haat\nharmonie\nhet vrije woord\nhoop\nhumeur\nhumor\nidee\nindruk\ninschatting\n
   Islam\nkenmerk\nkinderlijkheid\nliefde\nlot\nmensenrecht\nmetafoor\nmislukking\n
   misverstand\nmoeilijkheid\nmoeite\nmoment\nnoodzaak\nobjectiviteit\nonderdanigheid\n
-  oneindigheid\nontspanning\noverspannenheid\npassie\npersvrijheid\nplaats\npopulariteit\n
-  privacy\nprobleem\npsychologie\nreactie\nrealiteit\nreferentie\nrespect\nschoonheid\n
-  slachtofferschap\nslimheid\nsluwheid\nstress\nstreven\nsucces\nsymbool\ntaal\ntrend\n
-  troost\nuitdrukking\nuiterlijk\nvakantie\nveiligheid\nverbinding\nverschil\nversleuteling\n
-  vertrouwen\nvoorbeeld\nvorm\nvrede\nvrije tijd\nvrije wil\nvrijheid\nwaarheid\n\
-  welzijn\nwijsheid\nwiskunde\nziel"
+  oneindigheid\nontknoping\nontspanning\noverspannenheid\npassie\npersvrijheid\nplaats\n
+  populariteit\nprivacy\nprobleem\npsychologie\nreactie\nrealiteit\nreferentie\nrespect\n
+  schoonheid\nsfeer\nslachtofferschap\nslimheid\nsluwheid\nstress\nstreven\nsucces\n
+  symbool\ntaal\ntrend\ntroost\nuitdrukking\nuiterlijk\nvakantie\nveiligheid\nverbinding\n
+  verschil\nversleuteling\nvertrouwen\nvoorbeeld\nvorm\nvrede\nvrije tijd\nvrije wil\n\
+  vrijheid\nwaardering\nwaarheid\nwelzijn\nwijsheid\nwiskunde\nziel"
 animals_questions: "aap\naardvark\nadelaar\nalligator\nanemoonvis\nantilope\nbaviaan\n
   beer\nbij\nbromvlieg\ncavia\ncheetah\nchihuahua\nchimpansee\ndinosaurus\ndodo\n
   dolfijn\nduif\nduizendpoot\neekhoorn\neend\neland\nforel\nfret\nfruitvliegje\ngans\n
@@ -29,24 +29,25 @@ animals_questions: "aap\naardvark\nadelaar\nalligator\nanemoonvis\nantilope\nbav
   zeehond\nzeekomkommer\nzeemeeuw\nzeepaardje\nzeeschildpad\nzeester\nzoogdier\nzwaardvis\n
   zwarte panter\nzwarte weduwe"
 classic-characters_name: Bekende personages
-food-and-drink_questions: "amandel\nappel\nappelsap\nabrikoos\navocado\nspek\nBossche
-  bol\nbanaan\nbarbecue\nsperzieboon\nbiefstuk\nzwarte bes\nbosbes\nbrood\nontbijt\n
-  brie\nbroccoli\nmarmercake\nhamburger\nboter\nwortel\ncashewnoot\nbloemkool\nselderij\n
-  kaas\nkers\nkauwgom\nkip\ndoperwt\nchocola\nkokosnoot\nkokosmelk\nkoffie\nmais\n
-  hüttenkäse\nslagroom\ncroissant\nkomkommer\ncupcake\nzuivel\ndessert\ndiner\ndeeg\n
-  ei\nadvocaat\naubergine\nfalafel\nvis\nvisstick\nvisfilet\nbloem\nfriet\nfruit\n
-  knoflook\njong belegen\nmuesli\ndruif\npompelmoes\nham\nhazelnoot\nhoning\nijs\n
-  vruchtensap\nkebab\nketchup\nkiwi\ncitroen\nlimoen\nlimonade\nsla\nmiddageten\n
-  mango\nvlees\nmelk\nmilkshake\nbronwater\nmunt\nchampignon\nnoot\nolie\nolijf\n
-  ui\nsinaasappel\nsinaasappelsap\noester\npannenkoek\npasta\nperzik\npinda\npindakaas\n
-  peer\npaprika\naugurk\ntaart\npijnboompit\nananas\npistachenoot\npizza\npruim\n
-  granaatappel\npopcorn\nvarkensvlees\npap\naardappel\npompoen\nrozijn\nframboos\n
-  rode ui\nrijst\nsalade\nsalami\nzalm\nsaus\nzuurkool\nsardien\nworst\nsoep\nspaghetti\n
-  karbonade\nsushi\nthee\ntaco\nappelstroop\nstroopwafel\nmaatjesharing\nbiet\nprei\n
-  tomaat\ntofu\nknolselderij\nboerenkool\nhutspot\nerwtensoep\ncourgette\nyoghurt\n
-  watermeloen\nwater\ntonijn\nzure haring\ngoudreinet\nappeltaart\ncamembert\nchampagne\n\
-  bloedworst\nradijs\nomelet\ncapucijner\nontbijtkoek\nkwark\nchocoladevla\nrijstepap\n\
-  karnemelk\nkrentenbol\nfrisdrank\nkapsalon"
+food-and-drink_questions: "aardappel\nabrikoos\nadvocaat\namandel\nananas\nappel\n
+  appelsap\nappelstroop\nappeltaart\naubergine\naugurk\navocado\nbanaan\nbarbecue\n
+  biefstuk\nbiet\nbloedworst\nbloem\nbloemkool\nboerenkool\nbosbes\nBossche bol\n
+  boter\nboterham\nbrie\nbroccoli\nbronwater\nbrood\nbruine bonen\nbruine boterham
+  met kaas\ncamembert\ncapucijner\ncashewnoot\nchampagne\nchampignon\nchocola\nchocoladevla\n
+  citroen\ncourgette\ncroissant\ncupcake\ndeeg\ndessert\ndiner\ndoperwt\ndruif\nei\n
+  erwtensoep\nfalafel\nframboos\nfriet\nfrisdrank\nfruit\ngerookte haring\ngoudreinet\n
+  granaatappel\nham\nhamburger\nharing\nhazelnoot\nhoning\nhutspot\nhüttenkäse\nijs\n
+  jong belegen\nkaas\nkapsalon\nkarbonade\nkarnemelk\nkauwgom\nkebab\nkers\nketchup\n
+  kip\nkiwi\nknoflook\nknolselderij\nkoffie\nkokosmelk\nkokosnoot\nkomkommer\nkrentenbol\n
+  kwark\nlimoen\nlimonade\nmaatjesharing\nmacaroni\nmais\nmango\nmarmercake\nmelk\n
+  middageten\nmilkshake\nmuesli\nmunt\nnoot\noester\nolie\nolijf\nomelet\nontbijt\n
+  ontbijtkoek\noude goudse\npannenkoek\npap\npaprika\npasta\npeer\nperzik\npijnboompit\n
+  pinda\npindakaas\npistachenoot\npizza\npompelmoes\npompoen\npopcorn\nprei\npruim\n
+  radijs\nrijst\nrijstepap\nrode ui\nrolmops\nrozijn\nsalade\nsalami\nsardien\nsaus\n
+  selderij\nsinaasappel\nsinaasappelsap\nsla\nslagroom\nsoep\nspaghetti\nspek\nsperzieboon\n
+  stroopwafel\nsushi\ntaart\ntaco\ntempeh\nthee\ntofu\ntomaat\ntonijn\nui\nvanillevla\n
+  varkensvlees\nvis\nvisfilet\nvisstick\nvla\nvlees\nvruchtensap\nwater\nwatermeloen\n
+  worst\nwortel\nyoghurt\nzalm\nzuivel\nzure haring\nzuurkool\nzwarte bes"
 classic-characters_questions: "Aladin\nBambi\nGrote Boze Wolf\nKapitein Haak\nAssepoester\n
   Dracula\nFrankenstein\nRoodkapje\nPeter Pan\nPinokkio\nRapunzel\nSherlock Holmes\n
   Sinbad de Zeeman\nDoornroosje\nSneeuwwitje\nTarzan\nDe zeven dwergen\nDe Drie Musketiers\n
@@ -56,5 +57,44 @@ classic-characters_questions: "Aladin\nBambi\nGrote Boze Wolf\nKapitein Haak\nAs
   de Boskabouter\nNijntje\nMaja de Bij\nPippi Langkous\nPluk van de Petteflet\nFlipje
   van Tiel\nRupsje Nooitgenoeg\nWilly Wonka\nThomas de Trein\nBob de Bouwer\nMeneer
   de Koekepeer\nTom Poes\nOlivier B. Bommel\nKwik, kwek en kwak\nKabouter Plop\nde
-  Paashaas\nPipo de Clown"
+  Paashaas\nPipo de Clown\nDik Trom\nAli Baba\nTante Sidonia\nJerommeke\nObelix"
 historical-figures_name: Historische figuren
+jobs_questions: "administrateur\nacteur\narchitect\nhulpje\nastronaut\nschrijver\n
+  oppas\nvroedvrouw\nballetdanser\nkapper\nvoetballer\nbuschauffeur\nbutler\nkassier\n
+  baas\nclown\ncabaretier\ncomponist\nconsultant\nkok\ntherapeut\ndanser\nbezorger\n
+  tandarts\nontwerper\ndetective\nrechercheur\nontwikkelaar\ndiëtist\ndirecteur\n
+  regisseur\ndokter\nchauffeur\nelectriciën\ningenieur\nondernemer\noogarts\nboer\n
+  mode-ontwerper\nstewardess\nbloemist\nbrandweerman\nautomonteur\nhovenier\ntuinarchitect\n
+  huisarts\ngolfer\ngrafisch ontwerper\nbeveiliger\nbewaker\nhuismeester\nconciërge\n\
+  journalist\nadvocaat\nbibliothecaris\nhuishoudster\ngoochelaar\npostbode\nvisagist\n\
+  manager\nwiskundige\nmonteur\nminister\nmodel\nmuzikant\nneuroloog\nverpleegkundige\n\
+  schilder\napotheker\nnatuurkundige\ntoneelschrijver\nloodgieter\ndichter\npolitiebeambte\n\
+  politicus\npriester\ngevangenbewaarder\nprofessor\nprogrammeur\npsycholoog\nvastgoedontwikkelaar\n\
+  receptionist\nreparateur\nonderzoeker\nverkoper\nwetenschapper\nstraatartiest\n\
+  stuntman\nchirurg\nkleermaker\ntattoeëerder\ndocent\nleraar\njuf\nreisleider\ntrainer\n\
+  vertaler\ndierenarts\nveearts\nstemacteur\nober\nvuilnisman\nputjesschepper\nfietsenmaker\n\
+  vakkenvuller\nmagazijnbediende\nkelner\nbakker\nslager\ngroenteman\nvisser\nambtenaar\n\
+  coach"
+food-and-drink_name: Eten en drinken
+idioms_questions: "Een brug te ver\nDertien uit een dozijn\nVlek op vlek\nOveral en
+  nergens\nPiet Snot\nIemand alle hoeken van de kamer laten zien\nDoor de zure appel
+  heen bijten\nJe ogen zijn groter dan je maag\nEen geluk bij een ongeluk\nStoom afblazen\n
+  Bakzeil halen\nKlaar is Klara\nDoos van Pandora\nDat zal me worst wezen\nWat heb
+  ik nou aan mijn fiets hangen?\nUit je plaat gaan\nHou je haaks\nAls puntje bij paaltje
+  komt\nHoge bomen vangen veel wind\nIemand de loef afsteken\nVoor pampus liggen\n
+  De spijker op zijn kop slaan\nWat niet weet, wat niet deert\nTwaalf ambachten, dertien
+  ongelukken\nEen oogje in het zeil houden\nBoontje komt om zijn loontje\nWie het
+  kleine niet eert is het grote niet weerd\nVoor paal staan\nVoor schut staan"
+idioms_name: Spreekwoorden
+jobs_name: Beroepen
+historical-figures_questions: "Johan de Witt\nAdolf Hitler\nAlan Turing\nAlbert Einstein\n
+  Alexander de Grote\nAmadeus Mozart\nMultatuli\nAnne Frank\nAristoteles\nLouis Couperus\n
+  Benito Mussolini\nJohan Cruyff\nAntoni van Leeuwenhoek\nGebroeders Grimm\nBuddha\n
+  Baruch Spinoza\nCharles Darwin\nDesiderius Erasmus\nCharlie Chaplin\nChristopher
+  Columbus\nClaude Monet\nCleopatra\nJohannes van der Waals\nSimon Stevin\nEdgar Allan
+  Poe\nElvis Presley\nErnest Hemingway\nFrank Sinatra\nAletta Jacobs\nJan Tinbergen\n
+  Chriet Titulaer\nAndré Kuipers\n.\n.\n.\n.\nHenry Ford\nImmanuel Kant\nIsaac Newton\n
+  .James Cook\nJezus\nVincent van Gogh\nJohann Sebastian Bach\nRembrandt van Rijn\n
+  John F. Kennedy\nJohn Lennon\nJules Verne\nJulius Caesar\nKoning Arthur\nKoning
+  Toetanchamon\nLeonardo Da Vinci\nEddie van Halen\nLouis Armstrong\nLudwig von Beethoven\n
+  Mahatma Ghandi\n.\n.\nMarie Curie"
