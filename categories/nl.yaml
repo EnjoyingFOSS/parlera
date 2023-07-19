@@ -1,0 +1,60 @@
+abstract_name: Abstract
+animals_name: Dieren
+abstract_questions: "aardrijkskunde\naktie\nantwoord\natheïsme\nautonomie\nbegrip\n
+  belang\nbelediging\nbestemming\nbeveiliging\nbevrediging\nBoeddhisme\nChristendom\n
+  citaat\ncliché\ncomfort\ndood\neerlijkheid\nelement\nfilosofie\ngelijkheid\ngeloof\n
+  gemeenschappelijkheid\ngemoedsrust\ngevaar\ngevoel voor humor\ngezondheid\ngok\n
+  haat\nharmonie\nhet vrije woord\nhoop\nhumeur\nhumor\nidee\nindruk\ninschatting\n
+  Islam\nkenmerk\nkinderlijkheid\nliefde\nlot\nmensenrecht\nmetafoor\nmislukking\n
+  misverstand\nmoeilijkheid\nmoeite\nmoment\nnoodzaak\nobjectiviteit\nonderdanigheid\n
+  oneindigheid\nontspanning\noverspannenheid\npassie\npersvrijheid\nplaats\npopulariteit\n
+  privacy\nprobleem\npsychologie\nreactie\nrealiteit\nreferentie\nrespect\nschoonheid\n
+  slachtofferschap\nslimheid\nsluwheid\nstress\nstreven\nsucces\nsymbool\ntaal\ntrend\n
+  troost\nuitdrukking\nuiterlijk\nvakantie\nveiligheid\nverbinding\nverschil\nversleuteling\n
+  vertrouwen\nvoorbeeld\nvorm\nvrede\nvrije tijd\nvrije wil\nvrijheid\nwaarheid\n\
+  welzijn\nwijsheid\nwiskunde\nziel"
+animals_questions: "aap\naardvark\nadelaar\nalligator\nanemoonvis\nantilope\nbaviaan\n
+  beer\nbij\nbromvlieg\ncavia\ncheetah\nchihuahua\nchimpansee\ndinosaurus\ndodo\n
+  dolfijn\nduif\nduizendpoot\neekhoorn\neend\neland\nforel\nfret\nfruitvliegje\ngans\n
+  gazelle\ngecko\ngeit\ngiraffe\ngoudvis\ngrizzlybeer\nhaai\nhaan\nhaas\nhagedis\n
+  hamster\nhert\nhond\nhoornaar\nijsbeer\ninktvis\njaguar\njak\nkakkerlak\nkameel\n
+  kameleon\nkangeroe\nkat\nkever\nkikker\nkip\nknaagdier\nkoe\nkoekoek\nkonijn\nkrab\n
+  kreeft\nkrekel\nkrokodil\nlama\nleeuw\nlibelle\nlieveheersbeestje\nluipaard\nmeeuw\n
+  mens\nmestkever\nmier\nmol\nmot\nmug\nmuis\nmus\nnarwal\nnijlpaard\noctopus\noester\n
+  olifant\norang-oetan\npaard\npad\npaling\npanter\npapegaai\npauw\npelikaan\npinguïn\n
+  pissebed\npoema\npony\nprairiewolf\nraaf\nrat\nreebok\nregenworm\nreiger\nrendier\n
+  roodborstje\nrups\nsardien\nschaap\nschildpad\nschorpioen\nslang\nsneeuwluipaard\n
+  specht\nspin\nstier\nstruisvogel\ntijger\ntoekan\nT-rex\nuil\nvarken\nvis\nvleermuis\n
+  vlinder\nvogel\nvogelspin\nvos\nvuurvliegje\nwalvis\nwesp\nwezel\nwolf\nzalm\nzebra\n
+  zeehond\nzeekomkommer\nzeemeeuw\nzeepaardje\nzeeschildpad\nzeester\nzoogdier\nzwaardvis\n
+  zwarte panter\nzwarte weduwe"
+classic-characters_name: Bekende personages
+food-and-drink_questions: "amandel\nappel\nappelsap\nabrikoos\navocado\nspek\nBossche
+  bol\nbanaan\nbarbecue\nsperzieboon\nbiefstuk\nzwarte bes\nbosbes\nbrood\nontbijt\n
+  brie\nbroccoli\nmarmercake\nhamburger\nboter\nwortel\ncashewnoot\nbloemkool\nselderij\n
+  kaas\nkers\nkauwgom\nkip\ndoperwt\nchocola\nkokosnoot\nkokosmelk\nkoffie\nmais\n
+  hüttenkäse\nslagroom\ncroissant\nkomkommer\ncupcake\nzuivel\ndessert\ndiner\ndeeg\n
+  ei\nadvocaat\naubergine\nfalafel\nvis\nvisstick\nvisfilet\nbloem\nfriet\nfruit\n
+  knoflook\njong belegen\nmuesli\ndruif\npompelmoes\nham\nhazelnoot\nhoning\nijs\n
+  vruchtensap\nkebab\nketchup\nkiwi\ncitroen\nlimoen\nlimonade\nsla\nmiddageten\n
+  mango\nvlees\nmelk\nmilkshake\nbronwater\nmunt\nchampignon\nnoot\nolie\nolijf\n
+  ui\nsinaasappel\nsinaasappelsap\noester\npannenkoek\npasta\nperzik\npinda\npindakaas\n
+  peer\npaprika\naugurk\ntaart\npijnboompit\nananas\npistachenoot\npizza\npruim\n
+  granaatappel\npopcorn\nvarkensvlees\npap\naardappel\npompoen\nrozijn\nframboos\n
+  rode ui\nrijst\nsalade\nsalami\nzalm\nsaus\nzuurkool\nsardien\nworst\nsoep\nspaghetti\n
+  karbonade\nsushi\nthee\ntaco\nappelstroop\nstroopwafel\nmaatjesharing\nbiet\nprei\n
+  tomaat\ntofu\nknolselderij\nboerenkool\nhutspot\nerwtensoep\ncourgette\nyoghurt\n
+  watermeloen\nwater\ntonijn\nzure haring\ngoudreinet\nappeltaart\ncamembert\nchampagne\n\
+  bloedworst\nradijs\nomelet\ncapucijner\nontbijtkoek\nkwark\nchocoladevla\nrijstepap\n\
+  karnemelk\nkrentenbol\nfrisdrank\nkapsalon"
+classic-characters_questions: "Aladin\nBambi\nGrote Boze Wolf\nKapitein Haak\nAssepoester\n
+  Dracula\nFrankenstein\nRoodkapje\nPeter Pan\nPinokkio\nRapunzel\nSherlock Holmes\n
+  Sinbad de Zeeman\nDoornroosje\nSneeuwwitje\nTarzan\nDe zeven dwergen\nDe Drie Musketiers\n
+  Zorro\nGrietje\nHansje Brinker\nJan Klaassen\nKatrijn\nBerend Botje\nKlaas Vaak\n
+  Holle Bolle Gijs\nManneken Pis\nVrouw Holle\nRepelsteeltje\nKlein Duimpje\nPietje
+  Bell\nDikkertje Dap\nDikkie Dik\nJip\nJanneke\nNils Holgersson\nPinkeltje\nPaulus
+  de Boskabouter\nNijntje\nMaja de Bij\nPippi Langkous\nPluk van de Petteflet\nFlipje
+  van Tiel\nRupsje Nooitgenoeg\nWilly Wonka\nThomas de Trein\nBob de Bouwer\nMeneer
+  de Koekepeer\nTom Poes\nOlivier B. Bommel\nKwik, kwek en kwak\nKabouter Plop\nde
+  Paashaas\nPipo de Clown"
+historical-figures_name: Historische figuren
