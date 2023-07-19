@@ -49,7 +49,7 @@ class TiltService {
       required this.handleCorrect,
       required this.handleIncorrect}) {
     bool safePosition = true;
-    double rotationBorder = 9.5;
+    const rotationBorder = 9.5;
 
     _rotateSubscription =
         accelerometerEvents.listen((AccelerometerEvent event) {
@@ -73,7 +73,7 @@ class TiltService {
     });
   }
 
-  void dispose() {
-    _rotateSubscription.cancel();
+  Future<void> dispose() async {
+    await _rotateSubscription.cancel();
   }
 }

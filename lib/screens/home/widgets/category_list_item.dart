@@ -36,19 +36,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:parlera/helpers/emoji.dart';
+import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/models/category.dart';
-
-import '../../../helpers/emoji.dart';
-import '../../../helpers/hero.dart';
-import '../../../widgets/parlera_card.dart';
+import 'package:parlera/widgets/parlera_card.dart';
 
 class CategoryListItem extends StatelessWidget {
   final Category category;
   final VoidCallback onTap;
 
   const CategoryListItem(
-      {Key? key, required this.category, required this.onTap})
+      {required this.category, required this.onTap, Key? key})
       : super(key: key);
 
   @override
@@ -82,57 +80,6 @@ class CategoryListItem extends StatelessWidget {
                       fontSize: 21,
                     ),
                   )))
-          // todo incorporate this information into category detail
-          // ScopedModelDescendant<CategoryModel>(
-          //   builder: (context, child, model) {
-          //     return Positioned(
-          //       bottom: 10,
-          //       left: 10,
-          //       child: _MetaItem(
-          //         playedCount: model.getPlayedCount(category),
-          //       ),
-          //     );
-          //   },
-          // ),
-          // if (questionCount > 0)
-          //   Positioned(
-          //       bottom: 10,
-          //       right: 10,
-          //       child: Text(
-          //         AppLocalizations.of(context)
-          //             .categoryItemQuestionsCount(questionCount),
-          //         style: TextStyle(
-          //           color: Colors.white,
-          //           fontSize: ThemeConfig.categoriesMetaSize,
-          //         ),
-          //       ))
         ])));
   }
 }
-
-// class _MetaItem extends StatelessWidget {
-//   final int playedCount;
-//
-//   const _MetaItem({Key? key, required this.playedCount}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Opacity(
-//       opacity: 0.7,
-//       child: Row(
-//         children: [
-//           const Padding(
-//               padding: EdgeInsets.symmetric(horizontal: 4.0),
-//               child: Icon(Icons.play_arrow, size: 14)),
-//           Text(
-//             playedCount.toString(),
-//             style: const TextStyle(
-//               color: Colors.white,
-//               fontSize: 12,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

@@ -27,11 +27,11 @@ class TutorialPage extends StatelessWidget {
   final String imagePath;
 
   const TutorialPage(
-      {Key? key,
-      required this.bgColor,
+      {required this.bgColor,
       required this.title,
       required this.description,
-      required this.imagePath})
+      required this.imagePath,
+      Key? key})
       : super(key: key);
 
   @override

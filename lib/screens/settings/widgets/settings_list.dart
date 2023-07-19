@@ -35,19 +35,16 @@
 //   limitations under the License.
 
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:parlera/helpers/url_launcher.dart';
 import 'package:parlera/screens/languages/languages.dart';
 import 'package:parlera/screens/settings/widgets/cards_per_game_dialog.dart';
-import 'package:scoped_model/scoped_model.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:parlera/store/settings.dart';
-
-import '../../../helpers/url_launcher.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class SettingsList extends StatelessWidget {
   const SettingsList({Key? key}) : super(key: key);
@@ -64,16 +61,16 @@ class SettingsList extends StatelessWidget {
                       title: Text(
                           AppLocalizations.of(context).settingsAccelerometer),
                       value: model.isRotationControlEnabled,
-                      onChanged: (bool value) {
-                        model.toggleRotationControl();
+                      onChanged: (bool value) async {
+                        await model.toggleRotationControl();
                       },
                       secondary: const Icon(Icons.screen_rotation_rounded),
                     ),
                   SwitchListTile(
                     title: Text(AppLocalizations.of(context).settingsAudio),
                     value: model.isAudioEnabled,
-                    onChanged: (bool value) {
-                      model.toggleAudio();
+                    onChanged: (bool value) async {
+                      await model.toggleAudio();
                     },
                     secondary: const Icon(Icons.music_note_rounded),
                   ),
@@ -88,13 +85,13 @@ class SettingsList extends StatelessWidget {
                     onTap: () async {
                       final cardsPerGame = await CardsPerGameDialog.show(
                           context, model.cardsPerGame);
-                      model.setCardsPerGame(cardsPerGame);
+                      await model.setCardsPerGame(cardsPerGame);
                     },
                   ),
                   ListTile(
                     title: Text(AppLocalizations.of(context).settingsLanguage),
                     leading: const Icon(Icons.language_rounded),
-                    onTap: () => Navigator.of(context).push(
+                    onTap: () async => Navigator.of(context).push(
                         MaterialPageRoute<void>(
                             builder: (context) => const LanguageScreen())),
                   ),
@@ -102,7 +99,7 @@ class SettingsList extends StatelessWidget {
                     leading: const Icon(Icons.help_rounded),
                     title: Text(
                         AppLocalizations.of(context).settingsStartTutorial),
-                    onTap: () => _openTutorial(context),
+                    onTap: () async => _openTutorial(context),
                   ),
                   ListTile(
                     leading: const Icon(Icons.volunteer_activism_rounded),
@@ -126,15 +123,14 @@ class SettingsList extends StatelessWidget {
             ));
   }
 
-  void _openTutorial(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      '/tutorial',
-    );
-  }
+  Future<void> _openTutorial(BuildContext context) async =>
+      await Navigator.pushNamed(
+        context,
+        '/tutorial',
+      );
 
   void _showAboutDialog(BuildContext context) async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    final packageInfo = await PackageInfo.fromPlatform();
     if (context.mounted) {
       showAboutDialog(
           context: context,

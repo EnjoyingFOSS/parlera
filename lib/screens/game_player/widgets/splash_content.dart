@@ -8,11 +8,11 @@ class SplashContent extends StatelessWidget {
   final IconData iconData;
 
   const SplashContent(
-      {Key? key,
-      required this.background,
+      {required this.background,
       required this.isNextToLast,
       required this.isOutOfTime,
-      required this.iconData})
+      required this.iconData,
+      Key? key})
       : super(key: key);
 
   @override

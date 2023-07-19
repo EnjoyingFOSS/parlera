@@ -31,13 +31,13 @@ class PaginationBar extends StatelessWidget {
   final int currentPage;
 
   const PaginationBar(
-      {Key? key,
-      required this.controller,
+      {required this.controller,
       required this.onFinish,
       required this.pageCount,
       required this.currentPage,
       required this.onNavigatePrevious,
-      required this.onNavigateNext})
+      required this.onNavigateNext,
+      Key? key})
       : super(key: key);
 
   @override
@@ -54,7 +54,7 @@ class PaginationBar extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: (currentPage == 0)
                         ? TextButton(
-                            onPressed: () => onFinish(),
+                            onPressed: onFinish,
                             child: Text(
                               AppLocalizations.of(context).btnSkip,
                               style: buttonTextStyle,
@@ -83,7 +83,7 @@ class PaginationBar extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: (currentPage == pageCount - 1)
                         ? TextButton(
-                            onPressed: () => onFinish(),
+                            onPressed: onFinish,
                             child: Text(
                                 AppLocalizations.of(context).btnFinishTutorial,
                                 style: buttonTextStyle))

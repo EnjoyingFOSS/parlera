@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:parlera/models/language.dart';
 import 'package:parlera/widgets/max_width_container.dart';
-
-import '../../../models/language.dart';
 
 class CreatorBottomBar extends StatelessWidget {
   final void Function() onDone;
@@ -10,10 +9,10 @@ class CreatorBottomBar extends StatelessWidget {
   final double height;
 
   const CreatorBottomBar(
-      {Key? key,
-      required this.onDone,
+      {required this.onDone,
       required this.lang,
-      required this.height})
+      required this.height,
+      Key? key})
       : super(key: key);
 
   @override

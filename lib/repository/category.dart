@@ -37,11 +37,10 @@
 import 'dart:core';
 
 import 'package:parlera/helpers/db.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:parlera/models/category.dart';
-
-import '../models/editable_category.dart';
-import '../models/language.dart';
+import 'package:parlera/models/editable_category.dart';
+import 'package:parlera/models/language.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CategoryRepository {
   final SharedPreferences storage;

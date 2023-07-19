@@ -20,8 +20,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'category.dart';
-import 'language.dart';
+import 'package:parlera/models/category.dart';
+import 'package:parlera/models/language.dart';
 
 class EditableCategory {
   static const _defaultEmoji = "❔";
@@ -29,7 +29,7 @@ class EditableCategory {
 
   int? sembastPos;
   String? name;
-  List<String>? questions;
+  List<String>? cards;
   Color bgColor;
   String emoji;
   ColorScheme? darkColorScheme;
@@ -40,7 +40,7 @@ class EditableCategory {
       {this.name,
       this.emoji = _defaultEmoji,
       this.bgColor = _defaultBgColor,
-      this.questions,
+      this.cards,
       ParleraLanguage? lang,
       this.sembastPos,
       this.standardGameTime}) {
@@ -52,7 +52,7 @@ class EditableCategory {
   EditableCategory.fromCategory(Category category)
       : sembastPos = category.sembastPos,
         name = category.name,
-        questions = category.questions.map((q) => q.name).toList(),
+        cards = category.cards.map((q) => q.phrase).toList(),
         bgColor = category.bgColor,
         lang = category.lang,
         emoji = category.emoji,
@@ -60,7 +60,7 @@ class EditableCategory {
 
   EditableCategory.fromJson(Map<String, dynamic> json, this.lang)
       : name = json[Category.jsonName] as String?,
-        questions = (json[Category.jsonQs] as List<dynamic>)
+        cards = (json[Category.jsonCards] as List<dynamic>)
             .map((dynamic e) => e.toString())
             .toList(),
         bgColor = Color(json[Category.jsonBgColor] as int),
@@ -76,7 +76,7 @@ class EditableCategory {
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       Category.jsonName: name,
-      Category.jsonQs: questions,
+      Category.jsonCards: cards,
       Category.jsonEmoji: emoji,
       Category.jsonBgColor: bgColor.value,
       Category.jsonStandardGameTime: standardGameTime

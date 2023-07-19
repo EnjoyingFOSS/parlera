@@ -25,7 +25,7 @@ class BottomWaveClipper extends CustomClipper<Path> {
   final _halfPeak = 8;
 
   @override
-  getClip(Size size) {
+  Path getClip(Size size) {
     final path = Path();
 
     final y = size.height - _halfPeak / 2;
@@ -41,8 +41,9 @@ class BottomWaveClipper extends CustomClipper<Path> {
       multiplier *= -1;
     }
 
-    path.lineTo(x, 0);
-    path.close();
+    path
+      ..lineTo(x, 0)
+      ..close();
     return path;
   }
 

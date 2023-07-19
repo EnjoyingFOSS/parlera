@@ -41,7 +41,7 @@ class PrepScreen extends StatelessWidget {
   final String? descriptionText;
 
   const PrepScreen(
-      {Key? key, required this.countdownText, this.descriptionText})
+      {required this.countdownText, this.descriptionText, Key? key})
       : super(key: key);
 
   @override

@@ -28,7 +28,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class EmojiSheet extends StatelessWidget {
   final Function(Category?, Emoji)? onEmojiSelected;
 
-  const EmojiSheet({super.key, required this.onEmojiSelected});
+  const EmojiSheet({required this.onEmojiSelected, super.key});
 
   @override
   Widget build(BuildContext context) {

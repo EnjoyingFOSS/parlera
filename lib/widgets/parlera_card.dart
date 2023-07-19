@@ -27,7 +27,7 @@ class ParleraCard extends StatelessWidget {
   final double? height;
 
   const ParleraCard(
-      {Key? key, required this.child, required this.onTap, this.height})
+      {required this.child, required this.onTap, this.height, Key? key})
       : super(key: key);
 
   @override

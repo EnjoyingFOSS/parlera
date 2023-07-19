@@ -40,22 +40,20 @@ import 'dart:io';
 import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/helpers/audio.dart';
 import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/helpers/vibration.dart';
+import 'package:parlera/models/category.dart';
+import 'package:parlera/models/category_type.dart';
+import 'package:parlera/screens/game_player/tilt_service.dart';
 import 'package:parlera/screens/game_player/widgets/game_content.dart';
 import 'package:parlera/screens/game_player/widgets/prep_screen.dart';
-import 'package:scoped_model/scoped_model.dart';
-
+import 'package:parlera/screens/game_player/widgets/splash_content.dart';
+import 'package:parlera/store/card.dart';
 import 'package:parlera/store/category.dart';
-import 'package:parlera/models/category.dart';
-import 'package:parlera/store/question.dart';
 import 'package:parlera/store/settings.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../models/category_type.dart';
-import 'tilt_service.dart';
-import 'widgets/splash_content.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class GamePlayerScreen extends StatefulWidget {
   const GamePlayerScreen({Key? key}) : super(key: key);
@@ -89,13 +87,13 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     _category = CategoryModel.of(context)
         .currentCategory!; //TODO can I assume non-nullability?
 
-    SettingsModel settings = SettingsModel.of(context);
+    final settings = SettingsModel.of(context);
 
     if (_category.type == CategoryType.random) {
-      QuestionModel.of(context).pickRandomCards(_category,
+      CardModel.of(context).pickRandomCards(_category,
           CategoryModel.of(context).categories, settings.cardsPerGame);
     } else {
-      QuestionModel.of(context)
+      CardModel.of(context)
           .pickCardsFromCategory(_category, settings.cardsPerGame);
     }
 
@@ -123,10 +121,10 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
   AnimationController _createAnswerAnimationController() {
     const duration = Duration(milliseconds: 1500);
     final controller = AnimationController(vsync: this, duration: duration);
-    controller.addStatusListener((listener) {
+    controller.addStatusListener((listener) async {
       if (listener == AnimationStatus.completed) {
         controller.reset();
-        _nextQuestion();
+        await _nextCard();
       }
     });
 
@@ -161,8 +159,8 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     _incorrectAC?.dispose();
     _tiltService?.dispose();
 
-    super.dispose();
     _stopTimer();
+    super.dispose();
   }
 
   void _startTimer() {
@@ -188,12 +186,11 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     });
   }
 
-  void _showScore() {
-    Navigator.pushReplacementNamed(context, '/game-summary');
-  }
+  Future<void> _showScore() async =>
+      await Navigator.pushReplacementNamed(context, '/game-summary');
 
-  void _onClose() {
-    showDialog<AlertDialog>(
+  Future<void> _onClose() async {
+    await showDialog<AlertDialog>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
               title: Text(AppLocalizations.of(context).gameCancelConfirmation),
@@ -213,19 +210,15 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
             ));
   }
 
-  void _gameOver() {
-    _showScore();
-  }
-
-  void _nextQuestion() {
+  Future<void> _nextCard() async {
     _stopTimer();
     if (_secondsLeft == 0) {
-      return _gameOver();
+      return _showScore();
     }
 
-    QuestionModel.of(context).setNextCard();
-    if (QuestionModel.of(context).currentCard == null) {
-      return _gameOver();
+    CardModel.of(context).setNextCard();
+    if (CardModel.of(context).currentCard == null) {
+      return _showScore();
     }
 
     setState(() {
@@ -239,7 +232,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     if (!flutter_foundation.kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
       VibrationHelper.vibrate();
     }
-    QuestionModel.of(context).answerCard(isCorrect);
+    CardModel.of(context).answerCard(isCorrect);
 
     setState(() {
       _isPausedForShowingResult = true;
@@ -304,21 +297,21 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       backgroundColor: _category.getDarkColorScheme().surface,
       body: WillPopScope(
         onWillPop: () async {
-          _onClose();
+          await _onClose();
           return false;
         },
         child: Stack(children: [
           if (_isPausedForShowingResult || _isStarted)
             Stack(
               children: [
-                ScopedModelDescendant<QuestionModel>(
+                ScopedModelDescendant<CardModel>(
                   builder: (context, child, model) {
-                    final currentQuestion = model.currentCard;
-                    if (currentQuestion != null) {
+                    final currentCard = model.currentCard;
+                    if (currentCard != null) {
                       return GameContent(
                           handleCorrect: _handleCorrect,
                           handleIncorrect: _handleIncorrect,
-                          currentQuestion: currentQuestion,
+                          currentCard: currentCard,
                           category: model.currentCategory!,
                           secondsLeft: _secondsLeft.toString());
                     } else {
@@ -330,7 +323,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                   scale: _incorrectAnimation,
                   child: SplashContent(
                     isOutOfTime: _secondsLeft <= 0,
-                    isNextToLast: QuestionModel.of(context).isPreLastCard(),
+                    isNextToLast: CardModel.of(context).isPreLastCard(),
                     background: ThemeHelper.failColorLighter,
                     iconData: _secondsLeft <= 0
                         ? Icons.timer_rounded
@@ -341,7 +334,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                   scale: _correctAnimation,
                   child: SplashContent(
                     isOutOfTime: false,
-                    isNextToLast: QuestionModel.of(context).isPreLastCard(),
+                    isNextToLast: CardModel.of(context).isPreLastCard(),
                     background: ThemeHelper.successColorLighter,
                     iconData: Icons.sentiment_satisfied_alt_rounded,
                   ),

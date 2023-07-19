@@ -38,34 +38,33 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:l10n_esperanto/l10n_esperanto.dart';
+import 'package:parlera/helpers/theme.dart';
+import 'package:parlera/models/language.dart';
+import 'package:parlera/repository/card.dart';
+import 'package:parlera/repository/category.dart';
+import 'package:parlera/repository/language.dart';
+import 'package:parlera/repository/settings.dart';
+import 'package:parlera/repository/tutorial.dart';
 import 'package:parlera/screens/game_cover/game_cover.dart';
 import 'package:parlera/screens/game_player/game_player.dart';
 import 'package:parlera/screens/game_results/game_results.dart';
 import 'package:parlera/screens/home/home.dart';
 import 'package:parlera/screens/tutorial/tutorial.dart';
+import 'package:parlera/store/card.dart';
+import 'package:parlera/store/category.dart';
+import 'package:parlera/store/language.dart';
+import 'package:parlera/store/settings.dart';
+import 'package:parlera/store/store.dart';
+import 'package:parlera/store/tutorial.dart';
 import 'package:parlera/widgets/screen_loader.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock/wakelock.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'helpers/theme.dart';
-import 'models/language.dart';
-import 'repository/category.dart';
-import 'repository/question.dart';
-import 'repository/language.dart';
-import 'repository/settings.dart';
-import 'repository/tutorial.dart';
-import 'store/store.dart';
-import 'store/category.dart';
-import 'store/question.dart';
-import 'store/tutorial.dart';
-import 'store/settings.dart';
-import 'store/language.dart';
 
 class Parlera extends StatelessWidget {
   final Map<Type, StoreModel> stores = {};
@@ -100,7 +99,7 @@ class Parlera extends StatelessWidget {
           final storage = snapshot.data!;
           stores.addAll({
             CategoryModel: CategoryModel(CategoryRepository(storage: storage)),
-            QuestionModel: QuestionModel(QuestionRepository()),
+            CardModel: CardModel(CardRepository()),
             TutorialModel: TutorialModel(TutorialRepository(storage: storage)),
             SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
             LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
@@ -113,8 +112,8 @@ class Parlera extends StatelessWidget {
 
         return ScopedModel<CategoryModel>(
           model: stores[CategoryModel] as CategoryModel,
-          child: ScopedModel<QuestionModel>(
-            model: stores[QuestionModel] as QuestionModel,
+          child: ScopedModel<CardModel>(
+            model: stores[CardModel] as CardModel,
             child: ScopedModel<TutorialModel>(
               model: stores[TutorialModel] as TutorialModel,
               child: ScopedModel<SettingsModel>(

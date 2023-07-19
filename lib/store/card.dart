@@ -35,34 +35,32 @@
 //   limitations under the License.
 
 import 'package:flutter/widgets.dart';
+import 'package:parlera/models/category.dart';
+import 'package:parlera/models/phrase_card.dart';
+import 'package:parlera/repository/card.dart';
+import 'package:parlera/store/store.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'package:parlera/models/question.dart';
-import 'package:parlera/repository/question.dart';
-import 'package:parlera/store/store.dart';
+class CardModel extends StoreModel {
+  CardRepository repository;
 
-import '../models/category.dart';
-
-class QuestionModel extends StoreModel {
-  QuestionRepository repository;
-
-  List<Question> _currentCards = [];
-  List<Question> get currentCards => _currentCards;
-  List<Question> get cardsAnswered =>
+  List<PhraseCard> _currentCards = [];
+  List<PhraseCard> get currentCards => _currentCards;
+  List<PhraseCard> get cardsAnswered =>
       _currentCards.where((q) => q.answeredCorrectly != null).toList();
-  List<Question> get correctCards =>
+  List<PhraseCard> get correctCards =>
       cardsAnswered.where((q) => q.answeredCorrectly!).toList();
-  List<Question> get incorrectCards =>
+  List<PhraseCard> get incorrectCards =>
       cardsAnswered.where((q) => !q.answeredCorrectly!).toList();
-  final List<Question> _latestCards = [];
-  List<Question> get latestCards => _latestCards;
+  final List<PhraseCard> _latestCards = [];
+  List<PhraseCard> get latestCards => _latestCards;
 
   Category? _currentCategory;
   Category? get currentCategory => _currentCategory;
-  Question? _currentCard;
-  Question? get currentCard => _currentCard;
+  PhraseCard? _currentCard;
+  PhraseCard? get currentCard => _currentCard;
 
-  QuestionModel(this.repository);
+  CardModel(this.repository);
 
   void pickRandomCards(Category randomCategory, List<Category> allCategories,
       int? cardsPerGame) {
@@ -72,7 +70,7 @@ class QuestionModel extends StoreModel {
 
   void pickCardsFromCategory(Category category, int? cardsPerGame) {
     _currentCards = repository.getSelection(
-      category.questions,
+      category.cards,
       category.getUniqueId(),
       cardsPerGame,
       askedRecently: cardsAnswered,
@@ -117,6 +115,6 @@ class QuestionModel extends StoreModel {
     }
   }
 
-  static QuestionModel of(BuildContext context) =>
-      ScopedModel.of<QuestionModel>(context);
+  static CardModel of(BuildContext context) =>
+      ScopedModel.of<CardModel>(context);
 }

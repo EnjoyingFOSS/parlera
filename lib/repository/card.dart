@@ -36,75 +36,73 @@
 
 import 'dart:core';
 
-import 'package:parlera/models/question.dart';
-import '../models/category.dart';
+import 'package:parlera/models/category.dart';
+import 'package:parlera/models/phrase_card.dart';
 
-class QuestionRepository {
+class CardRepository {
   //TODO convert to static helper
 
-  List<Question> _getShuffledQuestions(List<Question> questions, int? limit,
-      {List<Question> excluded = const []}) {
-    var allowedQuestions =
-        questions.where((q) => !excluded.contains(q)).toList();
-    allowedQuestions.shuffle();
+  List<PhraseCard> _getShuffledCards(List<PhraseCard> cards, int? limit,
+      {List<PhraseCard> excluded = const []}) {
+    var allowedCards = cards.where((q) => !excluded.contains(q)).toList()
+      ..shuffle();
 
     if (limit == null) {
-      allowedQuestions.addAll(excluded);
-      return allowedQuestions;
+      allowedCards.addAll(excluded);
+      return allowedCards;
     }
 
-    if (allowedQuestions.length < limit) {
-      //include excluded recent questions if there aren't enough questions overall
+    if (allowedCards.length < limit) {
+      //include excluded recent cards if there aren't enough cards overall
 
-      final remainingLimit = limit - allowedQuestions.length;
-      final remainingQuestions =
-          questions.where((q) => excluded.contains(q)).toList();
-      remainingQuestions.shuffle();
-      if (remainingLimit < remainingQuestions.length) {
-        remainingQuestions.sublist(0, remainingLimit);
+      final remainingLimit = limit - allowedCards.length;
+      final remainingCards = cards.where((q) => excluded.contains(q)).toList()
+        ..shuffle();
+      if (remainingLimit < remainingCards.length) {
+        remainingCards.sublist(0, remainingLimit);
       }
-      allowedQuestions.addAll(remainingQuestions);
+      allowedCards.addAll(remainingCards);
     } else {
-      allowedQuestions = allowedQuestions.sublist(0, limit);
+      allowedCards = allowedCards.sublist(0, limit);
     }
 
-    return allowedQuestions;
+    return allowedCards;
   }
 
-  List<Question> getRandomSelection(
+  List<PhraseCard> getRandomSelection(
     List<Category> categories,
     int? limit,
   ) {
     categories.shuffle();
     categories = categories.sublist(0, 3);
 
-    List<Question> result = List.from(
-      //TODO THIS CAN LEAD TO FEWER QUESTIONS IF I PICK CATEGORIES WITH JUST 1 QUESTION EACH (but is that really a problem worth solving, though?)
+    final result = List<PhraseCard>.from(
+      //TODO THIS CAN LEAD TO FEWER CARDS IF I PICK CATEGORIES WITH JUST 1 CARD EACH (but is that really a problem worth solving, though?)
       categories
-          .map((cat) => _getShuffledQuestions(
-              cat.questions, limit == null ? null : (limit ~/ 3) + 1))
-          .expand<Question>((i) => i),
+          .map((cat) => _getShuffledCards(
+              cat.cards, limit == null ? null : (limit ~/ 3) + 1))
+          .expand<PhraseCard>((i) => i),
     );
 
-    return _getShuffledQuestions(result, limit);
+    return _getShuffledCards(result, limit);
   }
 
-  List<Question> getSelection(
-          List<Question> categoryQs, String categoryId, int? limit,
-          {List<Question> askedRecently = const []}) =>
-      _getShuffledQuestions(
-        categoryQs,
+  List<PhraseCard> getSelection(
+          List<PhraseCard> categoryCards, String categoryId, int? limit,
+          {List<PhraseCard> askedRecently = const []}) =>
+      _getShuffledCards(
+        categoryCards,
         limit,
         excluded: askedRecently,
       );
 
-  Question? getNext(List<Question> questions, Question current) {
-    int nextIndex = questions.indexOf(current) + 1;
+  PhraseCard? getNext(List<PhraseCard> cards, PhraseCard current) {
+    final nextIndex = cards.indexOf(current) + 1;
 
-    if (nextIndex == questions.length) {
+    if (nextIndex == cards.length) {
       return null;
     }
 
-    return questions[nextIndex];
+    return cards[nextIndex];
   }
 }

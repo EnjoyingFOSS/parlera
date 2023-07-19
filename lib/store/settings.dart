@@ -34,12 +34,11 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'package:parlera/models/game_time_type.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
+import 'package:parlera/models/game_time_type.dart';
 import 'package:parlera/repository/settings.dart';
-
 import 'package:parlera/store/store.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class SettingsModel extends StoreModel {
   SettingsRepository repository;

@@ -21,13 +21,11 @@
 import 'package:flutter/material.dart';
 import 'package:parlera/helpers/orientation.dart';
 import 'package:parlera/models/category_type.dart';
+import 'package:parlera/screens/game_cover/widgets/category_header.dart';
 import 'package:parlera/screens/game_cover/widgets/empty_category.dart';
 import 'package:parlera/screens/game_cover/widgets/game_settings.dart';
-import 'package:scoped_model/scoped_model.dart';
-
 import 'package:parlera/store/category.dart';
-
-import 'widgets/category_header.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class GameCoverScreen extends StatelessWidget {
   const GameCoverScreen({Key? key}) : super(key: key);
@@ -50,8 +48,7 @@ class GameCoverScreen extends StatelessWidget {
 
         final scheme = category.getDarkColorScheme();
 
-        if (category.questions.isEmpty &&
-            category.type != CategoryType.random) {
+        if (category.cards.isEmpty && category.type != CategoryType.random) {
           return const EmptyCategory();
         }
 
@@ -67,7 +64,7 @@ class GameCoverScreen extends StatelessWidget {
                           child: CategoryHeader(
                         model: model,
                         category: category,
-                        onFavorite: () => model.toggleFavorite(category),
+                        onFavorite: () async => model.toggleFavorite(category),
                         isFavorite: model.isFavorite(category),
                         isLandscape: stronglyLandscape,
                       )),
@@ -80,7 +77,8 @@ class GameCoverScreen extends StatelessWidget {
                         CategoryHeader(
                           model: model,
                           category: category,
-                          onFavorite: () => model.toggleFavorite(category),
+                          onFavorite: () async =>
+                              await model.toggleFavorite(category),
                           isFavorite: model.isFavorite(category),
                           isLandscape: stronglyLandscape,
                         ),

@@ -31,7 +31,7 @@ class ResultsHeader extends StatefulWidget {
   final Category category;
   final double scoreRatio;
   const ResultsHeader(
-      {super.key, required this.category, required this.scoreRatio});
+      {required this.category, required this.scoreRatio, super.key});
 
   @override
   State<ResultsHeader> createState() => _ResultsHeaderState();
@@ -40,7 +40,7 @@ class ResultsHeader extends StatefulWidget {
 class _ResultsHeaderState extends State<ResultsHeader> {
   static const _standardTopAreaHeight = 60;
   static const _minimumConfettiScoreRatio =
-      0.75; // TODO customize confetti and sound based on ratio
+      0.75; // TODO customize confetti and sound based on ratio; e.g. star confetti at 100%
   late final ConfettiController? confettiController;
 
   @override

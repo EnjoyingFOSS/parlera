@@ -49,7 +49,7 @@ import 'package:shimmer_animation/shimmer_animation.dart';
 
 class GameSetings extends StatelessWidget {
   final Category category;
-  const GameSetings({Key? key, required this.category}) : super(key: key);
+  const GameSetings({required this.category, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,12 +119,12 @@ class GameSetings extends StatelessWidget {
             values: const [...GameTimeType.values, null],
             onChanged: (GameTimeType? value) async {
               if (value != null) {
-                settingsModel.setGameTimeType(value);
+                await settingsModel.setGameTimeType(value);
               } else {
                 final gameTime = await _showGameTimeDialog(context);
                 if (gameTime != null) {
-                  settingsModel.setCustomGameTime(gameTime);
-                  settingsModel.setGameTimeType(GameTimeType.custom);
+                  await settingsModel.setCustomGameTime(gameTime);
+                  await settingsModel.setGameTimeType(GameTimeType.custom);
                 }
               }
             },
@@ -149,12 +149,11 @@ class GameSetings extends StatelessWidget {
                                   style: TextStyle(color: scheme.onPrimary),
                                 ),
                                 icon: const Icon(Icons.play_arrow_rounded),
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    '/game-play',
-                                  );
-                                },
+                                onPressed: () async =>
+                                    await Navigator.pushReplacementNamed(
+                                  context,
+                                  '/game-play',
+                                ),
                               ))))))),
         ],
       );
@@ -165,8 +164,7 @@ class GameSetings extends StatelessWidget {
     return await showDialog<int?>(
         builder: (context) {
           final textController = TextEditingController();
-          final focusNode = FocusNode();
-          focusNode.requestFocus();
+          final focusNode = FocusNode()..requestFocus();
           return AlertDialog(
               content: TextField(
                   decoration: InputDecoration(

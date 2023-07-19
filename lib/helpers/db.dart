@@ -21,17 +21,16 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:parlera/models/category.dart';
 import 'package:parlera/models/category_type.dart';
+import 'package:parlera/models/editable_category.dart';
+import 'package:parlera/models/language.dart';
+import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
-import 'package:path/path.dart' show join;
 import 'package:sembast/sembast_io.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:xdg_directories/xdg_directories.dart';
-
-import '../models/category.dart';
-import '../models/editable_category.dart';
-import '../models/language.dart';
 
 class DBHelper {
   static const _dbFile = "parlera.db";
@@ -39,7 +38,7 @@ class DBHelper {
 
   static const _bundledSignifier = "_bundled";
   static const _customSignifier = "_custom";
-  static const _questionStoreSuffix = "_qs";
+  static const _cardStoreSuffix = "_qs";
 
   DBHelper._();
   static final DBHelper db = DBHelper._();
@@ -53,8 +52,8 @@ class DBHelper {
   }
 
   Future<Database> _openDB() async {
-    String path = await _getPath();
-    DatabaseFactory dbFactory = databaseFactoryIo;
+    final path = await _getPath();
+    final dbFactory = databaseFactoryIo;
     return await dbFactory.openDatabase(path, version: _dbVersion,
         onVersionChanged: (database, oldV, newV) async {
       // always delete old bundled categories and add new ones
@@ -86,10 +85,10 @@ class DBHelper {
   String _getQStoreName(ParleraLanguage lang, {required bool isBundled}) =>
       lang.langCode +
       (isBundled ? _bundledSignifier : _customSignifier) +
-      _questionStoreSuffix;
+      _cardStoreSuffix;
 
   Future<String> _getPath() async {
-    Directory documentsDirectory = (Platform.isLinux)
+    final documentsDirectory = (Platform.isLinux)
         ? Directory(dataHome.path)
         : await getApplicationDocumentsDirectory();
     return join(documentsDirectory.path, _dbFile);

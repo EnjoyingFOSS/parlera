@@ -26,7 +26,7 @@ class MaxWidthContainer extends StatelessWidget {
   final AlignmentGeometry alignment;
 
   const MaxWidthContainer(
-      {super.key, required this.child, this.alignment = Alignment.topCenter});
+      {required this.child, this.alignment = Alignment.topCenter, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -35,19 +35,18 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:parlera/clippers/bottom_wave_clipper.dart';
 import 'package:parlera/clippers/right_wave_clipper.dart';
 import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/import_export.dart';
 import 'package:parlera/models/category.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/models/category_type.dart';
 import 'package:parlera/models/editable_category.dart';
 import 'package:parlera/screens/category_creator/category_creator.dart';
-import 'package:parlera/clippers/bottom_wave_clipper.dart';
-
-import '../../../store/category.dart';
+import 'package:parlera/store/category.dart';
 
 class CategoryHeader extends StatelessWidget {
   static const String _menuDelete = "delete";
@@ -62,12 +61,12 @@ class CategoryHeader extends StatelessWidget {
   final bool isFavorite;
 
   const CategoryHeader(
-      {Key? key,
-      required this.model,
+      {required this.model,
       required this.category,
       required this.onFavorite,
       required this.isFavorite,
-      required this.isLandscape})
+      required this.isLandscape,
+      Key? key})
       : super(key: key);
 
   @override
@@ -130,23 +129,28 @@ class CategoryHeader extends StatelessWidget {
                     onSelected: (String value) async {
                       switch (value) {
                         case _menuDelete:
-                          model.deleteCustomCategory(
+                          await model.deleteCustomCategory(
                               category.sembastPos, category.lang);
-                          Navigator.pop(context);
+                          if (context.mounted) {
+                            Navigator.pop(context);
+                          }
                           break;
                         case _menuEdit:
-                          Navigator.of(context).push(MaterialPageRoute<void>(
-                              builder: (context) => CategoryCreatorScreen(
-                                    ec: EditableCategory.fromCategory(category),
-                                  )));
+                          await Navigator.of(context)
+                              .push(MaterialPageRoute<void>(
+                                  builder: (context) => CategoryCreatorScreen(
+                                        ec: EditableCategory.fromCategory(
+                                            category),
+                                      )));
                           break;
                         case _menuDuplicate:
                           final ec = EditableCategory.fromCategory(category);
                           ec.sembastPos = null;
-                          Navigator.of(context).push(MaterialPageRoute<void>(
-                              builder: (context) => CategoryCreatorScreen(
-                                    ec: ec,
-                                  )));
+                          await Navigator.of(context)
+                              .push(MaterialPageRoute<void>(
+                                  builder: (context) => CategoryCreatorScreen(
+                                        ec: ec,
+                                      )));
                           break;
                         case _menuExport:
                           try {

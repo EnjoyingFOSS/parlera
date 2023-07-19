@@ -20,17 +20,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:parlera/models/question.dart';
+import 'package:parlera/models/phrase_card.dart';
+import 'package:parlera/screens/game_results/widgets/answer_item.dart';
 import 'package:parlera/widgets/max_width_container.dart';
 
-import 'answer_item.dart';
-
 class AnswerGrid extends StatelessWidget {
-  final List<Question> cardsAnswered;
+  final List<PhraseCard> cardsAnswered;
   final int answersPerRow;
 
   const AnswerGrid(
-      {super.key, required this.cardsAnswered, required this.answersPerRow});
+      {required this.cardsAnswered, required this.answersPerRow, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +56,7 @@ class AnswerGrid extends StatelessWidget {
                   child: FadeInAnimation(
                       child: (rowI < rowCount - 1 || columnI < lastCellCount)
                           ? AnswerItem(
-                              question: cardsAnswered[pos],
+                              card: cardsAnswered[pos],
                             )
                           : const SizedBox())));
         })));

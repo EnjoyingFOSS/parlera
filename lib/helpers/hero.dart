@@ -18,7 +18,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
-import '../models/category.dart';
+import 'package:parlera/models/category.dart';
 
 class HeroHelper {
   static String categoryImage(Category category) =>

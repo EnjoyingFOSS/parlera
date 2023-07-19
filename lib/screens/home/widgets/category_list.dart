@@ -39,20 +39,18 @@ import 'dart:math';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:parlera/helpers/import_export.dart';
 import 'package:parlera/helpers/layout.dart';
+import 'package:parlera/helpers/url_launcher.dart';
+import 'package:parlera/models/language.dart';
 import 'package:parlera/screens/category_creator/category_creator.dart';
+import 'package:parlera/screens/home/widgets/category_list_item.dart';
+import 'package:parlera/store/category.dart';
+import 'package:parlera/store/language.dart';
 import 'package:parlera/widgets/empty_screen.dart';
 import 'package:parlera/widgets/max_width_container.dart';
 import 'package:scoped_model/scoped_model.dart';
-
-import 'package:parlera/store/category.dart';
-
-import '../../../helpers/import_export.dart';
-import '../../../helpers/url_launcher.dart';
-import '../../../models/language.dart';
-import '../../../store/language.dart';
-import 'category_list_item.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum CategoryFilter { all, favorites }
 
@@ -64,8 +62,8 @@ class CategoryList extends StatelessWidget {
   final CategoryFilter type;
 
   const CategoryList({
-    Key? key,
     required this.type,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -134,7 +132,7 @@ class CategoryList extends StatelessWidget {
                         onSelected: (String value) async {
                           switch (value) {
                             case _menuCreate:
-                              Navigator.push(
+                              await Navigator.push(
                                   context,
                                   MaterialPageRoute<void>(
                                       builder: (_) =>
@@ -193,9 +191,9 @@ class CategoryList extends StatelessWidget {
                           categories.length,
                           (index) => CategoryListItem(
                                 category: categories[index],
-                                onTap: () {
+                                onTap: () async {
                                   model.setCurrent(categories[index]);
-                                  Navigator.pushNamed(
+                                  await Navigator.pushNamed(
                                     context,
                                     '/category',
                                   );

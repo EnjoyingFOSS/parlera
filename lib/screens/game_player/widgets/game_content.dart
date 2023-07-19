@@ -42,8 +42,8 @@ import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/theme.dart';
 import 'package:parlera/models/category.dart';
-import 'package:parlera/models/question.dart';
-import 'game_button.dart';
+import 'package:parlera/models/phrase_card.dart';
+import 'package:parlera/screens/game_player/widgets/game_button.dart';
 
 class _KeyboardHandleCorrectIntent extends Intent {
   const _KeyboardHandleCorrectIntent();
@@ -56,17 +56,17 @@ class _KeyboardHandleIncorrectIntent extends Intent {
 class GameContent extends StatelessWidget {
   final void Function() handleCorrect;
   final void Function() handleIncorrect;
-  final Question currentQuestion;
+  final PhraseCard currentCard;
   final Category category;
   final String secondsLeft;
 
   const GameContent(
-      {Key? key,
-      required this.handleCorrect,
+      {required this.handleCorrect,
       required this.handleIncorrect,
-      required this.currentQuestion,
+      required this.currentCard,
       required this.secondsLeft,
-      required this.category})
+      required this.category,
+      Key? key})
       : super(key: key);
 
   @override
@@ -167,7 +167,7 @@ class GameContent extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Text(
-                                currentQuestion.name,
+                                currentCard.phrase,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontSize: 64.0,

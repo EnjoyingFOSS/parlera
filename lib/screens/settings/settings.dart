@@ -19,18 +19,16 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:parlera/widgets/max_width_container.dart';
-
-import 'widgets/settings_list.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'widgets/settings_modal.dart';
+import 'package:parlera/screens/settings/widgets/settings_list.dart';
+import 'package:parlera/screens/settings/widgets/settings_modal.dart';
+import 'package:parlera/widgets/max_width_container.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
-  static void showBottomSheet(BuildContext context) =>
-      showModalBottomSheet<void>(
+  static Future<void> showBottomSheet(BuildContext context) async =>
+      await showModalBottomSheet<void>(
           backgroundColor: Colors.transparent,
           context: context,
           builder: (context) => const SettingsModal());

@@ -36,9 +36,8 @@
 
 import 'dart:core';
 
+import 'package:parlera/models/language.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../models/language.dart';
 
 class LanguageRepository {
   static const String storageLanguageKey = 'language';

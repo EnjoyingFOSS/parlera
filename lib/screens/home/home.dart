@@ -35,15 +35,14 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 import 'package:parlera/screens/home/widgets/category_list.dart';
 import 'package:parlera/screens/settings/settings.dart';
-import 'package:parlera/widgets/screen_loader.dart';
-import 'package:scoped_model/scoped_model.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:parlera/store/category.dart';
 import 'package:parlera/store/tutorial.dart';
+import 'package:parlera/widgets/screen_loader.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -63,10 +62,11 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     if (!isTutorialWatched()) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushNamed(
-            context,
-            '/tutorial',
-          ));
+      WidgetsBinding.instance
+          .addPostFrameCallback((_) async => Navigator.pushNamed(
+                context,
+                '/tutorial',
+              ));
     }
   }
 
@@ -129,7 +129,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 }
               }).toList(),
               selectedIndex: currentIndex,
-              onTabChange: (i) {
+              onTabChange: (i) async {
                 switch (_NavItem.values[i]) {
                   case _NavItem.all:
                     setState(() {
@@ -142,7 +142,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     });
                     break;
                   case _NavItem.menu:
-                    SettingsScreen.showBottomSheet(context);
+                    await SettingsScreen.showBottomSheet(context);
                     break;
                 }
               },

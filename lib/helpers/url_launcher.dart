@@ -19,8 +19,8 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UrlLauncher {
   static void launchURL(BuildContext context, String url) async {

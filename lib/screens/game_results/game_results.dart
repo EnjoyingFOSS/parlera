@@ -35,17 +35,16 @@
 //   limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:parlera/helpers/layout.dart';
+import 'package:parlera/screens/game_results/widgets/answer_grid.dart';
 import 'package:parlera/screens/game_results/widgets/results_header.dart';
+import 'package:parlera/store/card.dart';
 import 'package:parlera/store/category.dart';
 import 'package:parlera/store/settings.dart';
 import 'package:parlera/widgets/max_width_container.dart';
 import 'package:scoped_model/scoped_model.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:parlera/store/question.dart';
-import 'widgets/answer_grid.dart';
 
 class GameResultsScreen extends StatelessWidget {
   static const _maxAnswerWidth = 400;
@@ -58,7 +57,7 @@ class GameResultsScreen extends StatelessWidget {
         builder: (context, _, settingsModel) {
       return ScopedModelDescendant<CategoryModel>(
           builder: (context, _, categoryModel) {
-        return ScopedModelDescendant<QuestionModel>(
+        return ScopedModelDescendant<CardModel>(
           builder: (context, _, cardModel) {
             final isUnlimitedCardMode = settingsModel.cardsPerGame == null;
             final cardTotal = isUnlimitedCardMode
@@ -120,7 +119,8 @@ class GameResultsScreen extends StatelessWidget {
                                       child: _ResultsButton(
                                           scheme: scheme,
                                           iconData: Icons.refresh,
-                                          onTap: () => _playAgain(context),
+                                          onTap: () async =>
+                                              await _playAgain(context),
                                           labelText:
                                               AppLocalizations.of(context)
                                                   .btnPlayAgain)),
@@ -143,7 +143,8 @@ class GameResultsScreen extends StatelessWidget {
                                       child: _ResultsButton(
                                           scheme: scheme,
                                           iconData: Icons.refresh,
-                                          onTap: () => _playAgain(context),
+                                          onTap: () async =>
+                                              await _playAgain(context),
                                           labelText:
                                               AppLocalizations.of(context)
                                                   .btnPlayAgain)),
@@ -170,16 +171,14 @@ class GameResultsScreen extends StatelessWidget {
     });
   }
 
-  void _backToAllCategories(BuildContext context) {
-    Navigator.of(context).popUntil(ModalRoute.withName('/'));
-  }
+  void _backToAllCategories(BuildContext context) =>
+      Navigator.of(context).popUntil(ModalRoute.withName('/'));
 
-  void _playAgain(BuildContext context) {
-    Navigator.pushReplacementNamed(
-      context,
-      '/category',
-    );
-  }
+  Future<void> _playAgain(BuildContext context) async =>
+      await Navigator.pushReplacementNamed(
+        context,
+        '/category',
+      );
 }
 
 class _ResultsButton extends StatelessWidget {

@@ -38,7 +38,7 @@ import 'package:vibration/vibration.dart';
 
 class VibrationHelper {
   static void vibrate() async {
-    bool canVibrate = await Vibration.hasVibrator() ?? false;
+    final canVibrate = await Vibration.hasVibrator() ?? false;
 
     if (canVibrate) {
       await Vibration.vibrate();

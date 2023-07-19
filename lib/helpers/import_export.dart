@@ -20,15 +20,14 @@
 
 import 'dart:convert';
 import 'dart:io';
-import 'package:path/path.dart' show join;
 
+import 'package:file_picker/file_picker.dart';
+import 'package:parlera/models/editable_category.dart';
+import 'package:parlera/models/language.dart';
+import 'package:parlera/store/category.dart';
+import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:file_picker/file_picker.dart';
-
-import '../models/editable_category.dart';
-import '../models/language.dart';
-import '../store/category.dart';
 
 class ImportExportHelper {
   static Future<void> exportJson(
@@ -58,6 +57,7 @@ class ImportExportHelper {
   }
 
   static Future<void> importFile(
+      //TODO allow importing entire ZIPs
       //TODO test on linux
       PlatformFile inputFile,
       CategoryModel model,
@@ -86,6 +86,6 @@ class ImportExportHelper {
         jsonDecode(await File(inputPath).readAsString())
             as Map<String, dynamic>,
         lang);
-    model.createOrUpdateCustomCategory(ec);
+    await model.createOrUpdateCustomCategory(ec);
   }
 }

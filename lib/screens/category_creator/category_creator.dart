@@ -26,19 +26,18 @@ import 'package:parlera/clippers/bottom_wave_clipper.dart';
 import 'package:parlera/helpers/dynamic_color.dart';
 import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/helpers/layout.dart';
+import 'package:parlera/models/editable_category.dart';
 import 'package:parlera/screens/category_creator/widgets/creator_bottom_bar.dart';
+import 'package:parlera/store/category.dart';
+import 'package:parlera/store/language.dart';
 import 'package:parlera/widgets/emoji_sheet.dart';
 import 'package:parlera/widgets/max_width_container.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../../models/editable_category.dart';
-import '../../store/category.dart';
-import '../../store/language.dart';
-
 class CategoryCreatorScreen extends StatefulWidget {
   final EditableCategory? ec;
 
-  const CategoryCreatorScreen({Key? key, this.ec}) : super(key: key);
+  const CategoryCreatorScreen({this.ec, Key? key}) : super(key: key);
 
   @override
   State<CategoryCreatorScreen> createState() => _CategoryCreatorScreenState();
@@ -75,7 +74,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
       if (modelLanguage != null) _editableCategory.lang = modelLanguage;
       return WillPopScope(
           onWillPop: () async {
-            _onClose();
+            await _onClose();
             return false;
           },
           child: Scaffold(
@@ -85,13 +84,17 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                 final form = _formKey.currentState;
                 if (form?.validate() ?? false) {
                   form?.save();
-                  CategoryModel.of(context)
+                  final localizations = AppLocalizations.of(context);
+                  final scaffoldMessenger = ScaffoldMessenger.of(context);
+                  await CategoryModel.of(context)
                       .createOrUpdateCustomCategory(_editableCategory);
-                  Navigator.of(context).popUntil(ModalRoute.withName('/'));
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  scaffoldMessenger.showSnackBar(SnackBar(
                       content: Text(_editableCategory.sembastPos == null
-                          ? AppLocalizations.of(context).txtCategoryAdded
-                          : AppLocalizations.of(context).txtCategoryEdited)));
+                          ? localizations.txtCategoryAdded
+                          : localizations.txtCategoryEdited)));
+                  if (mounted) {
+                    Navigator.of(context).popUntil(ModalRoute.withName('/'));
+                  }
                 }
               },
               lang: _editableCategory.lang,
@@ -129,7 +132,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                               color: Colors.transparent,
                               child: InkWell(
                                   borderRadius: BorderRadius.circular(8),
-                                  onTap: () => showModalBottomSheet(
+                                  onTap: () async => showModalBottomSheet(
                                       context: context,
                                       builder: (_) => EmojiSheet(
                                               onEmojiSelected:
@@ -163,17 +166,16 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                                                         _imageProvider);
 
                                             setState(() {
-                                              _editableCategory.emoji =
-                                                  selectedEmoji;
-
-                                              _editableCategory.bgColor =
-                                                  DynamicColorHelper
-                                                      .backgroundColorDark(
-                                                          paletteGenerator);
+                                              _editableCategory
+                                                ..emoji = selectedEmoji
+                                                ..bgColor = DynamicColorHelper
+                                                    .backgroundColorDark(
+                                                        paletteGenerator);
                                             });
-                                            if (!mounted) return;
-                                            Navigator.of(context)
-                                                .pop(); //TODO add a warning about emojis not looking the same on iOS
+                                            if (mounted) {
+                                              Navigator.of(context)
+                                                  .pop(); //TODO add a warning about emojis not looking the same on iOS
+                                            }
                                           })),
                                   child: SizedBox(
                                       width: 136,
@@ -224,8 +226,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                               expands: false,
                               minLines: 10,
                               maxLines: null,
-                              initialValue:
-                                  _editableCategory.questions?.join("\n"),
+                              initialValue: _editableCategory.cards?.join("\n"),
                               decoration: InputDecoration(
                                   fillColor: colors.surfaceVariant,
                                   label: Text(AppLocalizations.of(context)
@@ -239,7 +240,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                                 return null;
                               },
                               onSaved: (value) {
-                                _editableCategory.questions = value
+                                _editableCategory.cards = value
                                     ?.split("\n")
                                     .map((s) => s.trim())
                                     .where((s) => s.isNotEmpty)
@@ -252,9 +253,9 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
     });
   }
 
-  void _onClose() {
+  Future<void> _onClose() async {
     // todo show only if edits were made
-    showDialog<AlertDialog>(
+    await showDialog<AlertDialog>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
               title: Text(AppLocalizations.of(context).txtDiscardChangesQ),
@@ -266,8 +267,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                     child: Text(AppLocalizations.of(context).btnCancel)),
                 TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
+                      Navigator.popUntil(context, ModalRoute.withName('/'));
                     },
                     child: Text(AppLocalizations.of(context).btnDiscard))
               ],

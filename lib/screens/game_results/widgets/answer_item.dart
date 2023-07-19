@@ -36,16 +36,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:parlera/helpers/theme.dart';
-import 'package:parlera/models/question.dart';
+import 'package:parlera/models/phrase_card.dart';
 
 class AnswerItem extends StatelessWidget {
-  final Question question;
+  final PhraseCard card;
 
-  const AnswerItem({Key? key, required this.question}) : super(key: key);
+  const AnswerItem({required this.card, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final success = question.answeredCorrectly!;
+    final success = card.answeredCorrectly!;
 
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -69,7 +69,7 @@ class AnswerItem extends StatelessWidget {
             ),
             Flexible(
                 child: Text(
-              question.name,
+              card.phrase,
               style: Theme.of(context).textTheme.titleMedium,
             )),
           ],

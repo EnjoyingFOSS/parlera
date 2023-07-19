@@ -35,14 +35,12 @@
 //   limitations under the License.
 
 import 'package:flutter/widgets.dart';
-import 'package:scoped_model/scoped_model.dart';
-
 import 'package:parlera/models/category.dart';
+import 'package:parlera/models/editable_category.dart';
+import 'package:parlera/models/language.dart';
 import 'package:parlera/repository/category.dart';
 import 'package:parlera/store/store.dart';
-
-import '../models/editable_category.dart';
-import '../models/language.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class CategoryModel extends StoreModel {
   CategoryRepository repository;

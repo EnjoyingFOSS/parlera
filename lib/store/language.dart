@@ -34,12 +34,11 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/widgets.dart';
+import 'package:parlera/models/language.dart';
 import 'package:parlera/repository/language.dart';
 import 'package:parlera/store/store.dart';
-
-import '../models/language.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class LanguageModel extends StoreModel {
   LanguageRepository repository;

@@ -39,13 +39,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:parlera/models/category_type.dart';
 import 'package:parlera/models/game_time_type.dart';
-import 'package:parlera/models/question.dart';
-
-import 'language.dart';
+import 'package:parlera/models/language.dart';
+import 'package:parlera/models/phrase_card.dart';
 
 class Category {
   static const jsonName = "name";
-  static const jsonQs = "questions";
+  static const jsonCards = "questions";
   static const jsonEmoji = "emoji";
   static const jsonBgColor = "bgColor";
   static const jsonLangCode = "langCode";
@@ -60,7 +59,7 @@ class Category {
   final String emoji;
   final Color bgColor;
   final ParleraLanguage lang;
-  final List<Question> questions;
+  final List<PhraseCard> cards;
   final int? standardGameTime;
 
   ColorScheme? _darkColorScheme;
@@ -72,7 +71,7 @@ class Category {
       required this.lang,
       required this.emoji,
       required this.bgColor,
-      required this.questions,
+      required this.cards,
       this.standardGameTime});
 
   Category.random(this.lang)
@@ -81,7 +80,7 @@ class Category {
         emoji = "🎲",
         bgColor = const Color(0xFF282828),
         name = lang.randomName(),
-        questions = [],
+        cards = [],
         standardGameTime = null;
 
   Category.fromJson(
@@ -89,8 +88,8 @@ class Category {
       : name = json[jsonName] as String? ?? "",
         emoji = json[jsonEmoji] as String? ?? "❔",
         bgColor = Color(json[jsonBgColor] as int? ?? 0xFFFFFFFF),
-        questions = (json[jsonQs] as List<dynamic>)
-            .map((dynamic q) => Question(q as String))
+        cards = (json[jsonCards] as List<dynamic>)
+            .map((dynamic card) => PhraseCard(card as String))
             .toList(),
         standardGameTime = json[jsonStandardGameTime] as int?;
 
@@ -99,7 +98,7 @@ class Category {
         jsonEmoji: emoji,
         jsonBgColor: bgColor.value,
         jsonLangCode: lang.langCode,
-        jsonQs: questions.map((q) => q.name).toList(),
+        jsonCards: cards.map((card) => card.phrase).toList(),
         jsonStandardGameTime: standardGameTime
       };
 

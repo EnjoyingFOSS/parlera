@@ -34,45 +34,9 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-//TODO CAMERA: Make it work and work well
+class PhraseCard {
+  final String phrase;
+  bool? answeredCorrectly;
 
-// import 'dart:io';
-
-// import 'package:flutter/material.dart';
-// import 'package:carousel_slider/carousel_slider.dart';
-
-// class GalleryHorizontal extends StatelessWidget {
-//   const GalleryHorizontal({Key? key, 
-//     this.items,
-//     this.onTap,
-//   }) : super(key: key);
-
-//   final List<FileSystemEntity?>? items;
-//   final Function(FileSystemEntity?)? onTap;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return CarouselSlider(
-//       options: CarouselOptions(
-//           enableInfiniteScroll: true,
-//           height: 100.0,
-//           enlargeCenterPage: true,
-//           autoPlay: true,
-//           viewportFraction: 0.23),
-//       items: items!.map((item) {
-//         return Builder(
-//           builder: (BuildContext context) {
-//             return Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-//               child: GestureDetector(
-//                   onTap: () {
-//                     onTap!(item);
-//                   },
-//                   child: Image.file(item as File, fit: BoxFit.contain)),
-//             );
-//           },
-//         );
-//       }).toList(),
-//     );
-//   }
-// }
+  PhraseCard(this.phrase);
+}

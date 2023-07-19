@@ -19,13 +19,12 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:parlera/helpers/url_launcher.dart';
 import 'package:parlera/models/language.dart';
 import 'package:parlera/store/language.dart';
 import 'package:parlera/widgets/max_width_container.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../helpers/url_launcher.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({Key? key}) : super(key: key);
@@ -51,8 +50,8 @@ class LanguageScreen extends StatelessWidget {
                           AppLocalizations.of(context).languageSystem),
                       value: lang?.langCode,
                       groupValue: model.savedLang?.langCode,
-                      onChanged: (String? newLangCode) {
-                        model.saveLang(newLangCode == null
+                      onChanged: (String? newLangCode) async {
+                        await model.saveLang(newLangCode == null
                             ? null
                             : ParleraLanguage.getLang(newLangCode));
                       });

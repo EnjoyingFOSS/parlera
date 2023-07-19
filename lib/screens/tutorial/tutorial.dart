@@ -24,10 +24,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:parlera/screens/tutorial/widgets/pagination_bar.dart';
+import 'package:parlera/screens/tutorial/widgets/tutorial_page.dart';
 import 'package:parlera/store/tutorial.dart';
-
-import 'widgets/tutorial_page.dart';
-import 'widgets/pagination_bar.dart';
 
 class TutorialScreen extends StatefulWidget {
   const TutorialScreen({Key? key}) : super(key: key);
@@ -65,36 +64,37 @@ class _TutorialScreenState extends State<TutorialScreen> {
               : AppLocalizations.of(context)
                   .tutorialFirstSectionDescriptionDesktop,
           bgColor: Theme.of(context).colorScheme.surface),
-      _isMobile()
-          ? TutorialPage(
-              imagePath: 'assets/images/tutorial/2-phone.webp',
-              title:
-                  AppLocalizations.of(context).tutorialSecondSectionHeaderPhone,
-              description: AppLocalizations.of(context)
-                  .tutorialSecondSectionDescriptionPhone,
-              bgColor: Theme.of(context).colorScheme.surface)
-          : TutorialPage(
-              imagePath: 'assets/images/tutorial/2.webp',
-              title: AppLocalizations.of(context)
-                  .tutorialSecondSectionHeaderDesktop,
-              description: AppLocalizations.of(context)
-                  .tutorialSecondSectionDescriptionDesktop,
-              bgColor: Theme.of(context).colorScheme.surface),
-      _isMobile()
-          ? TutorialPage(
-              imagePath: 'assets/images/tutorial/3-phone.webp',
-              title:
-                  AppLocalizations.of(context).tutorialThirdSectionHeaderPhone,
-              description: AppLocalizations.of(context)
-                  .tutorialThirdSectionDescriptionPhone,
-              bgColor: Theme.of(context).colorScheme.surface)
-          : TutorialPage(
-              imagePath: 'assets/images/tutorial/3.webp',
-              title: AppLocalizations.of(context)
-                  .tutorialThirdSectionHeaderDesktop,
-              description: AppLocalizations.of(context)
-                  .tutorialThirdSectionDescriptionDesktop,
-              bgColor: Theme.of(context).colorScheme.surface),
+      if (_isMobile())
+        TutorialPage(
+            imagePath: 'assets/images/tutorial/2-phone.webp',
+            title:
+                AppLocalizations.of(context).tutorialSecondSectionHeaderPhone,
+            description: AppLocalizations.of(context)
+                .tutorialSecondSectionDescriptionPhone,
+            bgColor: Theme.of(context).colorScheme.surface)
+      else
+        TutorialPage(
+            imagePath: 'assets/images/tutorial/2.webp',
+            title:
+                AppLocalizations.of(context).tutorialSecondSectionHeaderDesktop,
+            description: AppLocalizations.of(context)
+                .tutorialSecondSectionDescriptionDesktop,
+            bgColor: Theme.of(context).colorScheme.surface),
+      if (_isMobile())
+        TutorialPage(
+            imagePath: 'assets/images/tutorial/3-phone.webp',
+            title: AppLocalizations.of(context).tutorialThirdSectionHeaderPhone,
+            description: AppLocalizations.of(context)
+                .tutorialThirdSectionDescriptionPhone,
+            bgColor: Theme.of(context).colorScheme.surface)
+      else
+        TutorialPage(
+            imagePath: 'assets/images/tutorial/3.webp',
+            title:
+                AppLocalizations.of(context).tutorialThirdSectionHeaderDesktop,
+            description: AppLocalizations.of(context)
+                .tutorialThirdSectionDescriptionDesktop,
+            bgColor: Theme.of(context).colorScheme.surface),
       TutorialPage(
           imagePath: 'assets/images/tutorial/4.webp',
           title: AppLocalizations.of(context).tutorialFourthSectionHeader,
@@ -116,10 +116,10 @@ class _TutorialScreenState extends State<TutorialScreen> {
         },
             child: Actions(
                 actions: {
-                  _KeyboardPreviousIntent:
-                      CallbackAction(onInvoke: (_) => _navigatePrevious()),
-                  _KeyboardNextIntent:
-                      CallbackAction(onInvoke: (_) => _navigateNext()),
+                  _KeyboardPreviousIntent: CallbackAction(
+                      onInvoke: (_) async => await _navigatePrevious()),
+                  _KeyboardNextIntent: CallbackAction(
+                      onInvoke: (_) async => await _navigateNext()),
                 },
                 child: SafeArea(
                     child: Stack(children: [
@@ -139,9 +139,12 @@ class _TutorialScreenState extends State<TutorialScreen> {
                       right: 0,
                       child: PaginationBar(
                         controller: _controller,
-                        onFinish: () {
-                          TutorialModel.of(context).watch();
-                          Navigator.popUntil(context, ModalRoute.withName('/'));
+                        onFinish: () async {
+                          await TutorialModel.of(context).setAsWatched();
+                          if (mounted) {
+                            Navigator.popUntil(
+                                context, ModalRoute.withName('/'));
+                          }
                         },
                         pageCount: pages.length,
                         currentPage: _currentPage,
@@ -151,9 +154,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
                 ])))));
   }
 
-  void _navigatePrevious() => _controller.previousPage(
+  Future<void> _navigatePrevious() async => await _controller.previousPage(
       duration: _switchAnimationDuration, curve: _switchAnimationCurve);
 
-  void _navigateNext() => _controller.nextPage(
+  Future<void> _navigateNext() async => await _controller.nextPage(
       duration: _switchAnimationDuration, curve: _switchAnimationCurve);
 }

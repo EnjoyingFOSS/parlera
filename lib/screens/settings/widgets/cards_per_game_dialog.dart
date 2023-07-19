@@ -62,7 +62,7 @@ enum _CPGOption {
 class CardsPerGameDialog extends StatefulWidget {
   final int? currentCardsPerGame;
 
-  const CardsPerGameDialog({super.key, required this.currentCardsPerGame});
+  const CardsPerGameDialog({required this.currentCardsPerGame, super.key});
 
   @override
   State<CardsPerGameDialog> createState() => _CardsPerGameDialogState();

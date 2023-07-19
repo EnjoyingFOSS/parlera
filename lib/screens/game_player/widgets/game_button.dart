@@ -44,11 +44,11 @@ class GameButton extends StatelessWidget {
   final void Function()? onTap;
 
   const GameButton({
-    Key? key,
     required this.emojiIcon,
     required this.arrowIcon,
     required this.color,
     required this.hoverColor,
+    Key? key,
     this.onTap,
   }) : super(key: key);
 

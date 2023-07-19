@@ -43,7 +43,7 @@ class SettingsModal extends StatelessWidget {
           textDirection: Directionality.of(context),
           start: 8,
           child: FloatingActionButton.small(
-            onPressed: () => Navigator.pushReplacement(
+            onPressed: () async => await Navigator.pushReplacement(
                 context,
                 MaterialPageRoute<void>(
                     builder: (context) => const SettingsScreen())),
