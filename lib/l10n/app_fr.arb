@@ -169,5 +169,7 @@
   "txtDiscardChangesQ": "Rejeter les modifications ?",
   "@txtDiscardChangesQ": {},
   "donate": "Faire un don",
-  "@donate": {}
+  "@donate": {},
+  "txtNoRecentEmoji": "Aucun émoji récent",
+  "@txtNoRecentEmoji": {}
 }

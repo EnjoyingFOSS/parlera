@@ -169,5 +169,7 @@
   "btnGetCategoriesOnline": "Ottieni categorie online...",
   "@btnGetCategoriesOnline": {},
   "donate": "Dona",
-  "@donate": {}
+  "@donate": {},
+  "txtNoRecentEmoji": "Nessuna emoji recente",
+  "@txtNoRecentEmoji": {}
 }
