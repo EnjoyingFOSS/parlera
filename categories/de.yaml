@@ -613,57 +613,227 @@ mythical-creatures_questions: |-
 classic-characters_name: Klassische Charaktere
 classic-literature_name: Klassische Literatur
 historical-figures_name: Historische Persönlichkeiten
-classic-literature_questions: "Äsops Fabeln\nAlice im Wunderland\nAnna Karenina\n
-  In achtzig Tagen um die Welt\nAschenputtel\nVerbrechen und Strafe\nDavid Copperfield\n
-  Don Quijote\nDracula\nEmma\nFrankenstein\nGroße Erwartungen\nGulliver's Reisen\n
-  Hamlet\nHänsel und Gretel\nIvanhoe\nJack and the Beanstalk\nDie Reise zum Mittelpunkt
-  der Erde\nDie Elenden\nRotkäppchen\nLittle Women\nMacbeth\nMoby Dick\nOliver Twist\n
-  Othello\nPeter Pan\nStolz und Vorurteil\nRapunzel\nRobinson Crusoe\nRomeo und Julia\n
-  Rumpelstilzchen\nNibelungenlied\nDornröschen\nSchneewittchen\nDie Abenteuer des
-  Sherlock Holmes\nDie Abenteuer von Tom Sawyer\nDie schwarze Katze\nDie Brüder Karamasow\n
-  Grimms Märchen\nDas Fass von Amontillado\nDer Graf von Monte Cristo\nDes Kaisers
-  neue Kleider\nDer Froschkönig\nDer große Gatsby\nDer Glöckner von Notre-Dame\nDer
-  Idiot\nDie Ilias\nDer unsichtbare Mann\nDas Dschungelbuch\nDie kleine Meerjungfrau\n
-  Die verlorene Welt\nDie Metamorphose\nDie Nachtigall\nDie Odyssee\nDas Bildnis des
-  Dorian Gray\nDie Prinzessin auf der Erbse\nDer Rabe\nDer scharlachrote Buchstabe\n
-  Der seltsame Fall des Dr. Jekyll und Mr. Hyde\nDas verräterische Herz\nDie drei
-  Musketiere\nDie Zeitmaschine\nDer Krieg der Welten\nDie Rote Zora\nDurch das Spiegelkabinett\n
-  Zwölf Jahre Sklave\nZwanzigtausend Meilen unter dem Meer\nKrieg und Frieden\nEmil
-  und die Detektive\nPippi Langstrumpf\nDie unendliche Geschichte\nHarry Potter\n
-  Das doppelte Lottchen\nDie Blechtrommel\nDie Verwandlung\nKrabat\nDas Nibelungenlied\n
-  Till Eulenspiegel\nEmilia Galotti\nDie Leiden des jungen Werther\nKabale und Liebe\n
-  Die Räuber\nDie Physiker\nFaust\nDer Sandmann\nAus dem Leben eines Taugenichts\n
-  Max und Moritz\nWinnetou\nDer Herr der Diebe\nTintenherz\nEffi Briest\nBuddenbrooks\n
-  Dreigroschenoper\nDer Prozess\nIm Westen nichts Neues\nDas fliegende Klassenzimmer\n
-  Pünktchen und Anton\nSchachnovelle\nHomo Faber\nDas Boot\nDie Klavierspielerin\n
-  Das Parfum\nDie Entdeckung der Langsamkeit\nDer Vorleser\nDie Vermessung der Welt\n\
-  Atemschaukel"
-historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert
-  Einstein\nAlexander der Große\nAlexander von Humboldt\nAndy Warhol\nAngela Merkel\n
-  Anne Frank\nAristoteles\nBenedikt Arnold\nBenito Mussolini\nBertolt Brecht\nBilly
-  the Kid\nBob Ross\nBuddha\nCharles Darwin\nCharlie Chaplin\nChristoph Kolumbus\n
-  Claude Monet\nDschingis Khan\nErich Kästner\nErnest Hemingway\nFrank Sinatra\nFriedrich
-  Nietzsche\nFriedrich Schiller\nGalileo Galilei\nGebrüder Grimm\nGustav Klimt\nGebrüder
-  Wright\nGerhard Schröder\nHelen Keller\nHeinrich Ford\nImmanuel Kant\nIsaac Newton\n
-  Jesus\nJeanne d'Arc\nJohann Sebastian Bach\nJohn Lennon\nJules Verne\nJulius Cäsar\n
-  Karl der Große\nKleopatra\nKönig Artus\nKönig Tut\nLeonardo da Vinci\nLou Andreas-Salomé\n
-  Ludwig van Beethoven\nMahatma Gandhi\nMalcolm X\nMarie Antoinette\nMarie Curie\n
-  Mark Twain\nMarlene Dietrich\nMartin Luther King Jr.\nMaria, Königin der Schotten\n
-  Michelangelo\nMuhammad\nNapoléon Bonaparte\nNeil Armstrong\nNelson Mandela\nNena\n
-  Nicolaus Kopernikus\nNikola Tesla\nNina Hagen\nOtto von Bismarck\nPlaton\nPocahontas\n
-  Pythagoras\nQueen Elizabeth\nRené Descartes\nSalvador Dalí\nSigmund Freud\nSissi\n
-  Sokrates\nSophie Scholl\nVincent Van Gogh\nVoltaire\nWladimir Lenin\nWolfgang Amadeus
-  Mozart"
+classic-literature_questions: |-
+  Äsops Fabeln
+  Alice im Wunderland
+  Anna Karenina
+  In achtzig Tagen um die Welt
+  Aschenputtel
+  Verbrechen und Strafe
+  David Copperfield
+  Don Quijote
+  Dracula
+  Emma
+  Frankenstein
+  Große Erwartungen
+  Gulliver's Reisen
+  Hamlet
+  Hänsel und Gretel
+  Ivanhoe
+  Jack and the Beanstalk
+  Die Reise zum Mittelpunkt der Erde
+  Die Elenden
+  Rotkäppchen
+  Little Women
+  Macbeth
+  Moby Dick
+  Oliver Twist
+  Othello
+  Peter Pan
+  Stolz und Vorurteil
+  Rapunzel
+  Robinson Crusoe
+  Romeo und Julia
+  Rumpelstilzchen
+  Nibelungenlied
+  Dornröschen
+  Schneewittchen
+  Die Abenteuer des Sherlock Holmes
+  Die Abenteuer von Tom Sawyer
+  Die schwarze Katze
+  Die Brüder Karamasow
+  Grimms Märchen
+  Das Fass von Amontillado
+  Der Graf von Monte Cristo
+  Des Kaisers neue Kleider
+  Der Froschkönig
+  Der große Gatsby
+  Der Glöckner von Notre-Dame
+  Der Idiot
+  Die Ilias
+  Der unsichtbare Mann
+  Das Dschungelbuch
+  Die kleine Meerjungfrau
+  Die verlorene Welt
+  Die Metamorphose
+  Die Nachtigall
+  Die Odyssee
+  Das Bildnis des Dorian Gray
+  Die Prinzessin auf der Erbse
+  Der Rabe
+  Der scharlachrote Buchstabe
+  Der seltsame Fall des Dr. Jekyll und Mr. Hyde
+  Das verräterische Herz
+  Die drei Musketiere
+  Die Zeitmaschine
+  Der Krieg der Welten
+  Die Rote Zora
+  Durch das Spiegelkabinett
+  Zwölf Jahre Sklave
+  Zwanzigtausend Meilen unter dem Meer
+  Krieg und Frieden
+  Emil und die Detektive
+  Pippi Langstrumpf
+  Die unendliche Geschichte
+  Harry Potter
+  Das doppelte Lottchen
+  Die Blechtrommel
+  Die Verwandlung
+  Krabat
+  Das Nibelungenlied
+  Till Eulenspiegel
+  Emilia Galotti
+  Die Leiden des jungen Werther
+  Kabale und Liebe
+  Die Räuber
+  Die Physiker
+  Faust
+  Der Sandmann
+  Aus dem Leben eines Taugenichts
+  Max und Moritz
+  Winnetou
+  Der Herr der Diebe
+  Tintenherz
+  Effi Briest
+  Buddenbrooks
+  Dreigroschenoper
+  Der Prozess
+  Im Westen nichts Neues
+  Das fliegende Klassenzimmer
+  Pünktchen und Anton
+  Schachnovelle
+  Homo Faber
+  Das Boot
+  Die Klavierspielerin
+  Das Parfum
+  Die Entdeckung der Langsamkeit
+  Der Vorleser
+  Die Vermessung der Welt
+  Atemschaukel
+historical-figures_questions: |-
+  Abraham Lincoln
+  Adolf Hitler
+  Alan Turing
+  Albert Einstein
+  Alexander der Große
+  Alexander von Humboldt
+  Andy Warhol
+  Angela Merkel
+  Anne Frank
+  Aristoteles
+  Benedikt Arnold
+  Benito Mussolini
+  Bertolt Brecht
+  Billy the Kid
+  Bob Ross
+  Buddha
+  Charles Darwin
+  Charlie Chaplin
+  Christoph Kolumbus
+  Claude Monet
+  Dschingis Khan
+  Erich Kästner
+  Ernest Hemingway
+  Frank Sinatra
+  Friedrich Nietzsche
+  Friedrich Schiller
+  Galileo Galilei
+  Gebrüder Grimm
+  Gustav Klimt
+  Gebrüder Wright
+  Gerhard Schröder
+  Helen Keller
+  Heinrich Ford
+  Immanuel Kant
+  Isaac Newton
+  Jesus
+  Jeanne d'Arc
+  Johann Sebastian Bach
+  John Lennon
+  Jules Verne
+  Julius Cäsar
+  Karl der Große
+  Kleopatra
+  König Artus
+  König Tut
+  Leonardo da Vinci
+  Lou Andreas-Salomé
+  Ludwig van Beethoven
+  Mahatma Gandhi
+  Malcolm X
+  Marie Antoinette
+  Marie Curie
+  Mark Twain
+  Marlene Dietrich
+  Martin Luther King Jr.
+  Maria, Königin der Schotten
+  Michelangelo
+  Muhammad
+  Napoléon Bonaparte
+  Neil Armstrong
+  Nelson Mandela
+  Nena
+  Nicolaus Kopernikus
+  Nikola Tesla
+  Nina Hagen
+  Otto von Bismarck
+  Platon
+  Pocahontas
+  Pythagoras
+  Queen Elizabeth
+  René Descartes
+  Salvador Dalí
+  Sigmund Freud
+  Sissi
+  Sokrates
+  Sophie Scholl
+  Vincent Van Gogh
+  Voltaire
+  Wladimir Lenin
+  Wolfgang Amadeus Mozart
 idioms_name: Redewendungen
 folk-melodies_name: Volkslieder
-idioms_questions: "Auf der Leitung stehen\nAlle Register ziehen\nAuf Tuchfühlung gehen\n
-  Auf Nummer sicher gehen\nAuge um Auge, Zahn um Zahn\nAm seidenen Faden hängen\n
-  Auf die Barrikaden gehen\nAuf dem Teppich bleiben\nAuf dem Schlauch stehen\nAuf
-  Holz klopfen\nAuf 180 sein\nAus allen Wolken fallen\nAuf Wellenlänge\nAuch nur mit
-  Wasser kochen\nAuf dem letzten Loch pfeifen\nAbwarten und Tee trinken\nAbends werden
-  die Bürgersteige hochgeklappt\nAm Hungertuch nagen\nAufpassen wie ein Schießhund\n
-  Am Pranger stehen\nAuf den Hund kommen\nAuf Wolke 7 schweben\nAlter Schwede\nAlte
-  Zöpfe abschneiden\nAus der Haut fahren\nAus dem Nähkästchen plaudern\nAuch ein blindes
-  Huhn findet mal ein Korn\nAuf den Nägeln brennen\nAuf keinen grünen Zweig kommen\n
-  Auf den Zahn fühlen\nAn der Nase herumführen\nAsche auf mein Haupt\nAlles über einen
-  Kamm scheren"
+idioms_questions: |-
+  Auf der Leitung stehen
+  Alle Register ziehen
+  Auf Tuchfühlung gehen
+  Auf Nummer sicher gehen
+  Auge um Auge, Zahn um Zahn
+  Am seidenen Faden hängen
+  Auf die Barrikaden gehen
+  Auf dem Teppich bleiben
+  Auf dem Schlauch stehen
+  Auf Holz klopfen
+  Auf 180 sein
+  Aus allen Wolken fallen
+  Auf Wellenlänge
+  Auch nur mit Wasser kochen
+  Auf dem letzten Loch pfeifen
+  Abwarten und Tee trinken
+  Abends werden die Bürgersteige hochgeklappt
+  Am Hungertuch nagen
+  Aufpassen wie ein Schießhund
+  Am Pranger stehen
+  Auf den Hund kommen
+  Auf Wolke 7 schweben
+  Alter Schwede
+  Alte Zöpfe abschneiden
+  Aus der Haut fahren
+  Aus dem Nähkästchen plaudern
+  Auch ein blindes Huhn findet mal ein Korn
+  Auf den Nägeln brennen
+  Auf keinen grünen Zweig kommen
+  Auf den Zahn fühlen
+  An der Nase herumführen
+  Asche auf mein Haupt
+  Alles über einen Kamm scheren

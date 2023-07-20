@@ -11,7 +11,7 @@ abstract_questions: "aardrijkskunde\naktie\nantwoord\natheïsme\nautonomie\nbegr
   populariteit\nprivacy\nprobleem\npsychologie\nreactie\nrealiteit\nreferentie\nrespect\n
   schoonheid\nsfeer\nslachtofferschap\nslimheid\nsluwheid\nstress\nstreven\nsucces\n
   symbool\ntaal\ntrend\ntroost\nuitdrukking\nuiterlijk\nvakantie\nveiligheid\nverbinding\n
-  verschil\nversleuteling\nvertrouwen\nvoorbeeld\nvorm\nvrede\nvrije tijd\nvrije wil\n\
+  verschil\nversleuteling\nvertrouwen\nvoorbeeld\nvorm\nvrede\nvrije tijd\nvrije wil\n
   vrijheid\nwaardering\nwaarheid\nwelzijn\nwijsheid\nwiskunde\nziel"
 animals_questions: "aap\naardvark\nadelaar\nalligator\nanemoonvis\nantilope\nbaviaan\n
   beer\nbij\nbromvlieg\ncavia\ncheetah\nchihuahua\nchimpansee\ndinosaurus\ndodo\n
@@ -65,15 +65,15 @@ jobs_questions: "administrateur\nacteur\narchitect\nhulpje\nastronaut\nschrijver
   tandarts\nontwerper\ndetective\nrechercheur\nontwikkelaar\ndiëtist\ndirecteur\n
   regisseur\ndokter\nchauffeur\nelectriciën\ningenieur\nondernemer\noogarts\nboer\n
   mode-ontwerper\nstewardess\nbloemist\nbrandweerman\nautomonteur\nhovenier\ntuinarchitect\n
-  huisarts\ngolfer\ngrafisch ontwerper\nbeveiliger\nbewaker\nhuismeester\nconciërge\n\
-  journalist\nadvocaat\nbibliothecaris\nhuishoudster\ngoochelaar\npostbode\nvisagist\n\
-  manager\nwiskundige\nmonteur\nminister\nmodel\nmuzikant\nneuroloog\nverpleegkundige\n\
-  schilder\napotheker\nnatuurkundige\ntoneelschrijver\nloodgieter\ndichter\npolitiebeambte\n\
-  politicus\npriester\ngevangenbewaarder\nprofessor\nprogrammeur\npsycholoog\nvastgoedontwikkelaar\n\
-  receptionist\nreparateur\nonderzoeker\nverkoper\nwetenschapper\nstraatartiest\n\
-  stuntman\nchirurg\nkleermaker\ntattoeëerder\ndocent\nleraar\njuf\nreisleider\ntrainer\n\
-  vertaler\ndierenarts\nveearts\nstemacteur\nober\nvuilnisman\nputjesschepper\nfietsenmaker\n\
-  vakkenvuller\nmagazijnbediende\nkelner\nbakker\nslager\ngroenteman\nvisser\nambtenaar\n\
+  huisarts\ngolfer\ngrafisch ontwerper\nbeveiliger\nbewaker\nhuismeester\nconciërge\n
+  journalist\nadvocaat\nbibliothecaris\nhuishoudster\ngoochelaar\npostbode\nvisagist\n
+  manager\nwiskundige\nmonteur\nminister\nmodel\nmuzikant\nneuroloog\nverpleegkundige\n
+  schilder\napotheker\nnatuurkundige\ntoneelschrijver\nloodgieter\ndichter\npolitiebeambte\n
+  politicus\npriester\ngevangenbewaarder\nprofessor\nprogrammeur\npsycholoog\nvastgoedontwikkelaar\n
+  receptionist\nreparateur\nonderzoeker\nverkoper\nwetenschapper\nstraatartiest\n
+  stuntman\nchirurg\nkleermaker\ntattoeëerder\ndocent\nleraar\njuf\nreisleider\ntrainer\n
+  vertaler\ndierenarts\nveearts\nstemacteur\nober\nvuilnisman\nputjesschepper\nfietsenmaker\n
+  vakkenvuller\nmagazijnbediende\nkelner\nbakker\nslager\ngroenteman\nvisser\nambtenaar\n
   coach"
 food-and-drink_name: Eten en drinken
 idioms_questions: "Een brug te ver\nDertien uit een dozijn\nVlek op vlek\nOveral en
@@ -93,8 +93,8 @@ historical-figures_questions: "Johan de Witt\nAdolf Hitler\nAlan Turing\nAlbert 
   Baruch Spinoza\nCharles Darwin\nDesiderius Erasmus\nCharlie Chaplin\nChristopher
   Columbus\nClaude Monet\nCleopatra\nJohannes van der Waals\nSimon Stevin\nEdgar Allan
   Poe\nElvis Presley\nErnest Hemingway\nFrank Sinatra\nAletta Jacobs\nJan Tinbergen\n
-  Chriet Titulaer\nAndré Kuipers\n.\n.\n.\n.\nHenry Ford\nImmanuel Kant\nIsaac Newton\n
-  .James Cook\nJezus\nVincent van Gogh\nJohann Sebastian Bach\nRembrandt van Rijn\n
+  Chriet Titulaer\nAndré Kuipers\nHenry Ford\nImmanuel Kant\nIsaac Newton\n
+  James Cook\nJezus\nVincent van Gogh\nJohann Sebastian Bach\nRembrandt van Rijn\n
   John F. Kennedy\nJohn Lennon\nJules Verne\nJulius Caesar\nKoning Arthur\nKoning
   Toetanchamon\nLeonardo Da Vinci\nEddie van Halen\nLouis Armstrong\nLudwig von Beethoven\n
-  Mahatma Ghandi\n.\n.\nMarie Curie"
+  Mahatma Ghandi\nMarie Curie"

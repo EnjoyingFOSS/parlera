@@ -2,58 +2,402 @@ abstract_name: Trừu tượng
 animals_name: Động vật
 food-and-drink_name: Đồ ăn, thức uống
 classic-characters_name: Nhân vật cổ điển
-animals_questions: "lợn đất\ncá sấu\nkiến\nlinh dương\nkhỉ đầu chó\ndơi\ngấu\nong\n
-  bọ cánh cứng\nchim\nbáo đen\nnhện góa phụ\nhươu nai\nsâu bọ\nbò đực\nthỏ con\nbươm
-  bướm\nlạc đà\nmèo\nsâu róm\nrết\ntắc kè hoa\nbáo cheetah\ngà\nchihuahua\ntinh tinh\n
-  cá hề\ngián\nbáo cuga\nbò\nsói đồng cỏ\ncua\ndế mèn\nCá sấu mõm ngắn\nchim cu\n
-  con nai\nkhủng long\ndodo\nchó\ncá heo\ncon lừa\nchim cu\nchuồn chuồn\nvịt\nbọ hung\n
-  chim ưng\nlươn\nvoi\nchồn hôi\nđom đóm\ncá\ncáo\ncon ếch\nruồi giấm\nlinh dương
-  gazen\ntắc kè\nhươu cao cổ\ndê\ncá vàng\nngỗng\nchuột nang\ncon gấu\nchuột bạch\n
-  chuột đồng\nthỏ rừng\ncon hà mã\nHà mã\nong bắp cày\nngựa\ncon người\nbáo đốm\n
-  chuột túi\nbọ rùa\nbáo\nsư tử\nthằn lằn\nlạc đà không bướu\ntôm\nđộng vật có vú\n
-  chuột chũi\ncon khỉ\nnai sừng tấm\ncon muỗi\nbướm đêm\nchuột\nkỳ lân biển\nbạch
-  tuộc\nđười ươi\nđà điểu\ncon cú\ncon hàu\ncon beo\ncon vẹt\ncon công\nBồ nông\n
-  chim cánh cụt\nlợn\nbồ câu\ngấu Bắc cực\nkì lân\nbáo sư tử\nthỏ\nchuột đồng\nquạ\n
-  tuần lộc\ncu cu\nloài gặm nhấm\ngà trống\ncá hồi nước ngọt\ncá mòi\nbọ cạp\nhải
-  sâm\ncá ngựa\nrùa biển\nmòng biển\nhải cẩu\ncá mập\ncừu\nrắn\nbáo tuyết\nnhện\n
-  mực ống\ncon sóc\nsao biển\ncá kiếm\nkhủng long bạo chúa\nnhện Tarantula\nhổ\ncóc\n
-  rùa cạn\nsơn ca\ncá hồi\nrùa\nOng vò vẽ\nchồn\ncá voi\nchó sói\ngõ kiến\nsâu\nbò
-  tây tạng\nngựa vằn"
-food-and-drink_questions: "hạnh nhân\nMón khai vị\ntáo\nnước táo\nquả mơ\ntrái bơ\n
-  thịt xông khói\nbánh mì tròn\nchuối\nđồ nướng\nBột nhồi\nhạt đậu\nthịt bò\nớt chuông\n
-  dâu đen\nviệt quất\nhạt điều brazil\nbánh mỳ\nbữa sáng\nphô mai brie\nbông cải xanh\n
-  nước dùng\nbánh bundt\nbánh mì kẹp thịt\nburrito\nbơ\nbánh ngọt\ncà rốt\nhạt điều\n
-  súp lơ\nrau cần tây\nphô mai\nbánh mì kẹp pho mát\nquả anh đào\nkẹo cao su\nthịt
-  gà\nđậu gà\nớt\nsô cô la\nbánh quy socola\ndừa\nsữa dừa\ncà phê\nbánh quy\nngô\n
-  phô mai\ncây Nam việt quất\nkem\nbánh sừng bò\nquả dưa chuột\nbánh nướng nhỏ\ncà
-  ri\nsản phẩm bơ sữa\nmón tráng miệng\nbữa tối\nbánh vòng\nbột\nnước chấm salad\n
-  uống\ntrứng\nrượu trứng\ncà tím\ncơm cháy\nnước uống tăng lực\nchim ưng\ncá\nphi
-  lê cá\nthanh cá\nbột mì\nkhoai tây chiên\nsữa chua đông lạnh\nhoa quả\ntỏi\nbánh
-  gừng\nKem phủ lên bánh\ngouda\nngũ cốc\nquả nho\nbưởi\nđậu xanh\ngiăm bông\nbánh
-  hamburger\nquả phỉ\nthảo mộc\nMật ong\nkem lạnh\nbánh sandwich kem\nnước ép\ncải
-  xoăn\nkebab\nsốt cà chua\nđậu thận\nkim chi\nQuả kiwi\nchanh vàng\nNước chanh\n
-  đậu lăng\nrau xà lách\nchanh xanh\nbữa trưa\nquả xoài\nxi-rô phong\nbữa ăn\nthịt\n
-  sữa\nsữa lắc\nnước khoáng\ncây bạc hà\nbánh nướng xốp\nnấm\nmù tạt\nhạt\nyến mạch\n
-  cháo bột yến mạch\ndầu\nÔliu\ncủ hành\nlát hành\nquả cam\nnước cam\ncon hàu\nbánh
-  kếp\nmỳ ống\nquả đào\nđậu phụng\nquả lê\nhạt tiêu\nxúc xích hun khói\ndưa chua\n
-  bánh\nhạt thông\nquả dứa\nhạt dẻ cười\npizza\nmận\ntrái thạch lựu\nbắp rang bơ\n
-  thịt lợn\ncháo\nkhoai tây\nkhoai tây lát mỏng\nkhoai tây cắt múi\nbánh quy xoắn\n
-  quả bí ngô\nquesadilla\nNho khô\ndâu rừng\nđậu lăng đỏ\ncơm\ncuộn\nxa lát\nxúc xích
-  Ý\ncá hồi\nmuối\nbánh mì sandwich\ncá mòi\nnước xốt\ndưa cải bắp\nLạp xưởng\nHải
-  sản\nnước giải khát\nmón ăn phụ\nsinh tố\nNước ngọt\nkem trái cây\ncanh\nxì dầu\n
-  mì ống Ý\ngia vị\nrắc\nbí đao\nmón ăn nhẹ\nbít tết\nquả dâu\nphụ\nsushi\nxi-rô\n
-  taco\ntrà\nnướng\nđậu hũ\ncà chua\nbánh ngô\ncá ngừ\nrau quả\nbánh quế\nóc chó\n
-  nước\ndưa hấu\nváng sữa\nkem đánh\nSữa chua\nquả bí xanh"
-classic-characters_questions: "Aladdin\nAlice (trong Alice ở Xứ sở thần tiên)\nNai
-  Bambi\nSói (Cô bé quàng khăn đỏ)\nThuyền trưởng Hook\nChristopher Robin\nLọ Lem\n
-  Sử tử nhút nhát\n3 Chàng lính ngự lâm\nDorothy\nDracula\nBác sĩ Watson\nScrooge\n
-  Lợn Eeyore\nFrankenstein\nGretel\nHansel\nHuckleberry Finn\nHumpty Dumpty\nJack
-  and Jill\nLittle Bo-Peep\nLittle Red Riding Hood\nMowgli\nPeter Pan\nPeter Piper\n
-  Piglet\nPinocchio\nPrince Charming\nRapunzel\nRed Queen\nRobinson Crusoe\nRumpelstiltskin\n
-  Scarecrow\nSherlock Holmes\nSindbad the Sailor\nSleeping Beauty\nSnow White\nTặc
-  giăng\nThe Cheshire Cat\nHoàng tử ếch\nThe Ghost of Christmas Past\nThe Gingerbread
-  Man\nThằng gù ở nhà thờ Đức bà\nThe Itsy Bitsy Spider\nNàng tiên cá\nNgười bán nón
-  điên\nThe Muffin Man\nHoàng hậu Q cơ\n7 chú lùn\nBà chúa tuyết\nThe Three Blind
-  Mice\nThe Three Little Pigs\nThe Three Musketeers\nThe Ugly Duckling\nTigger\nTin
-  Woodman\nTinker Bell\nTom Sawyer\nTweedledum and Tweedledee\nGấu Winnie\nWizard
-  of Oz\nZorro"
+animals_questions: |-
+  lợn đất
+  cá sấu
+  kiến
+  linh dương
+  khỉ đầu chó
+  dơi
+  gấu
+  ong
+  bọ cánh cứng
+  chim
+  báo đen
+  nhện góa phụ
+  hươu nai
+  sâu bọ
+  bò đực
+  thỏ con
+  bươm bướm
+  lạc đà
+  mèo
+  sâu róm
+  rết
+  tắc kè hoa
+  báo cheetah
+  gà
+  chihuahua
+  tinh tinh
+  cá hề
+  gián
+  báo cuga
+  bò
+  sói đồng cỏ
+  cua
+  dế mèn
+  Cá sấu mõm ngắn
+  chim cu
+  con nai
+  khủng long
+  dodo
+  chó
+  cá heo
+  con lừa
+  chim cu
+  chuồn chuồn
+  vịt
+  bọ hung
+  chim ưng
+  lươn
+  voi
+  chồn hôi
+  đom đóm
+  cá
+  cáo
+  con ếch
+  ruồi giấm
+  linh dương gazen
+  tắc kè
+  hươu cao cổ
+  dê
+  cá vàng
+  ngỗng
+  chuột nang
+  con gấu
+  chuột bạch
+  chuột đồng
+  thỏ rừng
+  con hà mã
+  Hà mã
+  ong bắp cày
+  ngựa
+  con người
+  báo đốm
+  chuột túi
+  bọ rùa
+  báo
+  sư tử
+  thằn lằn
+  lạc đà không bướu
+  tôm
+  động vật có vú
+  chuột chũi
+  con khỉ
+  nai sừng tấm
+  con muỗi
+  bướm đêm
+  chuột
+  kỳ lân biển
+  bạch tuộc
+  đười ươi
+  đà điểu
+  con cú
+  con hàu
+  con beo
+  con vẹt
+  con công
+  Bồ nông
+  chim cánh cụt
+  lợn
+  bồ câu
+  gấu Bắc cực
+  kì lân
+  báo sư tử
+  thỏ
+  chuột đồng
+  quạ
+  tuần lộc
+  cu cu
+  loài gặm nhấm
+  gà trống
+  cá hồi nước ngọt
+  cá mòi
+  bọ cạp
+  hải sâm
+  cá ngựa
+  rùa biển
+  mòng biển
+  hải cẩu
+  cá mập
+  cừu
+  rắn
+  báo tuyết
+  nhện
+  mực ống
+  con sóc
+  sao biển
+  cá kiếm
+  khủng long bạo chúa
+  nhện Tarantula
+  hổ
+  cóc
+  rùa cạn
+  sơn ca
+  cá hồi
+  rùa
+  Ong vò vẽ
+  chồn
+  cá voi
+  chó sói
+  gõ kiến
+  sâu
+  bò tây tạng
+  ngựa vằn
+food-and-drink_questions: |-
+  hạnh nhân
+  Món khai vị
+  táo
+  nước táo
+  quả mơ
+  trái bơ
+  thịt xông khói
+  bánh mì tròn
+  chuối
+  đồ nướng
+  Bột nhồi
+  hạt đậu
+  thịt bò
+  ớt chuông
+  dâu đen
+  việt quất
+  hạt điều brazil
+  bánh mỳ
+  bữa sáng
+  phô mai brie
+  bông cải xanh
+  nước dùng
+  bánh bundt
+  bánh mì kẹp thịt
+  burrito
+  bơ
+  bánh ngọt
+  cà rốt
+  hạt điều
+  súp lơ
+  rau cần tây
+  phô mai
+  bánh mì kẹp pho mát
+  quả anh đào
+  kẹo cao su
+  thịt gà
+  đậu gà
+  ớt
+  sô cô la
+  bánh quy socola
+  dừa
+  sữa dừa
+  cà phê
+  bánh quy
+  ngô
+  phô mai
+  cây Nam việt quất
+  kem
+  bánh sừng bò
+  quả dưa chuột
+  bánh nướng nhỏ
+  cà ri
+  sản phẩm bơ sữa
+  món tráng miệng
+  bữa tối
+  bánh vòng
+  bột
+  nước chấm salad
+  uống
+  trứng
+  rượu trứng
+  cà tím
+  cơm cháy
+  nước uống tăng lực
+  chim ưng
+  cá
+  phi lê cá
+  thanh cá
+  bột mì
+  khoai tây chiên
+  sữa chua đông lạnh
+  hoa quả
+  tỏi
+  bánh gừng
+  Kem phủ lên bánh
+  gouda
+  ngũ cốc
+  quả nho
+  bưởi
+  đậu xanh
+  giăm bông
+  bánh hamburger
+  quả phỉ
+  thảo mộc
+  Mật ong
+  kem lạnh
+  bánh sandwich kem
+  nước ép
+  cải xoăn
+  kebab
+  sốt cà chua
+  đậu thận
+  kim chi
+  Quả kiwi
+  chanh vàng
+  Nước chanh
+  đậu lăng
+  rau xà lách
+  chanh xanh
+  bữa trưa
+  quả xoài
+  xi-rô phong
+  bữa ăn
+  thịt
+  sữa
+  sữa lắc
+  nước khoáng
+  cây bạc hà
+  bánh nướng xốp
+  nấm
+  mù tạt
+  hạt
+  yến mạch
+  cháo bột yến mạch
+  dầu
+  Ôliu
+  củ hành
+  lát hành
+  quả cam
+  nước cam
+  con hàu
+  bánh kếp
+  mỳ ống
+  quả đào
+  đậu phụng
+  quả lê
+  hạt tiêu
+  xúc xích hun khói
+  dưa chua
+  bánh
+  hạt thông
+  quả dứa
+  hạt dẻ cười
+  pizza
+  mận
+  trái thạch lựu
+  bắp rang bơ
+  thịt lợn
+  cháo
+  khoai tây
+  khoai tây lát mỏng
+  khoai tây cắt múi
+  bánh quy xoắn
+  quả bí ngô
+  quesadilla
+  Nho khô
+  dâu rừng
+  đậu lăng đỏ
+  cơm
+  cuộn
+  xa lát
+  xúc xích Ý
+  cá hồi
+  muối
+  bánh mì sandwich
+  cá mòi
+  nước xốt
+  dưa cải bắp
+  Lạp xưởng
+  Hải sản
+  nước giải khát
+  món ăn phụ
+  sinh tố
+  Nước ngọt
+  kem trái cây
+  canh
+  xì dầu
+  mì ống Ý
+  gia vị
+  rắc
+  bí đao
+  món ăn nhẹ
+  bít tết
+  quả dâu
+  phụ
+  sushi
+  xi-rô
+  taco
+  trà
+  nướng
+  đậu hũ
+  cà chua
+  bánh ngô
+  cá ngừ
+  rau quả
+  bánh quế
+  óc chó
+  nước
+  dưa hấu
+  váng sữa
+  kem đánh
+  Sữa chua
+  quả bí xanh
+classic-characters_questions: |-
+  Aladdin
+  Alice (trong Alice ở Xứ sở thần tiên)
+  Nai Bambi
+  Sói (Cô bé quàng khăn đỏ)
+  Thuyền trưởng Hook
+  Christopher Robin
+  Lọ Lem
+  Sử tử nhút nhát
+  3 Chàng lính ngự lâm
+  Dorothy
+  Dracula
+  Bác sĩ Watson
+  Scrooge
+  Lợn Eeyore
+  Frankenstein
+  Gretel
+  Hansel
+  Huckleberry Finn
+  Humpty Dumpty
+  Jack and Jill
+  Little Bo-Peep
+  Little Red Riding Hood
+  Mowgli
+  Peter Pan
+  Peter Piper
+  Piglet
+  Pinocchio
+  Prince Charming
+  Rapunzel
+  Red Queen
+  Robinson Crusoe
+  Rumpelstiltskin
+  Scarecrow
+  Sherlock Holmes
+  Sindbad the Sailor
+  Sleeping Beauty
+  Snow White
+  Tặc giăng
+  The Cheshire Cat
+  Hoàng tử ếch
+  The Ghost of Christmas Past
+  The Gingerbread Man
+  Thằng gù ở nhà thờ Đức bà
+  The Itsy Bitsy Spider
+  Nàng tiên cá
+  Người bán nón điên
+  The Muffin Man
+  Hoàng hậu Q cơ
+  7 chú lùn
+  Bà chúa tuyết
+  The Three Blind Mice
+  The Three Little Pigs
+  The Three Musketeers
+  The Ugly Duckling
+  Tigger
+  Tin Woodman
+  Tinker Bell
+  Tom Sawyer
+  Tweedledum and Tweedledee
+  Gấu Winnie
+  Wizard of Oz
+  Zorro
