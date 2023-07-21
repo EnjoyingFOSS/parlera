@@ -79,7 +79,7 @@ class Category {
         type = CategoryType.random,
         emoji = "🎲",
         bgColor = const Color(0xFF282828),
-        name = lang.randomName(),
+        name = lang.randomName,
         cards = [],
         standardGameTime = null;
 

@@ -22,25 +22,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 
 enum ParleraLanguage {
-  en("en"),
-  bg("bg"),
-  cs("cs"),
-  de("de"),
-  eo("eo"),
-  es("es"),
-  fr("fr"),
-  hu("hu"),
-  it("it"),
-  pl("pl"),
-  ru("ru"),
-  tr("tr"),
-  uk("uk"),
-  zh("zh");
+  en("en", "Random"),
+  bg("bg", "Случайна"),
+  cs("cs", "Náhodné"),
+  de("de", "Zufällig"),
+  eo("eo", "Hazarde"),
+  es("es", "Aleatorio"),
+  fr("fr", "Aléatoire"),
+  hu("hu", "Random"),
+  it("it", "Casuale"),
+  nl("nl", "Willekeurig"),
+  pa("pa", "ਬੇਤਰਤੀਬ"),
+  pl("pl", "Losowa"),
+  ru("ru", "Случайно"),
+  tr("tr", "Rastgele"),
+  uk("uk", "Випадково"),
+  vi("vi", "Ngẫu nhiên"),
+  zh("zh", "随机");
 
   static const defaultLang = en;
   final String langCode;
+  final String randomName;
 
-  const ParleraLanguage(this.langCode);
+  const ParleraLanguage(this.langCode, this.randomName);
 
   static ParleraLanguage getLang(String langCode) {
     switch (langCode) {
@@ -62,6 +66,10 @@ enum ParleraLanguage {
         return hu;
       case "it":
         return it;
+      case "nl":
+        return nl;
+      case "pa":
+        return pa;
       case "pl":
         return pl;
       case "ru":
@@ -70,6 +78,8 @@ enum ParleraLanguage {
         return tr;
       case "uk":
         return uk;
+      case "vi":
+        return vi;
       case "zh":
         return zh;
       default:
@@ -78,40 +88,6 @@ enum ParleraLanguage {
   }
 
   Locale toLocale() => Locale(langCode);
-
-  String randomName() {
-    switch (this) {
-      case en:
-        return "Random";
-      case bg:
-        return "Случайна";
-      case cs:
-        return "Náhodné";
-      case de:
-        return "Zufällig";
-      case es:
-        return "Aleatorio";
-      case eo:
-        return "Hazarde";
-      case fr:
-        return "Aléatoire";
-      case hu:
-        return "Random";
-      case it:
-        return "Casuale";
-      case pl:
-        return "Losowa";
-      case ru:
-        return "Случайно";
-      case tr:
-        return "Rastgele";
-      case uk:
-        return "Випадково";
-      case zh:
-        return "随机";
-    }
-    throw ArgumentError();
-  }
 
   String getLanguageName(BuildContext context) =>
       LocaleNames.of(context)!.nameOf(langCode) ?? langCode;
