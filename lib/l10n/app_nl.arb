@@ -88,7 +88,7 @@
   "@settingsLanguage": {},
   "preparationOrientationDescription": "Hou je telefoon tegen je voorhoofd",
   "@preparationOrientationDescription": {},
-  "lastQuestion": "Laatste vraag",
+  "lastQuestion": "Laatste kaart",
   "@lastQuestion": {},
   "settingsStartTutorial": "Hoe speel je het?",
   "@settingsStartTutorial": {},
@@ -149,5 +149,23 @@
   "btnOK": "OK",
   "@btnOK": {},
   "txtCustomGameTime": "Aangepaste gametijd (s.)",
-  "@txtCustomGameTime": {}
+  "@txtCustomGameTime": {},
+  "txtYourScoreSimple": "Jouw score: {questionsPassed}",
+  "@txtYourScoreSimple": {
+    "placeholders": {
+      "questionsPassed": {}
+    }
+  },
+  "txtCardsPerGame": "Kaarten per spel",
+  "@txtCardsPerGame": {},
+  "txtUnlimitedCards": "Geen limiet",
+  "@txtUnlimitedCards": {},
+  "txtCustomCardNumber": "Aangepast",
+  "@txtCustomCardNumber": {},
+  "btnPlayAgain": "Nog een spel",
+  "@btnPlayAgain": {},
+  "btnBackToAllCategories": "Alle categorieën",
+  "@btnBackToAllCategories": {},
+  "txtTimesUp": "Tijd is om!",
+  "@txtTimesUp": {}
 }
