@@ -11,7 +11,7 @@ abstract_questions: "aardrijkskunde\naktie\nantwoord\natheïsme\nautonomie\nbegr
   populariteit\nprivacy\nprobleem\npsychologie\nreactie\nrealiteit\nreferentie\nrespect\n
   schoonheid\nsfeer\nslachtofferschap\nslimheid\nsluwheid\nstress\nstreven\nsucces\n
   symbool\ntaal\ntrend\ntroost\nuitdrukking\nuiterlijk\nvakantie\nveiligheid\nverbinding\n
-  verschil\nversleuteling\nvertrouwen\nvoorbeeld\nvorm\nvrede\nvrije tijd\nvrije wil\n
+  verschil\nversleuteling\nvertrouwen\nvoorbeeld\nvorm\nvrede\nvrije tijd\nvrije wil\n\
   vrijheid\nwaardering\nwaarheid\nwelzijn\nwijsheid\nwiskunde\nziel"
 animals_questions: "aap\naardvark\nadelaar\nalligator\nanemoonvis\nantilope\nbaviaan\n
   beer\nbij\nbromvlieg\ncavia\ncheetah\nchihuahua\nchimpansee\ndinosaurus\ndodo\n
@@ -84,7 +84,10 @@ idioms_questions: "Een brug te ver\nDertien uit een dozijn\nVlek op vlek\nOveral
   komt\nHoge bomen vangen veel wind\nIemand de loef afsteken\nVoor pampus liggen\n
   De spijker op zijn kop slaan\nWat niet weet, wat niet deert\nTwaalf ambachten, dertien
   ongelukken\nEen oogje in het zeil houden\nBoontje komt om zijn loontje\nWie het
-  kleine niet eert is het grote niet weerd\nVoor paal staan\nVoor schut staan"
+  kleine niet eert is het grote niet weerd\nVoor paal staan\nVoor schut staan\nVoor
+  pampus liggen\nDe pijp aan maarten geven\nDe pijp uit gaan\nAls de vos de passie
+  preekt, boer let op je kippen\nRoeien met de riemen die je hebt\nIemand blij maken
+  met een dooie mus"
 idioms_name: Spreekwoorden
 jobs_name: Beroepen
 historical-figures_questions: "Johan de Witt\nAdolf Hitler\nAlan Turing\nAlbert Einstein\n
@@ -93,11 +96,11 @@ historical-figures_questions: "Johan de Witt\nAdolf Hitler\nAlan Turing\nAlbert 
   Baruch Spinoza\nCharles Darwin\nDesiderius Erasmus\nCharlie Chaplin\nChristopher
   Columbus\nClaude Monet\nCleopatra\nJohannes van der Waals\nSimon Stevin\nEdgar Allan
   Poe\nElvis Presley\nErnest Hemingway\nFrank Sinatra\nAletta Jacobs\nJan Tinbergen\n
-  Chriet Titulaer\nAndré Kuipers\nHenry Ford\nImmanuel Kant\nIsaac Newton\n
-  James Cook\nJezus\nVincent van Gogh\nJohann Sebastian Bach\nRembrandt van Rijn\n
-  John F. Kennedy\nJohn Lennon\nJules Verne\nJulius Caesar\nKoning Arthur\nKoning
-  Toetanchamon\nLeonardo Da Vinci\nEddie van Halen\nLouis Armstrong\nLudwig von Beethoven\n
-  Mahatma Ghandi\nMarie Curie"
+  Chriet Titulaer\nAndré Kuipers\nHenry Ford\nImmanuel Kant\nIsaac Newton\n James
+  Cook\nJezus\nVincent van Gogh\nJohann Sebastian Bach\nRembrandt van Rijn\n John
+  F. Kennedy\nJohn Lennon\nJules Verne\nJulius Caesar\nKoning Arthur\nKoning Toetanchamon\n
+  Leonardo Da Vinci\nEddie van Halen\nLouis Armstrong\nLudwig von Beethoven\n Mahatma
+  Ghandi\nMarie Curie"
 mythical-creatures_name: Mythische wezens
 classic-literature_name: Klassieke literatuur
 folk-melodies_name: Volkswijsjes
