@@ -37,9 +37,9 @@
   "@tutorialFourthSectionDescriptionPhone": {},
   "btnSkip": "Salta",
   "@btnSkip": {},
-  "gameTime": "Durata",
+  "gameTime": "Tempo di gioco (s.)",
   "@gameTime": {},
-  "languagesVaryNotice": "Le categorie e le parole variano tra le lingue.",
+  "languagesVaryNotice": "Le categorie e le relative carte variano da una lingua all'altra.",
   "@languagesVaryNotice": {},
   "tutorialSecondSectionDescriptionDesktop": "Non hai idea di cosa sia? Clicca o tocca il lato sinistro rosso della finestra o premi il tasto freccia su per saltare questa parola.",
   "@tutorialSecondSectionDescriptionDesktop": {},
@@ -63,7 +63,7 @@
   "@preparationPlay": {},
   "settingsLanguage": "Lingua",
   "@settingsLanguage": {},
-  "lastQuestion": "Domanda finale",
+  "lastQuestion": "Carta finale",
   "@lastQuestion": {},
   "settingsStartTutorial": "Come giocare?",
   "@settingsStartTutorial": {},
@@ -111,7 +111,7 @@
   "@languageNorwegianBokmal": {},
   "txtSwitchLanguageInSettings": "Per utilizzare una lingua diversa, passa ad essa nelle Impostazioni.",
   "@txtSwitchLanguageInSettings": {},
-  "emptyCategoryQuestions": "Questa categoria non contiene parole da indovinare :(",
+  "emptyCategoryQuestions": "Questa categoria non contiene carte da indovinare :(",
   "@emptyCategoryQuestions": {},
   "btnCancel": "Annulla",
   "@btnCancel": {},
@@ -171,5 +171,27 @@
   "donate": "Dona",
   "@donate": {},
   "txtNoRecentEmoji": "Nessuna emoji recente",
-  "@txtNoRecentEmoji": {}
+  "@txtNoRecentEmoji": {},
+  "txtCardsPerGame": "Carte per partita",
+  "@txtCardsPerGame": {},
+  "txtYourScoreSimple": "Il tuo punteggio: {questionsPassed}",
+  "@txtYourScoreSimple": {
+    "placeholders": {
+      "questionsPassed": {}
+    }
+  },
+  "txtCustomGameTime": "Tempo di gioco personalizzato (s.)",
+  "@txtCustomGameTime": {},
+  "txtUnlimitedCards": "Illimitate",
+  "@txtUnlimitedCards": {},
+  "txtCustomCardNumber": "Personalizzate",
+  "@txtCustomCardNumber": {},
+  "btnPlayAgain": "Gioca ancora",
+  "@btnPlayAgain": {},
+  "btnBackToAllCategories": "Tutte le categorie",
+  "@btnBackToAllCategories": {},
+  "txtTimesUp": "Tempo scaduto!",
+  "@txtTimesUp": {},
+  "btnOK": "OK",
+  "@btnOK": {}
 }
