@@ -33,6 +33,7 @@ class LanguageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     const languages = ParleraLanguage.values;
     final infoColor = Theme.of(context).colorScheme.onBackground.withAlpha(162);
+
     return Scaffold(
       body: ScopedModelDescendant<LanguageModel>(
           //TODO check whether I'm within safe area
@@ -45,9 +46,12 @@ class LanguageScreen extends StatelessWidget {
                     delegate: SliverChildListDelegate.fixed(
                         List.generate(languages.length + 1, (i) {
                   final lang = i == 0 ? null : languages[i - 1];
+
                   return RadioListTile<String?>(
-                      title: Text(lang?.getLanguageName(context) ??
-                          AppLocalizations.of(context).languageSystem),
+                      title: Text(lang != null
+                          ? AppLocalizations.of(context).txtLanguageChoice(
+                              lang.langCode, lang.getLanguageName(context))
+                          : AppLocalizations.of(context).languageSystem),
                       value: lang?.langCode,
                       groupValue: model.savedLang?.langCode,
                       onChanged: (String? newLangCode) async {
@@ -66,7 +70,7 @@ class LanguageScreen extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 6),
                           child: Icon(Icons.add_rounded)),
                       onTap: () => UrlLauncher.launchURL(context,
-                          'https://hosted.weblate.org/projects/parlera/ui/'),
+                          'https://hosted.weblate.org/projects/parlera/'),
                     ),
                     Container(
                       color: Theme.of(context)

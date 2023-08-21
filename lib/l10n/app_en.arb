@@ -30,6 +30,7 @@
   "btnDelete": "Delete",
   "btnDuplicate": "Duplicate",
   "btnExport": "Export",
+  "btnExportAllCustom": "Export all custom categories",
   "btnDiscard": "Discard",
   "btnFinishTutorial": "Let's play!",
   "btnFavorite": "Favorite",
@@ -69,6 +70,13 @@
     }
   },
   "txtWordsOnePerLine": "Words, one per line",
+  "txtLanguageChoice": "{languageCode} - {languageName}",
+  "@txtLanguageChoice": {
+    "placeholders": {
+      "languageCode": {},
+      "languageName": {}
+    }
+  },
   "errorCouldNotFindEmoji": "Could not find the image associated with this emoji.",
   "errorCouldNotExport": "Could not export this category.",
   "errorCouldNotImport": "Could not import this category.",
