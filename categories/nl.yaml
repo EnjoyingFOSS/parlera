@@ -5,12 +5,12 @@ abstract_questions: "aardrijkskunde\naktie\nantwoord\natheïsme\nautonomie\nbegr
   citaat\ncliché\ncomfort\ndood\neerlijkheid\nelement\nfilosofie\ngelijkheid\ngeloof\n
   gemeenschappelijkheid\ngemoedsrust\ngevaar\ngevoel voor humor\ngezondheid\ngok\n
   haat\nharmonie\nhet vrije woord\nhoop\nhumeur\nhumor\nidee\nindruk\ninschatting\n
-  Islam\nkenmerk\nkinderlijkheid\nliefde\nlot\nmensenrecht\nmetafoor\nmislukking\n
-  misverstand\nmoeilijkheid\nmoeite\nmoment\nnoodzaak\nobjectiviteit\nonderdanigheid\n
-  oneindigheid\nontknoping\nontspanning\noverspannenheid\npassie\npersvrijheid\nplaats\n
-  populariteit\nprivacy\nprobleem\npsychologie\nreactie\nrealiteit\nreferentie\nrespect\n
-  schoonheid\nsfeer\nslachtofferschap\nslimheid\nsluwheid\nstress\nstreven\nsucces\n
-  symbool\ntaal\ntrend\ntroost\nuitdrukking\nuiterlijk\nvakantie\nveiligheid\nverbinding\n
+  Islam\nkenmerk\nonnozelheid\nliefde\nlot\nmensenrecht\nmetafoor\nmislukking\nmisverstand\n
+  moeilijkheid\nmoeite\nmoment\nnoodzaak\nobjectiviteit\nonderdanigheid\noneindigheid\n
+  ontknoping\nontspanning\noverspannenheid\npassie\npersvrijheid\nplaats\npopulariteit\n
+  privacy\nprobleem\npsychologie\nreactie\nrealiteit\nreferentie\nrespect\nschoonheid\n
+  sfeer\nslachtofferschap\nslimheid\nsluwheid\nstress\nstreven\nsucces\nsymbool\n
+  taal\ntrend\ntroost\nuitdrukking\nuiterlijk\nvakantie\nveiligheid\nverbinding\n
   verschil\nversleuteling\nvertrouwen\nvoorbeeld\nvorm\nvrede\nvrije tijd\nvrije wil\n\
   vrijheid\nwaardering\nwaarheid\nwelzijn\nwijsheid\nwiskunde\nziel"
 animals_questions: "aap\naardvark\nadelaar\nalligator\nanemoonvis\nantilope\nbaviaan\n
@@ -32,8 +32,8 @@ classic-characters_name: Bekende personages
 food-and-drink_questions: "aardappel\nabrikoos\nadvocaat\namandel\nananas\nappel\n
   appelsap\nappelstroop\nappeltaart\naubergine\naugurk\navocado\nbanaan\nbarbecue\n
   biefstuk\nbiet\nbloedworst\nbloem\nbloemkool\nboerenkool\nbosbes\nBossche bol\n
-  boter\nboterham\nbrie\nbroccoli\nbronwater\nbrood\nbruine bonen\nbruine boterham
-  met kaas\ncamembert\ncapucijner\ncashewnoot\nchampagne\nchampignon\nchocola\nchocoladevla\n
+  boter\nboterham\nbrie\nbroccoli\nbronwater\nbrood\nbruine bonen\nboterham met kaas\n
+  camembert\ncapucijner\ncashewnoot\nchampagne\nchampignon\nchocola\nchocoladevla\n
   citroen\ncourgette\ncroissant\ncupcake\ndeeg\ndessert\ndiner\ndoperwt\ndruif\nei\n
   erwtensoep\nfalafel\nframboos\nfriet\nfrisdrank\nfruit\ngerookte haring\ngoudreinet\n
   granaatappel\nham\nhamburger\nharing\nhazelnoot\nhoning\nhutspot\nhüttenkäse\nijs\n
@@ -53,7 +53,7 @@ classic-characters_questions: "Aladin\nBambi\nGrote Boze Wolf\nKapitein Haak\nAs
   Sinbad de Zeeman\nDoornroosje\nSneeuwwitje\nTarzan\nDe zeven dwergen\nDe Drie Musketiers\n
   Zorro\nGrietje\nHansje Brinker\nJan Klaassen\nKatrijn\nBerend Botje\nKlaas Vaak\n
   Holle Bolle Gijs\nManneken Pis\nVrouw Holle\nRepelsteeltje\nKlein Duimpje\nPietje
-  Bell\nDikkertje Dap\nDikkie Dik\nJip\nJanneke\nNils Holgersson\nPinkeltje\nPaulus
+  Bell\nDikkertje Dap\nDikkie Dik\nJip en Janneke\nNils Holgersson\nPinkeltje\nPaulus
   de Boskabouter\nNijntje\nMaja de Bij\nPippi Langkous\nPluk van de Petteflet\nFlipje
   van Tiel\nRupsje Nooitgenoeg\nWilly Wonka\nThomas de Trein\nBob de Bouwer\nMeneer
   de Koekepeer\nTom Poes\nOlivier B. Bommel\nKwik, kwek en kwak\nKabouter Plop\nde
@@ -63,17 +63,17 @@ jobs_questions: "administrateur\nacteur\narchitect\nhulpje\nastronaut\nschrijver
   oppas\nvroedvrouw\nballetdanser\nkapper\nvoetballer\nbuschauffeur\nbutler\nkassier\n
   baas\nclown\ncabaretier\ncomponist\nconsultant\nkok\ntherapeut\ndanser\nbezorger\n
   tandarts\nontwerper\ndetective\nrechercheur\nontwikkelaar\ndiëtist\ndirecteur\n
-  regisseur\ndokter\nchauffeur\nelectriciën\ningenieur\nondernemer\noogarts\nboer\n
-  mode-ontwerper\nstewardess\nbloemist\nbrandweerman\nautomonteur\nhovenier\ntuinarchitect\n
-  huisarts\ngolfer\ngrafisch ontwerper\nbeveiliger\nbewaker\nhuismeester\nconciërge\n
-  journalist\nadvocaat\nbibliothecaris\nhuishoudster\ngoochelaar\npostbode\nvisagist\n
-  manager\nwiskundige\nmonteur\nminister\nmodel\nmuzikant\nneuroloog\nverpleegkundige\n
-  schilder\napotheker\nnatuurkundige\ntoneelschrijver\nloodgieter\ndichter\npolitiebeambte\n
-  politicus\npriester\ngevangenbewaarder\nprofessor\nprogrammeur\npsycholoog\nvastgoedontwikkelaar\n
-  receptionist\nreparateur\nonderzoeker\nverkoper\nwetenschapper\nstraatartiest\n
-  stuntman\nchirurg\nkleermaker\ntattoeëerder\ndocent\nleraar\njuf\nreisleider\ntrainer\n
-  vertaler\ndierenarts\nveearts\nstemacteur\nober\nvuilnisman\nputjesschepper\nfietsenmaker\n
-  vakkenvuller\nmagazijnbediende\nkelner\nbakker\nslager\ngroenteman\nvisser\nambtenaar\n
+  regisseur\ndokter\nchauffeur\nelectricien\ningenieur\nondernemer\noogarts\nboer\n
+  modeontwerper\nstewardess\nbloemist\nbrandweerman\nautomonteur\nhovenier\ntuinarchitect\n
+  huisarts\ngolfer\ngrafisch ontwerper\nbeveiliger\nbewaker\nhuismeester\nconciërge\n\
+  journalist\nadvocaat\nbibliothecaris\nhuishoudster\ngoochelaar\npostbode\nvisagist\n\
+  manager\nwiskundige\nmonteur\nminister\nmodel\nmuzikant\nneuroloog\nverpleegkundige\n\
+  schilder\napotheker\nnatuurkundige\ntoneelschrijver\nloodgieter\ndichter\npolitiebeambte\n\
+  politicus\npriester\ngevangenbewaarder\nprofessor\nprogrammeur\npsycholoog\nvastgoedontwikkelaar\n\
+  receptionist\nreparateur\nonderzoeker\nverkoper\nwetenschapper\nstraatartiest\n\
+  stuntman\nchirurg\nkleermaker\ntattoeëerder\ndocent\nleraar\njuf\nreisleider\ntrainer\n\
+  vertaler\ndierenarts\nveearts\nstemacteur\nober\nvuilnisman\nputjesschepper\nfietsenmaker\n\
+  vakkenvuller\nmagazijnbediende\nkelner\nbakker\nslager\ngroenteman\nvisser\nambtenaar\n\
   coach"
 food-and-drink_name: Eten en drinken
 idioms_questions: "Een brug te ver\nDertien uit een dozijn\nVlek op vlek\nOveral en
@@ -96,11 +96,11 @@ historical-figures_questions: "Johan de Witt\nAdolf Hitler\nAlan Turing\nAlbert 
   Baruch Spinoza\nCharles Darwin\nDesiderius Erasmus\nCharlie Chaplin\nChristopher
   Columbus\nClaude Monet\nCleopatra\nJohannes van der Waals\nSimon Stevin\nEdgar Allan
   Poe\nElvis Presley\nErnest Hemingway\nFrank Sinatra\nAletta Jacobs\nJan Tinbergen\n
-  Chriet Titulaer\nAndré Kuipers\nHenry Ford\nImmanuel Kant\nIsaac Newton\n James
-  Cook\nJezus\nVincent van Gogh\nJohann Sebastian Bach\nRembrandt van Rijn\n John
-  F. Kennedy\nJohn Lennon\nJules Verne\nJulius Caesar\nKoning Arthur\nKoning Toetanchamon\n
-  Leonardo Da Vinci\nEddie van Halen\nLouis Armstrong\nLudwig von Beethoven\n Mahatma
-  Ghandi\nMarie Curie"
+  Chriet Titulaer\nAndré Kuipers\nHenry Ford\nImmanuel Kant\nIsaac Newton\nJames Cook\n
+  Jezus\nVincent van Gogh\nJohann Sebastian Bach\nRembrandt van Rijn\nJohn F. Kennedy\n
+  John Lennon\nJules Verne\nJulius Caesar\nKoning Arthur\nKoning Toetanchamon\nLeonardo
+  Da Vinci\nEddie van Halen\nLouis Armstrong\nLudwig von Beethoven\nMahatma Ghandi\n
+  Marie Curie"
 mythical-creatures_name: Mythische wezens
 classic-literature_name: Klassieke literatuur
 folk-melodies_name: Volkswijsjes
