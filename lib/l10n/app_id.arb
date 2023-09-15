@@ -51,7 +51,7 @@
   "@aboutParlera": {},
   "languageFrench": "Prancis",
   "@languageFrench": {},
-  "languagesVaryNotice": "Kategori dan kata-kata bervariasi antar bahasa.",
+  "languagesVaryNotice": "Kategori dan kartu-kartu mereka bervariasi di berbagai bahasa.",
   "@languagesVaryNotice": {},
   "labelGo": "Ayo mulai!",
   "@labelGo": {},
@@ -71,7 +71,7 @@
   "@btnSkip": {},
   "preparationPlay": "Main",
   "@preparationPlay": {},
-  "gameTime": "Durasi",
+  "gameTime": "Waktu permainan (detik)",
   "@gameTime": {},
   "tutorialThirdSectionDescriptionDesktop": "Jawabanmu benar? Tekan sisi yang berwarna hijau pada jendela atau tombol panah bawah di papan ketikmu untuk pindah ke kata berikutnya.",
   "@tutorialThirdSectionDescriptionDesktop": {},
@@ -132,5 +132,50 @@
   "btnContributeLanguage": "Berkontribusi ke bahasa kamu",
   "@btnContributeLanguage": {},
   "donate": "Berdonasi",
-  "@donate": {}
+  "@donate": {},
+  "txtNoRecentEmoji": "Tidak ada emoji terbaru",
+  "@txtNoRecentEmoji": {},
+  "errorCouldNotFindEmoji": "Tidak dapat menemukan gambar yang terkait dengan emoji ini.",
+  "@errorCouldNotFindEmoji": {},
+  "txtYourScoreSimple": "Nilai Anda: {questionsPassed}",
+  "@txtYourScoreSimple": {
+    "placeholders": {
+      "questionsPassed": {}
+    }
+  },
+  "txtCategoryTitle": "Judul kategori",
+  "@txtCategoryTitle": {},
+  "errorCouldNotExport": "Tidak bisa mengekspor kategori ini.",
+  "@errorCouldNotExport": {},
+  "txtCategoryExported": "Kategori yang diekspor",
+  "@txtCategoryExported": {},
+  "txtCategoryImported": "Kategori yang diimpor",
+  "@txtCategoryImported": {},
+  "txtCategoryAdded": "Kategori ditambahkan",
+  "@txtCategoryAdded": {},
+  "txtCategoryEdited": "Kategori diedit",
+  "@txtCategoryEdited": {},
+  "warnMustEnterQuestion": "Anda harus memasukkan setidaknya satu kata",
+  "@warnMustEnterQuestion": {},
+  "txtWordsOnePerLine": "Kata-kata, satu per baris",
+  "@txtWordsOnePerLine": {},
+  "txtCreateCategory": "Buat kategori",
+  "@txtCreateCategory": {},
+  "errorCouldNotImport": "Tidak bisa mengimpor kategori ini.",
+  "@errorCouldNotImport": {},
+  "txtDiscardChangesQ": "Buang perubahan?",
+  "@txtDiscardChangesQ": {},
+  "btnOK": "Oke",
+  "@btnOK": {},
+  "txtYourScore": "Nilai Anda: {questionsPassed} / {questionCount}",
+  "@txtYourScore": {
+    "placeholders": {
+      "questionsPassed": {},
+      "questionCount": {}
+    }
+  },
+  "txtSwitchLanguageInSettings": "Untuk menggunakan bahasa yang berbeda, ganti di Pengaturan.",
+  "@txtSwitchLanguageInSettings": {},
+  "emptyCategoryQuestions": "Kategori ini tidak berisi kartu untuk ditebak :(",
+  "@emptyCategoryQuestions": {}
 }
