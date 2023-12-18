@@ -1,1 +1,122 @@
-{}
+abstract_questions: "ação\naparência\naspiração\nateísmo\nautonomia\nbeleza\ncrença\n
+  budismo\nesgotamento\ninfantilidade\ncristandade\ninteligência\nclichê\nconforto\n
+  semelhança\nconexão\nperigo\nmorte\ndestino\ndiferença\ndificuldade\nesforço\nelemento\n
+  criptografia\nigualdade\nestimativa\nexemplo\nexpressão\nfalha\njustiça\nfé\ndestino\n
+  recurso\nliberdade de expressão\ntempo livre\nlivre arbítrio\nliberdade\ngeografia\n
+  adivinhar\nharmonia\nódio\nsaúde\nesperança\ndireito humano\nhumildade\nhumor\n
+  ideia\nimpacto\nimportância\ninfinidade\ninsulto\nislamismo\nlinguagem\nlocalização\n
+  amor\nmatemática\nmetáfora\nmal-percebido\nmomento\nhumor\nprecisar\nobjetividade\n
+  classe gramatical\npaixão\npaz\npaz de espírito\nfilosofia\npopularidade\nliberdade
+  de imprensa\nprivacidade\nproblema\npsicologia\ncitar\nreação\nrealidade\nreferência\n
+  relaxamento\nrespeito\nresposta\nsegurança\nsatisfação\nsegurança\nsenso de humor\n\
+  forma\nsignificado\nastúcia\nconsolo\nalma\nestresse\nluta\nsímbolo\nsucesso\ntendência\n\
+  verdade\npercebimento\nférias\nvitimização\nbem-estar\nsabedoria"
+historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert
+  Einstein\nAlexandre, o Grande\nAmadeus Mozart\nAndy Warhol\nAristóteles\nBenito
+  Mussolini\nOs Irmãos Grimm\nCarlos Magno\nCharles Darwin\nCharlie Chaplin\nCristóvão
+  Colombo\nClaude Monet\nCleópatra\nDante Alighieri\nElvis Presley\nFrank Sinatra\n
+  Franklin D. Roosevelt\nGalileo Galilei\nGenghis Khan\nGeorge Washington\nH. G. Wells\n
+  Henry Ford\nIsaac Newton\nJoana d'Arc\nJohann Sebastian Bach\nJohn F. Kennedy\n
+  John Lennon\nJules Verne\nJúlio César\nTutancâmon\nLeonardo DaVinci\nLudwig van
+  Beethoven\nMahatma Gandhi\nMaria Antonieta\nMarie Curie\nMartin Luther King Jr.\n
+  Mary Shelley\nMichael Jackson\nMichelangelo\nMuhammad Ali\nNapoleão Bonaparte\n
+  Neil Armstrong\nNelson Mandela\nNicolau Copérnico\nNikola Tesla\nPlatão\nPitágoras\n
+  Salvador Dalí\nSigmund Freud\nSócrates\nStephen Hawking\nVincent Van Gogh\nVladimir
+  Lenin\nWilliam Shakespeare"
+classic-characters_name: Personagens clássicos
+folk-melodies_questions: "Ciranda, Cirandinha\nAtirei o Pau no Gato\nCapelinha de
+  Melão\nEscravos de Jó\nPeixe Vivo\nA Galinha do Vizinho\nBorboletinha\nMeu Limão,
+  Meu Limoeiro\nA Barata Diz que Tem\nAlecrim\nCai, Cai Balão\nChupa-chupa que Bate
+  Bate\nPombinha Branca\nTerezinha de Jesus\nIndiozinhos\nSe Essa Rua Fosse Minha\n
+  O Cravo e a Rosa\nSamba Lelê\nO Sapo não lava o pé\nMarcha Soldado\nFui no Tororó\n
+  Ai, Eu Entrei na Roda\nA Canoa Virou\nA Rosa Amarela\nQuem me Ensinou a Nadar\n
+  Sapo-Cururu\nMeu Galinho\nMarinheiro só\nPezinho\nDa Abóbora Faz Melão\nCaranguejo
+  não é peixe\nVamos Maninha\nNa Bahia tem\nMineira de Minas\nBoi da cara preta\n
+  Parabéns a você\nBrilha, brilha estrelinha"
+classic-characters_questions: "Aladdin\nAlice (Alice no País das Maravilhas)\nBambi\n
+  Lobo Mau\nCapitão Gancho\nCristóvão Robin (Ursinho Poo)\nCinderela\nLeão Covarde
+  (Mágico de Oz)\nD'Artagnan (Os Três Mosqueteiros)\nDorothy (Mágico de Oz)\nDrácula\n
+  Watson (Sherlock Holmes)\nIó (Ursinho Poo)\nFrankenstein\nMaria (João e Maria)\n
+  João (João e Maria)\nChapeuzinho Vermelho\nMogli\nPeter Pan\nLeitão (Ursinho Poo)\n
+  Pinóquio\nPríncipe Encantado\nRapunzel\nEspantalho (Mágico de Oz)\nSherlock Holmes\n
+  Simbá, o marinheiro\nBela Adormecida\nBranca de Neve\nTarzan\nGato de Cheshire (Alice
+  no País das Maravilhas)\nCorcunda de Notre-Dame\nPequena Sereia\nChapeleiro Maluco
+  (Alice no País das Maravilhas)\nRainha de Copas (Alice no País das Maravilhas)\n
+  Os Sete Anões\nOs Três Porquinhos\nOs Três Mosqueteiros\nO Patinho Feio\nTigrão
+  (Ursinho Poo)\nO Homem de Lata (Mágico de Oz)\nSininho (Peter Pan)\nUrsinho Poo\n
+  Mágico de Oz\nZorro"
+idioms_name: Expressões idiomáticas
+jobs_name: Profissões
+classic-literature_name: Literatura clássica
+abstract_name: Abstrato
+animals_questions: "porco-formigueiro\njacaré\nformiga\nantílope\nbabuíno\nmorcego\n
+  urso\nabelha\nbesouro\npássaro\npantera negra\nviúva negra\nbode\ninseto\ntouro\n
+  coelho\nborboleta\ncamelo\ngato\nlagarta\ncentopeia\ncamaleão\nguepardo\nfrango\n
+  chihuahua\nchimpanzé\npeixe-palhaço\nbarata\nonça-parda\nvaca\ncoiote\ncaranguejo\n
+  grilo\ncrocodilo\ncuco\ncervo\ndinossauro\ndodô\ncão\ngolfinho\nburro\npomba\nlibelinha\n
+  pato\nbesouro do esterco\náguia\nenguia\nelefante\nfurão\nluzecu\npeixe\nraposa\n
+  sapo\nmosca da fruta\ngazela\nosga\ngirafa\ncabra\npeixinho dourado\nganso\nesquilo\n
+  urso pardo\nporquinho da índia\nhámster\nlebre\nhipopótamo\nvespa\ncavalo\nhumano\n
+  onça-pintada\ncanguru\njoaninha\nleopardo\nleão\nlagarto\nlhama\nlagosta\nmamífero\n
+  toupeira\nmacaco\nalce\nmosquito\nmariposa\ncamundongo\nnarval\npolvo\norangotango\n
+  avestruz\ncoruja\nostra\npantera\npapagaio\npavão\npelicano\npinguim\nporco\npombo\n
+  urso polar\npônei\npuma\ncoelho\nrato\ncorvo\nrena\npapa-léguas\nroedor\ngalo\n
+  salmão\nsardinha\nescorpião\npepino do mar\ncavalo marinho\ntartaruga marinha\n
+  gaivota\nfoca\ntubarão\novelha\ncobra\nleopardo da neve\naranha\nlula\nesquilo\n
+  estrela do mar\npeixe-espada\ntiranossauro\ntarântula\ntigre\nsapo\njabuti\ntucano\n\
+  truta\ntartaruga\nvespa\ndoninha\nbaleia\nlobo\npica-pau\nminhoca\niaque\nzebra"
+mythical-creatures_questions: "anjo\npé grande\ncentauro\ncupido\ndiabo\nduende\n
+  fada\nfada madrinha\ngênio\nfantasma\ngigante\ngnomo\nduende\nceifador sinistro\n
+  hidra\nduende\nmonstro do lago Ness\nsereia\ntritão\nogro\npégaso\nfénix\nfeiticeiro\n
+  esfinge\nespírito\nfada dos dentes\nunicórnio\nvalquíria\nvampiro\nbruxo\nlobisomem\n
+  bruxa\nmago\nzumbi\ndragão\nmedusa\nmula sem cabeça\ncurupira\nminotauro"
+animals_name: Animais
+food-and-drink_questions: "amêndoa\naperitivo\nmaçã\nsumo de maçã\nalperce\nabacate\n
+  bacon\nbanana\nchurrasco\nfeijão\nbife\npimentão\namora\nmirtilo\ncastanha-do-pará\n
+  pão\npequeno almoço\nqueijo brie\nbrócolos\ncaldo\nhambúrguer\nburrito\nmanteiga\n
+  bolo\ncenoura\ncaju\ncouve-flor\nsalsão\nqueijo\nx-burger\ncereja\npastilha elástica\n
+  frango\ngrão de bico\npimenta chili\nchocolate\ngotas de chocolate\ncoco\nleite
+  de coco\ncafé\nbiscoito\nmilho\nqueijo cottage\noxicoco\ncreme\ncroissant\npepino\n
+  bolinho\ncurry\nlaticínio\nsobremesa\njantar\nrosquinha\nmassa\nbebida\novo\ngemada\n
+  beringela\nsabugueiro\nbebida energética\nfalafel\npeixe\nbife de peixe\npalitos
+  de peixe\nfarinha\nbatata frita\nfruta\nalho\nqueijo gouda\ngrão\nuva\ntoranja\n
+  feijão verde\nfiambre\navelã\nerva\nmel\ngelado\nsumo\ncouve\nkebab\nketchup\nfeijão
+  vermelho\nkimchi\nkiwi\nlimão\nlimonada\nlentilha\nalface\nlima\nalmoço\nmanga\n
+  xarope de bordo\nrefeição\ncarne\nleite\nmilkshake\nágua mineral\nhortelã\nmuffin\n
+  cogumelo\nmostarda\nnoz\naveia\nóleo\nazeite\ncebola\nanel de cebola\nlaranja\n
+  sumo de laranja\nostra\npanqueca\nmassa\npêssego\namendoim\npera\npimenta\npepperoni\n
+  tarte\npinhão\nabacaxi\npistache\npizza\nameixa\nromã\npipoca\ncarne de porco\n
+  mingau\nbatata\npretzel\nabóbora\npassas\nframboesa\narroz\nsalada\nsalame\nsalmão\n
+  sal\nsanduíche\nsardinha\nmolho\nchucrute\nsalsicha\nfrutos do mar\nacompanhamento\n
+  smoothie\nrefrigerante\nsopa\nshoyu\nespaguete\nespeciaria\nmoranga\nentrada\nbife\n
+  morango\nsushi\nxarope\ntaco\nchá\ntosta\ntofu\ntomate\natum\nvegetal\nwaffle\n
+  noz\nágua\nmelancia\nsoro de leite\nchantilly\niogurte\nabobrinha"
+folk-melodies_name: Canções populares
+jobs_questions: "contabilista\nator\nâncora\narquiteto\nassistente\nastronauta\nautor\n
+  babá\npadeiro\nbailarina\nbarbeiro\njogador de baseball\njogador de basquete\ncondutor
+  de autocarro\nmordomo\ncaixa\npresidente\nchefe de cozinha\npalhaço\ncomediante\n
+  compositor\nconsultor\ncozinheiro\nconselheiro\ndançarino\nentregador\ndentista\n
+  desenhista\ndetetive\nprogramador\nnutricionista\ndiretor\ndoutor\ncondutor\neletricista\n
+  engenheiro\nempreendedor\noftalmologista\nagricultor\ndesigner de moda\ncomissária
+  de bordo\nflorista\nbombeiro\njogador de futebol\nlixeiro\njardineiro\nclínico geral\n
+  jogador de golfe\ndesigner gráfico\nguarda\ncabeleireiro\nporteiro\njornalista\n
+  advogado\nbibliotecário\nempregada doméstica\nmágico\ncarteiro\nmaquiador\ngerente\n
+  matemático\nmecânico\nministro\nmodelo\nmúsico\nneurologista\nenfermeira\npintor\n
+  farmacêutico\nfísico\ndramaturgo\nencanador\npoeta\npolicial\npolítico\npadre\n
+  guarda prisional\nprofessor\nprogramador\npsicólogo\ncorretor de imóveis\nrecepcionista\n
+  investigador\nvendedor\ncientista\nguionista\njogador de futebol\nartista de rua\n
+  dublê\ncirurgião\nalfaiate\ntatuador\nprofessor\nguia turístico\ntreinador\ntradutor\n
+  veterinário\ndublador\nempregado de mesa"
+food-and-drink_name: Comidas e bebidas
+mythical-creatures_name: Criaturas míticas
+historical-figures_name: Figuras históricas
+classic-literature_questions: "Um Conto de Natal\nAlice no País das Maravilhas\nA
+  Volta ao Mundo em 80 Dias\nCinderela\nCrime e Castigo\nDon Quixote\nDrácula\nFrankenstein\n
+  As Viagens de Gulliver\nHamlet\nJoão e Maria\nJoão e o Pé de Feijão\nViagem ao Centro
+  da Terra\nOs Miseráveis\nChapeuzinho Vermelho\nMacbeth\nMoby Dick\nOtelo\nPeter
+  Pan\nOrgulho e Preconceito\nRapunzel\nRomeu e Julieta\nA Bela Adormecida\nBranca
+  de Neve\nAs Aventuras de Sherlock Holmes\nO Conde de Monte Cristo\nA Roupa Nova
+  do Rei\nO Corcunda de Notre-Dame\nIlíada\nO Livro da Selva\nA Pequena Sereia\nO
+  Mundo Perdido\nA Metamorfose\nOdisseia\nA Princesa e a Ervilha\nO Médico e o Monstro\n
+  Os Três Mosqueteiros\nA Máquina do Tempo\nA Guerra dos Mundos\nO Maravilhoso Mágico
+  de Oz\nVinte Mil Léguas Submarinas\nPaz e Guerra\nO Ursinho Poo"
