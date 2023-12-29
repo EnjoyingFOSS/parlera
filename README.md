@@ -6,6 +6,9 @@ Parlera is an open-source word guessing party game.
 
 If you want to help out or even just ask a question, you can reach the community at https://matrix.to/#/#parlera:matrix.org .
 
+## Donate
+Support the project via **[Liberapay](https://liberapay.com/Parlera/)**. Every bit helps. The more money is donated, the more time I can afford to work on this project.
+
 ## Contribute
 
 You can help through:
@@ -22,7 +25,6 @@ When you submit entries, make sure that they are:
 * In their most basic form — just like dictionary entries (i.e. singular, first person, infinitive, ...)
 * Family-friendly
 * Not derogatory
-* Not originally from works under copyright (e.g. "Harry Potter" would not be accepted)
 
 Contributions might not be accepted even if they meet the rules here.
 
