@@ -45,47 +45,65 @@ class AudioHelper {
   static final _soundCountdown = AssetSource('audio/countdown.wav');
   static final _soundStart = AssetSource('audio/start.wav');
   static final _soundCountdownStart = AssetSource('audio/countdown_start.wav');
+  static final _soundTimesUp = AssetSource('audio/times_up.wav');
+  static final _soundResults = AssetSource('audio/results.wav');
 
   static bool _audioEnabled(BuildContext context) =>
       SettingsModel.of(context).isAudioEnabled;
 
-  static void playIncorrect(BuildContext context) {
+  static Future<void> playIncorrect(BuildContext context) async {
     if (_audioEnabled(context)) {
-      _player.play(_soundIncorrect);
-      _player
-          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+      await _player.stop();
+      await _player.play(
+          _soundIncorrect); //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
-  static void playCorrect(BuildContext context) {
+  static Future<void> playCorrect(BuildContext context) async {
     if (_audioEnabled(context)) {
-      _player.play(_soundCorrect);
-      _player
-          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+      await _player.stop();
+      await _player.play(
+          _soundCorrect); //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
-  static void playCountdown(BuildContext context) {
+  static Future<void> playCountdown(BuildContext context) async {
     if (_audioEnabled(context)) {
-      _player.play(_soundCountdown);
-      _player
-          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+      await _player.stop();
+      await _player.play(
+          _soundCountdown); //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
-  static void playStart(BuildContext context) {
+  static Future<void> playStart(BuildContext context) async {
     if (_audioEnabled(context)) {
-      _player.play(_soundStart);
-      _player
-          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+      await _player.stop();
+      await _player.play(
+          _soundStart); //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 
-  static void playCountdownStart(BuildContext context) {
+  static Future<void> playCountdownStart(BuildContext context) async {
     if (_audioEnabled(context)) {
-      _player.play(_soundCountdownStart);
-      _player
-          .stop(); //TODO this is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+      await _player.stop();
+      await _player.play(_soundCountdownStart);
+      //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+    }
+  }
+
+  static Future<void> playTimesUp(BuildContext context) async {
+    if (_audioEnabled(context)) {
+      await _player.stop();
+      await _player.play(_soundTimesUp);
+      //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
+    }
+  }
+
+  static Future<void> playResults(BuildContext context) async {
+    if (_audioEnabled(context)) {
+      await _player.stop();
+      await _player.play(_soundResults);
+      //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
     }
   }
 }

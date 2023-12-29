@@ -111,9 +111,9 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       _secondsLeft = 0;
     }
 
-    SystemChrome.setPreferredOrientations([
+    unawaited(SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
-    ]);
+    ]));
 
     _initAnimations();
   }
@@ -149,11 +149,11 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       _rotateSubscription!.cancel();
     }
 
-    SystemChrome.setPreferredOrientations([
+    unawaited(SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight
-    ]);
+    ]));
 
     _correctAC?.dispose();
     _incorrectAC?.dispose();
@@ -275,7 +275,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       return;
     }
 
-    AudioHelper.playIncorrect(context);
+    AudioHelper.playTimesUp(context);
     _incorrectAC!.forward();
     _postAnswer(isCorrect: false, outOfTime: true);
   }
