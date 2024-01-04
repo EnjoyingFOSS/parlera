@@ -96,5 +96,7 @@
   "txtCustomCardNumber": "Custom",
   "btnPlayAgain": "Play again",
   "btnBackToAllCategories": "All categories",
-  "txtTimesUp": "Time's up!"
+  "txtTimesUp": "Time's up!",
+  "paidTitle": "Get the paid version to support the project!",
+  "paidDescription": "As a bonus, you'll get a nicer icon."
 }
