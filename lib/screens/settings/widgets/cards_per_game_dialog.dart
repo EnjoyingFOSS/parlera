@@ -79,6 +79,10 @@ class CardsPerGameDialog extends StatefulWidget {
 
 class _CardsPerGameDialogState extends State<CardsPerGameDialog> {
   static const _maxCardsPerGame = 100;
+
+  final _textController = TextEditingController();
+  final _focusNode = FocusNode();
+
   late _CPGOption chosenValue;
 
   @override
@@ -88,12 +92,17 @@ class _CardsPerGameDialogState extends State<CardsPerGameDialog> {
   }
 
   @override
+  void dispose() {
+    _textController.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     //TODO submit on Enter
-    final textController = TextEditingController();
-    final focusNode = FocusNode();
     if (chosenValue == _CPGOption.custom) {
-      focusNode.requestFocus();
+      _focusNode.requestFocus();
     }
     return AlertDialog(
         content: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -111,8 +120,8 @@ class _CardsPerGameDialogState extends State<CardsPerGameDialog> {
                 decoration: InputDecoration(
                     labelText: AppLocalizations.of(context).txtCardsPerGame),
                 keyboardType: TextInputType.number,
-                controller: textController,
-                focusNode: focusNode)
+                controller: _textController,
+                focusNode: _focusNode)
         ]),
         actions: [
           TextButton(
@@ -125,7 +134,7 @@ class _CardsPerGameDialogState extends State<CardsPerGameDialog> {
             onPressed: () {
               if (chosenValue == _CPGOption.custom) {
                 final customValue =
-                    int.tryParse(textController.text.toString());
+                    int.tryParse(_textController.text.toString());
                 if (customValue == null || customValue <= 0) {
                   Navigator.pop(context, widget.currentCardsPerGame);
                 } else {

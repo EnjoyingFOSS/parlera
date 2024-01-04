@@ -27,6 +27,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/screens/tutorial/widgets/pagination_bar.dart';
 import 'package:parlera/screens/tutorial/widgets/tutorial_page.dart';
 import 'package:parlera/store/tutorial.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class TutorialScreen extends StatefulWidget {
   const TutorialScreen({Key? key}) : super(key: key);
@@ -51,6 +52,12 @@ class _TutorialScreenState extends State<TutorialScreen> {
   int _currentPage = 0;
 
   bool _isMobile() => (!kIsWeb && (Platform.isAndroid || Platform.isIOS));
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,19 +145,30 @@ class _TutorialScreenState extends State<TutorialScreen> {
                       left: 0,
                       right: 0,
                       child: PaginationBar(
-                        controller: _controller,
-                        onFinish: () async {
-                          await TutorialModel.of(context).setAsWatched();
-                          if (mounted) {
-                            Navigator.popUntil(
-                                context, ModalRoute.withName('/'));
-                          }
-                        },
-                        pageCount: pages.length,
-                        currentPage: _currentPage,
-                        onNavigateNext: _navigateNext,
-                        onNavigatePrevious: _navigatePrevious,
-                      ))
+                          onFinish: () async {
+                            await TutorialModel.of(context).setAsWatched();
+                            if (mounted) {
+                              Navigator.popUntil(
+                                  context, ModalRoute.withName('/'));
+                            }
+                          },
+                          pageCount: pages.length,
+                          currentPage: _currentPage,
+                          onNavigateNext: _navigateNext,
+                          onNavigatePrevious: _navigatePrevious,
+                          pageIndicator: SmoothPageIndicator(
+                            controller: _controller,
+                            effect: WormEffect(
+                                dotWidth: 10,
+                                dotHeight: 10,
+                                dotColor: Theme.of(context)
+                                    .colorScheme
+                                    .onSurface
+                                    .withAlpha(128),
+                                activeDotColor:
+                                    Theme.of(context).colorScheme.primary),
+                            count: pages.length,
+                          )))
                 ])))));
   }
 

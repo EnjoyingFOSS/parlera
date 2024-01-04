@@ -22,6 +22,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:parlera/clippers/bottom_wave_clipper.dart';
+import 'package:parlera/helpers/audio.dart';
 import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/layout.dart';
@@ -53,6 +54,14 @@ class _ResultsHeaderState extends State<ResultsHeader> {
     } else {
       confettiController = null;
     }
+    Future.delayed(const Duration(milliseconds: 150),
+        () async => await AudioHelper.playResults(context));
+  }
+
+  @override
+  void dispose() {
+    confettiController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -99,11 +108,5 @@ class _ResultsHeaderState extends State<ResultsHeader> {
                 height: 120,
               ))),
     ]);
-  }
-
-  @override
-  void dispose() {
-    confettiController?.dispose();
-    super.dispose();
   }
 }

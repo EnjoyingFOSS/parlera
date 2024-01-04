@@ -20,10 +20,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:parlera/helpers/test_keys.dart';
 
 class PaginationBar extends StatelessWidget {
-  final PageController controller;
+  final Widget pageIndicator;
   final Function() onNavigatePrevious;
   final Function() onNavigateNext;
   final Function() onFinish;
@@ -31,7 +31,7 @@ class PaginationBar extends StatelessWidget {
   final int currentPage;
 
   const PaginationBar(
-      {required this.controller,
+      {required this.pageIndicator,
       required this.onFinish,
       required this.pageCount,
       required this.currentPage,
@@ -55,6 +55,7 @@ class PaginationBar extends StatelessWidget {
                     child: (currentPage == 0)
                         ? TextButton(
                             onPressed: onFinish,
+                            key: TestKeys.onboardingSkip,
                             child: Text(
                               AppLocalizations.of(context).btnSkip,
                               style: buttonTextStyle,
@@ -65,20 +66,7 @@ class PaginationBar extends StatelessWidget {
                               AppLocalizations.of(context).btnBack,
                               style: buttonTextStyle,
                             ))),
-                Positioned.fill(
-                    child: Center(
-                        child: SmoothPageIndicator(
-                  controller: controller,
-                  effect: WormEffect(
-                      dotWidth: 10,
-                      dotHeight: 10,
-                      dotColor: Theme.of(context)
-                          .colorScheme
-                          .onSurface
-                          .withAlpha(128),
-                      activeDotColor: Theme.of(context).colorScheme.primary),
-                  count: pageCount,
-                ))),
+                Positioned.fill(child: Center(child: pageIndicator)),
                 Align(
                     alignment: Alignment.centerRight,
                     child: (currentPage == pageCount - 1)

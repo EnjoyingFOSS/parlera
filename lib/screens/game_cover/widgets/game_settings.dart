@@ -43,6 +43,7 @@ import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:parlera/models/category.dart';
 import 'package:parlera/models/game_time_type.dart';
+import 'package:parlera/screens/game_cover/widgets/game_time_dialog.dart';
 import 'package:parlera/store/settings.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
@@ -121,7 +122,9 @@ class GameSetings extends StatelessWidget {
               if (value != null) {
                 await settingsModel.setGameTimeType(value);
               } else {
-                final gameTime = await _showGameTimeDialog(context);
+                final gameTime = await showDialog<int?>(
+                    context: context,
+                    builder: (context) => const GameTimeDialog());
                 if (gameTime != null) {
                   await settingsModel.setCustomGameTime(gameTime);
                   await settingsModel.setGameTimeType(GameTimeType.custom);
@@ -158,40 +161,5 @@ class GameSetings extends StatelessWidget {
         ],
       );
     });
-  }
-
-  Future<int?> _showGameTimeDialog(BuildContext context) async {
-    return await showDialog<int?>(
-        builder: (context) {
-          final textController = TextEditingController();
-          final focusNode = FocusNode()..requestFocus();
-          return AlertDialog(
-              content: TextField(
-                  decoration: InputDecoration(
-                      labelText:
-                          AppLocalizations.of(context).txtCustomGameTime),
-                  keyboardType: TextInputType.number,
-                  controller: textController,
-                  focusNode: focusNode),
-              actions: [
-                TextButton(
-                    child: Text(AppLocalizations.of(context).btnCancel),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-                TextButton(
-                  child: Text(AppLocalizations.of(context).btnOK),
-                  onPressed: () {
-                    final value = int.tryParse(textController.text.toString());
-                    if (value == null || value <= 0) {
-                      Navigator.pop(context);
-                    } else {
-                      Navigator.pop(context, min(value, Category.maxGameTime));
-                    }
-                  },
-                )
-              ]);
-        },
-        context: context);
   }
 }
