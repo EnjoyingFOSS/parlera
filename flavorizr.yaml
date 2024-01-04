@@ -1,0 +1,35 @@
+ide: "vscode"
+
+flavors:
+  full:
+    app:
+      name: "Parlera"
+
+    android:
+      applicationId: "com.enjoyingfoss.parlera.full"
+    ios:
+      bundleId: "com.enjoyingfoss.parlera.full"
+
+  free:
+    app:
+      name: "Parlera FREE"
+  
+    android:
+      applicationId: "com.enjoyingfoss.parlera"
+    ios:
+      bundleId: "com.enjoyingfoss.parlera"
+
+instructions:
+  - ide:config
+  - flutter:flavors
+  - flutter:pages
+  - flutter:targets
+  - android:androidManifest
+  - android:buildGradle
+  - android:dummyAssets
+  - ios:xcconfig
+  - ios:buildTargets
+  - ios:schema
+  - ios:dummyAssets
+  - ios:plist
+  - ios:launchScreen
