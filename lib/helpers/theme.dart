@@ -24,7 +24,7 @@ class ThemeHelper {
   static const _darkColors = ColorScheme(
       primary: Color(0xFFE33E46),
       secondary: Color(0xFFF7D0A1),
-      surface: Color(0xFF48392a),
+      surface: Color(0xFF503B2B), // alternatively 4B392A
       background: Color(0xFF33291E),
       error: Color(0xFFE33E46),
       onPrimary: Colors.white,
