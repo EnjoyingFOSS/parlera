@@ -49,10 +49,10 @@ class AnswerGrid extends StatelessWidget {
           final pos = rowI * answersPerRow + columnI;
 
           return Flexible(
-              child: AnimationConfiguration.staggeredGrid(
-                  //TODO if I fork it, can just edit _computeStaggeredGridDuration() in animation_configurator.dart
-                  columnCount: answersPerRow,
+              child: AnimationConfiguration.staggeredList(
                   position: pos,
+                  delay: const Duration(milliseconds: 400),
+                  duration: const Duration(seconds: 2),
                   child: FadeInAnimation(
                       child: (rowI < rowCount - 1 || columnI < lastCellCount)
                           ? AnswerItem(
