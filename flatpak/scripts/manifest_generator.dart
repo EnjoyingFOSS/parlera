@@ -4,6 +4,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'flatpak_shared.dart';
 
+/// Generates the Flatpak manifest.
+/// (Separate from the package generation, as those are generated per each
+/// architecture.)
+///
 /// arguments:
 /// --meta [file]
 ///   Required argument for providing the metadata file for this script.

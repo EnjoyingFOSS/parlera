@@ -3,6 +3,9 @@
 import 'dart:io';
 import 'flatpak_shared.dart';
 
+/// Creates an archive containing all the sources for the Flatpak package for a
+/// specific architecture.
+///
 /// arguments:
 /// --meta [file]
 ///   Required argument for providing the metadata file for this script.

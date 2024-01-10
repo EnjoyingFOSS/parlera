@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
+/// Shared files for the two Flatpak-related scripts.
+
 class Release {
   final String version;
   final String date; //TODO add resources
