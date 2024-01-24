@@ -45,7 +45,7 @@
   "@btnBack": {},
   "btnFavorite": "Ajouter aux favoris",
   "@btnFavorite": {},
-  "btnFinishTutorial": "À vous de jouer !",
+  "btnFinishTutorial": "À vous de jouer !",
   "@btnFinishTutorial": {},
   "preparationPlay": "Jouer",
   "@preparationPlay": {},
@@ -71,7 +71,7 @@
   "@preparationOrientationDescription": {},
   "lastQuestion": "Question finale",
   "@lastQuestion": {},
-  "settingsStartTutorial": "Comment jouer ?",
+  "settingsStartTutorial": "Comment jouer ?",
   "@settingsStartTutorial": {},
   "contribute": "Contribuer",
   "@contribute": {},
@@ -114,7 +114,7 @@
   "@txtCategoryExported": {},
   "txtCategoryAdded": "Catégorie ajoutée",
   "@txtCategoryAdded": {},
-  "emptyCategoryQuestions": "Cette catégorie ne contient pas de mots à deviner :(",
+  "emptyCategoryQuestions": "Cette catégorie ne contient pas de mots à deviner :(",
   "@emptyCategoryQuestions": {},
   "languageHungarian": "hongrois",
   "@languageHungarian": {},
@@ -171,5 +171,23 @@
   "donate": "Faire un don",
   "@donate": {},
   "txtNoRecentEmoji": "Aucun émoji récent",
-  "@txtNoRecentEmoji": {}
+  "@txtNoRecentEmoji": {},
+  "txtCardsPerGame": "Cartes par partie",
+  "@txtCardsPerGame": {},
+  "txtUnlimitedCards": "Illimité",
+  "@txtUnlimitedCards": {},
+  "btnPlayAgain": "Rejouer",
+  "@btnPlayAgain": {},
+  "txtYourScoreSimple": "Votre score: {questionsPassed}",
+  "@txtYourScoreSimple": {
+    "placeholders": {
+      "questionsPassed": {}
+    }
+  },
+  "btnBackToAllCategories": "Toutes les catégories",
+  "@btnBackToAllCategories": {},
+  "txtTimesUp": "Temps écoulé!",
+  "@txtTimesUp": {},
+  "btnOK": "OK",
+  "@btnOK": {}
 }
