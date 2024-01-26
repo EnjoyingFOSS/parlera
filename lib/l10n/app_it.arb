@@ -193,5 +193,18 @@
   "txtTimesUp": "Tempo scaduto!",
   "@txtTimesUp": {},
   "btnOK": "OK",
-  "@btnOK": {}
+  "@btnOK": {},
+  "paidDescription": "Come bonus, otterrai un'icona più bella.",
+  "@paidDescription": {},
+  "btnExportAllCustom": "Esporta tutte le categorie personalizzate",
+  "@btnExportAllCustom": {},
+  "txtLanguageChoice": "{languageCode} - {languageName}",
+  "@txtLanguageChoice": {
+    "placeholders": {
+      "languageCode": {},
+      "languageName": {}
+    }
+  },
+  "paidTitle": "Acquista la versione a pagamento per sostenere il progetto!",
+  "@paidTitle": {}
 }
