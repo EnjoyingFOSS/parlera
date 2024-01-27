@@ -191,5 +191,18 @@
   "txtCustomGameTime": "Користувацька тривалість гри (с)",
   "@txtCustomGameTime": {},
   "btnOK": "Добре",
-  "@btnOK": {}
+  "@btnOK": {},
+  "btnExportAllCustom": "Експортувати всі користувацькі категорії",
+  "@btnExportAllCustom": {},
+  "txtLanguageChoice": "{languageCode} - {languageName}",
+  "@txtLanguageChoice": {
+    "placeholders": {
+      "languageCode": {},
+      "languageName": {}
+    }
+  },
+  "paidTitle": "Придбайте платну версію, щоб підтримати проект!",
+  "@paidTitle": {},
+  "paidDescription": "Як бонус, ви отримаєте більш красиву іконку.",
+  "@paidDescription": {}
 }
