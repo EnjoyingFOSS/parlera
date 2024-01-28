@@ -12,6 +12,7 @@ platform :android do
     gradle(
       task: 'bundle',
       build_type: 'Release',
+      flavor: "full",
       project_dir: 'android/'
     )
     upload_to_play_store(

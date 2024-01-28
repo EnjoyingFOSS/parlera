@@ -40,7 +40,6 @@ import 'dart:math';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:parlera/flavors.dart';
 import 'package:parlera/helpers/import_export.dart';
 import 'package:parlera/helpers/layout.dart';
 import 'package:parlera/helpers/url_launcher.dart';
@@ -51,7 +50,6 @@ import 'package:parlera/store/category.dart';
 import 'package:parlera/store/language.dart';
 import 'package:parlera/widgets/empty_screen.dart';
 import 'package:parlera/widgets/max_width_container.dart';
-import 'package:parlera/widgets/parlera_card.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 enum CategoryFilter { all, favorites }
@@ -147,9 +145,8 @@ class CategoryList extends StatelessWidget {
                             case _menuImport:
                               final scaffoldMessengerState =
                                   ScaffoldMessenger.of(context);
-                              final categoryImported =
-                                  AppLocalizations.of(context)
-                                      .txtCategoryImported;
+                              final appLocalizations =
+                                  AppLocalizations.of(context);
                               try {
                                 final fpr = await FilePicker.platform
                                     .pickFiles(withData: Platform.isLinux);
@@ -164,15 +161,14 @@ class CategoryList extends StatelessWidget {
                                           ParleraLanguage.defaultLang);
 
                                   scaffoldMessengerState.showSnackBar(SnackBar(
-                                      content: Text(categoryImported)));
+                                      content: Text(appLocalizations
+                                          .txtCategoryImported)));
                                 }
                                 break;
                               } catch (_) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text(
-                                            AppLocalizations.of(context)
-                                                .errorCouldNotImport)));
+                                scaffoldMessengerState.showSnackBar(SnackBar(
+                                    content: Text(
+                                        appLocalizations.errorCouldNotImport)));
                                 return;
                               }
                           }
@@ -202,54 +198,6 @@ class CategoryList extends StatelessWidget {
                                 },
                               ),
                           growable: false))),
-              if (F.appFlavor == Flavor.free)
-                SliverPadding(
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                    sliver: SliverToBoxAdapter(
-                      child: Column(
-                        children: [
-                          Divider(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onBackground
-                                .withAlpha(63),
-                          ),
-                          const SizedBox(height: 16),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ParleraCard(
-                              onTap: () {
-                                UrlLauncher.launchURL(context,
-                                    "https://play.google.com/store/apps/details?id=com.enjoyingfoss.parlera.full");
-                              },
-                              child: Padding(
-                                  padding: const EdgeInsets.all(16),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                          "${AppLocalizations.of(context).paidTitle} ",
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.copyWith(
-                                                  fontWeight: FontWeight.bold)),
-                                      Text(
-                                          //TODO more bundled categories in the paid version
-                                          AppLocalizations.of(context)
-                                              .paidDescription,
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium),
-                                    ],
-                                  )),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ))
             ],
           ));
         }
