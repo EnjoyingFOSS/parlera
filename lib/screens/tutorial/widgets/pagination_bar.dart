@@ -55,7 +55,6 @@ class PaginationBar extends StatelessWidget {
                     child: (currentPage == 0)
                         ? TextButton(
                             onPressed: onFinish,
-                            key: TestKeys.onboardingSkip,
                             child: Text(
                               AppLocalizations.of(context).btnSkip,
                               style: buttonTextStyle,
