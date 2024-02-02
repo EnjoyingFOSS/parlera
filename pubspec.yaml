@@ -3,7 +3,7 @@ description: A party game where your friends describe and you guess; or vice ver
 
 publish_to: "none"
 
-version: 3.0.5+12
+version: 4.0.0+13
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
@@ -62,7 +62,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.3
-  flutter_flavorizr: ^2.2.1
 
 flutter:
   uses-material-design: true
