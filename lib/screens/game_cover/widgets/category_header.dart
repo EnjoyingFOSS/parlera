@@ -154,15 +154,18 @@ class CategoryHeader extends StatelessWidget {
                           break;
                         case _menuExport:
                           try {
-                            await ImportExportHelper.exportJson(
+                            await ImportExportHelper.exportAndShareJson(
                                 category.toJson(),
                                 "${category.name}.parlera",
                                 "[Parlera export] ${category.name}");
                           } catch (e) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(AppLocalizations.of(context)
-                                  .errorCouldNotExport),
-                            ));
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(AppLocalizations.of(context)
+                                    .errorCouldNotExport),
+                              ));
+                            }
                           }
                           break;
                       }

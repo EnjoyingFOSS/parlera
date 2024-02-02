@@ -30,7 +30,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ImportExportHelper {
-  static Future<void> exportJson(
+  static Future<void> exportAndShareJson(
       Map jsonMap, String fileName, String shareSubject) async {
     final outputContent = json.encode(jsonMap);
     if (Platform.isMacOS || Platform.isLinux) {
