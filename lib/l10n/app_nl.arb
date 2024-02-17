@@ -167,5 +167,18 @@
   "btnBackToAllCategories": "Alle categorieën",
   "@btnBackToAllCategories": {},
   "txtTimesUp": "Tijd is om!",
-  "@txtTimesUp": {}
+  "@txtTimesUp": {},
+  "btnExportAllCustom": "Exporteer alle aangepaste categorieën",
+  "@btnExportAllCustom": {},
+  "txtLanguageChoice": "{languageCode} - {languageName}",
+  "@txtLanguageChoice": {
+    "placeholders": {
+      "languageCode": {},
+      "languageName": {}
+    }
+  },
+  "paidTitle": "Koop de betaalversie om het project te steunen!",
+  "@paidTitle": {},
+  "paidDescription": "Als bonus krijg je een mooier icoon.",
+  "@paidDescription": {}
 }
