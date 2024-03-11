@@ -167,5 +167,14 @@
   "languagesVaryNotice": "As categorias e seus cartões variam entre os idiomas.",
   "@languagesVaryNotice": {},
   "btnOK": "OK",
-  "@btnOK": {}
+  "@btnOK": {},
+  "btnExportAllCustom": "Exportar todas as categorias personalizadas",
+  "@btnExportAllCustom": {},
+  "txtLanguageChoice": "{languageCode} - {languageName}",
+  "@txtLanguageChoice": {
+    "placeholders": {
+      "languageCode": {},
+      "languageName": {}
+    }
+  }
 }
