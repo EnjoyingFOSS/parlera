@@ -3,7 +3,7 @@
   "@tutorialFirstSectionDescriptionDesktop": {},
   "tutorialThirdSectionDescriptionPhone": "Buldunuz mu? Bir sonraki sözcüğe geçmek için telefonu aşağı doğru eğin.",
   "@tutorialThirdSectionDescriptionPhone": {},
-  "gameTime": "Süre",
+  "gameTime": "Oyun süresi (sn.)",
   "@gameTime": {},
   "settingsStartTutorial": "Nasıl oynanır?",
   "@settingsStartTutorial": {},
@@ -61,7 +61,7 @@
   "@secondsTemplate": {},
   "preparationOrientationDescription": "Telefonunuzu alnınıza doğru tutun",
   "@preparationOrientationDescription": {},
-  "lastQuestion": "Son soru",
+  "lastQuestion": "Son kart",
   "@lastQuestion": {},
   "aboutParlera": "Parlera Hakkında",
   "@aboutParlera": {},
@@ -81,7 +81,7 @@
   "@languageGerman": {},
   "languageFrench": "Fransızca",
   "@languageFrench": {},
-  "languagesVaryNotice": "Kategoriler ve sözcükler diller arasında farklılık gösterir.",
+  "languagesVaryNotice": "Kategoriler ve kartları diller arasında farklılık gösterir.",
   "@languagesVaryNotice": {},
   "emptyCategories": "Kategoriler yüklenemedi :(",
   "@emptyCategories": {},
@@ -97,7 +97,7 @@
   "@languageTurkish": {},
   "btnGetCategoriesOnline": "İnternetten kategori bul",
   "@btnGetCategoriesOnline": {},
-  "emptyCategoryQuestions": "Bu kategoride tahmin edilecek sözcük yok :(",
+  "emptyCategoryQuestions": "Bu kategoride tahmin edilecek kart yok :(",
   "@emptyCategoryQuestions": {},
   "languageHungarian": "Macarca",
   "@languageHungarian": {},
@@ -169,5 +169,38 @@
   "txtWordsOnePerLine": "Sözcükler, her satırda bir tane",
   "@txtWordsOnePerLine": {},
   "donate": "Bağış yap",
-  "@donate": {}
+  "@donate": {},
+  "txtNoRecentEmoji": "Son kullanılan emoji yok",
+  "@txtNoRecentEmoji": {},
+  "btnPlayAgain": "Tekrar oyna",
+  "@btnPlayAgain": {},
+  "txtCustomGameTime": "Özel oyun süresi (sn.)",
+  "@txtCustomGameTime": {},
+  "txtCardsPerGame": "Oyun başına kart",
+  "@txtCardsPerGame": {},
+  "txtUnlimitedCards": "Sınırsız",
+  "@txtUnlimitedCards": {},
+  "txtCustomCardNumber": "Özel",
+  "@txtCustomCardNumber": {},
+  "btnBackToAllCategories": "Tüm kategoriler",
+  "@btnBackToAllCategories": {},
+  "txtTimesUp": "Zaman doldu!",
+  "@txtTimesUp": {},
+  "btnOK": "Tamam",
+  "@btnOK": {},
+  "txtYourScoreSimple": "Puanınız: {questionsPassed}",
+  "@txtYourScoreSimple": {
+    "placeholders": {
+      "questionsPassed": {}
+    }
+  },
+  "txtLanguageChoice": "{languageCode} - {languageName}",
+  "@txtLanguageChoice": {
+    "placeholders": {
+      "languageCode": {},
+      "languageName": {}
+    }
+  },
+  "btnExportAllCustom": "Tüm özel kategorileri dışa aktar",
+  "@btnExportAllCustom": {}
 }
