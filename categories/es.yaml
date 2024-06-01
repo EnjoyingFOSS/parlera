@@ -7,56 +7,167 @@ classic-literature_name: Literatura clásica
 animals_name: Animales
 historical-figures_name: Personajes históricos
 idioms_name: Idiomas
-abstract_questions: "Acción\nApariencia\nAspiración\nAteísmo\nAutonomía\nBelleza\n\
-  Creencia\nBudismo\nDesgaste\nInmadurez\nCristianismo\nInteligencia\nCliché\nComodidad\n\
-  Común\nConexión\nPeligro\nMuerte\nDestino\nDiferencia\nDificultad\nEsfuerzo\nElemento\n\
-  Encripción\nIgualdad\nEstimado\nEjemplo\nExpresión\nFalla\nJusticia\nFe\nDestino\n\
-  Función\nLibre discurso\nTiempo libre\nLibre albeldrío\nLibertad\nGeografía\nAdivinar\n\
-  Armonía\nOdio\nSalud\nEsperanza\nDerechos humanos\nHumildad\nHumor\nIdea\nImpacto\n\
-  Importancia\nInfinito\nInsulto\nIslam\nLenguaje\nLugar\nAmor\nMatemática\nMetáfora\n\
-  Malentendido\nMomento\nEstado de ánimo\nNecesidad\nObjetividad\nParte de discurso\n\
-  Pasión\nPaz\nPaz de mente\nFilosofía\nPopularidad\nLibertad de prensa\nPrivacidad\n\
-  Problema\nPsicología\nEnunciado\nReacción\nRealidad\nReferencia\nRelajación\nRespeto\n\
-  Respuesta\nSeguridad\nSatisfacción\nSeguridad\nSentido de humor\nForma\nSignificado\n\
-  Astucia\nConsuelo\nAlma\nEstrés\nDificultad\nSímbolo\nÉxito\nTendencia\nVerdad\n\
+abstract_questions: "Acción\nApariencia\nAspiración\nAteísmo\nAutonomía\nBelleza\n
+  Creencia\nBudismo\nDesgaste\nInmadurez\nCristianismo\nInteligencia\nCliché\nComodidad\n
+  Común\nConexión\nPeligro\nMuerte\nDestino\nDiferencia\nDificultad\nEsfuerzo\nElemento\n
+  Encripción\nIgualdad\nEstimado\nEjemplo\nExpresión\nFalla\nJusticia\nFe\nDestino\n
+  Función\nLibre discurso\nTiempo libre\nLibre albeldrío\nLibertad\nGeografía\nAdivinar\n
+  Armonía\nOdio\nSalud\nEsperanza\nDerechos humanos\nHumildad\nHumor\nIdea\nImpacto\n
+  Importancia\nInfinito\nInsulto\nIslam\nLenguaje\nLugar\nAmor\nMatemática\nMetáfora\n
+  Malentendido\nMomento\nEstado de ánimo\nNecesidad\nObjetividad\nParte de discurso\n
+  Pasión\nPaz\nPaz de mente\nFilosofía\nPopularidad\nLibertad de prensa\nPrivacidad\n
+  Problema\nPsicología\nEnunciado\nReacción\nRealidad\nReferencia\nRelajación\nRespeto\n
+  Respuesta\nSeguridad\nSatisfacción\nSeguridad\nSentido de humor\nForma\nSignificado\n
+  Astucia\nConsuelo\nAlma\nEstrés\nDificultad\nSímbolo\nÉxito\nTendencia\nVerdad\n
   Entendimiento\nVacaciones\nMentalidad victimista\nBienestar\nSabiduría"
-animals_questions: "Oso hormiguero\ncaimán\nhormiga\nantílope\nbabuino\nmurciélago\n\
-  oso\nabeja\nescarabajo\npájaro\nPantera negra\nviuda negra\nvenado\ninsecto\ntoro\n\
-  conejito\nmariposa\ncamello\ngato\noruga\nciempiés\ncamaleón\nleopardo\npollo\n\
-  chihuahua\nchimpancé\npez payaso\ncucaracha\nPuma\nvaca\ncoyote\ncangrejo\nGrillo\n\
-  cocodrilo\nPájaro cuco\nciervo\ndinosaurio\nPájaro Dodo\nperro\ndelfín\nBurro\n\
-  paloma\nlibélula\npato\nescarabajo pelotero\náguila\nAnguila\nelefante\nhurón\n\
-  luciérnaga\npez\nzorro\nrana\nmosca de la fruta\ngacela\ngeco\njirafa\ncabra\npez\
-  \ dorado\nganso\nTuza\noso grizzly\nconejillo de indias\nhámster\nliebre\nhipopótamo\n\
-  avispón\ncaballo\nhumano\njaguar\ncanguro\nmariquita\nleopardo\nleón\nlagarto\n\
-  llama\nlangosta\nmamífero\nTopo\nmono\nalce\nmosquito\npolilla\nratón\nnarval\n\
-  pulpo\norangután\navestruz\nbúho\nostra\npantera\nloro\npavo real\npelícano\npingüino\n\
-  cerdo\npaloma\noso polar\nponi\npuma\nConejo\nrata\ncuervo\nreno\ncorrecaminos\n\
-  roedor\ngallo\nsalmón\nsardina\nescorpión\npepino de mar\ncaballo de mar\ntortuga\
-  \ marina\nGaviota\nsello\ntiburón\noveja\nserpiente\nleopardo de nieve\naraña\n\
-  calamar\nardilla\nestrella de mar\npez espada\nTirano saurio Rex\ntarántula\nTigre\n\
-  sapo\ntortuga\ntucán\ntrucha\nTortuga\navispa\ncomadreja\nballena\nlobo\npájaro\
-  \ carpintero\ngusano\nyak\ncebra"
-food-and-drink_questions: "almendra\naperitivo\nmanzana\njugo de manzana\nalbaricoque\n\
-  palta\ntocino\nrosquilla\nplátano\nbarbacoa\npasta\nfrijol\ncarne de res\npimiento\n\
-  Mora\narándano\nnuez de Brasil\npan de molde\ndesayuno\nqueso Brie\nbrócoli\ncaldo\n\
-  bizcocho\nhamburguesa\nburrito\nmantequilla\npastel\nzanahoria\nanacardo\ncoliflor\n\
-  apio\nqueso\nhamburguesa con queso\ncereza\nchicle\npollo\ngarbanzo\nAjí picante\n\
-  chocolate\nchispas de chocolate\nCoco\nleche de coco\ncafé\nGalleta\nmaíz\nqueso\
-  \ cottage\narándano\ncrema\ncroissant\npepino\npastelito\ncurry\nlácteos\npostre\n\
-  cena\nrosquilla\nmasa\naliño\nbebida\nhuevo\nPonche de huevo\nberenjena\nsaúco\n\
-  bebida energética\nfalafel\npez\nFilete de pescado\npalito de pescado\nharina\n\
-  Papa frita\nyogurt congelado\nFruta\najo\npan de jengibre\nglasear\ngouda\ncereales\n\
-  uva\ntoronja\njudías verdes\njamón\nhamburguesa\navellana\nhierba\nmiel\nhelado\n\
-  sándwich de helado\njugo\ncol rizada\nkebab\nsalsa de tomate\nfrijol\nkimchi\nkiwi\n\
-  limón\nlimonada\nlenteja\nlechuga\nLima\nalmuerzo\nmango\nmiel de maple\ncomida\n\
-  carne\nLeche\nmalteada\nagua mineral\nmenta\nmollete\nhongo\nmostaza\nnuez\navena\n\
-  harina de avena\naceite\naceituna\ncebolla\naro de cebolla\nnaranja\nzumo de naranja\n\
-  ostra\ntortita\npasta\ndurazno\nmaní\npera\npimienta\npepperoni\npepinillo\ntarta\n\
-  piñón\npiña\npistacho\npizza\nciruela\ngranada\nPalomitas\nCerdo\npapilla\npapa\n\
-  papas fritas\ncuña de patata\ngalleta salada\ncalabaza\nQuesadilla\npasa\nframbuesa\n\
-  lenteja roja\narroz\nrodar\nensalada\nsalami\nsalmón\nsal\nemparedado\nsardina\n\
-  salsa\nChucrut\nembutido\nmariscos\nsorbete\nguarnición\nbatido\nsoda\nsorbete\n\
-  sopa\nsalsa de soja\nespaguetis\nespecia\nespolvorear\ncalabaza\ninicio\nfilete\n\
-  fresa\nsub\nSushi\njarabe\ntacos\nté\ntostada\ntofu\ntomate\ntortilla\natún\nverdura\n\
+animals_questions: "Oso hormiguero\ncaimán\nhormiga\nantílope\nbabuino\nmurciélago\n
+  oso\nabeja\nescarabajo\npájaro\nPantera negra\nviuda negra\nvenado\ninsecto\ntoro\n
+  conejito\nmariposa\ncamello\ngato\noruga\nciempiés\ncamaleón\nleopardo\npollo\n
+  chihuahua\nchimpancé\npez payaso\ncucaracha\nPuma\nvaca\ncoyote\ncangrejo\nGrillo\n
+  cocodrilo\nPájaro cuco\nciervo\ndinosaurio\nPájaro Dodo\nperro\ndelfín\nBurro\n
+  paloma\nlibélula\npato\nescarabajo pelotero\náguila\nAnguila\nelefante\nhurón\n
+  luciérnaga\npez\nzorro\nrana\nmosca de la fruta\ngacela\ngeco\njirafa\ncabra\npez
+  dorado\nganso\nTuza\noso grizzly\nconejillo de indias\nhámster\nliebre\nhipopótamo\n
+  avispón\ncaballo\nhumano\njaguar\ncanguro\nmariquita\nleopardo\nleón\nlagarto\n
+  llama\nlangosta\nmamífero\nTopo\nmono\nalce\nmosquito\npolilla\nratón\nnarval\n
+  pulpo\norangután\navestruz\nbúho\nostra\npantera\nloro\npavo real\npelícano\npingüino\n
+  cerdo\npaloma\noso polar\nponi\npuma\nConejo\nrata\ncuervo\nreno\ncorrecaminos\n
+  roedor\ngallo\nsalmón\nsardina\nescorpión\npepino de mar\ncaballo de mar\ntortuga
+  marina\nGaviota\nsello\ntiburón\noveja\nserpiente\nleopardo de nieve\naraña\ncalamar\n
+  ardilla\nestrella de mar\npez espada\nTirano saurio Rex\ntarántula\nTigre\nsapo\n
+  tortuga\ntucán\ntrucha\nTortuga\navispa\ncomadreja\nballena\nlobo\npájaro carpintero\n\
+  gusano\nyak\ncebra"
+food-and-drink_questions: "almendra\naperitivo\nmanzana\njugo de manzana\nalbaricoque\n
+  palta\ntocino\nrosquilla\nplátano\nbarbacoa\npasta\nfrijol\ncarne de res\npimiento\n
+  Mora\narándano\nnuez de Brasil\npan de molde\ndesayuno\nqueso Brie\nbrócoli\ncaldo\n
+  bizcocho\nhamburguesa\nburrito\nmantequilla\npastel\nzanahoria\nanacardo\ncoliflor\n
+  apio\nqueso\nhamburguesa con queso\ncereza\nchicle\npollo\ngarbanzo\nAjí picante\n
+  chocolate\nchispas de chocolate\nCoco\nleche de coco\ncafé\nGalleta\nmaíz\nqueso
+  cottage\narándano\ncrema\ncroissant\npepino\npastelito\ncurry\nlácteos\npostre\n
+  cena\nrosquilla\nmasa\naliño\nbebida\nhuevo\nPonche de huevo\nberenjena\nsaúco\n
+  bebida energética\nfalafel\npez\nFilete de pescado\npalito de pescado\nharina\n
+  Papa frita\nyogurt congelado\nFruta\najo\npan de jengibre\nglasear\ngouda\ncereales\n
+  uva\ntoronja\njudías verdes\njamón\nhamburguesa\navellana\nhierba\nmiel\nhelado\n
+  sándwich de helado\njugo\ncol rizada\nkebab\nsalsa de tomate\nfrijol\nkimchi\nkiwi\n
+  limón\nlimonada\nlenteja\nlechuga\nLima\nalmuerzo\nmango\nmiel de maple\ncomida\n
+  carne\nLeche\nmalteada\nagua mineral\nmenta\nmollete\nhongo\nmostaza\nnuez\navena\n
+  harina de avena\naceite\naceituna\ncebolla\naro de cebolla\nnaranja\nzumo de naranja\n
+  ostra\ntortita\npasta\ndurazno\nmaní\npera\npimienta\npepperoni\npepinillo\ntarta\n
+  piñón\npiña\npistacho\npizza\nciruela\ngranada\nPalomitas\nCerdo\npapilla\npapa\n
+  papas fritas\ncuña de patata\ngalleta salada\ncalabaza\nQuesadilla\npasa\nframbuesa\n
+  lenteja roja\narroz\nrodar\nensalada\nsalami\nsalmón\nsal\nemparedado\nsardina\n
+  salsa\nChucrut\nembutido\nmariscos\nsorbete\nguarnición\nbatido\nsoda\nsorbete\n
+  sopa\nsalsa de soja\nespaguetis\nespecia\nespolvorear\ncalabaza\ninicio\nfilete\n
+  fresa\nsub\nSushi\njarabe\ntacos\nté\ntostada\ntofu\ntomate\ntortilla\natún\nverdura\n
   gofre\nnuez\nagua\nsandía\nsuero\ncrema batida\nyogur\nzuccini"
+historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert
+  Einstein\nAlejandro Magno\nAmadeus Mozart\nAndy Warhol\nAna Frank\nAristóteles\n
+  Benedicto Arnold\nBenito Mussolini\nBilly el Niño\nBob Ross\nHermanos Grimm\nBuda\n
+  Carlomagno\nCharles Darwin\nCharles Dickens\nCharlie Chaplin\nCristóbal Colón\n
+  Claude Monet\nCleopatra\nDante Alighieri\nDr. Seuss\nEdgar Allan Poe\nElvis Presley\n
+  Ernest Hemingway\nFrank Sinatra\nFranklin D. Roosevelt\nGalileo Galilei\nGengis
+  Kan\nGeorge Washington\nH. G. Wells\nHarriet Tubman\nHelen Keller\nHenry Ford\n
+  Immanuel Kant\nIsaac Newton\nJames Cook\nJesús\nJuana de Arco\nJohann Sebastian
+  Bach\nJohn Adams\nJohn F. Kennedy\nJohn Lennon\nJulio Verne\nJulio César\nRey Arturo\n
+  Rey Tut\nLeonardo DaVinci\nLewis Carroll\nLouis Armstrong\nLudwig van Beethoven\n
+  Mahatma Gandhi\nMalcolm X\nMaría Antonieta\nMarie Curie\nMark Twain\nMartin Luther
+  King Jr.\nMary Shelley\nMaría, Reina de Escocia\nMichael Jackson\nMiguel Ángel\n
+  Muhammad\nMuhammad Ali\nNapoleón Bonaparte\nNeil Armstrong\nNelson Mandela\nNicolás
+  Copérnico\nNikola Tesla\nOscar Wilde\nOtto von Bismarck\nPlatón\nPocahontas\nPitágoras\n
+  René Descartes\nRichard Nixon\nRosa Parks\nSalvador Dalí\nSigmund Freud\nToro Sentado\n
+  Sócrates\nStephen Hawking\nSusan B. Anthony\nTy Cobb\nVincent Van Gogh\nVladimir
+  Lenin\nVoltaire\nWilliam Shakespeare\nHermanos Wright"
+folk-melodies_questions: "Take Me Out to the Ball Game\nHappy Birthday to You\nFor
+  He's a Jolly Good Fellow\nRing Around the Rosie\nDrunken Sailor\n99 Bottles of Beer\n
+  Cotton-Eyed Joe\nTwinkle, Twinkle, Little Star (Brilla, brilla, estrellita)\nBaa,
+  Baa, Oveja Negra\nMaría tenía un corderito\nItsy Bitsy Spider\nDeck the Halls\n
+  Campanillas\nNoche de paz\nLos doce días de Navidad\nFeliz Navidad\nOda a la alegría\n
+  Für Elise\nAquí viene la novia\nMi Bonnie yace sobre el océano\nEsta tierra es tu
+  tierra\nYankee Doodle\nRhapsody In Blue\nSwing Low, Sweet Chariot\nO Christmas Tree\n
+  We Wish You a Merry Christmas\nO Come All Ye Faithful\nJoy to the World (Alegría
+  para el mundo)\nGo Down Moses (Deja ir a mi pueblo)\nAve María\nAmazing Grace\n
+  Bingo (Was His Name-O)\nHush, Little Baby (Calla, pequeño bebé)\nEl viejo MacDonald
+  tenía una granja\nFrère Jacques\nLondon Bridge Is Falling Down (El puente de Londres
+  se cae)\nCamptown Races"
+classic-characters_questions: "Aladino\nAlicia (de Alicia en el País de las Maravillas)\n
+  Bambi\nLobo Feroz\nCapitán Garfio\nChristopher Robin\nCenicienta\nLeón cobarde\n\
+  D'Artagnan\nDorothy\nDrácula\nDr. Watson\nEbenezer Scrooge\nEeyore\nFrankenstein\n
+  Gretel\nHansel\nHuckleberry Finn\nHumpty Dumpty\nJack y Jill\nPequeña Bo-Peep\n
+  Caperucita Roja\nMowgli\nPeter Pan\nPeter Piper\nPiglet\nPinocho\nPríncipe Azul\n
+  Rapunzel\nReina Roja\nRobinson Crusoe\nRumpelstiltskin\nEspantapájaros\nSherlock
+  Holmes\nSindbad el Marino\nLa Bella Durmiente\nBlancanieves\nTarzán\nEl gato de
+  Cheshire\nEl Príncipe Rana\nEl fantasma de las Navidades pasadas\nEl hombre de pan
+  de jengibre\nEl jorobado de Notre-Dame\nLa araña pequeñita\nLa Sirenita\nEl Sombrerero
+  Loco\nEl hombre magdalena\nLa Reina de Corazones\nLos siete enanitos\nLa Reina de
+  las Nieves\nLos tres ratones ciegos\nLos tres cerditos\nLos tres mosqueteros\nEl
+  patito feo\nTigre\nEl leñador de hojalata\nCampanilla\nTom Sawyer\nTweedledum y
+  Tweedledee\nWinnie-the-Pooh\nMago de Oz\nZorro"
+mythical-creatures_questions: "abominable muñeco de nieve\nángel\nBigfoot\nBloody
+  Mary\ncentauro\ncupido\ndiablo\nduende\nhada\nhada madrina\npadre tiempo\ngenio\n
+  fantasma\ngigante\ngnomo\nduende\nParca\nhidra\nKraken\nduende\nmonstruo del lago
+  Ness\nsirena\nsireno\nogro\npegaso\nfénix\nduendecillo\nhombre de arena\nsasquatch\n
+  monstruo marino\nsirena\nhechicero\nesfinge\nespíritu\nhada de los dientes\ntrol\n
+  unicornio\nvalquiria\nvampiro\nbrujo\nhombre lobo\nbruja\nmago\nyeti\nzombi"
+folk-melodies_name: Melodías tradicionales
+jobs_questions: "contable\nactor\npresentador\narquitecto\nayudante\nastronauta\n
+  autor\nniñera\npanadero\nbailarina de ballet\nbarbero\njugador de béisbol\njugador
+  de baloncesto\nconductor de autobús\nmayordomo\ncajero\ndirector general\nchef\n
+  payaso\ncómico\ncompositor\nconsultor\ncocinero\nconsejero\nbailarín\nrepartidor\n
+  dentista\ndiseñador\ndetective\ndesarrollador\ndietista\ndirector\nmédico\nconductor\n
+  electricista\ningeniero\nempresario\noculista\nagricultor\ndiseñador de moda\nazafata\n
+  florista\nbombero\njugador de fútbol\nbasurero\njardinero\nmédico\ngolfista\ndiseñador
+  gráfico\nguardia\npeluquero\nconserje\nperiodista\nabogado\nbibliotecario\ncriada\n
+  mago\ncartero\nmaquilladora\ngerente\nmatemático\nmecánico\nministro\nmodelo\nmúsico\n
+  niñera\nneurólogo\nenfermera\npintor\nfarmacéutico\nfísico\ndramaturgo\nfontanero\n
+  poeta\npolicía\npolítico\nsacerdote\nfuncionario de prisiones\nprofesor\nprogramador\n
+  psicólogo\nagente inmobiliario\nrecepcionista\nreparador\ninvestigador\nvendedor\n
+  científico\nguionista\nfutbolista\nartista callejero\ndoble\ncirujano\nsastre\n
+  tatuador\nprofesor\nguía turístico\nformador\ntraductor\nveterinario\nactor de doblaje\n\
+  camarero"
+classic-literature_questions: "Cuento de Navidad\nUna princesa de Marte\nHistoria
+  de dos ciudades\nLas aventuras de Huckleberry Finn\nFábulas de Esopo\nLas aventuras
+  de Alicia en el país de las maravillas\nAnna Karenina\nLa vuelta al mundo en ochenta
+  días\nBeowulf\nCenicienta\nCrimen y castigo\nDavid Copperfield\nDon Quijote\nDrácula\n
+  Emma\nFrankenstein\nGrandes esperanzas\nLos viajes de Gulliver\nHamlet\nHansel y
+  Gretel\nIvanhoe\nJack y las habichuelas\nViaje al centro de la Tierra\nLos Miserables\n
+  Caperucita Roja\nMujercitas\nMacbeth\nMoby Dick\nOliver Twist\nOtelo\nPeter Pan\n
+  Orgullo y prejuicio\nRapunzel\nRobinson Crusoe\nRomeo y Julieta\nRumpelstiltskin\n
+  Sentido y sensibilidad\nLa Bella Durmiente\nBlancanieves\nLas aventuras de Sherlock
+  Holmes\nLas aventuras de Tom Sawyer\nEl gato negro\nLos hermanos Karamazov\nLos
+  cuentos de Canterbury\nEl barril de Amontillado\nEl Conde de Montecristo\nEl traje
+  nuevo del emperador\nLa caída de la casa Usher\nEl príncipe sapo\nEl Gran Gatsby\n
+  El jorobado de Notre-Dame\nEl idiota\nLa Ilíada\nEl hombre invisible\nEl libro de
+  la selva\nLa Sirenita\nEl mundo perdido\nLa Metamorfosis\nEl ruiseñor\nLa Odisea\n
+  El retrato de Dorian Gray\nLa princesa y el guisante\nEl cuervo\nLa letra escarlata\n
+  El extraño caso del Dr. Jekyll y el Sr. Hyde\nEl corazón delator\nLos tres mosqueteros\n
+  La máquina del tiempo\nLa guerra de los mundos\nEl maravilloso Mago de Oz\nA través
+  del espejo\nDoce años de esclavitud\nVeinte mil leguas de viaje submarino\nGuerra
+  y paz\nWinnie-the-Pooh\nCumbres borrascosas"
+idioms_questions: "un puente demasiado lejos\nun centavo por docena\nañadir insulto
+  a la lesión\npor todo el lugar\nsea como sea\nbatir alrededor del arbusto\nmuerde
+  la bala\nmorder más de lo que puedes masticar\nbendición disfrazada\nsoplar el vapor\n
+  romper una pierna\nllámalo un día\nlata de gusanos\nNo podría importarme menos\n
+  cortar esquinas\ncortado a la persecución\nmarcar hacia abajo\ntrazar una línea\n
+  dejar caer una pista\nmás fácil decirlo que hacerlo\ncomer como un caballo\njusto
+  y cuadrado\ncaer en su lugar\ncaer por las vías\ndar algo una oportunidad\ndarle
+  a algo un giro\nir pavo frío\nir por encima de su cabeza\nir por la borda\nir la
+  milla extra\nir por el camino del dodo\ntener pescado más grande para freír\ngolpear
+  el clavo en la cabeza\ngolpear el saco\nsi lo peor viene a lo peor\nla ignorancia
+  es felicidad\nen el nick del tiempo\ngato de todos los oficios\nsaltar en la oportunidad\n
+  Salta de alegría\ntribunal de canguros\nmantener un ojo hacia fuera\nmantener a
+  alguien compañía\nmantener pestañas en\nmantener la calma\nniño alrededor\nQuítalo
+  de encima\nrisa stock\ndejar de fumar\nsentar las bases\ndejar a alguien en el polvo\n
+  luz al final del túnel\ncomo dos guisantes en una vaina\namor a primera vista\n
+  pellizcar algo en el brote\nningún daño, ninguna falta\nsin dolor, sin ganancia\n
+  de ninguna manera\nno tan rápido\nde la parte superior de mi cabeza\nfuera de su
+  rocker\nsobre hielo delgado\nuna vez en una luna azul\nrecoger las piezas\ntrozo
+  de pastel\ntono-perfecto\npixel perfecto\njugar por el oído\njugar con las palabras\n
+  tocar a alguien como un violín\ndedos puntiagudos\nniño cartel\nolla llamando a
+  la tetera negro\nverter agua fría en\nderrama tu corazón\ntire de ti mismo juntos\n
+  poner lápiz labial en un cerdo\nleer entre líneas\nrip off\nRueda el día\nderrama
+  los frijoles\ntener una oportunidad\nponerse detrás\nrobar el trueno de alguien\n
+  robar el espectáculo\nestirar la verdad\nun golpe de suerte\nlo mejor de ambos mundos\n
+  el elefante en la habitación\nla última paja\nla totalidad de las nueve yardas\n
+  para hacer una larga historia corta\nparte superior de la línea\nhacer la vista
+  gorda\ncuando el empuje viene a empujar\ncaza de ganso salvaje\npalabra de boca
+  en boca\nvale la sal de uno\nPuedes decirlo de nuevo"

@@ -3,7 +3,7 @@
   "@btnCreateCategory": {},
   "btnImportCategory": "Categorie importeren",
   "@btnImportCategory": {},
-  "emptyCategoryQuestions": "Deze categorie bevat geen te raden woorden :(",
+  "emptyCategoryQuestions": "Deze categorie bevat geen kaarten om te raden :(",
   "@emptyCategoryQuestions": {},
   "txtCategoryImported": "Categorie geïmporteerd",
   "@txtCategoryImported": {},
@@ -13,7 +13,7 @@
   "@txtSwitchLanguageInSettings": {},
   "languageSystem": "Standaard (herstart nodig)",
   "@languageSystem": {},
-  "languagesVaryNotice": "Categorieën en woorden verschillen per taal.",
+  "languagesVaryNotice": "Categorieën en kaarten verschillen per taal.",
   "@languagesVaryNotice": {},
   "btnDone": "Klaar",
   "@btnDone": {},
@@ -35,7 +35,7 @@
   "@tutorialFirstSectionHeader": {},
   "gameCancelConfirmation": "Huidige spel verlaten?",
   "@gameCancelConfirmation": {},
-  "gameCancelDeny": "Doorgaan",
+  "gameCancelDeny": "Blijven",
   "@gameCancelDeny": {},
   "labelGo": "Aan de slag!",
   "@labelGo": {},
@@ -167,5 +167,18 @@
   "btnBackToAllCategories": "Alle categorieën",
   "@btnBackToAllCategories": {},
   "txtTimesUp": "Tijd is om!",
-  "@txtTimesUp": {}
+  "@txtTimesUp": {},
+  "btnExportAllCustom": "Exporteer alle aangepaste categorieën",
+  "@btnExportAllCustom": {},
+  "txtLanguageChoice": "{languageCode} - {languageName}",
+  "@txtLanguageChoice": {
+    "placeholders": {
+      "languageCode": {},
+      "languageName": {}
+    }
+  },
+  "paidTitle": "Koop de betaalversie om het project te steunen!",
+  "@paidTitle": {},
+  "paidDescription": "Als bonus krijg je een mooier icoon.",
+  "@paidDescription": {}
 }
