@@ -30,7 +30,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:parlera/helpers/url_launcher.dart';
+import 'package:parlera/helpers/url_util.dart';
 import 'package:parlera/models/language.dart';
 import 'package:parlera/store/language.dart';
 import 'package:parlera/widgets/max_width_container.dart';

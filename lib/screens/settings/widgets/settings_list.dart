@@ -40,14 +40,14 @@ import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:parlera/helpers/url_launcher.dart';
+import 'package:parlera/helpers/url_util.dart';
 import 'package:parlera/screens/languages/languages.dart';
 import 'package:parlera/screens/settings/widgets/cards_per_game_dialog.dart';
 import 'package:parlera/store/settings.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class SettingsList extends StatelessWidget {
-  const SettingsList({Key? key}) : super(key: key);
+  const SettingsList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -104,13 +104,13 @@ class SettingsList extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.volunteer_activism_rounded),
                     title: Text(AppLocalizations.of(context).contribute),
-                    onTap: () => UrlLauncher.launchURL(context,
+                    onTap: () async => URLUtil.launchURL(context,
                         "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
                   ),
                   ListTile(
                     leading: const Icon(Icons.attach_money_rounded),
                     title: Text(AppLocalizations.of(context).donate),
-                    onTap: () => UrlLauncher.launchURL(
+                    onTap: () async => URLUtil.launchURL(
                         context, "https://en.liberapay.com/Parlera/"),
                   ),
                   ListTile(
