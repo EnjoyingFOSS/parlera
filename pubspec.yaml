@@ -3,22 +3,30 @@ description: A party game where your friends describe and you guess; or vice ver
 
 publish_to: "none"
 
-version: 4.0.1+14
+version: 4.0.1+15
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
+  sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.0
+  intl: ^0.19.0
 
+  drift: ^2.18.0
+  sqlite3_flutter_libs: ^0.5.0
+  sqlite3: any
+  path_provider: ^2.1.1
+  path: ^1.8.2
+
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
   shared_preferences: ^2.1.2
   url_launcher: ^6.2.1
-  emoji_picker_flutter: ^1.6.3
-  share_plus: ^7.0.2
+  emoji_picker_flutter: ^2.2.0
+  share_plus: ^9.0.0
 
   flutter_bounceable: ^1.1.0
   molten_navigationbar_flutter: ^1.0.1
@@ -26,31 +34,29 @@ dependencies:
   confetti: ^0.7.0
   flutter_staggered_animations: ^1.1.1
   
-  package_info_plus: ^4.0.2
+  package_info_plus: ^8.0.0
   scoped_model: ^2.0.0-nullsafety.0
-  sensors_plus: ^3.0.2
-  audioplayers: ^5.2.1 #TODO test on ARM Linux
-  vibration: ^1.8.3
+  sensors_plus: ^5.0.1
+  audioplayers: ^6.0.0 #TODO test on ARM Linux
+  vibration: ^1.9.0
   wakelock: ^0.6.1
   flutter_device_type: ^0.4.0
-  path_provider: ^2.1.1
   cross_file: ^0.3.3
   animated_toggle_switch: ^0.7.0
   smooth_page_indicator: ^1.0.1
   palette_generator: ^0.3.3
   sembast: ^3.4.9
   flutter_svg: ^2.0.9
-  file_picker: ^6.1.1
-  path: ^1.8.2
+  file_picker: ^8.0.3
   xdg_directories: ^1.0.0
   flutter_localized_locales: ^2.0.5
-  archive: ^3.3.7
-  l10n_esperanto: ^2.0.8
+  l10n_esperanto: ^2.0.11
   flutter_svg_provider: ^1.0.7
+  freezed_annotation: ^2.4.1
 
 dependency_overrides:
-  intl: 0.18.0
   win32: ^5.0.2
+  meta: ^1.14.0
   # TODO CAMERA: Make it work and work well
   # camera: ^0.9.4
   # permission_handler: ^8.3.0
@@ -61,7 +67,14 @@ dev_dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.3
+  flutter_lints: ^4.0.0
+
+  drift_dev: ^2.18.0
+  build_runner: ^2.4.10
+  freezed: ^2.5.2
+  custom_lint:
+  riverpod_generator: ^2.4.2
+  riverpod_lint: ^2.3.12
 
 flutter:
   uses-material-design: true
