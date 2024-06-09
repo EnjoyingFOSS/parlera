@@ -1,14 +1,24 @@
+// Copyright Miroslav Mazel
+//
 // This file is part of Parlera.
 //
 // Parlera is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version. As an additional permission under
-// section 7, you are allowed to distribute the software through an app
-// store, even if that store has restrictive terms and conditions that
-// are incompatible with the AGPL, provided that the source is also
-// available under the AGPL with or without this permission through a
+// (at your option) any later version.
+//
+// As an additional permission under section 7, you are allowed to distribute
+// the software through an app store, even if that store has restrictive terms
+// and conditions that are incompatible with the AGPL, provided that the source
+// is also available under the AGPL with or without this permission through a
 // channel without those restrictive terms and conditions.
+//
+// As a limitation under section 7, all unofficial builds and forks of the app
+// must be clearly labeled as unofficial in the app's name (e.g. "Parlera
+// UNOFFICIAL", never just "Parlera") or use a different name altogether.
+// If any code changes are made, the fork should use a completely different name
+// and app icon. All unofficial builds and forks MUST use a different
+// application ID, in order to not conflict with a potential official release.
 //
 // Parlera is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,12 +35,11 @@ class ThemeHelper {
       primary: Color(0xFFE33E46),
       secondary: Color(0xFFF7D0A1),
       surface: Color(0xFF503B2B), // alternatively 4B392A
-      background: Color(0xFF33291E),
+      surfaceContainerLow: Color(0xFF33291E),
       error: Color(0xFFE33E46),
       onPrimary: Colors.white,
       onSecondary: Colors.black87,
       onSurface: Colors.white,
-      onBackground: Colors.white,
       onError: Colors.white,
       brightness: Brightness.dark);
   static const _fontFamily = 'MontserratAlternates';
@@ -52,7 +61,7 @@ class ThemeHelper {
       visualDensity: VisualDensity.comfortable,
       brightness: colorScheme.brightness,
       primaryColor: colorScheme.primary,
-      scaffoldBackgroundColor: colorScheme.background,
+      scaffoldBackgroundColor: colorScheme.surfaceContainerLow,
       cardColor: colorScheme.surface,
       dialogBackgroundColor: colorScheme.surface,
       pageTransitionsTheme: const PageTransitionsTheme(
@@ -93,7 +102,7 @@ class ThemeHelper {
           TextTheme(headlineMedium: TextStyle(color: colorScheme.onSurface)),
       canvasColor: colorScheme.surface,
       appBarTheme: AppBarTheme(
-          color: colorScheme.background,
+          color: colorScheme.surfaceContainerLow,
           iconTheme: IconThemeData(color: colorScheme.onSurface),
           surfaceTintColor: Colors.transparent,
           titleTextStyle: TextStyle(
@@ -104,28 +113,28 @@ class ThemeHelper {
           centerTitle: false,
           elevation: 0),
       switchTheme: SwitchThemeData(
-          thumbColor: MaterialStateProperty.resolveWith<Color?>((states) =>
-              (!states.contains(MaterialState.disabled) &&
-                      states.contains(MaterialState.selected))
+          thumbColor: WidgetStateProperty.resolveWith<Color?>((states) =>
+              (!states.contains(WidgetState.disabled) &&
+                      states.contains(WidgetState.selected))
                   ? colorScheme.primary
                   : null),
-          trackColor: MaterialStateProperty.resolveWith<Color?>(
+          trackColor: WidgetStateProperty.resolveWith<Color?>(
               (states) => //TODO check
-                  (!states.contains(MaterialState.disabled) &&
-                          states.contains(MaterialState.selected))
+                  (!states.contains(WidgetState.disabled) &&
+                          states.contains(WidgetState.selected))
                       ? colorScheme.primary.withAlpha(80)
                       : null)),
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
-            (!states.contains(MaterialState.disabled) &&
-                    states.contains(MaterialState.selected))
+        fillColor: WidgetStateProperty.resolveWith<Color?>((states) =>
+            (!states.contains(WidgetState.disabled) &&
+                    states.contains(WidgetState.selected))
                 ? colorScheme.primary
                 : null),
       ),
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
-            (!states.contains(MaterialState.disabled) &&
-                    states.contains(MaterialState.selected))
+        fillColor: WidgetStateProperty.resolveWith<Color?>((states) =>
+            (!states.contains(WidgetState.disabled) &&
+                    states.contains(WidgetState.selected))
                 ? colorScheme.primary
                 : null),
       ),

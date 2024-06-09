@@ -1,14 +1,24 @@
+// Copyright Miroslav Mazel
+//
 // This file is part of Parlera.
 //
 // Parlera is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version. As an additional permission under
-// section 7, you are allowed to distribute the software through an app
-// store, even if that store has restrictive terms and conditions that
-// are incompatible with the AGPL, provided that the source is also
-// available under the AGPL with or without this permission through a
+// (at your option) any later version.
+//
+// As an additional permission under section 7, you are allowed to distribute
+// the software through an app store, even if that store has restrictive terms
+// and conditions that are incompatible with the AGPL, provided that the source
+// is also available under the AGPL with or without this permission through a
 // channel without those restrictive terms and conditions.
+//
+// As a limitation under section 7, all unofficial builds and forks of the app
+// must be clearly labeled as unofficial in the app's name (e.g. "Parlera
+// UNOFFICIAL", never just "Parlera") or use a different name altogether.
+// If any code changes are made, the fork should use a completely different name
+// and app icon. All unofficial builds and forks MUST use a different
+// application ID, in order to not conflict with a potential official release.
 //
 // Parlera is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -37,7 +47,7 @@ import 'package:scoped_model/scoped_model.dart';
 class CategoryCreatorScreen extends StatefulWidget {
   final EditableCategory? ec;
 
-  const CategoryCreatorScreen({this.ec, Key? key}) : super(key: key);
+  const CategoryCreatorScreen({this.ec, super.key});
 
   @override
   State<CategoryCreatorScreen> createState() => _CategoryCreatorScreenState();
@@ -64,9 +74,9 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final safeAreaTop = MediaQuery.of(context).padding.top;
+    final safeAreaTop = MediaQuery.paddingOf(context).top;
     final topAreaHeight =
-        MediaQuery.of(context).size.height < 400 ? 8.0 : _standardTopAreaHeight;
+        MediaQuery.sizeOf(context).height < 400 ? 8.0 : _standardTopAreaHeight;
 
     return ScopedModelDescendant<LanguageModel>(builder: (context, _, model) {
       final modelLanguage = model.lang;
@@ -78,7 +88,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
             return false;
           },
           child: Scaffold(
-            backgroundColor: colors.background,
+            backgroundColor: colors.surfaceContainerLow,
             bottomNavigationBar: CreatorBottomBar(
               onDone: () async {
                 final form = _formKey.currentState;
@@ -92,7 +102,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                       content: Text(_editableCategory.sembastPos == null
                           ? localizations.txtCategoryAdded
                           : localizations.txtCategoryEdited)));
-                  if (mounted) {
+                  if (context.mounted) {
                     Navigator.of(context).popUntil(ModalRoute.withName('/'));
                   }
                 }
@@ -172,7 +182,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                                                     .backgroundColorDark(
                                                         paletteGenerator);
                                             });
-                                            if (mounted) {
+                                            if (context.mounted) {
                                               Navigator.of(context)
                                                   .pop(); //TODO add a warning about emojis not looking the same on iOS
                                             }
@@ -211,7 +221,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                                 horizontal: 16, vertical: 6),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                  fillColor: colors.surfaceVariant,
+                                  fillColor: colors.surfaceContainerHighest,
                                   label: Text(AppLocalizations.of(context)
                                       .txtCategoryTitle)),
                               initialValue: _editableCategory.name,
@@ -228,7 +238,7 @@ class _CategoryCreatorScreenState extends State<CategoryCreatorScreen> {
                               maxLines: null,
                               initialValue: _editableCategory.cards?.join("\n"),
                               decoration: InputDecoration(
-                                  fillColor: colors.surfaceVariant,
+                                  fillColor: colors.surfaceContainerHighest,
                                   label: Text(AppLocalizations.of(context)
                                       .txtWordsOnePerLine),
                                   alignLabelWithHint: true),

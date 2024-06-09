@@ -12,18 +12,19 @@ class CreatorBottomBar extends StatelessWidget {
       {required this.onDone,
       required this.lang,
       required this.height,
-      Key? key})
-      : super(key: key);
+      super.key});
 
   @override
   Widget build(BuildContext context) {
-    final onSecondary = Theme.of(context).colorScheme.onSecondary;
+    final theme = Theme.of(context);
+    
+    final onSecondary = theme.colorScheme.onSecondary;
     return Transform.translate(
-        offset: Offset(0, -1 * MediaQuery.of(context).viewInsets.bottom),
+        offset: Offset(0, -1 * MediaQuery.viewInsetsOf(context).bottom),
         child: BottomAppBar(
             child: Container(
                 height: height,
-                color: Theme.of(context).colorScheme.secondary,
+                color: theme.colorScheme.secondary,
                 child: MaxWidthContainer(
                     alignment: Alignment.center,
                     child: Row(children: [
