@@ -87,7 +87,7 @@ class CategoryList extends StatelessWidget {
                   icon: Icon(
                     Icons.favorite_border_rounded,
                     size: 96,
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ));
             case CategoryFilter.all:
               return EmptyScreen(
@@ -95,7 +95,7 @@ class CategoryList extends StatelessWidget {
                   icon: Icon(
                     Icons.apps_rounded,
                     size: 96,
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ));
           }
         } else {

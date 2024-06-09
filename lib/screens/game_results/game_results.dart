@@ -104,7 +104,7 @@ class GameResultsScreen extends StatelessWidget {
                             horizontal: 8),
                         sliver: SliverToBoxAdapter(
                             child: Container(
-                          color: scheme.onBackground.withAlpha(47),
+                          color: scheme.onSurface.withAlpha(47),
                           height: 1,
                           width: double.infinity,
                         ))),
@@ -196,7 +196,7 @@ class _ResultsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-        icon: Icon(iconData, color: scheme.onBackground),
+        icon: Icon(iconData, color: scheme.onSurface),
         onPressed: onTap,
         style: TextButton.styleFrom(foregroundColor: scheme.primary),
         label: Text(
@@ -205,7 +205,7 @@ class _ResultsButton extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .labelLarge
-              ?.copyWith(color: scheme.onBackground),
+              ?.copyWith(color: scheme.onSurface),
         ));
   }
 }

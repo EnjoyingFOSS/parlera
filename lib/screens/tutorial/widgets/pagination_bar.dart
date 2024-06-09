@@ -42,7 +42,7 @@ class PaginationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final buttonTextStyle =
-        TextStyle(color: Theme.of(context).colorScheme.onBackground);
+        TextStyle(color: Theme.of(context).colorScheme.onSurface);
     return SizedBox(
         height: Theme.of(context).appBarTheme.toolbarHeight,
         child: Padding(

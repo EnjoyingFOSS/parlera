@@ -90,17 +90,17 @@ class ThemeHelper {
           ),
           height: 48),
       textTheme:
-          TextTheme(headlineMedium: TextStyle(color: colorScheme.onBackground)),
+          TextTheme(headlineMedium: TextStyle(color: colorScheme.onSurface)),
       canvasColor: colorScheme.surface,
       appBarTheme: AppBarTheme(
           color: colorScheme.background,
-          iconTheme: IconThemeData(color: colorScheme.onBackground),
+          iconTheme: IconThemeData(color: colorScheme.onSurface),
           surfaceTintColor: Colors.transparent,
           titleTextStyle: TextStyle(
               fontFamily: _fontFamily,
               fontSize: 32,
               fontWeight: FontWeight.w900,
-              color: colorScheme.onBackground),
+              color: colorScheme.onSurface),
           centerTitle: false,
           elevation: 0),
       switchTheme: SwitchThemeData(

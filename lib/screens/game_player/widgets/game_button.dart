@@ -70,7 +70,7 @@ class GameButton extends StatelessWidget {
                             Icon(
                               emojiIcon,
                               size: 24,
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                             const SizedBox(
                               width: 4,
@@ -80,7 +80,7 @@ class GameButton extends StatelessWidget {
                               size: 24,
                               color: Theme.of(context)
                                   .colorScheme
-                                  .onBackground
+                                  .onSurface
                                   .withAlpha(128),
                             )
                           ]),
