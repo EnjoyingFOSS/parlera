@@ -47,7 +47,7 @@ class Category {
   static const jsonCards = "questions";
   static const jsonEmoji = "emoji";
   static const jsonBgColor = "bgColor";
-  static const jsonLangCode = "langCode";
+  static const jsonLocaleCode = "langCode";
   static const jsonStandardGameTime = "gameTime";
 
   static const maxGameTime = 9999;
@@ -97,7 +97,7 @@ class Category {
         jsonName: name,
         jsonEmoji: emoji,
         jsonBgColor: bgColor.value,
-        jsonLangCode: lang.langCode,
+        jsonLocaleCode: lang.getLocaleCode(),
         jsonCards: cards.map((card) => card.phrase).toList(),
         jsonStandardGameTime: standardGameTime
       };
@@ -129,5 +129,5 @@ class Category {
 
   static String getUniqueIdFromInputs(
           ParleraLanguage lang, CategoryType type, int sembastPos) =>
-      "${lang.langCode}___${type.toString()}___$sembastPos";
+      "${lang.getLocaleCode()}___${type.toString()}___$sembastPos";
 }

@@ -32,7 +32,7 @@ class LanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const languages = ParleraLanguage.values;
-    final infoColor = Theme.of(context).colorScheme.onBackground.withAlpha(162);
+    final infoColor = Theme.of(context).colorScheme.onSurface.withAlpha(162);
 
     return Scaffold(
       body: ScopedModelDescendant<LanguageModel>(
@@ -50,14 +50,15 @@ class LanguageScreen extends StatelessWidget {
                   return RadioListTile<String?>(
                       title: Text(lang != null
                           ? AppLocalizations.of(context).txtLanguageChoice(
-                              lang.langCode, lang.getLanguageName(context))
+                              lang.getLocaleCode(),
+                              lang.getLanguageName(context))
                           : AppLocalizations.of(context).languageSystem),
-                      value: lang?.langCode,
-                      groupValue: model.savedLang?.langCode,
+                      value: lang?.getLocaleCode(),
+                      groupValue: model.savedLang?.getLocaleCode(),
                       onChanged: (String? newLangCode) async {
                         await model.saveLang(newLangCode == null
                             ? null
-                            : ParleraLanguage.getLang(newLangCode));
+                            : ParleraLanguage.fromLocaleCode(newLangCode));
                       });
                 }))),
                 SliverList(
@@ -75,7 +76,7 @@ class LanguageScreen extends StatelessWidget {
                     Container(
                       color: Theme.of(context)
                           .colorScheme
-                          .onBackground
+                          .onSurface
                           .withAlpha(32),
                       height: 1,
                       margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),

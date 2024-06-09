@@ -40,22 +40,22 @@ import 'package:parlera/models/language.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageRepository {
-  static const String storageLanguageKey = 'language';
+  static const String storageLocaleKey = 'language';
 
   final SharedPreferences storage;
 
   LanguageRepository({required this.storage});
 
   ParleraLanguage? getLang() {
-    final langCode = storage.getString(storageLanguageKey);
-    return langCode == null ? null : ParleraLanguage.getLang(langCode);
+    final langCode = storage.getString(storageLocaleKey);
+    return langCode == null ? null : ParleraLanguage.fromLocaleCode(langCode);
   }
 
   Future<ParleraLanguage?> setLang(ParleraLanguage? lang) async {
     if (lang == null) {
-      await storage.remove(storageLanguageKey);
+      await storage.remove(storageLocaleKey);
     } else {
-      await storage.setString(storageLanguageKey, lang.langCode);
+      await storage.setString(storageLocaleKey, lang.getLocaleCode());
     }
 
     return lang;

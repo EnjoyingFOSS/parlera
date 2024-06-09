@@ -46,7 +46,7 @@ class CategoryRepository {
   final SharedPreferences storage;
 
   String _getFavoritesKey(ParleraLanguage lang) =>
-      'category_favorite_list_${lang.langCode}';
+      'category_favorite_list_${lang.getLocaleCode()}';
 
   CategoryRepository({required this.storage});
 

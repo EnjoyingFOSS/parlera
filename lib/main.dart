@@ -147,7 +147,7 @@ class ParleraApp extends StatelessWidget {
             // system language resolution
             for (final locale in userLocales ?? const <Locale>[]) {
               try {
-                final lang = ParleraLanguage.getLang(locale.languageCode);
+                final lang = ParleraLanguage.fromLocale(locale);
                 model.setLanguage(lang);
                 resLang = lang;
                 break;

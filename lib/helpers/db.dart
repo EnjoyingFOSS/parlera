@@ -80,10 +80,10 @@ class DBHelper {
   }
 
   String _getBundledJsonPath(ParleraLanguage lang) =>
-      "assets/data/categories_${lang.langCode}.json";
+      "assets/data/categories_${lang.getLocaleCode()}.json";
 
   String _getQStoreName(ParleraLanguage lang, {required bool isBundled}) =>
-      lang.langCode +
+      lang.getLocaleCode() +
       (isBundled ? _bundledSignifier : _customSignifier) +
       _cardStoreSuffix;
 

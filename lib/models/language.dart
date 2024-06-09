@@ -53,62 +53,76 @@ enum ParleraLanguage {
   zh("zh", "随机");
 
   static const defaultLang = en;
-  final String langCode;
-  final String? countryCode;
+  final String _langCode;
+  final String? _countryCode;
   final String randomName;
 
-  const ParleraLanguage(this.langCode, this.randomName, {this.countryCode});
+  const ParleraLanguage(this._langCode, this.randomName, {String? countryCode})
+      : _countryCode = countryCode;
 
-  static ParleraLanguage fromLangCode(String langCode) {
-    switch (langCode) {
-      case "en":
-        return en;
-      case "bg":
-        return bg;
-      case "cs":
-        return cs;
-      case "de":
-        return de;
-      case "eo":
-        return eo;
-      case "es":
-        return es;
-      case "fr":
-        return fr;
-      case "hu":
-        return hu;
-      case "it":
-        return it;
-      case "nl":
-        return nl;
-      case "pa":
-        return pa;
-      case "pl":
-        return pl;
-      case "pt":
-        return pt;
-      case "pt_BR":
-        return ptBr;
-      case "ru":
-        return ru;
-      case "tr":
-        return tr;
-      case "uk":
-        return uk;
-      case "vi":
-        return vi;
-      case "zh":
-        return zh;
-      default:
-        throw ArgumentError();
+  static ParleraLanguage fromLocale(Locale locale) =>
+      fromLocaleCode("${locale.languageCode}_${locale.countryCode}");
+
+  static ParleraLanguage fromLocaleCode(String localeCode) {
+    final localeCodeSplit = splitLocaleCode(localeCode);
+    final languageCode = localeCodeSplit.first;
+    final countryCode = localeCodeSplit.length > 1 ? localeCodeSplit[1] : null;
+    if (countryCode == "BR" && languageCode == "pt") {
+      return ptBr;
+    } else {
+      switch (languageCode) {
+        case "en":
+          return en;
+        case "bg":
+          return bg;
+        case "cs":
+          return cs;
+        case "de":
+          return de;
+        case "eo":
+          return eo;
+        case "es":
+          return es;
+        case "fr":
+          return fr;
+        case "hu":
+          return hu;
+        case "it":
+          return it;
+        case "nl":
+          return nl;
+        case "pa":
+          return pa;
+        case "pl":
+          return pl;
+        case "pt":
+          return pt;
+        case "ru":
+          return ru;
+        case "tr":
+          return tr;
+        case "uk":
+          return uk;
+        case "vi":
+          return vi;
+        case "zh":
+          return zh;
+        default:
+          throw ArgumentError();
+      }
     }
   }
 
-  Locale toLocale() => Locale(langCode, countryCode);
+  String getLocaleCode() =>
+      _countryCode != null ? "${_langCode}_$_countryCode" : _langCode;
+
+  static List<String> splitLocaleCode(String localeCode) =>
+      localeCode.split("_");
+
+  Locale toLocale() => Locale(_langCode, _countryCode);
 
   String getLanguageName(BuildContext context) {
-    final localeCode =
-        countryCode != null ? "${langCode}_$countryCode" : langCode;
+    final localeCode = getLocaleCode();
     return LocaleNames.of(context)!.nameOf(localeCode) ?? localeCode;
   }
 }
