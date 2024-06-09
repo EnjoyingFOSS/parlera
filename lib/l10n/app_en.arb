@@ -34,11 +34,12 @@
   "btnDiscard": "Discard",
   "btnFinishTutorial": "Let's play!",
   "btnFavorite": "Favorite",
-  "btnDone": "Done", 
+  "btnDone": "Done",
   "btnCreateCategory": "Create category",
   "btnImportCategory": "Import category",
   "btnGetCategoriesOnline": "Get categories online...",
   "btnContributeLanguage": "Contribute your language",
+  "btnSearchEmojis": "Search by English name",
   "preparationPlay": "Play",
   "gameTime": "Game time (s.)",
   "favorites": "Favorites",
@@ -96,5 +97,14 @@
   "txtCustomCardNumber": "Custom",
   "btnPlayAgain": "Play again",
   "btnBackToAllCategories": "All categories",
-  "txtTimesUp": "Time's up!"
+  "txtTimesUp": "Time's up!",
+  "errorTitle": "You found a bug in the code",
+  "errorDescription": "The content here could not be loaded.\nTry closing and opening Empado and see if the problem persists.\nIf it does, please {bugLinkSegment}.",
+  "@errorDescription": {
+    "description": "The \"bug link segment\" here is \"submit a bug report via Gitlab\" and is translated separately.",
+    "placeholders": {
+      "bugLinkSegment": {}
+    }
+  },
+  "errorDescriptionBugLinkSegment": "submit a bug report via Gitlab"
 }
