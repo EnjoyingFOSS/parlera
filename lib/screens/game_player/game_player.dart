@@ -66,7 +66,7 @@ import 'package:parlera/store/settings.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class GamePlayerScreen extends StatefulWidget {
-  const GamePlayerScreen({Key? key}) : super(key: key);
+  const GamePlayerScreen({super.key});
 
   @override
   GamePlayerScreenState createState() => GamePlayerScreenState();

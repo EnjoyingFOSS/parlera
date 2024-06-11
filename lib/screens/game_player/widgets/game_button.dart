@@ -58,9 +58,9 @@ class GameButton extends StatelessWidget {
     required this.arrowIcon,
     required this.color,
     required this.hoverColor,
-    Key? key,
+    super.key,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

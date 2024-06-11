@@ -59,7 +59,7 @@ import 'package:scoped_model/scoped_model.dart';
 class GameResultsScreen extends StatelessWidget {
   static const _maxAnswerWidth = 400;
 
-  const GameResultsScreen({Key? key}) : super(key: key);
+  const GameResultsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

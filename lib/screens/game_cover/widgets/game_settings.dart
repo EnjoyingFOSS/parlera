@@ -44,7 +44,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'dart:math';
 
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +59,7 @@ import 'package:shimmer_animation/shimmer_animation.dart';
 
 class GameSetings extends StatelessWidget {
   final Category category;
-  const GameSetings({required this.category, Key? key}) : super(key: key);
+  const GameSetings({required this.category, super.key});
 
   @override
   Widget build(BuildContext context) {
