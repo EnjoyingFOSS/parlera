@@ -1,4 +1,7 @@
 include: package:flutter_lints/flutter.yaml
+analyzer:
+  plugins:
+    - custom_lint
 
 linter:
   rules:
@@ -9,7 +12,6 @@ linter:
     - always_use_package_imports
     - avoid_slow_async_io
     - unnecessary_statements
-    - always_put_required_named_parameters_first
     - cascade_invocations
     - directives_ordering
     - discarded_futures
@@ -20,3 +22,4 @@ linter:
     - unnecessary_to_list_in_spreads
     - use_enums
     - secure_pubspec_urls
+    - avoid_void_async
