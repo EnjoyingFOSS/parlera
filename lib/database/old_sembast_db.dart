@@ -42,7 +42,9 @@ import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:xdg_directories/xdg_directories.dart';
 
-class DBHelper {
+/// No longer used Sembast DB (last used in v4.0.1 = 15), used here for migrating to new database
+@Deprecated("Use AppDatabase instead")
+class OldSembastDB {
   static const _dbFile = "parlera.db";
   static const _dbVersion = 3;
 
@@ -50,8 +52,8 @@ class DBHelper {
   static const _customSignifier = "_custom";
   static const _cardStoreSuffix = "_qs";
 
-  DBHelper._();
-  static final DBHelper db = DBHelper._();
+  OldSembastDB._();
+  static final OldSembastDB db = OldSembastDB._();
 
   static Database? _database;
 
@@ -62,7 +64,7 @@ class DBHelper {
   }
 
   Future<Database> _openDB() async {
-    final path = await _getPath();
+    final path = await getPath();
     final dbFactory = databaseFactoryIo;
     return await dbFactory.openDatabase(path, version: _dbVersion,
         onVersionChanged: (database, oldV, newV) async {
@@ -72,7 +74,7 @@ class DBHelper {
       for (final lang in ParleraLanguage.values) {
         await stringMapStoreFactory
             .store(_getQStoreName(lang, isBundled: true))
-            .drop(database); //TODO ok even if the store doesn't exist?
+            .drop(database);
         final List jsonMapList =
             (json.decode(await rootBundle.loadString(_getBundledJsonPath(lang)))
                 as List<dynamic>);
@@ -97,57 +99,23 @@ class DBHelper {
       (isBundled ? _bundledSignifier : _customSignifier) +
       _cardStoreSuffix;
 
-  Future<String> _getPath() async {
+  static Future<String> getPath() async {
     final documentsDirectory = (Platform.isLinux)
         ? Directory(dataHome.path)
         : await getApplicationDocumentsDirectory();
     return join(documentsDirectory.path, _dbFile);
   }
 
-  Future<List<Category>> getAllCategories(ParleraLanguage lang) async {
+  Future<List<Category>> getCustomCategories(ParleraLanguage lang) async {
     final database = await _instance;
-    final bundledStore =
-        intMapStoreFactory.store(_getQStoreName(lang, isBundled: true));
     final customStore =
         intMapStoreFactory.store(_getQStoreName(lang, isBundled: false));
 
-    final bundledCatList = await bundledStore.find(database);
     final customCatList = await customStore.find(database);
 
-    return List.generate(bundledCatList.length + customCatList.length + 1,
-        (index) {
-      if (index == bundledCatList.length + customCatList.length) {
-        return Category.random(lang);
-      }
-
-      final isBundled = index < bundledCatList.length;
-      final catMapItem = isBundled
-          ? bundledCatList[index]
-          : customCatList[index - bundledCatList.length];
-      return Category.fromJson(
-          lang,
-          catMapItem.key,
-          isBundled ? CategoryType.bundled : CategoryType.custom,
-          catMapItem.value);
-    });
-  }
-
-  Future addOrUpdateCustomCategory(EditableCategory ec) async {
-    final database = await _instance;
-    final customStore =
-        intMapStoreFactory.store(_getQStoreName(ec.lang, isBundled: false));
-    final sembastPos = ec.sembastPos;
-    if (sembastPos != null) {
-      return await customStore.record(sembastPos).update(database, ec.toJson());
-    } else {
-      return await customStore.add(database, ec.toJson());
-    }
-  }
-
-  Future<int?> deleteCustomCategory(ParleraLanguage lang, int id) async {
-    final database = await _instance;
-    final customStore =
-        intMapStoreFactory.store(_getQStoreName(lang, isBundled: false));
-    return await customStore.record(id).delete(database);
+    return customCatList
+        .map(
+            (c) => Category.fromJson(lang, c.key, CategoryType.custom, c.value))
+        .toList(growable: false);
   }
 }
