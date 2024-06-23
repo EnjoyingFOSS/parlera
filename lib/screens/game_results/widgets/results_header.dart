@@ -76,9 +76,9 @@ class _ResultsHeaderState extends ConsumerState<ResultsHeader> {
 
   @override
   Widget build(BuildContext context) {
-    final safeAreaTop = MediaQuery.of(context).padding.top;
+    final safeAreaTop = MediaQuery.paddingOf(context).top;
     final topAreaHeight =
-        MediaQuery.of(context).size.height < 400 ? 8 : _standardTopAreaHeight;
+        MediaQuery.sizeOf(context).height < 400 ? 8 : _standardTopAreaHeight;
 
     return Stack(children: [
       ClipPath(
