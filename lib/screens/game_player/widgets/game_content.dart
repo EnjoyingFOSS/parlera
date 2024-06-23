@@ -48,11 +48,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:parlera/clippers/bottom_wave_clipper.dart';
-import 'package:parlera/helpers/emoji.dart';
-import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/theme.dart';
-import 'package:parlera/models/category.dart';
-import 'package:parlera/models/phrase_card.dart';
+import 'package:parlera/models/game_setup.dart';
 import 'package:parlera/screens/game_player/widgets/game_button.dart';
 
 class _KeyboardHandleCorrectIntent extends Intent {
@@ -66,8 +63,8 @@ class _KeyboardHandleIncorrectIntent extends Intent {
 class GameContent extends StatelessWidget {
   final void Function() handleCorrect;
   final void Function() handleIncorrect;
-  final PhraseCard currentCard;
-  final Category category;
+  final String currentCard;
+  final GameSetup gameSetup;
   final String secondsLeft;
 
   const GameContent(
@@ -75,7 +72,7 @@ class GameContent extends StatelessWidget {
       required this.handleIncorrect,
       required this.currentCard,
       required this.secondsLeft,
-      required this.category,
+      required this.gameSetup,
       super.key});
 
   @override
@@ -124,9 +121,8 @@ class GameContent extends StatelessWidget {
                             child: ClipPath(
                                 clipper: BottomWaveClipper(),
                                 child: Container(
-                                    color: category
-                                        .getDarkColorScheme()
-                                        .surface)))),
+                                    color:
+                                        gameSetup.darkColorScheme.surface)))),
                     IgnorePointer(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -143,23 +139,24 @@ class GameContent extends StatelessWidget {
                                     child: Container(
                                       decoration: ShapeDecoration(
                                         shape: const StadiumBorder(),
-                                        color: category.bgColor,
+                                        color: gameSetup.deck?.color ??
+                                            gameSetup.gameSetupType.defaultColor,
                                       ),
                                     )),
                                 Row(mainAxisSize: MainAxisSize.min, children: [
                                   Hero(
-                                      tag: HeroHelper.categoryImage(category),
-                                      child: Image(
-                                        image: Svg(EmojiHelper.getImagePath(
-                                            category.emoji)),
-                                        width: 48,
-                                        height: 48,
-                                      )),
+                                    tag: gameSetup.heroTag,
+                                    child: Image(
+                                      image: Svg(gameSetup.emojiPath),
+                                      width: 48,
+                                      height: 48,
+                                    ),
+                                  ),
                                   const SizedBox(
                                     width: 8,
                                   ),
                                   Text(
-                                    category.name,
+                                    gameSetup.getName(context),
                                     style: const TextStyle(
                                       fontSize: 16.0,
                                       color: Colors.white,
@@ -176,7 +173,7 @@ class GameContent extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Text(
-                                currentCard.phrase,
+                                currentCard,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontSize: 64.0,
@@ -199,8 +196,7 @@ class GameContent extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Positioned.directional(
-                        textDirection: Directionality.of(context),
+                    PositionedDirectional(
                         top: safeAreaTop + 24,
                         start: 8,
                         child: const BackButton(
