@@ -34,22 +34,18 @@ import 'package:flutter_bounceable/flutter_bounceable.dart';
 class ParleraCard extends StatelessWidget {
   final Widget child;
   final Function() onTap;
-  final double? height;
 
-  const ParleraCard(
-      {required this.child, required this.onTap, this.height, super.key});
+  const ParleraCard({required this.child, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Bounceable(
         scaleFactor: 0.75,
         onTap: () {},
-        child: Ink(
-            height: height,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Theme.of(context).colorScheme.surface,
-            ),
+        child: Material(
+            borderRadius: BorderRadius.circular(8),
+            color: Theme.of(context).colorScheme.surface,
+            clipBehavior: Clip.hardEdge,
             child: InkWell(
               onTap: onTap,
               borderRadius: BorderRadius.circular(8),
