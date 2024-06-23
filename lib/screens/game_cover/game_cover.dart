@@ -29,15 +29,20 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parlera/helpers/orientation.dart';
-import 'package:parlera/models/category_type.dart';
-import 'package:parlera/screens/game_cover/widgets/category_header.dart';
-import 'package:parlera/screens/game_cover/widgets/empty_category.dart';
-import 'package:parlera/screens/game_cover/widgets/game_settings.dart';
-import 'package:parlera/store/category.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:parlera/models/game_setup.dart';
+import 'package:parlera/providers/game_setup_provider.dart';
+import 'package:parlera/providers/game_state_provider.dart';
+import 'package:parlera/screens/game_cover/widgets/deck_header.dart';
+import 'package:parlera/widgets/centered_scrollable_container.dart';
+import 'package:parlera/widgets/empty_content.dart';
+import 'package:parlera/widgets/error_content.dart';
+import 'package:parlera/widgets/game_duration_select.dart';
+import 'package:parlera/widgets/play_button.dart';
 
-class GameCoverScreen extends StatelessWidget {
+class GameCoverScreen extends ConsumerWidget {
   const GameCoverScreen({super.key});
 
   Widget buildRoundTimeSelectItem(String text) {
@@ -51,55 +56,104 @@ class GameCoverScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return ScopedModelDescendant<CategoryModel>(
-      builder: (context, _, model) {
-        final category = model.currentCategory!;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
 
-        final scheme = category.getDarkColorScheme();
+    return ref.watch(gameSetupProvider).when(
+          error: (exception, stackTrace) => Scaffold(
+            body: CenteredScrollableContainer(
+              child: ErrorContent(exception: exception, stackTrace: stackTrace),
+            ),
+          ),
+          loading: () => const Scaffold(
+              body: Center(child: CircularProgressIndicator.adaptive())),
+          data: (gameSetup) {
+            if (gameSetup == null || gameSetup.deck == null) {
+              return Scaffold(
+                body: CenteredScrollableContainer(
+                  child: EmptyContent(
+                    title: l10n.noDeckTitle,
+                    subtitle: l10n.emptyCategoryQuestions,
+                    iconData: Icons.apps_rounded,
+                  ),
+                ),
+              );
+            }
 
-        if (category.cards.isEmpty && category.type != CategoryType.random) {
-          return const EmptyCategory();
-        }
-
-        final stronglyLandscape =
-            OrientationHelper.isStronglyLandscape(context);
-        return Scaffold(
-            backgroundColor: scheme.surface,
-            body: stronglyLandscape
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: CategoryHeader(
-                        model: model,
-                        category: category,
-                        onFavorite: () async => model.toggleFavorite(category),
-                        isFavorite: model.isFavorite(category),
-                        isLandscape: stronglyLandscape,
-                      )),
-                      Expanded(child: GameSetings(category: category)),
-                    ],
-                  )
-                : SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        CategoryHeader(
-                          model: model,
-                          category: category,
-                          onFavorite: () async =>
-                              await model.toggleFavorite(category),
-                          isFavorite: model.isFavorite(category),
-                          isLandscape: stronglyLandscape,
+            final stronglyLandscape =
+                OrientationHelper.isStronglyLandscape(context);
+            final scheme = gameSetup.darkColorScheme;
+            return Scaffold(
+                backgroundColor: gameSetup.darkColorScheme.surface,
+                body: stronglyLandscape
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              child: DeckHeader(
+                            gameSetup: gameSetup,
+                            isLandscape: stronglyLandscape,
+                          )),
+                          Expanded(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GameDurationSelect(
+                                scheme: scheme,
+                                defaultDeckGameDurationS:
+                                    gameSetup.deck?.mediumGameDurationS,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 32),
+                                child: PrimaryButton(
+                                  scheme: scheme,
+                                  label: l10n.preparationPlay,
+                                  onTap: () async => await _onPlayGame(
+                                      context, ref, gameSetup),
+                                ),
+                              ),
+                            ],
+                          )),
+                        ],
+                      )
+                    : SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            DeckHeader(
+                              gameSetup: gameSetup,
+                              isLandscape: stronglyLandscape,
+                            ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            GameDurationSelect(
+                              scheme: scheme,
+                              defaultDeckGameDurationS:
+                                  gameSetup.deck?.mediumGameDurationS,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 32),
+                              child: PrimaryButton(
+                                scheme: scheme,
+                                label: l10n.preparationPlay,
+                                onTap: () async =>
+                                    await _onPlayGame(context, ref, gameSetup),
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        GameSetings(category: category),
-                      ],
-                    ),
-                  ));
-      },
+                      ));
+          },
+        );
+  }
+
+  Future<void> _onPlayGame(
+      BuildContext context, WidgetRef ref, GameSetup gameSetup) async {
+    ref.read(gameStateProvider.notifier).setGameSetupState(gameSetup);
+    await Navigator.pushReplacementNamed(
+      context,
+      '/game-play',
     );
   }
 }

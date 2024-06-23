@@ -28,24 +28,61 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class EmptyCategory extends StatelessWidget {
-  const EmptyCategory({super.key});
+/// Returns int?, the number of seconds chosen or null if nothing chosen
+class GameDurationDialog extends StatefulWidget {
+  const GameDurationDialog({super.key});
+
+  @override
+  State<GameDurationDialog> createState() => _GameDurationDialogState();
+}
+
+class _GameDurationDialogState extends State<GameDurationDialog> {
+  static const _maxGameTime = 9999;
+  final _focusNode = FocusNode();
+  final _textController = TextEditingController();
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-          child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                AppLocalizations.of(context).emptyCategoryQuestions,
-                style: Theme.of(context).textTheme.headlineMedium,
-                textAlign: TextAlign.center,
-              ))),
-    );
+    final l10n = AppLocalizations.of(context);
+
+    _focusNode.requestFocus();
+    return AlertDialog(
+        content: TextField(
+            decoration: InputDecoration(
+                labelText: l10n.txtCustomGameTime),
+            keyboardType: TextInputType.number,
+            controller: _textController,
+            focusNode: _focusNode),
+        actions: [
+          TextButton(
+              child: Text(l10n.btnCancel),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+          TextButton(
+            child: Text(l10n.btnOK),
+            onPressed: () {
+              final value = int.tryParse(_textController.text.toString());
+              if (value == null || value <= 0) {
+                Navigator.pop(context);
+              } else {
+                Navigator.pop(context, min(value, _maxGameTime));
+              }
+            },
+          )
+        ]);
   }
 }
