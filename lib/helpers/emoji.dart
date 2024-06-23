@@ -29,12 +29,16 @@
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:path/path.dart' as p;
 
 class EmojiHelper {
-  // TODO add search!
   static String getImagePath(String emoji) {
     if (emoji.runes.length > 1) {
-      var nameString = "assets/emoji/${emoji.runes.first.toRadixString(16)}";
+      var nameString = p.join(
+        'assets',
+        'emoji',
+        emoji.runes.first.toRadixString(16),
+      );
       for (int i = 1; i < emoji.runes.length; i++) {
         //skips the fe0f indicator, which indicates color emoji versions and isn't present in svg names
         final r = emoji.runes.elementAt(i);
@@ -46,7 +50,11 @@ class EmojiHelper {
       }
       return "$nameString.svg";
     } else {
-      return "assets/emoji/${emoji.runes.first.toRadixString(16)}.svg";
+      return p.join(
+        'assets',
+        'emoji',
+        '${emoji.runes.first.toRadixString(16)}.svg',
+      );
     }
   }
 

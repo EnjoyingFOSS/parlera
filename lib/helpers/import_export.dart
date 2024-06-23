@@ -32,9 +32,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:parlera/models/editable_category.dart';
-import 'package:parlera/models/language.dart';
-import 'package:parlera/store/category.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:parlera/models/full_deck_companion.dart';
+import 'package:parlera/models/parlera_locale.dart';
+import 'package:parlera/providers/deck_list_provider.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -42,7 +43,7 @@ import 'package:share_plus/share_plus.dart';
 class ImportExportHelper {
   static Future<void> exportAndShareJson(
       Map jsonMap, String fileName, String shareSubject) async {
-    final outputContent = json.encode(jsonMap);
+    final outputContent = jsonEncode(jsonMap);
     if (Platform.isMacOS || Platform.isLinux) {
       final outputFile = await FilePicker.platform.saveFile(
         dialogTitle: "",
@@ -70,8 +71,8 @@ class ImportExportHelper {
       //TODO allow importing entire ZIPs
       //TODO test on linux
       PlatformFile inputFile,
-      CategoryModel model,
-      ParleraLanguage lang) async {
+      WidgetRef ref,
+      ParleraLocale lang) async {
     late final String inputPath;
 
     if (Platform.isLinux) {
@@ -92,10 +93,13 @@ class ImportExportHelper {
       inputPath = inputFile.path!;
     }
 
-    final ec = EditableCategory.fromJson(
+    final fdc = FullDeckCompanion.fromJson(
         jsonDecode(await File(inputPath).readAsString())
             as Map<String, dynamic>,
         lang);
-    await model.createOrUpdateCustomCategory(ec);
+
+    await ref
+        .read(deckListProvider.notifier)
+        .createOrUpdateCustomDeck(fdc);
   }
 }
