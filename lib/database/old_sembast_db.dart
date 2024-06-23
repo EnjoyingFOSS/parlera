@@ -28,14 +28,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'dart:convert';
 import 'dart:io';
-
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:parlera/models/category.dart';
-import 'package:parlera/models/category_type.dart';
-import 'package:parlera/models/editable_category.dart';
-import 'package:parlera/models/language.dart';
+import 'package:parlera/models/full_deck_companion.dart';
+import 'package:parlera/models/parlera_locale.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
@@ -66,35 +61,10 @@ class OldSembastDB {
   Future<Database> _openDB() async {
     final path = await getPath();
     final dbFactory = databaseFactoryIo;
-    return await dbFactory.openDatabase(path, version: _dbVersion,
-        onVersionChanged: (database, oldV, newV) async {
-      // always delete old bundled categories and add new ones
-      // todo can just bundle the resulting db files, maybe — though would that depend on the platform?
-
-      for (final lang in ParleraLanguage.values) {
-        await stringMapStoreFactory
-            .store(_getQStoreName(lang, isBundled: true))
-            .drop(database);
-        final List jsonMapList =
-            (json.decode(await rootBundle.loadString(_getBundledJsonPath(lang)))
-                as List<dynamic>);
-
-        final newMap = jsonMapList
-            .map((dynamic map) =>
-                Map<String, Object?>.from(map as Map<dynamic, dynamic>))
-            .toList();
-
-        final newStore =
-            intMapStoreFactory.store(_getQStoreName(lang, isBundled: true));
-        await newStore.addAll(database, newMap);
-      }
-    });
+    return await dbFactory.openDatabase(path, version: _dbVersion);
   }
 
-  String _getBundledJsonPath(ParleraLanguage lang) =>
-      "assets/data/categories_${lang.getLocaleCode()}.json";
-
-  String _getQStoreName(ParleraLanguage lang, {required bool isBundled}) =>
+  String _getQStoreName(ParleraLocale lang, {required bool isBundled}) =>
       lang.getLocaleCode() +
       (isBundled ? _bundledSignifier : _customSignifier) +
       _cardStoreSuffix;
@@ -106,7 +76,8 @@ class OldSembastDB {
     return join(documentsDirectory.path, _dbFile);
   }
 
-  Future<List<Category>> getCustomCategories(ParleraLanguage lang) async {
+  Future<List<(FullDeckCompanion, String)>> getCustomDecks(
+      ParleraLocale lang) async {
     final database = await _instance;
     final customStore =
         intMapStoreFactory.store(_getQStoreName(lang, isBundled: false));
@@ -114,8 +85,10 @@ class OldSembastDB {
     final customCatList = await customStore.find(database);
 
     return customCatList
-        .map(
-            (c) => Category.fromJson(lang, c.key, CategoryType.custom, c.value))
+        .map((c) => (
+              FullDeckCompanion.fromJson(c.value, lang),
+              "${lang.getLocaleCode()}___CategoryType.custom___${c.key}"
+            ))
         .toList(growable: false);
   }
 }
