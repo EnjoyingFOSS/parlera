@@ -45,41 +45,83 @@
 //   limitations under the License.
 
 import 'dart:async';
-import 'dart:io';
 
-import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parlera/helpers/audio.dart';
 import 'package:parlera/helpers/theme.dart';
-import 'package:parlera/helpers/vibration.dart';
-import 'package:parlera/models/category.dart';
-import 'package:parlera/models/category_type.dart';
+import 'package:parlera/models/game_setup.dart';
+import 'package:parlera/models/setting_state.dart';
+import 'package:parlera/providers/audio_provider.dart';
+import 'package:parlera/providers/game_setup_provider.dart';
+import 'package:parlera/providers/game_state_provider.dart';
+import 'package:parlera/providers/setting_provider.dart';
+import 'package:parlera/providers/vibration_service_provider.dart';
 import 'package:parlera/screens/game_player/tilt_service.dart';
 import 'package:parlera/screens/game_player/widgets/game_content.dart';
 import 'package:parlera/screens/game_player/widgets/prep_screen.dart';
 import 'package:parlera/screens/game_player/widgets/splash_content.dart';
-import 'package:parlera/store/card.dart';
-import 'package:parlera/store/category.dart';
-import 'package:parlera/store/settings.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:parlera/widgets/centered_scrollable_container.dart';
+import 'package:parlera/widgets/empty_content.dart';
+import 'package:parlera/widgets/error_content.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
-class GamePlayerScreen extends StatefulWidget {
+class GamePlayerScreen extends ConsumerWidget {
   const GamePlayerScreen({super.key});
 
   @override
-  GamePlayerScreenState createState() => GamePlayerScreenState();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    
+    final rotationEnabled = ref.watch(
+            settingProvider.select((v) => v.valueOrNull?.rotationEnabled)) ??
+        SettingState.defaultRotationEnabled;
+
+    return ref.watch(gameSetupProvider).when(
+          error: (exception, stackTrace) => Scaffold(
+            body: CenteredScrollableContainer(
+              child: ErrorContent(exception: exception, stackTrace: stackTrace),
+            ),
+          ),
+          loading: () => const Scaffold(
+              body: Center(child: CircularProgressIndicator.adaptive())),
+          data: (gameSetup) {
+            if (gameSetup == null) {
+              return Scaffold(
+                body: CenteredScrollableContainer(
+                  child: EmptyContent(
+                    title: l10n.noDeckTitle,
+                    subtitle: l10n.emptyCategoryQuestions,
+                    iconData: Icons.apps_rounded,
+                  ),
+                ),
+              );
+            } else {
+              return _GamePlayerContent(gameSetup, rotationEnabled);
+            }
+          },
+        );
+  }
 }
 
-class GamePlayerScreenState extends State<GamePlayerScreen>
+class _GamePlayerContent extends ConsumerStatefulWidget {
+  final GameSetup gameSetup;
+  final bool rotationEnabled;
+
+  const _GamePlayerContent(this.gameSetup, this.rotationEnabled);
+
+  @override
+  _GamePlayerContentState createState() => _GamePlayerContentState();
+}
+
+class _GamePlayerContentState extends ConsumerState<_GamePlayerContent>
     with TickerProviderStateMixin {
   static const _secondsPrep = 5;
 
-  late final Category _category;
   late final TiltService? _tiltService;
   Timer? _gameTimer;
-  late final int _gameTime;
   late int _secondsLeft;
   bool _isStarted = false;
   bool _isPausedForShowingResult = false;
@@ -93,24 +135,15 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
   @override
   void initState() {
     super.initState();
+
+    unawaited(SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+    ]));
+    unawaited(WakelockPlus.enable());
+
     _startTimer();
-    _category = CategoryModel.of(context)
-        .currentCategory!; //TODO can I assume non-nullability?
 
-    final settings = SettingsModel.of(context);
-
-    if (_category.type == CategoryType.random) {
-      CardModel.of(context).pickRandomCards(_category,
-          CategoryModel.of(context).categories, settings.cardsPerGame);
-    } else {
-      CardModel.of(context)
-          .pickCardsFromCategory(_category, settings.cardsPerGame);
-    }
-
-    _gameTime = _category.getGameTime(settings.gameTimeType,
-        settings.gameTimeMultiplier, settings.customGameTime);
-
-    if (settings.isRotationControlEnabled) {
+    if (widget.rotationEnabled) {
       _tiltService = TiltService(
           handleIncorrect: _handleIncorrect,
           handleCorrect: _handleCorrect,
@@ -120,10 +153,6 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       _tiltService = null;
       _secondsLeft = 0;
     }
-
-    unawaited(SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-    ]));
 
     _initAnimations();
   }
@@ -155,15 +184,16 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
   @protected
   @mustCallSuper
   void dispose() {
-    if (_rotateSubscription != null) {
-      _rotateSubscription!.cancel();
-    }
-
     unawaited(SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight
     ]));
+    unawaited(WakelockPlus.disable());
+
+    if (_rotateSubscription != null) {
+      _rotateSubscription!.cancel();
+    }
 
     _correctAC?.dispose();
     _incorrectAC?.dispose();
@@ -200,22 +230,24 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       await Navigator.pushReplacementNamed(context, '/game-summary');
 
   Future<void> _onClose() async {
+    final l10n = AppLocalizations.of(context);
+
     await showDialog<AlertDialog>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-              title: Text(AppLocalizations.of(context).gameCancelConfirmation),
+              title: Text(l10n.gameCancelConfirmation),
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text(AppLocalizations.of(context).gameCancelDeny)),
+                    child: Text(l10n.gameCancelDeny)),
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                       Navigator.pop(context);
                     },
-                    child: Text(AppLocalizations.of(context).gameCancelApprove))
+                    child: Text(l10n.gameCancelApprove))
               ],
             ));
   }
@@ -226,8 +258,11 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       return _showScore();
     }
 
-    CardModel.of(context).setNextCard();
-    if (CardModel.of(context).currentCard == null) {
+    final movedToNext = ref
+        .read(gameStateProvider.notifier)
+        .moveToNextCard(widget.gameSetup.gameCards.length);
+
+    if (!movedToNext) {
       return _showScore();
     }
 
@@ -239,10 +274,10 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
   }
 
   void _postAnswer({required bool isCorrect, bool outOfTime = false}) {
-    if (!flutter_foundation.kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
-      VibrationHelper.vibrate();
-    }
-    CardModel.of(context).answerCard(isCorrect);
+    unawaited(ref
+        .read(vibrationServiceProvider.future)
+        .then((vibrationService) => vibrationService.vibrate()));
+    ref.read(gameStateProvider.notifier).answerCurrentCard(isCorrect);
 
     setState(() {
       _isPausedForShowingResult = true;
@@ -255,7 +290,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
     } else {
       setState(() {
         _isStarted = true;
-        _secondsLeft = _gameTime;
+        _secondsLeft = widget.gameSetup.gameDurationS;
       });
     }
   }
@@ -265,7 +300,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       return;
     }
 
-    AudioHelper.playCorrect(context);
+    AudioHelper.playCorrect(ref.read(audioProvider));
     _correctAC!.forward();
     _postAnswer(isCorrect: true);
   }
@@ -275,7 +310,7 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       return;
     }
 
-    AudioHelper.playIncorrect(context);
+    AudioHelper.playIncorrect(ref.read(audioProvider));
     _incorrectAC!.forward();
     _postAnswer(isCorrect: false);
   }
@@ -285,26 +320,31 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
       return;
     }
 
-    AudioHelper.playTimesUp(context);
+    AudioHelper.playTimesUp(ref.read(audioProvider));
     _incorrectAC!.forward();
     _postAnswer(isCorrect: false, outOfTime: true);
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     if (!_isStarted) {
       if (_secondsLeft == 0) {
         if (_tiltService == null) {
-          AudioHelper.playCountdownStart(context);
+          AudioHelper.playCountdownStart(ref.read(audioProvider));
         } else {
-          AudioHelper.playStart(context);
+          AudioHelper.playStart(ref.read(audioProvider));
         }
       } else {
-        AudioHelper.playCountdown(context);
+        AudioHelper.playCountdown(ref.read(audioProvider));
       }
     }
+    final gameState =
+        ref.read(gameStateProvider).state;
+
     return Scaffold(
-      backgroundColor: _category.getDarkColorScheme().surface,
+      backgroundColor: widget.gameSetup.darkColorScheme.surface,
       body: WillPopScope(
         onWillPop: () async {
           await _onClose();
@@ -314,26 +354,19 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
           if (_isPausedForShowingResult || _isStarted)
             Stack(
               children: [
-                ScopedModelDescendant<CardModel>(
-                  builder: (context, child, model) {
-                    final currentCard = model.currentCard;
-                    if (currentCard != null) {
-                      return GameContent(
-                          handleCorrect: _handleCorrect,
-                          handleIncorrect: _handleIncorrect,
-                          currentCard: currentCard,
-                          category: model.currentCategory!,
-                          secondsLeft: _secondsLeft.toString());
-                    } else {
-                      return const SizedBox();
-                    }
-                  },
-                ),
+                GameContent(
+                    handleCorrect: _handleCorrect,
+                    handleIncorrect: _handleIncorrect,
+                    currentCard:
+                        widget.gameSetup.gameCards[gameState!.currentIndex],
+                    gameSetup: widget.gameSetup,
+                    secondsLeft: _secondsLeft.toString()),
                 ScaleTransition(
                   scale: _incorrectAnimation,
                   child: SplashContent(
                     isOutOfTime: _secondsLeft <= 0,
-                    isNextToLast: CardModel.of(context).isPreLastCard(),
+                    isNextToLast: gameState.currentIndex ==
+                        widget.gameSetup.gameCards.length - 2,
                     background: ThemeHelper.failColorLighter,
                     iconData: _secondsLeft <= 0
                         ? Icons.timer_rounded
@@ -344,7 +377,8 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
                   scale: _correctAnimation,
                   child: SplashContent(
                     isOutOfTime: false,
-                    isNextToLast: CardModel.of(context).isPreLastCard(),
+                    isNextToLast: gameState.currentIndex ==
+                        widget.gameSetup.gameCards.length - 2,
                     background: ThemeHelper.successColorLighter,
                     iconData: Icons.sentiment_satisfied_alt_rounded,
                   ),
@@ -352,11 +386,11 @@ class GamePlayerScreenState extends State<GamePlayerScreen>
               ],
             )
           else if (_secondsLeft == 0)
-            PrepScreen(countdownText: AppLocalizations.of(context).labelGo)
+            PrepScreen(countdownText: l10n.labelGo)
           else
             PrepScreen(
                 countdownText: _secondsLeft.toString(),
-                descriptionText: AppLocalizations.of(context)
+                descriptionText: l10n
                     .preparationOrientationDescription), //TODO remind users of directions each time
         ]),
       ),
