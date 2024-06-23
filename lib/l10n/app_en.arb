@@ -105,7 +105,7 @@
   "btnBackToAllCategories": "All card decks",
   "txtTimesUp": "Time's up!",
   "errorTitle": "You found a bug in the code",
-  "errorDescription": "The content here could not be loaded.\nTry closing and opening Empado and see if the problem persists.\nIf it does, please {bugLinkSegment}.",
+  "errorDescription": "The content here could not be loaded.\nTry closing and opening Parlera and see if the problem persists.\nIf it does, please {bugLinkSegment}.",
   "@errorDescription": {
     "description": "The \"bug link segment\" here is \"submit a bug report via Gitlab\" and is translated separately.",
     "placeholders": {
