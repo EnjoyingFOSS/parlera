@@ -27,45 +27,20 @@
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
-//
-// This file is derived from work covered by the following license notice:
-//
-//   Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and Ewa Osiecka
-//
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
-//   You may obtain a copy of the License at
-//
-//       http://www.apache.org/licenses/LICENSE-2.0
-//
-//   Unless required by applicable law or agreed to in writing, software
-//   distributed under the License is distributed on an "AS IS" BASIS,
-//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//   See the License for the specific language governing permissions and
-//   limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
-import 'package:parlera/screens/home/widgets/category_list.dart';
+import 'package:parlera/providers/deck_list_provider.dart';
+import 'package:parlera/screens/home/widgets/combo_subscreen.dart';
+import 'package:parlera/screens/home/widgets/deck_list_subscreen.dart';
 import 'package:parlera/screens/settings/settings.dart';
-import 'package:parlera/store/category.dart';
-import 'package:parlera/store/tutorial.dart';
-import 'package:parlera/widgets/screen_loader.dart';
-import 'package:scoped_model/scoped_model.dart';
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  HomeScreenState createState() {
-    return HomeScreenState();
-  }
-}
 
 enum _NavItem {
   all(Icons.home_rounded),
   favorites(Icons.favorite_rounded),
+  combo(Icons.category_rounded),
   menu(Icons.menu_rounded);
 
   final IconData icon;
@@ -75,52 +50,80 @@ enum _NavItem {
   String getLabel(BuildContext context) => switch (this) {
         _NavItem.all => "Parlera",
         _NavItem.favorites => AppLocalizations.of(context).favorites,
+        _NavItem.combo => AppLocalizations.of(context).combo,
         _NavItem.menu => AppLocalizations.of(context).settings,
       };
 }
 
-class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  CategoryFilter _currentCategory = CategoryFilter.all;
+class HomeScreen extends ConsumerStatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  HomeScreenState createState() => HomeScreenState();
+}
+
+class HomeScreenState extends ConsumerState<HomeScreen>
+    with TickerProviderStateMixin {
+  late final PageController _pageController;
+  _NavItem _curNavItem = _NavItem.all;
 
   @override
   void initState() {
     super.initState();
-    if (!isTutorialWatched()) {
-      WidgetsBinding.instance
-          .addPostFrameCallback((_) async => Navigator.pushNamed(
-                context,
-                '/tutorial',
-              ));
-    }
+    _pageController = PageController();
   }
 
-  bool isTutorialWatched() {
-    return TutorialModel.of(context).isWatched;
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<CategoryModel>(
-      builder: (context, child, model) {
-        final theme = Theme.of(context);
-        if (model.isLoading) {
-          return const ScreenLoader();
-        }
+    final theme = Theme.of(context);
 
-        int currentIndex;
-        switch (_currentCategory) {
-          case CategoryFilter.all:
-            currentIndex = _NavItem.all.index;
-          case CategoryFilter.favorites:
-            currentIndex = _NavItem.favorites.index;
-        }
+    const bottomBarHeight = kBottomNavigationBarHeight;
+    const subscreenBottomMargin = bottomBarHeight + 16.0;
 
-        return Scaffold(
-            bottomNavigationBar: MoltenBottomNavigationBar(
-              curve: Curves.easeOutExpo,
+    return Scaffold(
+      body: Stack(
+        children: [
+          FutureBuilder(
+            future: ref
+                .read(deckListProvider.notifier)
+                // ignore: discarded_futures
+                .setLocale(Localizations.localeOf(context)),
+            builder: (context, _) {
+              return PageView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _pageController,
+                children: _NavItem.values
+                    .map((navItem) => switch (navItem) {
+                          _NavItem.all => const DeckListSubscreen(
+                              type: DeckFilter.all,
+                              bottomMargin: subscreenBottomMargin),
+                          _NavItem.favorites => const DeckListSubscreen(
+                              type: DeckFilter.favorites,
+                              bottomMargin: subscreenBottomMargin),
+                          _NavItem.combo =>
+                            const ComboSubscreen(bottomMargin: subscreenBottomMargin),
+                          _ => const SizedBox.shrink()
+                        })
+                    .toList(growable: false),
+              );
+            },
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: MoltenBottomNavigationBar(
+              barHeight: bottomBarHeight,
               domeWidth: 80,
               domeHeight: 12,
               borderRaduis: BorderRadius.zero,
+              curve: Curves.easeOutExpo,
               duration: const Duration(milliseconds: 500),
               barColor: theme.colorScheme.secondary,
               tabs: _NavItem.values
@@ -133,27 +136,28 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       ),
                     ),
                   )
-                  .toList(),
-              selectedIndex: currentIndex,
+                  .toList(growable: false),
+              selectedIndex: _curNavItem.index,
               onTabChange: (i) async {
-                switch (_NavItem.values[i]) {
-                  case _NavItem.all:
-                    setState(() {
-                      _currentCategory = CategoryFilter.all;
-                    });
-                  case _NavItem.favorites:
-                    setState(() {
-                      _currentCategory = CategoryFilter.favorites;
-                    });
+                final navItem = _NavItem.values[i];
+                switch (navItem) {
                   case _NavItem.menu:
                     await SettingsScreen.showBottomSheet(context);
+                  case _NavItem.all:
+                  case _NavItem.favorites:
+                  case _NavItem.combo:
+                    setState(() {
+                      _curNavItem = _NavItem.values[i];
+                      _pageController.animateToPage(_curNavItem.index,
+                          duration: const Duration(milliseconds: 800),
+                          curve: Curves.easeOutExpo);
+                    });
                 }
               },
             ),
-            body: CategoryList(
-              type: _currentCategory,
-            ));
-      },
+          )
+        ],
+      ),
     );
   }
 }
