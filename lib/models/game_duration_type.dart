@@ -28,5 +28,37 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:math';
+
+import 'package:parlera/models/setting_state.dart';
+
 /// Saved as an intEnum in shared_preferences
-enum GameTimeType { short, medium, long, custom }
+enum GameDurationType {
+  short,
+  medium,
+  long,
+  custom;
+
+  static const _defaultGameDurationS = 30;
+
+  int getGameDuration(int? defaultDeckGameDurationS, int? settingsCardsPerGame,
+      int settingsCustomGameDuration) {
+    final gameDurationMultiplier = settingsCardsPerGame != null
+        ? (settingsCardsPerGame / SettingState.defaultCardsPerGame)
+        : 1;
+    final mediumGameDuration = ((defaultDeckGameDurationS ?? _defaultGameDurationS) *
+            gameDurationMultiplier)
+        .ceil();
+    final mediumGameDurationDiv2 = max(mediumGameDuration ~/ 2, 1);
+    switch (this) {
+      case GameDurationType.short:
+        return mediumGameDurationDiv2;
+      case GameDurationType.medium:
+        return mediumGameDuration;
+      case GameDurationType.long:
+        return mediumGameDuration + mediumGameDurationDiv2;
+      case GameDurationType.custom:
+        return settingsCustomGameDuration;
+    }
+  }
+}
