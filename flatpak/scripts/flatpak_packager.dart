@@ -33,7 +33,7 @@ void main(List<String> arguments) async {
   }
 
   final metaFile = File(arguments[metaIndex + 1]);
-  if (!(await metaFile.exists())) {
+  if (!(metaFile.existsSync())) {
     throw Exception('The provided metadata file does not exist.');
   }
 
@@ -89,7 +89,7 @@ class PackageGenerator {
     // desktop file
     final desktopFile = File('${inputDir.path}/${meta.desktopPath}');
 
-    if (!(await desktopFile.exists())) {
+    if (!(desktopFile.existsSync())) {
       throw Exception(
           'The desktop file does not exist under the specified path: ${desktopFile.path}');
     }
@@ -101,7 +101,7 @@ class PackageGenerator {
 
     for (final icon in meta.icons) {
       final iconFile = File('${inputDir.path}/${icon.path}');
-      if (!(await iconFile.exists())) {
+      if (!(iconFile.existsSync())) {
         throw Exception('The icon file ${iconFile.path} does not exist.');
       }
       final iconSubdir = Directory('${iconTempDir.path}/${icon.type}');
@@ -111,7 +111,7 @@ class PackageGenerator {
 
     // AppStream metainfo file
     final origAppStreamFile = File('${inputDir.path}/${meta.appStreamPath}');
-    if (!(await origAppStreamFile.exists())) {
+    if (!(origAppStreamFile.existsSync())) {
       throw Exception(
           'The app data file does not exist under the specified path: ${origAppStreamFile.path}');
     }
@@ -127,7 +127,7 @@ class PackageGenerator {
     final bundlePath =
         '${inputDir.path}/${meta.localLinuxBuildDir}/${arch.flutterDirName}/release/bundle';
     final buildDir = Directory(bundlePath);
-    if (!(await buildDir.exists())) {
+    if (!( buildDir.existsSync())) {
       throw Exception(
           'The linux build directory does not exist under the specified path: ${buildDir.path}');
     }

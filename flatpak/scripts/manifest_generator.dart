@@ -41,23 +41,21 @@ void main(List<String> arguments) async {
       FlatpakMeta.fromJson(metaFile, skipLocalReleases: fetchFromGithub);
 
   final outputDir =
-      Directory('${Directory.current.path}/flatpak_generator_exports');
-  outputDir.createSync();
+      Directory('${Directory.current.path}/flatpak_generator_exports')
+        ..createSync();
 
   final manifestGenerator = FlatpakManifestGenerator(meta);
   final manifestContent =
       await manifestGenerator.generateFlatpakManifest(fetchFromGithub);
   final manifestPath = '${outputDir.path}/${meta.appId}.json';
-  final manifestFile = File(manifestPath);
-  manifestFile.writeAsStringSync(manifestContent);
+  File(manifestPath).writeAsStringSync(manifestContent);
   print('Generated $manifestPath');
 
   final flathubJsonContent =
       await manifestGenerator.generateFlathubJson(fetchFromGithub);
   if (flathubJsonContent != null) {
     final flathubJsonPath = '${outputDir.path}/flathub.json';
-    final flathubJsonFile = File(flathubJsonPath);
-    flathubJsonFile.writeAsStringSync(flathubJsonContent);
+    File(flathubJsonPath).writeAsStringSync(flathubJsonContent);
     print('Generated $flathubJsonPath');
   }
 }
