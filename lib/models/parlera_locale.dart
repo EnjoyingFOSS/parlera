@@ -31,7 +31,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 
-enum ParleraLanguage {
+enum ParleraLocale {
   en("en", "Random"),
   bg("bg", "Случайна"),
   cs("cs", "Náhodné"),
@@ -52,18 +52,19 @@ enum ParleraLanguage {
   vi("vi", "Ngẫu nhiên"),
   zh("zh", "随机");
 
-  static const defaultLang = en;
   final String _langCode;
   final String? _countryCode;
   final String randomName;
 
-  const ParleraLanguage(this._langCode, this.randomName, {String? countryCode})
+  const ParleraLocale(this._langCode, this.randomName, {String? countryCode})
       : _countryCode = countryCode;
 
-  static ParleraLanguage fromLocale(Locale locale) =>
+  static final Iterable<Locale> supportedLocales = ParleraLocale.values.map((lang) => lang.toLocale());
+
+  static ParleraLocale fromLocale(Locale locale) =>
       fromLocaleCode("${locale.languageCode}_${locale.countryCode}");
 
-  static ParleraLanguage fromLocaleCode(String localeCode) {
+  static ParleraLocale fromLocaleCode(String localeCode) {
     final localeCodeSplit = splitLocaleCode(localeCode);
     final languageCode = localeCodeSplit.first;
     final countryCode = localeCodeSplit.length > 1 ? localeCodeSplit[1] : null;
@@ -121,7 +122,7 @@ enum ParleraLanguage {
 
   Locale toLocale() => Locale(_langCode, _countryCode);
 
-  String getLanguageName(BuildContext context) {
+  String getLocaleName(BuildContext context) {
     final localeCode = getLocaleCode();
     return LocaleNames.of(context)!.nameOf(localeCode) ?? localeCode;
   }
