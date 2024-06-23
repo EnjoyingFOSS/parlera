@@ -27,68 +27,58 @@
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
-//
-// This file is derived from work covered by the following license notice:
-//
-//   Copyright 2021 Kamil Rykowski, Kamil Lewandowski, and Ewa Osiecka
-//
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
-//   You may obtain a copy of the License at
-//
-//       http://www.apache.org/licenses/LICENSE-2.0
-//
-//   Unless required by applicable law or agreed to in writing, software
-//   distributed under the License is distributed on an "AS IS" BASIS,
-//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//   See the License for the specific language governing permissions and
-//   limitations under the License.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:parlera/database/database.dart';
 import 'package:parlera/helpers/emoji.dart';
 import 'package:parlera/helpers/hero.dart';
-import 'package:parlera/models/category.dart';
-import 'package:parlera/widgets/parlera_card.dart';
+import 'package:parlera/screens/home/widgets/parlera_card.dart';
 
-class CategoryListItem extends StatelessWidget {
-  final Category category;
-  final VoidCallback onTap;
+class DeckCard extends StatelessWidget {
+  final CardDeck deck;
+  final Function() onTap;
 
-  const CategoryListItem(
-      {required this.category, required this.onTap, super.key});
+  const DeckCard({required this.deck, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final imagePath = EmojiHelper.getImagePath(category.emoji);
+    final imagePath =
+        deck.emoji != null ? EmojiHelper.getImagePath(deck.emoji!) : null;
     return ParleraCard(
-        onTap: onTap,
-        child: (Stack(children: [
-          Positioned.directional(
+      onTap: onTap,
+      child: Stack(
+        children: [
+          if (imagePath != null)
+            PositionedDirectional(
               end: -6,
               top: 4,
               bottom: 4,
-              textDirection: Directionality.of(context),
               child: AspectRatio(
                 aspectRatio: 1,
                 child: Hero(
-                    tag: HeroHelper.categoryImage(category),
-                    child: SvgPicture.asset(imagePath)),
-              )),
-          Positioned.directional(
-              start: 16,
-              end: 80,
-              top: 2,
-              bottom: 2,
-              textDirection: Directionality.of(context),
-              child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    category.name,
-                    style: const TextStyle(
-                      fontSize: 21,
-                    ),
-                  )))
-        ])));
+                  tag: HeroHelper.tagForDeck(deck),
+                  child: SvgPicture.asset(imagePath),
+                ),
+              ),
+            ),
+          PositionedDirectional(
+            start: 16,
+            end: 80,
+            top: 2,
+            bottom: 2,
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Text(
+                deck.name,
+                style: const TextStyle(
+                  fontSize: 21,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
