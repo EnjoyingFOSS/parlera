@@ -30,23 +30,28 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:parlera/models/phrase_card.dart';
 import 'package:parlera/screens/game_results/widgets/answer_item.dart';
 import 'package:parlera/widgets/max_width_container.dart';
 
 class AnswerGrid extends StatelessWidget {
-  final List<PhraseCard> cardsAnswered;
+  final int cardsAnsweredTotal;
+  final List<String> cards;
+  final List<bool?> answers;
   final int answersPerRow;
 
   const AnswerGrid(
-      {required this.cardsAnswered, required this.answersPerRow, super.key});
+      {required this.cardsAnsweredTotal,
+      required this.cards,
+      required this.answers,
+      required this.answersPerRow,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
     if (answersPerRow < 1) return const SizedBox();
 
-    final rowCount = (cardsAnswered.length / answersPerRow).ceil();
-    var lastCellCount = cardsAnswered.length % answersPerRow;
+    final rowCount = (cardsAnsweredTotal / answersPerRow).ceil();
+    var lastCellCount = cardsAnsweredTotal % answersPerRow;
     if (lastCellCount == 0) lastCellCount = answersPerRow;
 
     return SliverList.list(
@@ -56,17 +61,18 @@ class AnswerGrid extends StatelessWidget {
         return MaxWidthContainer(
             child: Row(
                 children: List.generate(answersPerRow, (columnI) {
-          final pos = rowI * answersPerRow + columnI;
+          final index = rowI * answersPerRow + columnI;
 
           return Flexible(
               child: AnimationConfiguration.staggeredList(
-                  position: pos,
+                  position: index,
                   delay: const Duration(milliseconds: 400),
                   duration: const Duration(seconds: 2),
                   child: FadeInAnimation(
                       child: (rowI < rowCount - 1 || columnI < lastCellCount)
                           ? AnswerItem(
-                              card: cardsAnswered[pos],
+                              card: cards[index],
+                              answeredCorrectly: answers[index]!,
                             )
                           : const SizedBox())));
         })));
