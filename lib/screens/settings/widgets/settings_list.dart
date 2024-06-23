@@ -49,88 +49,105 @@ import 'dart:io';
 import 'package:flutter/foundation.dart' as flutter_foundation;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:parlera/helpers/url_util.dart';
+import 'package:parlera/providers/setting_provider.dart';
 import 'package:parlera/screens/languages/languages.dart';
 import 'package:parlera/screens/settings/widgets/cards_per_game_dialog.dart';
-import 'package:parlera/store/settings.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:parlera/widgets/error_content.dart';
+import 'package:path/path.dart' as p;
 
-class SettingsList extends StatelessWidget {
+class SettingsList extends ConsumerWidget {
   const SettingsList({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ScopedModelDescendant<SettingsModel>(
-        builder: (context, _, model) => SliverList(
-              delegate: SliverChildListDelegate.fixed(
-                [
-                  if (!flutter_foundation.kIsWeb &&
-                      (Platform.isIOS || Platform.isAndroid))
-                    SwitchListTile(
-                      title: Text(
-                          AppLocalizations.of(context).settingsAccelerometer),
-                      value: model.isRotationControlEnabled,
-                      onChanged: (bool value) async {
-                        await model.toggleRotationControl();
-                      },
-                      secondary: const Icon(Icons.screen_rotation_rounded),
-                    ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    return ref.watch(settingProvider).when(
+          error: (exception, stackTrace) => SliverToBoxAdapter(
+            child: Center(
+                child:
+                    ErrorContent(exception: exception, stackTrace: stackTrace)),
+          ),
+          loading: () => const SliverToBoxAdapter(
+              child: Center(child: CircularProgressIndicator.adaptive())),
+          data: (settings) => SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                if (!flutter_foundation.kIsWeb &&
+                    (Platform.isIOS || Platform.isAndroid))
                   SwitchListTile(
-                    title: Text(AppLocalizations.of(context).settingsAudio),
-                    value: model.isAudioEnabled,
-                    onChanged: (bool value) async {
-                      await model.toggleAudio();
-                    },
-                    secondary: const Icon(Icons.music_note_rounded),
-                  ),
-                  ListTile(
-                    title: Text(AppLocalizations.of(context).txtCardsPerGame),
-                    leading: const Icon(Icons.style_rounded),
-                    trailing: Text(
-                      model.cardsPerGame?.toString() ??
-                          AppLocalizations.of(context).txtUnlimitedCards,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    onTap: () async {
-                      final cardsPerGame = await CardsPerGameDialog.show(
-                          context, model.cardsPerGame);
-                      await model.setCardsPerGame(cardsPerGame);
-                    },
-                  ),
-                  ListTile(
-                    title: Text(AppLocalizations.of(context).settingsLanguage),
-                    leading: const Icon(Icons.language_rounded),
-                    onTap: () async => Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                            builder: (context) => const LanguageScreen())),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.help_rounded),
                     title: Text(
-                        AppLocalizations.of(context).settingsStartTutorial),
-                    onTap: () async => _openTutorial(context),
+                        l10n.settingsAccelerometer),
+                    value: settings.rotationEnabled,
+                    onChanged: (bool value) async {
+                      await ref
+                          .read(settingProvider.notifier)
+                          .setRotationEnabled(value);
+                    },
+                    secondary: const Icon(Icons.screen_rotation_rounded),
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.volunteer_activism_rounded),
-                    title: Text(AppLocalizations.of(context).contribute),
-                    onTap: () async => URLUtil.launchURL(context,
-                        "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
+                SwitchListTile(
+                  title: Text(l10n.settingsAudio),
+                  value: settings.audioEnabled,
+                  onChanged: (bool value) async {
+                    await ref
+                        .read(settingProvider.notifier)
+                        .setAudioEnabled(value);
+                  },
+                  secondary: const Icon(Icons.music_note_rounded),
+                ),
+                ListTile(
+                  title: Text(l10n.txtCardsPerGame),
+                  leading: const Icon(Icons.style_rounded),
+                  trailing: Text(
+                    settings.cardsPerGame?.toString() ??
+                        l10n.txtUnlimitedCards,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.attach_money_rounded),
-                    title: Text(AppLocalizations.of(context).donate),
-                    onTap: () async => URLUtil.launchURL(
-                        context, "https://en.liberapay.com/Parlera/"),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.info_rounded),
-                    title: Text(AppLocalizations.of(context).aboutParlera),
-                    onTap: () => _showAboutDialog(context),
-                  ),
-                ],
-              ),
-            ));
+                  onTap: () async {
+                    final cardsPerGame = await CardsPerGameDialog.show(
+                        context, settings.cardsPerGame);
+                    await ref
+                        .read(settingProvider.notifier)
+                        .setCardsPerGame(cardsPerGame);
+                  },
+                ),
+                ListTile(
+                  title: Text(l10n.settingsLanguage),
+                  leading: const Icon(Icons.language_rounded),
+                  onTap: () async => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                          builder: (context) => const LanguageScreen())),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.help_rounded),
+                  title:
+                      Text(l10n.settingsStartTutorial),
+                  onTap: () async => _openTutorial(context),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.volunteer_activism_rounded),
+                  title: Text(l10n.contribute),
+                  onTap: () async => URLUtil.launchURL(context,
+                      "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.attach_money_rounded),
+                  title: Text(l10n.donate),
+                  onTap: () async => URLUtil.launchURL(
+                      context, "https://en.liberapay.com/Parlera/"),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.info_rounded),
+                  title: Text(l10n.aboutParlera),
+                  onTap: () async => await _showAboutDialog(context),
+                ),
+              ],
+            ),
+          ),
+        );
   }
 
   Future<void> _openTutorial(BuildContext context) async =>
@@ -139,16 +156,18 @@ class SettingsList extends StatelessWidget {
         '/tutorial',
       );
 
-  void _showAboutDialog(BuildContext context) async {
+  Future<void> _showAboutDialog(BuildContext context) async {
     final packageInfo = await PackageInfo.fromPlatform();
     if (context.mounted) {
       showAboutDialog(
           context: context,
-          applicationIcon: const SizedBox(
+          applicationIcon: SizedBox(
             width: 48,
             height: 48,
             child: Image(
-              image: AssetImage('assets/images/icon_generic.webp'),
+              image: AssetImage(
+                p.join('assets', 'images', 'icon_generic.webp'),
+              ),
             ),
           ),
           applicationName: packageInfo.appName,
