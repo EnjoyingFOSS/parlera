@@ -34,16 +34,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:parlera/providers/tutorial_completed_provider.dart';
 import 'package:parlera/screens/tutorial/widgets/pagination_bar.dart';
 import 'package:parlera/screens/tutorial/widgets/tutorial_page.dart';
-import 'package:parlera/store/tutorial.dart';
+import 'package:path/path.dart' as p;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class TutorialScreen extends StatefulWidget {
+class TutorialScreen extends ConsumerStatefulWidget {
   const TutorialScreen({super.key});
 
   @override
-  State<TutorialScreen> createState() => _TutorialScreenState();
+  ConsumerState<TutorialScreen> createState() => _TutorialScreenState();
 }
 
 class _KeyboardPreviousIntent extends Intent {
@@ -54,7 +56,7 @@ class _KeyboardNextIntent extends Intent {
   const _KeyboardNextIntent();
 }
 
-class _TutorialScreenState extends State<TutorialScreen> {
+class _TutorialScreenState extends ConsumerState<TutorialScreen> {
   static const _switchAnimationDuration = Duration(milliseconds: 500);
   static const _switchAnimationCurve = Curves.ease;
 
@@ -73,7 +75,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
   Widget build(BuildContext context) {
     final pages = [
       TutorialPage(
-          imagePath: 'assets/images/tutorial/1.webp',
+          imagePath: p.join('assets', 'images', 'tutorial', '1.webp'),
           title: AppLocalizations.of(context).tutorialFirstSectionHeader,
           description: _isMobile()
               ? AppLocalizations.of(context)
@@ -83,7 +85,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
           bgColor: Theme.of(context).colorScheme.surface),
       if (_isMobile())
         TutorialPage(
-            imagePath: 'assets/images/tutorial/2-phone.webp',
+            imagePath: p.join('assets', 'images', 'tutorial', '2-phone.webp'),
             title:
                 AppLocalizations.of(context).tutorialSecondSectionHeaderPhone,
             description: AppLocalizations.of(context)
@@ -91,7 +93,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
             bgColor: Theme.of(context).colorScheme.surface)
       else
         TutorialPage(
-            imagePath: 'assets/images/tutorial/2.webp',
+            imagePath: p.join('assets', 'images', 'tutorial', '2.webp'),
             title:
                 AppLocalizations.of(context).tutorialSecondSectionHeaderDesktop,
             description: AppLocalizations.of(context)
@@ -99,21 +101,21 @@ class _TutorialScreenState extends State<TutorialScreen> {
             bgColor: Theme.of(context).colorScheme.surface),
       if (_isMobile())
         TutorialPage(
-            imagePath: 'assets/images/tutorial/3-phone.webp',
+            imagePath: p.join('assets', 'images', 'tutorial', '3-phone.webp'),
             title: AppLocalizations.of(context).tutorialThirdSectionHeaderPhone,
             description: AppLocalizations.of(context)
                 .tutorialThirdSectionDescriptionPhone,
             bgColor: Theme.of(context).colorScheme.surface)
       else
         TutorialPage(
-            imagePath: 'assets/images/tutorial/3.webp',
+            imagePath: p.join('assets', 'images', 'tutorial', '3.webp'),
             title:
                 AppLocalizations.of(context).tutorialThirdSectionHeaderDesktop,
             description: AppLocalizations.of(context)
                 .tutorialThirdSectionDescriptionDesktop,
             bgColor: Theme.of(context).colorScheme.surface),
       TutorialPage(
-          imagePath: 'assets/images/tutorial/4.webp',
+          imagePath: p.join('assets', 'images', 'tutorial', '4.webp'),
           title: AppLocalizations.of(context).tutorialFourthSectionHeader,
           description: _isMobile()
               ? AppLocalizations.of(context)
@@ -156,10 +158,15 @@ class _TutorialScreenState extends State<TutorialScreen> {
                       right: 0,
                       child: PaginationBar(
                           onFinish: () async {
-                            await TutorialModel.of(context).setAsWatched();
+                            await ref
+                                .read(tutorialCompletedProvider.notifier)
+                                .setAsCompleted();
                             if (context.mounted) {
-                              Navigator.of(context).popUntil(
-                                  ModalRoute.withName('/'));
+                              await Navigator.of(context)
+                                  .pushNamedAndRemoveUntil(
+                                '/home',
+                                (_) => false,
+                              );
                             }
                           },
                           pageCount: pages.length,

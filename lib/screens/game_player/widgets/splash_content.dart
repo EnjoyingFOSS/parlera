@@ -62,6 +62,9 @@ class SplashContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
+
     return Container(
       decoration: BoxDecoration(color: background),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -70,7 +73,7 @@ class SplashContent extends StatelessWidget {
             child: Icon(
               iconData,
               size: 256,
-              color: Theme.of(context).colorScheme.onSurface,
+              color: theme.colorScheme.onSurface,
             ),
           ),
         ),
@@ -78,9 +81,7 @@ class SplashContent extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: Text(
-              isOutOfTime
-                  ? AppLocalizations.of(context).txtTimesUp
-                  : AppLocalizations.of(context).lastQuestion,
+              isOutOfTime ? l10n.txtTimesUp : l10n.lastQuestion,
               style: const TextStyle(
                 fontSize: 36.0,
                 fontWeight: FontWeight.bold,

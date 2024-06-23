@@ -28,9 +28,11 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Parlera.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:parlera/models/category.dart';
+import 'package:parlera/database/database.dart';
 
 class HeroHelper {
-  static String categoryImage(Category category) =>
-      'categoryImage-${category.getUniqueId()}';
+  static String tagForDeck(CardDeck deck) =>
+      'categoryImage-${deck.id}';
+
+  static String tagForCombo() => 'categoryImage-combo';
 }

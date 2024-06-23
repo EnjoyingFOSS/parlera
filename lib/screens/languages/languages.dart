@@ -30,89 +30,87 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:parlera/helpers/url_launcher.dart';
-import 'package:parlera/models/language.dart';
-import 'package:parlera/store/language.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:parlera/helpers/url_util.dart';
+import 'package:parlera/models/parlera_locale.dart';
+import 'package:parlera/providers/setting_provider.dart';
 import 'package:parlera/widgets/max_width_container.dart';
-import 'package:scoped_model/scoped_model.dart';
 
-class LanguageScreen extends StatelessWidget {
+class LanguageScreen extends ConsumerWidget {
   const LanguageScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    const languages = ParleraLanguage.values;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+
+    const languages = ParleraLocale.values;
     final infoColor = Theme.of(context).colorScheme.onSurface.withAlpha(162);
 
-    return Scaffold(
-      body: ScopedModelDescendant<LanguageModel>(
-          //TODO check whether I'm within safe area
-          builder: (context, _, model) => MaxWidthContainer(
-                  child: CustomScrollView(slivers: [
-                SliverAppBar(
-                  title: Text(AppLocalizations.of(context).settingsLanguage),
-                ),
-                SliverList(
-                    delegate: SliverChildListDelegate.fixed(
-                        List.generate(languages.length + 1, (i) {
-                  final lang = i == 0 ? null : languages[i - 1];
+    final preferredLocale = ref.watch(settingProvider.select((v) => v.valueOrNull?.preferredLocale));
 
-                  return RadioListTile<String?>(
-                      title: Text(lang != null
-                          ? AppLocalizations.of(context).txtLanguageChoice(
-                              lang.getLocaleCode(),
-                              lang.getLanguageName(context))
-                          : AppLocalizations.of(context).languageSystem),
-                      value: lang?.getLocaleCode(),
-                      groupValue: model.savedLang?.getLocaleCode(),
-                      onChanged: (String? newLangCode) async {
-                        await model.saveLang(newLangCode == null
-                            ? null
-                            : ParleraLanguage.fromLocaleCode(newLangCode));
-                      });
-                }))),
-                SliverList(
-                  delegate: SliverChildListDelegate.fixed([
-                    ListTile(
-                      title: Text(
-                        AppLocalizations.of(context).btnContributeLanguage,
-                      ),
-                      leading: const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 6),
-                          child: Icon(Icons.add_rounded)),
-                      onTap: () => URLUtil.launchURL(context,
-                          'https://hosted.weblate.org/projects/parlera/'),
+    return Scaffold(
+      body: MaxWidthContainer(
+          child: CustomScrollView(slivers: [
+        SliverAppBar(
+          title: Text(l10n.settingsLanguage),
+        ),
+        SliverList(
+            delegate: SliverChildListDelegate.fixed(
+                List.generate(languages.length + 1, (i) {
+          final lang = i == 0 ? null : languages[i - 1];
+
+          return RadioListTile<String?>(
+              title: Text(lang != null
+                  ? l10n.txtLanguageChoice(
+                      lang.getLocaleCode(), lang.getLocaleName(context))
+                  : l10n.languageSystem),
+              value: lang?.getLocaleCode(),
+              groupValue: preferredLocale?.getLocaleCode(),
+              onChanged: (String? newLangCode) async {
+                await ref.read(settingProvider.notifier).setPreferredLocale(
+                    newLangCode == null
+                        ? null
+                        : ParleraLocale.fromLocaleCode(newLangCode));
+              });
+        }))),
+        SliverList(
+          delegate: SliverChildListDelegate.fixed([
+            ListTile(
+              title: Text(
+                l10n.btnContributeLanguage,
+              ),
+              leading: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6),
+                  child: Icon(Icons.add_rounded)),
+              onTap: () async => await URLUtil.launchURL(
+                  context, 'https://hosted.weblate.org/projects/parlera/'),
+            ),
+            Container(
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(32),
+              height: 1,
+              margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+            ),
+            Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.info_outline_rounded,
+                      color: infoColor,
                     ),
-                    Container(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onSurface
-                          .withAlpha(32),
-                      height: 1,
-                      margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                    const SizedBox(
+                      width: 4,
                     ),
-                    Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.info_outline_rounded,
-                              color: infoColor,
-                            ),
-                            const SizedBox(
-                              width: 4,
-                            ),
-                            Flexible(
-                                child: Text(
-                                    AppLocalizations.of(context)
-                                        .languagesVaryNotice,
-                                    style: TextStyle(color: infoColor)))
-                          ],
-                        )),
-                  ]),
-                )
-              ]))),
+                    Flexible(
+                        child: Text(
+                            l10n.languagesVaryNotice,
+                            style: TextStyle(color: infoColor)))
+                  ],
+                )),
+          ]),
+        )
+      ])),
     );
   }
 }

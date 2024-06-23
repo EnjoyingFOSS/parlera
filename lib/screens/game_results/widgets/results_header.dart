@@ -30,25 +30,25 @@
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:parlera/clippers/bottom_wave_clipper.dart';
 import 'package:parlera/helpers/audio.dart';
-import 'package:parlera/helpers/emoji.dart';
-import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/layout.dart';
-import 'package:parlera/models/category.dart';
+import 'package:parlera/models/game_setup.dart';
+import 'package:parlera/providers/audio_provider.dart';
 
-class ResultsHeader extends StatefulWidget {
-  final Category category;
+class ResultsHeader extends ConsumerStatefulWidget {
+  final GameSetup gameSetup;
   final double scoreRatio;
   const ResultsHeader(
-      {required this.category, required this.scoreRatio, super.key});
+      {required this.gameSetup, required this.scoreRatio, super.key});
 
   @override
-  State<ResultsHeader> createState() => _ResultsHeaderState();
+  ConsumerState<ResultsHeader> createState() => _ResultsHeaderState();
 }
 
-class _ResultsHeaderState extends State<ResultsHeader> {
+class _ResultsHeaderState extends ConsumerState<ResultsHeader> {
   static const _standardTopAreaHeight = 60;
   static const _minimumConfettiScoreRatio =
       0.75; // TODO customize confetti and sound based on ratio; e.g. star confetti at 100%
@@ -65,7 +65,7 @@ class _ResultsHeaderState extends State<ResultsHeader> {
       confettiController = null;
     }
     Future.delayed(const Duration(milliseconds: 150),
-        () async => await AudioHelper.playResults(context));
+        () async => await AudioHelper.playResults(ref.read(audioProvider)));
   }
 
   @override
@@ -79,12 +79,14 @@ class _ResultsHeaderState extends State<ResultsHeader> {
     final safeAreaTop = MediaQuery.of(context).padding.top;
     final topAreaHeight =
         MediaQuery.of(context).size.height < 400 ? 8 : _standardTopAreaHeight;
+
     return Stack(children: [
       ClipPath(
           clipper: BottomWaveClipper(),
           child: Container(
             height: topAreaHeight + 90 + safeAreaTop,
-            color: widget.category.bgColor,
+            color: widget.gameSetup.deck?.color ??
+                widget.gameSetup.gameSetupType.defaultColor,
           )),
       Align(
           alignment: Alignment.topCenter,
@@ -111,12 +113,13 @@ class _ResultsHeaderState extends State<ResultsHeader> {
           margin: EdgeInsets.only(top: topAreaHeight + safeAreaTop),
           alignment: Alignment.center,
           child: Hero(
-              tag: HeroHelper.categoryImage(widget.category),
-              child: Image(
-                image: Svg(EmojiHelper.getImagePath(widget.category.emoji)),
-                width: 120,
-                height: 120,
-              ))),
+            tag: widget.gameSetup.heroTag,
+            child: Image(
+              image: Svg(widget.gameSetup.emojiPath),
+              width: 120,
+              height: 120,
+            ),
+          )),
     ]);
   }
 }

@@ -44,158 +44,94 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:l10n_esperanto/l10n_esperanto.dart';
 import 'package:parlera/helpers/theme.dart';
-import 'package:parlera/models/language.dart';
-import 'package:parlera/repository/card.dart';
-import 'package:parlera/repository/category.dart';
-import 'package:parlera/repository/language.dart';
-import 'package:parlera/repository/settings.dart';
-import 'package:parlera/repository/tutorial.dart';
+import 'package:parlera/models/parlera_locale.dart';
+import 'package:parlera/providers/setting_provider.dart';
 import 'package:parlera/screens/game_cover/game_cover.dart';
 import 'package:parlera/screens/game_player/game_player.dart';
 import 'package:parlera/screens/game_results/game_results.dart';
 import 'package:parlera/screens/home/home.dart';
+import 'package:parlera/screens/main_redirect/main_redirect.dart';
 import 'package:parlera/screens/tutorial/tutorial.dart';
-import 'package:parlera/store/card.dart';
-import 'package:parlera/store/category.dart';
-import 'package:parlera/store/language.dart';
-import 'package:parlera/store/settings.dart';
-import 'package:parlera/store/store.dart';
-import 'package:parlera/store/tutorial.dart';
-import 'package:parlera/widgets/screen_loader.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wakelock/wakelock.dart';
 
 class Parlera extends StatelessWidget {
-  final Map<Type, StoreModel> stores = {};
+  const Parlera({super.key});
 
-  Parlera({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    if (!kIsWeb && !Platform.isLinux) {
-      //TODO change after support is added
-      Wakelock.enable();
-    }
-
-    SystemChrome.setPreferredOrientations([
+  Future<SharedPreferences> initAndGetPreferences() async {
+    await SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight
     ]);
+    return await SharedPreferences.getInstance();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return FutureBuilder<SharedPreferences>(
-      future: SharedPreferences.getInstance(),
+      // ignore: discarded_futures
+      future: initAndGetPreferences(),
       builder: (
         BuildContext context,
         AsyncSnapshot<SharedPreferences> snapshot,
       ) {
         if (snapshot.data == null) {
-          return const ScreenLoader();
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
         }
 
-        //build store
-        if (stores.isEmpty) {
-          final storage = snapshot.data!;
-          stores.addAll({
-            CategoryModel: CategoryModel(CategoryRepository(storage: storage)),
-            CardModel: CardModel(CardRepository()),
-            TutorialModel: TutorialModel(TutorialRepository(storage: storage)),
-            SettingsModel: SettingsModel(SettingsRepository(storage: storage)),
-            LanguageModel: LanguageModel(LanguageRepository(storage: storage)),
-            // GalleryModel: GalleryModel(),
-          });
-          for (final store in stores.values) {
-            store.initialize();
-          }
-        }
-
-        return ScopedModel<CategoryModel>(
-          model: stores[CategoryModel] as CategoryModel,
-          child: ScopedModel<CardModel>(
-            model: stores[CardModel] as CardModel,
-            child: ScopedModel<TutorialModel>(
-              model: stores[TutorialModel] as TutorialModel,
-              child: ScopedModel<SettingsModel>(
-                model: stores[SettingsModel] as SettingsModel,
-                child: ScopedModel<LanguageModel>(
-                  model: stores[LanguageModel] as LanguageModel,
-                  child: const ParleraApp(),
-                  // ),
-                ),
-              ),
-            ),
-          ),
-        );
+        return const ParleraApp();
       },
     );
   }
 }
 
-class ParleraApp extends StatelessWidget {
+class ParleraApp extends ConsumerWidget {
   const ParleraApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ScopedModelDescendant<LanguageModel>(builder: (context, _, model) {
-      return MaterialApp(
-        title: 'Parlera',
-        // debugShowCheckedModeBanner: false, // used for screenshots
-        localeListResolutionCallback: (userLocales, supportedLocales) {
-          ParleraLanguage? resLang = model.lang;
-          if (resLang == null) {
-            // system language resolution
-            for (final locale in userLocales ?? const <Locale>[]) {
-              try {
-                final lang = ParleraLanguage.fromLocale(locale);
-                model.setLanguage(lang);
-                resLang = lang;
-                break;
-              } catch (_) {}
-            }
-            if (resLang == null) {
-              model.setLanguage(ParleraLanguage.defaultLang);
-              resLang = ParleraLanguage.defaultLang;
-            }
-          }
-          CategoryModel.of(context).load(resLang);
-          return resLang.toLocale();
-        },
-        locale: model.lang?.toLocale(),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          MaterialLocalizationsEo.delegate,
-          CupertinoLocalizationsEo.delegate,
-          LocaleNamesLocalizationsDelegate()
-        ],
-        supportedLocales: ParleraLanguage.values.map((lang) => lang.toLocale()),
-        theme: ThemeHelper.darkTheme,
-        initialRoute: '/',
-        routes: {
-          '/': (context) => const HomeScreen(),
-          '/category': (context) => const GameCoverScreen(),
-          '/game-play': (context) => const GamePlayerScreen(),
-          '/game-summary': (context) => const GameResultsScreen(),
-          '/tutorial': (context) => const TutorialScreen(),
-        },
-      );
-    });
+  Widget build(BuildContext context, WidgetRef ref) {
+    final preferredLocale = ref.watch(
+      settingProvider.select((v) => v.valueOrNull?.preferredLocale),
+    );
+
+    return MaterialApp(
+      title: 'Parlera',
+      // debugShowCheckedModeBanner: false, // used for screenshots
+      locale: preferredLocale?.toLocale(),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        MaterialLocalizationsEo.delegate,
+        CupertinoLocalizationsEo.delegate,
+        LocaleNamesLocalizationsDelegate()
+      ],
+      supportedLocales: ParleraLocale.supportedLocales,
+      theme: ThemeHelper.darkTheme,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const MainRedirectScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/game-cover': (context) => const GameCoverScreen(),
+        '/game-play': (context) => const GamePlayerScreen(),
+        '/game-summary': (context) => const GameResultsScreen(),
+        '/tutorial': (context) => const TutorialScreen(),
+      },
+    );
   }
 }
 
 void main() {
-  runApp(Parlera());
+  runApp(const ProviderScope(child: Parlera()));
 }

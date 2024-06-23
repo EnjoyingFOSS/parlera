@@ -45,11 +45,9 @@
 //   limitations under the License.
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/widgets.dart';
-import 'package:parlera/store/settings.dart';
 
+//TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
 class AudioHelper {
-  static final _player = AudioPlayer();
   static final _soundIncorrect = AssetSource('audio/choice_incorrect.wav');
   static final _soundCorrect = AssetSource('audio/choice_correct.wav');
   static final _soundCountdown = AssetSource('audio/countdown.wav');
@@ -57,63 +55,45 @@ class AudioHelper {
   static final _soundCountdownStart = AssetSource('audio/countdown_start.wav');
   static final _soundTimesUp = AssetSource('audio/times_up.wav');
   static final _soundResults = AssetSource('audio/results.wav');
+  static final _soundDiceRoll = AssetSource('audio/dice_roll.wav');
 
-  static bool _audioEnabled(BuildContext context) =>
-      SettingsModel.of(context).isAudioEnabled;
-
-  static Future<void> playIncorrect(BuildContext context) async {
-    if (_audioEnabled(context)) {
-      await _player.stop();
-      await _player.play(
-          _soundIncorrect); //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
-    }
+  static Future<void> playIncorrect(AudioPlayer? player) async {
+    await player?.stop();
+    await player?.play(_soundIncorrect);
   }
 
-  static Future<void> playCorrect(BuildContext context) async {
-    if (_audioEnabled(context)) {
-      await _player.stop();
-      await _player.play(
-          _soundCorrect); //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
-    }
+  static Future<void> playCorrect(AudioPlayer? player) async {
+    await player?.stop();
+    await player?.play(_soundCorrect);
   }
 
-  static Future<void> playCountdown(BuildContext context) async {
-    if (_audioEnabled(context)) {
-      await _player.stop();
-      await _player.play(
-          _soundCountdown); //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
-    }
+  static Future<void> playCountdown(AudioPlayer? player) async {
+    await player?.stop();
+    await player?.play(_soundCountdown);
   }
 
-  static Future<void> playStart(BuildContext context) async {
-    if (_audioEnabled(context)) {
-      await _player.stop();
-      await _player.play(
-          _soundStart); //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
-    }
+  static Future<void> playStart(AudioPlayer? player) async {
+    await player?.stop();
+    await player?.play(_soundStart);
   }
 
-  static Future<void> playCountdownStart(BuildContext context) async {
-    if (_audioEnabled(context)) {
-      await _player.stop();
-      await _player.play(_soundCountdownStart);
-      //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
-    }
+  static Future<void> playCountdownStart(AudioPlayer? player) async {
+    await player?.stop();
+    await player?.play(_soundCountdownStart);
   }
 
-  static Future<void> playTimesUp(BuildContext context) async {
-    if (_audioEnabled(context)) {
-      await _player.stop();
-      await _player.play(_soundTimesUp);
-      //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
-    }
+  static Future<void> playTimesUp(AudioPlayer? player) async {
+    await player?.stop();
+    await player?.play(_soundTimesUp);
   }
 
-  static Future<void> playResults(BuildContext context) async {
-    if (_audioEnabled(context)) {
-      await _player.stop();
-      await _player.play(_soundResults);
-      //TODO the stop() is temporary, due to https://github.com/bluefireteam/audioplayers/issues/1165
-    }
+  static Future<void> playResults(AudioPlayer? player) async {
+    await player?.stop();
+    await player?.play(_soundResults);
+  }
+
+  static Future<void> playDiceRoll(AudioPlayer? player) async {
+    await player?.stop();
+    await player?.play(_soundDiceRoll);
   }
 }
