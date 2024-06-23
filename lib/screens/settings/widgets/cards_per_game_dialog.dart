@@ -32,11 +32,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:parlera/repository/settings.dart';
+import 'package:parlera/models/setting_state.dart';
 
 enum _CPGOption {
-  normal(SettingsRepository.defaultCardsPerGame),
-  shorter(SettingsRepository.defaultCardsPerGame ~/ 2),
+  normal(SettingState.defaultCardsPerGame),
+  shorter(SettingState.defaultCardsPerGame ~/ 2),
   unlimited(null),
   custom(-1);
 

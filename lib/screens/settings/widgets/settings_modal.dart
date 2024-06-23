@@ -49,8 +49,7 @@ class SettingsModal extends StatelessWidget {
                     padding: EdgeInsets.only(bottom: 8, top: 28),
                     sliver: SettingsList())
               ]))),
-      Positioned.directional(
-          textDirection: Directionality.of(context),
+      PositionedDirectional(
           start: 8,
           child: FloatingActionButton.small(
             onPressed: () async => await Navigator.pushReplacement(
