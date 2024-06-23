@@ -34,7 +34,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 class URLUtil {
   static Future<void> launchURL(BuildContext context, String url) async {
-    //TODO launch in a new window
     final uri = Uri.parse(url);
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final couldNotOpenString = AppLocalizations.of(context).urlCantOpen;

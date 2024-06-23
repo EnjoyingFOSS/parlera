@@ -119,7 +119,7 @@ class ThemeHelper {
                   ? colorScheme.primary
                   : null),
           trackColor: WidgetStateProperty.resolveWith<Color?>(
-              (states) => //TODO check
+              (states) =>
                   (!states.contains(WidgetState.disabled) &&
                           states.contains(WidgetState.selected))
                       ? colorScheme.primary.withAlpha(80)
