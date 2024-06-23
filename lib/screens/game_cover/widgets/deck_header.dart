@@ -46,45 +46,38 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:parlera/clippers/bottom_wave_clipper.dart';
 import 'package:parlera/clippers/right_wave_clipper.dart';
-import 'package:parlera/helpers/emoji.dart';
-import 'package:parlera/helpers/hero.dart';
 import 'package:parlera/helpers/import_export.dart';
-import 'package:parlera/models/category.dart';
-import 'package:parlera/models/category_type.dart';
-import 'package:parlera/models/editable_category.dart';
-import 'package:parlera/screens/category_creator/category_creator.dart';
-import 'package:parlera/store/category.dart';
+import 'package:parlera/models/full_deck_companion.dart';
+import 'package:parlera/models/game_setup.dart';
+import 'package:parlera/providers/game_setup_provider.dart';
+import 'package:parlera/screens/deck_creator/deck_creator.dart';
 
-class CategoryHeader extends StatelessWidget {
+class DeckHeader extends ConsumerWidget {
   static const String _menuDelete = "delete";
   static const String _menuEdit = "edit";
   static const String _menuDuplicate = "duplicate";
   static const String _menuExport = "export";
 
-  final CategoryModel model;
-  final Category category;
+  final GameSetup gameSetup;
   final bool isLandscape;
-  final Function() onFavorite;
-  final bool isFavorite;
 
-  const CategoryHeader(
-      {required this.model,
-      required this.category,
-      required this.onFavorite,
-      required this.isFavorite,
-      required this.isLandscape,
-      super.key});
+  const DeckHeader(
+      {required this.gameSetup, required this.isLandscape, super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final imageProvider = Svg(EmojiHelper.getImagePath(category.emoji));
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+
+    final deck = gameSetup.deck!;
+
     return ClipPath(
         clipper: isLandscape ? RightWaveClipper() : BottomWaveClipper(),
         child: Container(
-            color: category.bgColor,
+            color: deck.color,
             padding: isLandscape
                 ? const EdgeInsets.fromLTRB(8, 0, 8, 32)
                 : const EdgeInsets.only(bottom: 32),
@@ -95,81 +88,75 @@ class CategoryHeader extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 actions: [
                   IconButton(
-                    tooltip: AppLocalizations.of(context).btnFavorite,
-                    onPressed: onFavorite,
+                    tooltip: l10n.btnFavorite,
+                    onPressed: () async => await ref
+                        .read(gameSetupProvider.notifier)
+                        .toggleFavorited(),
                     icon: Icon(
-                      isFavorite
+                      deck.isFavorited
                           ? Icons.favorite_rounded
                           : Icons.favorite_border_rounded,
                     ),
                   ),
                   PopupMenuButton(
                     itemBuilder: (context) {
-                      return category.type == CategoryType.custom
+                      return deck.isBundled
                           ? [
                               PopupMenuItem<String>(
-                                  value: _menuEdit,
-                                  child: Text(
-                                      AppLocalizations.of(context).btnEdit)),
-                              PopupMenuItem<String>(
                                   value: _menuDuplicate,
-                                  child: Text(AppLocalizations.of(context)
-                                      .btnDuplicate)),
+                                  child: Text(l10n.btnDuplicate)),
                               PopupMenuItem<String>(
                                   value: _menuExport,
-                                  child: Text(
-                                      AppLocalizations.of(context).btnExport)),
-                              PopupMenuItem<String>(
-                                  value: _menuDelete,
-                                  child: Text(
-                                      AppLocalizations.of(context).btnDelete)),
+                                  child: Text(l10n.btnExport)),
                             ]
                           : [
                               PopupMenuItem<String>(
+                                  value: _menuEdit, child: Text(l10n.btnEdit)),
+                              PopupMenuItem<String>(
                                   value: _menuDuplicate,
-                                  child: Text(AppLocalizations.of(context)
-                                      .btnDuplicate)),
+                                  child: Text(l10n.btnDuplicate)),
                               PopupMenuItem<String>(
                                   value: _menuExport,
-                                  child: Text(
-                                      AppLocalizations.of(context).btnExport)),
+                                  child: Text(l10n.btnExport)),
+                              PopupMenuItem<String>(
+                                  value: _menuDelete,
+                                  child: Text(l10n.btnDelete)),
                             ];
                     },
                     onSelected: (String value) async {
                       switch (value) {
                         case _menuDelete:
-                          await model.deleteCustomCategory(
-                              category.sembastPos, category.lang);
-                          if (context.mounted) {
-                            Navigator.pop(context);
-                          }
+                          Navigator.pop(context);
+                          await ref.read(gameSetupProvider.notifier).delete();
                         case _menuEdit:
                           await Navigator.of(context)
                               .push(MaterialPageRoute<void>(
-                                  builder: (context) => CategoryCreatorScreen(
-                                        ec: EditableCategory.fromCategory(
-                                            category),
+                                  builder: (context) => DeckCreatorScreen(
+                                        startingFullDeckCompanion:
+                                            FullDeckCompanion.fromExisting(
+                                                deck, gameSetup.deckContents!),
                                       )));
                         case _menuDuplicate:
-                          final ec = EditableCategory.fromCategory(category);
-                          ec.sembastPos = null;
+                          final ec = FullDeckCompanion.duplicateExisting(
+                              deck, gameSetup.deckContents!);
                           await Navigator.of(context)
                               .push(MaterialPageRoute<void>(
-                                  builder: (context) => CategoryCreatorScreen(
-                                        ec: ec,
+                                  builder: (context) => DeckCreatorScreen(
+                                        startingFullDeckCompanion: ec,
                                       )));
                         case _menuExport:
                           try {
                             await ImportExportHelper.exportAndShareJson(
-                                category.toJson(),
-                                "${category.name}.parlera",
-                                "[Parlera export] ${category.name}");
+                                FullDeckCompanion.fromExisting(
+                                        deck, gameSetup.deckContents!)
+                                    .toJson(),
+                                "${deck.name}.parlera",
+                                "[Parlera export] ${deck.name}");
                           } catch (e) {
                             if (context.mounted) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
-                                content: Text(AppLocalizations.of(context)
-                                    .errorCouldNotExport),
+                                content: Text(l10n.errorCouldNotExport),
                               ));
                             }
                           }
@@ -186,16 +173,16 @@ class CategoryHeader extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Hero(
-                  tag: HeroHelper.categoryImage(category),
+                  tag: gameSetup.heroTag,
                   child: Image(
-                    image: imageProvider,
+                    image: Svg(gameSetup.emojiPath),
                     height: 160,
                     width: 160,
                   ),
                 ),
               ),
               Text(
-                category.name,
+                gameSetup.getName(context),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
