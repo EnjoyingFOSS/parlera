@@ -1,19 +1,19 @@
 idioms_name: Expressions
 animals_name: Animaux
-animals_questions: "abeille\nalligator\nfourmi\nantilope\nbabouin\nchauve-souris\n\
-  ours\nscarabée\noiseau\npanthère noire\nveuve noire\ninsecte\ntaureau\nlapin\npapillon\n\
-  chameau\nchat\nchenille\nmille-pattes\ncaméléon\nguépard\npoulet\nchihuahua\nchimpanzé\n\
-  hippocampe\npoisson-clown\ncafard\ncougar\nvache\ncoyote\ncrabe\ngrillon\ncrocodile\n\
-  coucou\ncerf\ndinosaure\ndodo\nchien\ndauphin\nâne\ncolombe\nlibellule\ncanard\n\
-  bousier\naigle\nanguille\néléphant\nfuret\nluciole\npoisson\nrenard\ngrenouille\n\
-  mouche\ngazelle\ngecko\ngirafe\nchèvre\npoisson rouge\noie\ngnou\ngrizzli\ncochon\
-  \ d'Inde\nhamster\nlièvre\nhippopotame\nfrelon\ncheval\nhumain\njaguar\nkangourou\n\
-  coccinelle\nléopard\nlion\nlézard\nlama\nhomard\nmammifère\ntaupe\nsinge\nélan\n\
-  moustique\nmite\nsouris\nnarval\npieuvre\norang-outan\nautruche\nhibou\nhuître\n\
-  panthère\nperroquet\npaon\npélican\npingouin\ncochon\npigeon\nours polaire\nponey\n\
-  puma\npanda\nlapin\nrat\ncorbeau\nrenne\nrongeur\ncoq\nsaumon\nsardine\nscorpion\n\
-  concombre de mer\ntortue de mer\nmouette\nphoque\nrequin\nmouton\nserpent\nléopard\
-  \ des neiges\naraignée\ncalamar\nécureuil\nétoile de mer\nespadon\ntarentule\ntigre\n\
+animals_questions: "abeille\nalligator\nfourmi\nantilope\nbabouin\nchauve-souris\n
+  ours\nscarabée\noiseau\npanthère noire\nveuve noire\ninsecte\ntaureau\nlapin\npapillon\n
+  chameau\nchat\nchenille\nmille-pattes\ncaméléon\nguépard\npoulet\nchihuahua\nchimpanzé\n
+  hippocampe\npoisson-clown\ncafard\ncougar\nvache\ncoyote\ncrabe\ngrillon\ncrocodile\n
+  coucou\ncerf\ndinosaure\ndodo\nchien\ndauphin\nâne\ncolombe\nlibellule\ncanard\n
+  bousier\naigle\nanguille\néléphant\nfuret\nluciole\npoisson\nrenard\ngrenouille\n
+  mouche\ngazelle\ngecko\ngirafe\nchèvre\npoisson rouge\noie\ngnou\ngrizzli\ncochon
+  d'Inde\nhamster\nlièvre\nhippopotame\nfrelon\ncheval\nhumain\njaguar\nkangourou\n
+  coccinelle\nléopard\nlion\nlézard\nlama\nhomard\nmammifère\ntaupe\nsinge\nélan\n
+  moustique\nmite\nsouris\nnarval\npieuvre\norang-outan\nautruche\nhibou\nhuître\n
+  panthère\nperroquet\npaon\npélican\npingouin\ncochon\npigeon\nours polaire\nponey\n
+  puma\npanda\nlapin\nrat\ncorbeau\nrenne\nrongeur\ncoq\nsaumon\nsardine\nscorpion\n
+  concombre de mer\ntortue de mer\nmouette\nphoque\nrequin\nmouton\nserpent\nléopard
+  des neiges\naraignée\ncalamar\nécureuil\nétoile de mer\nespadon\ntarentule\ntigre\n\
   tyrannosaure\ncrapaud\ntortue\ntoucan\ntruite\ntortue\nguêpe\nbelette\nbaleine\n\
   loup\npivert\nver\nyak\nzèbre"
 classic-characters_name: Personnages classiques
@@ -22,133 +22,132 @@ food-and-drink_name: Nourriture et boisson
 abstract_name: Abstrait
 historical-figures_name: Figures historiques
 jobs_name: Métiers
-jobs_questions: "comptable\nacteur\nprésentateur\narchitecte\nassistant\nastronaute\n\
-  auteur\nbaby-sitter\nboulanger\ndanseur de ballet\nbarbier\nchauffeur de bus\nmaître\
-  \ d'hôtel\ncaissier\ndirecteur général\nchef cuisinier\nclown\ncomédien\ncompositeur\n\
-  consultant\ncuisinier\nconseiller\ndanseur\nlivreur\ndentiste\ndesigner\ndétective\n\
-  programmeur\ndiététicien\ndirecteur\nmédecin\nchauffeur\nélectricien\ningénieur\n\
-  entrepreneur\noculiste\nagriculteur\nstyliste\nhôtesse de l'air\nfleuriste\npompier\n\
-  footballeur\néboueur\njardinier\nmédecin généraliste\ngolfeur\ngraphiste\ngardien\n\
-  coiffeur\nconcierge\njournaliste\nsecrétaire\navocat\nbibliothécaire\nfemme de chambre\n\
-  magicien\nfacteur\nmannequin\nmaquilleur\nmathématicien\nmécanicien\nministre\n\
-  musicien\nnounou\nneurologue\ninfirmier\npeintre\nartiste de scène\npharmacien\n\
-  physicien\ndramaturge\nplombier\npoète\npolicier\npoliticien\nprêtre\ngardien de\
-  \ prison\nprofesseur\nprogrammeur\npsychologue\nagent immobilier\nréceptionniste\n\
-  réparateur\nchercheur\nvendeur\nscientifique\nscénariste\nfootballeur\nartiste de\
-  \ rue\ncascadeur\nchirurgien\ntailleur\ntatoueur\nenseignant\nguide touristique\n\
+jobs_questions: "comptable\nacteur\nprésentateur\narchitecte\nassistant\nastronaute\n
+  auteur\nbaby-sitter\nboulanger\ndanseur de ballet\nbarbier\nchauffeur de bus\nmaître
+  d'hôtel\ncaissier\ndirecteur général\nchef cuisinier\nclown\ncomédien\ncompositeur\n
+  consultant\ncuisinier\nconseiller\ndanseur\nlivreur\ndentiste\ndesigner\ndétective\n
+  programmeur\ndiététicien\ndirecteur\nmédecin\nchauffeur\nélectricien\ningénieur\n
+  entrepreneur\noculiste\nagriculteur\nstyliste\nhôtesse de l'air\nfleuriste\npompier\n
+  footballeur\néboueur\njardinier\nmédecin généraliste\ngolfeur\ngraphiste\ngardien\n
+  coiffeur\nconcierge\njournaliste\nsecrétaire\navocat\nbibliothécaire\nfemme de chambre\n
+  magicien\nfacteur\nmannequin\nmaquilleur\nmathématicien\nmécanicien\nministre\n
+  musicien\nnounou\nneurologue\ninfirmier\npeintre\nartiste de scène\npharmacien\n
+  physicien\ndramaturge\nplombier\npoète\npolicier\npoliticien\nprêtre\ngardien de
+  prison\nprofesseur\nprogrammeur\npsychologue\nagent immobilier\nréceptionniste\n
+  réparateur\nchercheur\nvendeur\nscientifique\nscénariste\nfootballeur\nartiste de
+  rue\ncascadeur\nchirurgien\ntailleur\ntatoueur\nenseignant\nguide touristique\n\
   formateur\ntraducteur\nvétérinaire\ndoubleur\nserveur"
 mythical-creatures_name: Créatures mythiques
-mythical-creatures_questions: "abominable homme des neiges\nange\nBigfoot\ncentaure\n\
-  cupidon\ndiable\nelfe\nfée\ngénie\nfantôme\ngoule\ngéant\ngnome\ngobelin\nFaucheuse\n\
-  hydre\nKraken\nfarfadet\nmonstre du Loch Ness\nsirène\nsirène\nogre\npégase\nphénix\n\
-  lutin\nmarchand de sable\nsasquatch\nmonstre marin\nsirène\nsphinx\nesprit\nla petite\
-  \ souris\ntroll\nlicorne\nvalkyrie\nvampire\nsorcier\nloup-garou\nsorcière\nsorcier\n\
+mythical-creatures_questions: "abominable homme des neiges\nange\nBigfoot\ncentaure\n
+  cupidon\ndiable\nelfe\nfée\ngénie\nfantôme\ngoule\ngéant\ngnome\ngobelin\nFaucheuse\n
+  hydre\nKraken\nfarfadet\nmonstre du Loch Ness\nsirène\nsirène\nogre\npégase\nphénix\n
+  lutin\nmarchand de sable\nsasquatch\nmonstre marin\nsirène\nsphinx\nesprit\nla petite
+  souris\ntroll\nlicorne\nvalkyrie\nvampire\nsorcier\nloup-garou\nsorcière\nsorcier\n\
   yéti\nzombie"
-abstract_questions: "action\napparence\naspiration\nathéisme\nautonomie\nbeauté\n\
-  croyance\nbouddhisme\nburn-out\ninfantilisme\nchristianisme\nintelligence\ncliché\n\
-  confort\ncommunisme\nconnexion\ndanger\nmort\ndestin\ndifférence\ndifficulté\neffort\n\
-  élément\nchiffrement\négalité\nestimation\nexemple\nexpression\néchec\néquité\n\
-  foi\ndestin\ncaractéristique\nliberté d'expression\ntemps libre\nlibre arbitre\n\
-  liberté\ngéographie\ndeviner\nharmonie\nhaine\nsanté\nespoir\ndroit humain\nhumilité\n\
-  humour\nidée\nimpact\nimportance\ninfinité\ninsulte\nislam\nemplacement\namour\n\
-  mathématiques\nmétaphore\nmalentendu\nmoment\nhumeur\nbesoin\nobjectivité\npassion\n\
-  paix\nphilosophie\npopularité\nliberté de la presse\nvie privée\nproblème\npsychologie\n\
-  citation\nréaction\nréalité\nréférence\nrelaxation\nrespect\nréaction\nsécurité\n\
+abstract_questions: "action\napparence\naspiration\nathéisme\nautonomie\nbeauté\n
+  croyance\nbouddhisme\nburn-out\ninfantilisme\nchristianisme\nintelligence\ncliché\n
+  confort\ncommunisme\nconnexion\ndanger\nmort\ndestin\ndifférence\ndifficulté\neffort\n
+  élément\nchiffrement\négalité\nestimation\nexemple\nexpression\néchec\néquité\n
+  foi\ndestin\ncaractéristique\nliberté d'expression\ntemps libre\nlibre arbitre\n
+  liberté\ngéographie\ndeviner\nharmonie\nhaine\nsanté\nespoir\ndroit humain\nhumilité\n
+  humour\nidée\nimpact\nimportance\ninfinité\ninsulte\nislam\nemplacement\namour\n
+  mathématiques\nmétaphore\nmalentendu\nmoment\nhumeur\nbesoin\nobjectivité\npassion\n
+  paix\nphilosophie\npopularité\nliberté de la presse\nvie privée\nproblème\npsychologie\n
+  citation\nréaction\nréalité\nréférence\nrelaxation\nrespect\nréaction\nsécurité\n
   satisfaction\nsécurité\nsens de l'humour\nforme\nsignification\nsournoiserie\nréconfort\n\
   âme\nstress\nlutte\nsymbole\nsuccès\ntendance\nvérité\ncompréhension\nvacances\n\
   victimisation\nvolatilité\nbien-être\nsagesse"
-classic-characters_questions: "Aladin\nAlice (d'Alice au pays des merveilles)\nArsène\
-  \ Lupin\nAstérix\nBambi\nBécassine\nCalimero\nCasimir\nCendrillon\nBoule et Bill\n\
-  Heidi\nD'Artagnan\nDorothy\nDracula\nGaston Lagaffe\nGrand Méchant Loup\nBourriquet\n\
-  Frankenstein\nGretel\nHansel\nSon Goku\nPetit Chaperon Rouge\nLe Petit Prince\n\
-  Peter Pan\nPollux\nPinocchio\nPrince Charmant\nRaiponce\nMaya l'abeille\nRobinson\
-  \ Crusoé\nSherlock Holmes\nSindbad le Marin\nLa Belle au bois dormant\nBlanche-Neige\n\
-  Tarzan\nLe Prince Grenouille\nLe fantôme des Noëls passés\nLe bonhomme de pain d'épice\n\
-  Le bossu de Notre-Dame\nLe Petit Nicolas\nLa Petite Sirène\nLe capitaine Haddock\n\
-  Le Marsupilami\nLa Reine de Cœur\nLes sept nains\nLa Reine des neiges\nLes trois\
-  \ souris aveugles\nLes Trois Petits Cochons\nLes Trois Mousquetaires\nLe vilain\
-  \ petit canard\nLucky Luke\nObélix\nTigrou\nLa fée Clochette\nTintin\nSuper Mario\n\
-  Magicien d'Oz\nZorro"
-food-and-drink_questions: "amande\napéritif\npomme\njus de pomme\nabricot\navocat\n\
-  bacon\nbagel\nbanane\nbarbecue\npâte à frire\nharicot\nbœuf\npoivron\nmûre\nmyrtille\n\
-  noix du Brésil\npain\npetit-déjeuner\nbrie\nbrocoli\nbiscuit\nbouillon\nburger\n\
-  burrito\nbeurre\ngâteau\ncarotte\nnoix de cajou\nchou-fleur\ncéleri\nfromage\ncheeseburger\n\
-  cerise\nquiche\npoulet\npois chiches\npiment\nchocolat\ncopeaux de chocolat\nnoix\
-  \ de coco\nlait de coco\ncafé\nmaïs\nfromage blanc\ncanneberge\ncrème\ncroissant\n\
-  concombre\nclafoutis\ncurry\nproduits laitiers\ndessert\ndîner\nbeignet\npâte\n\
-  vinaigrette\nboisson\nœuf\nlait de poule\naubergine\nsureau\nboisson énergétique\n\
-  falafel\npoisson\nfilet de poisson\nbâtonnet de poisson\nfarine\nfrites\nfruit\n\
-  ail\npain d'épices\nglaçage\ngouda\ngrain\nraisin\npamplemousse\nharicot vert\n\
-  jambon\nhamburger\nnoisette\nherbe\nmiel\ncrème glacée\njus\nchou frisé\nkébab\n\
-  ketchup\nharicot rouge\nkiwi\ncitron\nlimonade\nlentille\nlaitue\ncitron vert\n\
-  déjeuner\nmangue\nsirop d'érable\nrepas\nviande\nlait\nmilkshake\neau minérale\n\
-  menthe\nmuffin\nchampignon\nmoutarde\nnoix\navoine\nflocons d'avoine\nhuile\nolive\n\
-  oignon\nrondelle d'oignon\norange\njus d'orange\nhuître\ncrêpe\npâtes\npêche\ncacahuète\n\
-  poire\npoivre\npepperoni\ncornichon\ntarte\npignon\nananas\npistache\npizza\nprune\n\
-  grenade\npopcorn\nporc\nporridge\npomme de terre\nbretzel\ncitrouille\nquesadilla\n\
-  raisin sec\nframboise\nlentille rouge\nriz\nrouleau\nsalade\nsalami\nsaumon\nsel\n\
-  sandwich\nsardine\nsauce\nchoucroute\nsaucisse\nfruits de mer\nsorbet\naccompagnement\n\
-  smoothie\nsoda\nsorbet\nsoupe\nsauce soja\nspaghetti\népice\nsaupoudrer\ncourge\n\
-  entrée\nsteak\nfraise\nsous-marin\nsushi\nsirop\ntaco\nthé\ntofu\ntomate\ntortilla\n\
+classic-characters_questions: "Aladin\nAlice (d'Alice au pays des merveilles)\nArsène
+  Lupin\nAstérix\nBambi\nBécassine\nCalimero\nCasimir\nCendrillon\nBoule et Bill\n\
+  Heidi\nD'Artagnan\nDorothy\nDracula\nGaston Lagaffe\nGrand Méchant Loup\nBourriquet\n
+  Frankenstein\nGretel\nHansel\nSon Goku\nPetit Chaperon Rouge\nLe Petit Prince\n
+  Peter Pan\nPollux\nPinocchio\nPrince Charmant\nRaiponce\nMaya l'abeille\nRobinson
+  Crusoé\nSherlock Holmes\nSindbad le Marin\nLa Belle au bois dormant\nBlanche-Neige\n
+  Tarzan\nLe Prince Grenouille\nLe fantôme des Noëls passés\nLe bonhomme de pain d'épice\n
+  Le bossu de Notre-Dame\nLe Petit Nicolas\nLa Petite Sirène\nLe capitaine Haddock\n
+  Le Marsupilami\nLa Reine de Cœur\nLes sept nains\nLa Reine des neiges\nLes trois
+  souris aveugles\nLes Trois Petits Cochons\nLes Trois Mousquetaires\nLe vilain petit
+  canard\nLucky Luke\nObélix\nTigrou\nLa fée Clochette\nTintin\nSuper Mario\nMagicien
+  d'Oz\nZorro"
+food-and-drink_questions: "amande\napéritif\npomme\njus de pomme\nabricot\navocat\n
+  bacon\nbagel\nbanane\nbarbecue\npâte à frire\nharicot\nbœuf\npoivron\nmûre\nmyrtille\n
+  noix du Brésil\npain\npetit-déjeuner\nbrie\nbrocoli\nbiscuit\nbouillon\nburger\n
+  burrito\nbeurre\ngâteau\ncarotte\nnoix de cajou\nchou-fleur\ncéleri\nfromage\ncheeseburger\n
+  cerise\nquiche\npoulet\npois chiches\npiment\nchocolat\ncopeaux de chocolat\nnoix
+  de coco\nlait de coco\ncafé\nmaïs\nfromage blanc\ncanneberge\ncrème\ncroissant\n
+  concombre\nclafoutis\ncurry\nproduits laitiers\ndessert\ndîner\nbeignet\npâte\n
+  vinaigrette\nboisson\nœuf\nlait de poule\naubergine\nsureau\nboisson énergétique\n
+  falafel\npoisson\nfilet de poisson\nbâtonnet de poisson\nfarine\nfrites\nfruit\n
+  ail\npain d'épices\nglaçage\ngouda\ngrain\nraisin\npamplemousse\nharicot vert\n
+  jambon\nhamburger\nnoisette\nherbe\nmiel\ncrème glacée\njus\nchou frisé\nkébab\n
+  ketchup\nharicot rouge\nkiwi\ncitron\nlimonade\nlentille\nlaitue\ncitron vert\n
+  déjeuner\nmangue\nsirop d'érable\nrepas\nviande\nlait\nmilkshake\neau minérale\n
+  menthe\nmuffin\nchampignon\nmoutarde\nnoix\navoine\nflocons d'avoine\nhuile\nolive\n
+  oignon\nrondelle d'oignon\norange\njus d'orange\nhuître\ncrêpe\npâtes\npêche\ncacahuète\n
+  poire\npoivre\npepperoni\ncornichon\ntarte\npignon\nananas\npistache\npizza\nprune\n
+  grenade\npopcorn\nporc\nporridge\npomme de terre\nbretzel\ncitrouille\nquesadilla\n
+  raisin sec\nframboise\nlentille rouge\nriz\nrouleau\nsalade\nsalami\nsaumon\nsel\n
+  sandwich\nsardine\nsauce\nchoucroute\nsaucisse\nfruits de mer\nsorbet\naccompagnement\n
+  smoothie\nsoda\nsorbet\nsoupe\nsauce soja\nspaghetti\népice\nsaupoudrer\ncourge\n
+  entrée\nsteak\nfraise\nsous-marin\nsushi\nsirop\ntaco\nthé\ntofu\ntomate\ntortilla\n
   thon\nlégumes\ngaufre\nnoix\neau\npastèque\npetit-lait\ncrème fouettée\nyaourt"
-historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert\
-  \ Einstein\nAlexandre le Grand\nMozart\nAndy Warhol\nAnne Frank\nAristote\nJean\
-  \ Moulin\nBenito Mussolini\nBilly the Kid\nBob Ross\nFrères Grimm\nBouddha\nCharlemagne\n\
-  Charles Darwin\nCharles Dickens\nCharlie Chaplin\nChristophe Colomb\nClaude Monet\n\
-  Cléopâtre\nDante Alighieri\nColuche\nOlympe de Gouges\nSerge Gainsbourg\nErnest\
-  \ Hemingway\nÉdith Piaf\nFrançois Mitterand\nFriedrich Nietzsche\nGalilée\nGengis\
-  \ Khan\nRobespierre\nJean de La Fontaine\nHarriet Tubman\nHelen Keller\nAntoine\
-  \ de Saint-Exupéry\nEmmanuel Kant\nIsaac Newton\nLéopold Sédar Senghor\nJésus\n\
-  Jeanne d'Arc\nJean-Sébastien Bach\nJacques Cartier\nCharles de Gaulle\nMichel Berger\n\
-  Jules Verne\nJules César\nRoi Arthur\nLéonard de Vinci\nLewis Carroll\nLouis Armstrong\n\
-  Ludwig van Beethoven\nMahatma Gandhi\nJean-Paul Sartre\nMarie Curie\nSimone de Beauvoir\n\
-  Aimé Césaire\nMary Shelley\nMarie-Antoinette\nJohnny Halliday\nMichelange\nMahomet\n\
-  Muhammad Ali\nNapoléon Bonaparte\nNeil Armstrong\nNelson Mandela\nCopernic\nNikola\
-  \ Tesla\nArthur Rimbaud\nOtto von Bismarck\nPlaton\nPocahontas\nPythagore\nRené\
-  \ Descartes\nPierre Elliott Trudeau\nRosa Parks\nSalvador Dalí\nSigmund Freud\n\
-  Blaise Pascal\nSocrate\nAlexandra Kollontaï\nColette\nGeorge Sand\nVincent Van Gogh\n\
-  Lénine\nVoltaire\nWilliam Shakespeare\nFrères Lumières"
+historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert
+  Einstein\nAlexandre le Grand\nMozart\nAndy Warhol\nAnne Frank\nAristote\nJean Moulin\n
+  Benito Mussolini\nBilly the Kid\nBob Ross\nFrères Grimm\nBouddha\nCharlemagne\n
+  Charles Darwin\nCharles Dickens\nCharlie Chaplin\nChristophe Colomb\nClaude Monet\n
+  Cléopâtre\nDante Alighieri\nColuche\nOlympe de Gouges\nSerge Gainsbourg\nErnest
+  Hemingway\nÉdith Piaf\nFrançois Mitterand\nFriedrich Nietzsche\nGalilée\nGengis
+  Khan\nRobespierre\nJean de La Fontaine\nHarriet Tubman\nHelen Keller\nAntoine de
+  Saint-Exupéry\nEmmanuel Kant\nIsaac Newton\nLéopold Sédar Senghor\nJésus\nJeanne
+  d'Arc\nJean-Sébastien Bach\nJacques Cartier\nCharles de Gaulle\nMichel Berger\n
+  Jules Verne\nJules César\nRoi Arthur\nLéonard de Vinci\nLewis Carroll\nLouis Armstrong\n
+  Ludwig van Beethoven\nMahatma Gandhi\nJean-Paul Sartre\nMarie Curie\nSimone de Beauvoir\n
+  Aimé Césaire\nMary Shelley\nMarie-Antoinette\nJohnny Halliday\nMichelange\nMahomet\n
+  Muhammad Ali\nNapoléon Bonaparte\nNeil Armstrong\nNelson Mandela\nCopernic\nNikola
+  Tesla\nArthur Rimbaud\nOtto von Bismarck\nPlaton\nPocahontas\nPythagore\nRené Descartes\n
+  Pierre Elliott Trudeau\nRosa Parks\nSalvador Dalí\nSigmund Freud\nBlaise Pascal\n
+  Socrate\nAlexandra Kollontaï\nColette\nGeorge Sand\nVincent Van Gogh\nLénine\nVoltaire\n
+  William Shakespeare\nFrères Lumières"
 classic-literature_questions: "À la recherche du temps perdu\nUn conte de deux villes\n\
-  L'Écume des jours\nLes Fables d’Ésope\nLes Aventures d'Alice au pays des merveilles\n\
+  L'Écume des jours\nLes Fables d’Ésope\nLes Aventures d'Alice au pays des merveilles\n
   Anna Karénine\nLe Tour du monde en quatre-vingts jours\nCendrillon\nCrime et Châtiment\n\
-  L'Assomoir\nDon Quichotte\nDracula\nFrankenstein\nLe Petit Prince\nLes Voyages de\
-  \ Gulliver\nHamlet\nHansel et Gretel\nIvanhoé\nLe Rouge et le Noir\nVoyage au centre\
-  \ de la terre\nLes Misérables\nLe Petit Chaperon Rouge\nLes Femmes savantes\nLe\
-  \ Tartuffe ou l'Imposteur\nLe Misanthrope\nL'Illusion comique\nLa Divine Comédie\n\
-  Claudine à l'école\nOrgueil et Préjugés\nRaiponce\nRobinson Crusoé\nRoméo et Juliette\n\
-  La Princesse de Clèves\nLa Belle au bois dormant\nBlanche-Neige\nArsène Lupin, gentleman-cambrioleur\n\
-  Les Malheurs de Sophie\nLe Chat botté\nLes Frères Karamazov\nLes Fables de La Fontaine\n\
-  Le Masque d'Amontillado\nLe Comte de Monte Cristo\nLes Habits Neufs de l'empereur\n\
-  Le Père Goriot\nLe Prince Grenouille\nLettres de mon moulin\nPoil de Carotte\nLe\
-  \ Bossu de Notre-Dame\nL'Idiot\nL'Iliade\nL'Homme invisible\nLe Livre de la Jungle\n\
-  La Petite Sirène\nLe Monde perdu\nLa Métamorphose\nLe Rossignol\nL'Odyssée\nLe portrait\
-  \ de Dorian Gray\nLa Princesse et le petit pois\nLe Corbeau\nLa Lettre écarlate\n\
-  L'Étrange Cas du Dr Jekyll et de M. Hyde\nEmma Bovary\nLes Trois Mousquetaires\n\
-  La Machine à remonter le temps\nLa Guerre des mondes\nLa Sagouine\nDe l'autre côté\
-  \ du miroir\nVingt mille lieues sous les mers\nGuerre et Paix\nLes Mille et Une\
-  \ Nuits\nGerminal"
-idioms_questions: "anguille sous roche\navoir la pêche\navoir les oreilles en feuilles\
-  \ de choux\navoir un appétit d'oiseau\navoir un chat dans la gorge\navoir une faim\
-  \ de loup\navoir une fièvre de cheval\navoir une taille de guêpe\nbavard comme une\
-  \ pie\nbayer aux corneilles\nbouc émissaire\nc'est la fin des haricots\nchercher\
-  \ une épingle dans un botte de foin\ncomme un cheveux dans la soupe\ncomme un poisson\
-  \ dans l'eau\ncœur d'artichaut\nde Charybde en Scylla\ndes étoiles dans les yeux\n\
-  donner de la confiture aux cochons\ndormir comme un loir\ndoux comme un agneau\n\
-  faire mouche\nfrai comme un gardon\nfroid de canard\nguai comme un pinson\nhaut\
-  \ les cœurs\nl'enfer est pavé de bonnes intentions\nl'étincelle qui met le feu aux\
-  \ poudres\nla fumée des cierges\nlangue de vipère\nle dindon de la farce\nmalin\
-  \ comme un singe\nmettre de l'eau dans son vin\nmettre du beurre dans les épinards\n\
-  mettre la charrue avant les bœufs\nmettre la puce à l'oreille\nmettre son grain\
-  \ de sel\nmettre tous ses œufs dans le même panier\nmuet comme une carpe\nmyope\
-  \ comme une taupe\nmémoire d'éléphant\nmémoire de poisson rouge\nne pas vendre la\
-  \ peau de l'ours avant de l'avoir tuer\nne pas être sorti de l'auberge\non ne peut\
-  \ pas faire d'omelette sans casser des œufs\npar monts et par vaux\npeigner la girafe\n\
-  pierre qui roule n'amasse pas mousse\nposer un lapin\npédaler dans la semoule\n\
-  raconter des salades\nrien ne sert de courir il faut partir à point\nrouge comme\
-  \ une tomate\nrugir comme un tigre\nrusé comme un renard\ns'ennuyer comme un rat\
-  \ mort\nse tortiller comme un ver\nsouffler comme un bœuf\ntomber dans les pommes\n\
-  travail de fourmi\ntête de linotte\ntêtu comme une mule\nun de ces quatre\nun temps\
-  \ de chien\nune bonne poire\nune boîte de Pandore\nune madeleine de Proust\nvie\
-  \ de chien\nviser la lune\nà l'article de la mort\nà pas de loup\nécrire en pattes\
-  \ de mouche\nêtre comme chien et chat\nêtre comme un coq en pâte\nêtre un vautour\n\
-  oiseau de malheur"
+  L'Assomoir\nDon Quichotte\nDracula\nFrankenstein\nLe Petit Prince\nLes Voyages de
+  Gulliver\nHamlet\nHansel et Gretel\nIvanhoé\nLe Rouge et le Noir\nVoyage au centre
+  de la terre\nLes Misérables\nLe Petit Chaperon Rouge\nLes Femmes savantes\nLe Tartuffe
+  ou l'Imposteur\nLe Misanthrope\nL'Illusion comique\nLa Divine Comédie\nClaudine
+  à l'école\nOrgueil et Préjugés\nRaiponce\nRobinson Crusoé\nRoméo et Juliette\nLa
+  Princesse de Clèves\nLa Belle au bois dormant\nBlanche-Neige\nArsène Lupin, gentleman-cambrioleur\n
+  Les Malheurs de Sophie\nLe Chat botté\nLes Frères Karamazov\nLes Fables de La Fontaine\n
+  Le Masque d'Amontillado\nLe Comte de Monte Cristo\nLes Habits Neufs de l'empereur\n
+  Le Père Goriot\nLe Prince Grenouille\nLettres de mon moulin\nPoil de Carotte\nLe
+  Bossu de Notre-Dame\nL'Idiot\nL'Iliade\nL'Homme invisible\nLe Livre de la Jungle\n
+  La Petite Sirène\nLe Monde perdu\nLa Métamorphose\nLe Rossignol\nL'Odyssée\nLe portrait
+  de Dorian Gray\nLa Princesse et le petit pois\nLe Corbeau\nLa Lettre écarlate\n\
+  L'Étrange Cas du Dr Jekyll et de M. Hyde\nEmma Bovary\nLes Trois Mousquetaires\n
+  La Machine à remonter le temps\nLa Guerre des mondes\nLa Sagouine\nDe l'autre côté
+  du miroir\nVingt mille lieues sous les mers\nGuerre et Paix\nLes Mille et Une Nuits\n\
+  Germinal"
+idioms_questions: "anguille sous roche\navoir la pêche\navoir les oreilles en feuilles
+  de choux\navoir un appétit d'oiseau\navoir un chat dans la gorge\navoir une faim
+  de loup\navoir une fièvre de cheval\navoir une taille de guêpe\nbavard comme une
+  pie\nbayer aux corneilles\nbouc émissaire\nc'est la fin des haricots\nchercher une
+  épingle dans un botte de foin\ncomme un cheveux dans la soupe\ncomme un poisson
+  dans l'eau\ncœur d'artichaut\nde Charybde en Scylla\ndes étoiles dans les yeux\n
+  donner de la confiture aux cochons\ndormir comme un loir\ndoux comme un agneau\n
+  faire mouche\nfrai comme un gardon\nfroid de canard\nguai comme un pinson\nhaut
+  les cœurs\nl'enfer est pavé de bonnes intentions\nl'étincelle qui met le feu aux
+  poudres\nla fumée des cierges\nlangue de vipère\nle dindon de la farce\nmalin comme
+  un singe\nmettre de l'eau dans son vin\nmettre du beurre dans les épinards\nmettre
+  la charrue avant les bœufs\nmettre la puce à l'oreille\nmettre son grain de sel\n
+  mettre tous ses œufs dans le même panier\nmuet comme une carpe\nmyope comme une
+  taupe\nmémoire d'éléphant\nmémoire de poisson rouge\nne pas vendre la peau de l'ours
+  avant de l'avoir tuer\nne pas être sorti de l'auberge\non ne peut pas faire d'omelette
+  sans casser des œufs\npar monts et par vaux\npeigner la girafe\npierre qui roule
+  n'amasse pas mousse\nposer un lapin\npédaler dans la semoule\nraconter des salades\n
+  rien ne sert de courir il faut partir à point\nrouge comme une tomate\nrugir comme
+  un tigre\nrusé comme un renard\ns'ennuyer comme un rat mort\nse tortiller comme
+  un ver\nsouffler comme un bœuf\ntomber dans les pommes\ntravail de fourmi\ntête
+  de linotte\ntêtu comme une mule\nun de ces quatre\nun temps de chien\nune bonne
+  poire\nune boîte de Pandore\nune madeleine de Proust\nvie de chien\nviser la lune\n
+  à l'article de la mort\nà pas de loup\nécrire en pattes de mouche\nêtre comme chien
+  et chat\nêtre comme un coq en pâte\nêtre un vautour\noiseau de malheur"
