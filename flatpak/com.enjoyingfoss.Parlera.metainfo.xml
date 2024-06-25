@@ -20,6 +20,11 @@
 
 	<update_contact>contact.mirek+parlera_AT_protonmail.com</update_contact>
 
+	<branding>
+		<color type="primary" scheme_preference="light">#FFC28A</color>
+		<color type="primary" scheme_preference="dark">#482A2A</color>
+	</branding>
+
 	<custom>
 		<value key="Purism::form_factor">workstation</value>
 		<value key="Purism::form_factor">mobile</value>
