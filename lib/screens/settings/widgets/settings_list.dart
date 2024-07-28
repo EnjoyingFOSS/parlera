@@ -78,8 +78,7 @@ class SettingsList extends ConsumerWidget {
                 if (!flutter_foundation.kIsWeb &&
                     (Platform.isIOS || Platform.isAndroid))
                   SwitchListTile(
-                    title: Text(
-                        l10n.settingsAccelerometer),
+                    title: Text(l10n.settingsAccelerometer),
                     value: settings.rotationEnabled,
                     onChanged: (bool value) async {
                       await ref
@@ -102,8 +101,7 @@ class SettingsList extends ConsumerWidget {
                   title: Text(l10n.txtCardsPerGame),
                   leading: const Icon(Icons.style_rounded),
                   trailing: Text(
-                    settings.cardsPerGame?.toString() ??
-                        l10n.txtUnlimitedCards,
+                    settings.cardsPerGame?.toString() ?? l10n.txtUnlimitedCards,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   onTap: () async {
@@ -123,21 +121,32 @@ class SettingsList extends ConsumerWidget {
                 ),
                 ListTile(
                   leading: const Icon(Icons.help_rounded),
-                  title:
-                      Text(l10n.settingsStartTutorial),
+                  title: Text(l10n.settingsStartTutorial),
                   onTap: () async => _openTutorial(context),
                 ),
                 ListTile(
                   leading: const Icon(Icons.volunteer_activism_rounded),
                   title: Text(l10n.contribute),
-                  onTap: () async => URLUtil.launchURL(context,
-                      "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute"),
+                  onTap: () async => URLUtil.launchURL(
+                    context,
+                    "https://gitlab.com/enjoyingfoss/parlera/-/blob/master/README.md#contribute",
+                  ),
                 ),
                 ListTile(
                   leading: const Icon(Icons.attach_money_rounded),
                   title: Text(l10n.donate),
                   onTap: () async => URLUtil.launchURL(
-                      context, "https://en.liberapay.com/Parlera/"),
+                    context,
+                    "https://en.liberapay.com/Parlera/",
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.work),
+                  title: Text(l10n.hireMe),
+                  onTap: () async => URLUtil.launchURL(
+                    context,
+                    "https://enjoyingfoss.com/hire-me/",
+                  ),
                 ),
                 ListTile(
                   leading: const Icon(Icons.info_rounded),
