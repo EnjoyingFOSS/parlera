@@ -1,187 +1,186 @@
 abstract_name: Astratto
 animals_name: Animali
-animals_questions: "oritteropo\nalligatore\nformica\nantilope\nbabbuino\npipistrello\n\
-  orso\nape\ncoleottero\nuccello\npantera nera\nvedova nera\ncervo maschio\ninsetto\n\
-  toro\nconiglietto\nfarfalla\ncammello\ngatto\nbruco\ncentopiedi\ncamaleonte\nghepardo\n\
-  pollo\nchihuahua\nscimpanzé\npesce pagliaccio\nscarafaggio\ncoguaro\nmucca\ncoyote\n\
-  granchio\ngrillo\ncoccodrillo\ncuculo\ncervo\ndinosauro\ndodo\ncane\ndelfino\nasino\n\
-  colomba\nlibellula\nanatra\nscarabeo stercorario\naquila\nanguilla\nelefante\nfuretto\n\
-  lucciola\npesce\nvolpe\nrana\nmosca della frutta\ngazzella\ngeco\ngiraffa\ncapra\n\
-  pesce rosso\noca\ngopher\norso grizzly\nporcellino d'India\ncriceto\nlepre\nippopotamo\n\
-  ippopotamo\ncalabrone\ncavallo\numano\ngiaguaro\ncanguro\ncoccinella\nleopardo\n\
-  leone\nlucertola\nlama\naragosta\nmammifero\ntalpa\nscimmia\nalce\nzanzara\nfalena\n\
-  topo\nnarvalo\npolpo\norangotango\nstruzzo\ngufo\nostrica\npantera\npappagallo\n\
-  pavone\npellicano\npinguino\nmaiale\npiccione\norso polare\npony\npuma\nconiglio\n\
-  ratto\ncorvo\nrenna\ncorridore della strada\nroditore\ngallo\nsalmone\nsardina\n\
-  scorpione\ncetriolo di mare\ncavalluccio marino\ntartaruga di mare\ngabbiano\nfoca\n\
-  squalo\npecora\nserpente\nleopardo delle nevi\nragno\ncalamaro\nscoiattolo\nstella\
-  \ marina\npesce spada\ntirannosauro\ntarantola\ntigre\nrospo\ntestuggine\ntucano\n\
+animals_questions: "oritteropo\nalligatore\nformica\nantilope\nbabbuino\npipistrello\n
+  orso\nape\ncoleottero\nuccello\npantera nera\nvedova nera\ncervo maschio\ninsetto\n
+  toro\nconiglietto\nfarfalla\ncammello\ngatto\nbruco\ncentopiedi\ncamaleonte\nghepardo\n
+  pollo\nchihuahua\nscimpanzé\npesce pagliaccio\nscarafaggio\ncoguaro\nmucca\ncoyote\n
+  granchio\ngrillo\ncoccodrillo\ncuculo\ncervo\ndinosauro\ndodo\ncane\ndelfino\nasino\n
+  colomba\nlibellula\nanatra\nscarabeo stercorario\naquila\nanguilla\nelefante\nfuretto\n
+  lucciola\npesce\nvolpe\nrana\nmosca della frutta\ngazzella\ngeco\ngiraffa\ncapra\n
+  pesce rosso\noca\ngopher\norso grizzly\nporcellino d'India\ncriceto\nlepre\nippopotamo\n
+  ippopotamo\ncalabrone\ncavallo\numano\ngiaguaro\ncanguro\ncoccinella\nleopardo\n
+  leone\nlucertola\nlama\naragosta\nmammifero\ntalpa\nscimmia\nalce\nzanzara\nfalena\n
+  topo\nnarvalo\npolpo\norangotango\nstruzzo\ngufo\nostrica\npantera\npappagallo\n
+  pavone\npellicano\npinguino\nmaiale\npiccione\norso polare\npony\npuma\nconiglio\n
+  ratto\ncorvo\nrenna\ncorridore della strada\nroditore\ngallo\nsalmone\nsardina\n
+  scorpione\ncetriolo di mare\ncavalluccio marino\ntartaruga di mare\ngabbiano\nfoca\n
+  squalo\npecora\nserpente\nleopardo delle nevi\nragno\ncalamaro\nscoiattolo\nstella
+  marina\npesce spada\ntirannosauro\ntarantola\ntigre\nrospo\ntestuggine\ntucano\n\
   trota\ntartaruga\nvespa\ndonnola\nbalena\nlupo\npicchio\nverme\nyak\nzebra"
 classic-characters_name: Personaggi classici
 classic-literature_name: Letteratura classica
-food-and-drink_questions: "mandorla\naperitivo\nmela\nsucco di mela\nalbicocca\navocado\n\
-  pancetta\nciambella\nbanana\nbarbecue\npastella\nfagiolo\nmanzo\npeperone\nmora\n\
-  mirtillo\nnoce brasiliana\npane\ncolazione\nbrie\nbroccoli\nbrodo\nciambella\npanino\n\
-  burrito\nburro\ntorta\ncarota\nanacardi\ncavolfiore\nsedano\nformaggio\ncheeseburger\n\
-  ciliegia\ngomma da masticare\npollo\nceci\npeperoncino\ncioccolato\nstracciatella\n\
-  noce di cocco\nlatte di cocco\ncaffè\nbiscotto\nmais\nfiocchi di latte\nmirtillo\n\
-  crema\ncornetto\ncetriolo\ncupcake\ncurry\nlatticini\ndolce\ncena\nciambella\nimpasto\n\
-  condimento\nbere\nuovo\nzabaione\nmelanzana\nsambuco\nbevanda energetica\nfalafel\n\
-  pesce\nfiletto di pesce\nbastoncino di pesce\nfarina\npatatine fritte\nyogurt gelato\n\
-  frutta\naglio\npan di zenzero\nglassa\ngouda\ngrano\ncereali\nuva\nfagiolo verde\n\
-  prosciutto\nhamburger\nnocciola\nerba\nmiele\ngelato\npanino gelato\nsucco\ncavolo\n\
-  kebab\nketchup\nfagiolo\nkimchi\nkiwi\nlimone\nlimonata\nlenticchia\nlattuga\nlime\n\
-  pranzo\nmango\nsciroppo d'acero\npasto\ncarne\nlatte\nfrappè\nacqua minerale\nmenta\n\
-  focaccina\nfungo\nmostarda\nnoce\navena\nfiocchi d'avena\nolio\noliva\ncipolla\n\
-  anello di cipolla\narancia\nsucco d'arancia\nostrica\npancake\npasta\npesca\narachidi\n\
-  pera\npepe\npeperoni\nsalamoia\ntorta\npinoli\nananas\npistacchio\npizza\nprugna\n\
-  melograno\npopcorn\nmaiale\nporridge\npatata\npatatina\nspicchio di patate\npretzel\n\
-  zucca\nquesadilla\nuvetta\nlampone\nlenticchie rosse\nriso\nrotolo\ninsalata\nsalame\n\
-  salmone\nsale\ntramezzino\nsardina\nsalsa\ncrauti\nsalsiccia\nfrutti di mare\nsorbetto\n\
-  contorno\nfrullato\nbibita\nsorbetto\nminestra\nsalsa di soia\nspaghetti\nspezia\n\
-  praline\nzucca\nantipasto\nbistecca\nfragola\npanino imbottito\nsushi\nsciroppo\n\
-  taco\ntè\npane abbrustolito\ntofu\npomodoro\ntortilla\ntonno\nverdura\ncialda\n\
+food-and-drink_questions: "mandorla\naperitivo\nmela\nsucco di mela\nalbicocca\navocado\n
+  pancetta\nciambella\nbanana\nbarbecue\npastella\nfagiolo\nmanzo\npeperone\nmora\n
+  mirtillo\nnoce brasiliana\npane\ncolazione\nbrie\nbroccoli\nbrodo\nciambella\npanino\n
+  burrito\nburro\ntorta\ncarota\nanacardi\ncavolfiore\nsedano\nformaggio\ncheeseburger\n
+  ciliegia\ngomma da masticare\npollo\nceci\npeperoncino\ncioccolato\nstracciatella\n
+  noce di cocco\nlatte di cocco\ncaffè\nbiscotto\nmais\nfiocchi di latte\nmirtillo\n
+  crema\ncornetto\ncetriolo\ncupcake\ncurry\nlatticini\ndolce\ncena\nciambella\nimpasto\n
+  condimento\nbere\nuovo\nzabaione\nmelanzana\nsambuco\nbevanda energetica\nfalafel\n
+  pesce\nfiletto di pesce\nbastoncino di pesce\nfarina\npatatine fritte\nyogurt gelato\n
+  frutta\naglio\npan di zenzero\nglassa\ngouda\ngrano\ncereali\nuva\nfagiolo verde\n
+  prosciutto\nhamburger\nnocciola\nerba\nmiele\ngelato\npanino gelato\nsucco\ncavolo\n
+  kebab\nketchup\nfagiolo\nkimchi\nkiwi\nlimone\nlimonata\nlenticchia\nlattuga\nlime\n
+  pranzo\nmango\nsciroppo d'acero\npasto\ncarne\nlatte\nfrappè\nacqua minerale\nmenta\n
+  focaccina\nfungo\nmostarda\nnoce\navena\nfiocchi d'avena\nolio\noliva\ncipolla\n
+  anello di cipolla\narancia\nsucco d'arancia\nostrica\npancake\npasta\npesca\narachidi\n
+  pera\npepe\npeperoni\nsalamoia\ntorta\npinoli\nananas\npistacchio\npizza\nprugna\n
+  melograno\npopcorn\nmaiale\nporridge\npatata\npatatina\nspicchio di patate\npretzel\n
+  zucca\nquesadilla\nuvetta\nlampone\nlenticchie rosse\nriso\nrotolo\ninsalata\nsalame\n
+  salmone\nsale\ntramezzino\nsardina\nsalsa\ncrauti\nsalsiccia\nfrutti di mare\nsorbetto\n
+  contorno\nfrullato\nbibita\nsorbetto\nminestra\nsalsa di soia\nspaghetti\nspezia\n
+  praline\nzucca\nantipasto\nbistecca\nfragola\npanino imbottito\nsushi\nsciroppo\n
+  taco\ntè\npane abbrustolito\ntofu\npomodoro\ntortilla\ntonno\nverdura\ncialda\n
   noce\nacqua\nanguria\nsiero\npanna montata\nyogurt\nzucchina"
-historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert\
-  \ Einstein\nAlessandro Magno\nAmadeus Mozart\nAndy Warhol\nAnne Frank\nAristotele\n\
-  Benedict Arnold\nBenito Mussolini\nBilly the Kid\nBob Ross\nFratelli Grimm\nBuddha\n\
-  Carlo Magno\nCharles Darwin\nCharles Dickens\nCharlie Chaplin\nCristoforo Colombo\n\
-  Claude Monet\nCleopatra\nDante Alighieri\nDr. Seuss\nEdgar Allan Poe\nElvis Presley\n\
-  Ernest Hemingway\nFrank Sinatra\nFranklin D. Roosevelt\nGalileo Galilei\nGenghis\
-  \ Khan\nGeorge Washington\nH. G. Wells\nHarriet Tubman\nHelen Keller\nHenry Ford\n\
-  Immanuel Kant\nIsaac Newton\nJames Cook\nGesù\nGiovanna d'Arco\nJohann Sebastian\
-  \ Bach\nJohn Adams\nJohn F. Kennedy\nJohn Lennon\nJules Verne\nGiulio Cesare\nRe\
-  \ Artù\nTutankhamon\nLeonardo Da Vinci\nLewis Carroll\nLouis Armstrong\nLudwig van\
-  \ Beethoven\nMahatma Gandhi\nMalcolm X\nMaria Antonietta\nMarie Curie\nMark Twain\n\
-  Martin Luther King Jr.\nMary Shelley\nMaria Stuarda, Regina di Scozia\nMichael Jackson\n\
-  Michelangelo\nMaometto\nMuhammad Ali\nNapoleone Bonaparte\nNeil Armstrong\nNelson\
-  \ Mandela\nNiccolò Copernico\nNikola Tesla\nOscar Wilde\nOtto von Bismarck\nPlatone\n\
-  Pocahontas\nPitagora\nRené Descartes\nRichard Nixon\nRosa Parks\nSalvador Dalí\n\
-  Sigmund Freud\nToro Seduto\nSocrate\nStephen Hawking\nSusan B. Anthony\nTy Cobb\n\
-  Vincent Van Gogh\nVladimir Lenin\nVoltaire\nWilliam Shakespeare\nFratelli Wright"
+historical-figures_questions: "Abraham Lincoln\nAdolf Hitler\nAlan Turing\nAlbert
+  Einstein\nAlessandro Magno\nAmadeus Mozart\nAndy Warhol\nAnne Frank\nAristotele\n
+  Benedict Arnold\nBenito Mussolini\nBilly the Kid\nBob Ross\nFratelli Grimm\nBuddha\n
+  Carlo Magno\nCharles Darwin\nCharles Dickens\nCharlie Chaplin\nCristoforo Colombo\n
+  Claude Monet\nCleopatra\nDante Alighieri\nDr. Seuss\nEdgar Allan Poe\nElvis Presley\n
+  Ernest Hemingway\nFrank Sinatra\nFranklin D. Roosevelt\nGalileo Galilei\nGenghis
+  Khan\nGeorge Washington\nH. G. Wells\nHarriet Tubman\nHelen Keller\nHenry Ford\n
+  Immanuel Kant\nIsaac Newton\nJames Cook\nGesù\nGiovanna d'Arco\nJohann Sebastian
+  Bach\nJohn Adams\nJohn F. Kennedy\nJohn Lennon\nJules Verne\nGiulio Cesare\nRe Artù\n
+  Tutankhamon\nLeonardo Da Vinci\nLewis Carroll\nLouis Armstrong\nLudwig van Beethoven\n
+  Mahatma Gandhi\nMalcolm X\nMaria Antonietta\nMarie Curie\nMark Twain\nMartin Luther
+  King Jr.\nMary Shelley\nMaria Stuarda, Regina di Scozia\nMichael Jackson\nMichelangelo\n
+  Maometto\nMuhammad Ali\nNapoleone Bonaparte\nNeil Armstrong\nNelson Mandela\nNiccolò
+  Copernico\nNikola Tesla\nOscar Wilde\nOtto von Bismarck\nPlatone\nPocahontas\nPitagora\n
+  René Descartes\nRichard Nixon\nRosa Parks\nSalvador Dalí\nSigmund Freud\nToro Seduto\n
+  Socrate\nStephen Hawking\nSusan B. Anthony\nTy Cobb\nVincent Van Gogh\nVladimir
+  Lenin\nVoltaire\nWilliam Shakespeare\nFratelli Wright"
 idioms_name: Modi di dire
 jobs_name: Mestieri
 mythical-creatures_name: Creature mitiche
-mythical-creatures_questions: "abominevole uomo delle nevi\nangelo\nBigfoot\nBloody\
-  \ Mary\ncentauro\nCupido\ndiavolo\nelfo\nFata\nFata Madrina\nPadre Tempo\ngenio\n\
-  fantasma\ngigante\ngnomo\nfolletto\nTriste Mietitore\nidra\nKraken\nfolletto\nMostro\
-  \ di Loch Ness\nsirena\ntritone\norco\npegaso\nFenice\nfolletto\nuomo di sabbia\n\
-  sasquatch\nmostro marino\nsirena\nstregone\nsfinge\nspirito\nfatina dei denti\n\
+mythical-creatures_questions: "abominevole uomo delle nevi\nangelo\nBigfoot\nBloody
+  Mary\ncentauro\nCupido\ndiavolo\nelfo\nFata\nFata Madrina\nPadre Tempo\ngenio\n
+  fantasma\ngigante\ngnomo\nfolletto\nTriste Mietitore\nidra\nKraken\nfolletto\nMostro
+  di Loch Ness\nsirena\ntritone\norco\npegaso\nFenice\nfolletto\nuomo di sabbia\n
+  sasquatch\nmostro marino\nsirena\nstregone\nsfinge\nspirito\nfatina dei denti\n
   troll\nunicorno\nvalchiria\nvampiro\nstregone\nlupo mannaro\nstrega\nstregone\n\
   yeti\nzombie"
-abstract_questions: "azione\naspetto\naspirazione\nateismo\nautonomia\nbellezza\n\
-  credenza\nbuddismo\nesaurimento\ninfantilismo\ncristianesimo\nintelligenza\ncliché\n\
-  comfort\ncondivisione\nconnessione\npericolo\nmorte\nsorte\ndifferenza\ndifficoltà\n\
-  sforzo\nelemento\ncrittografia\nuguaglianza\nstima\nesempio\nespressione\nfallimento\n\
-  onestà\nfede\ndestino\ncaratteristica\nlibertà di parola\ntempo libero\nlibero arbitrio\n\
-  libertà\ngeografia\nindovinare\narmonia\nodiare\nsalute\nsperanza\ndiritto umano\n\
-  umiltà\numorismo\nidea\nimpatto\nimportanza\ninfinito\ninsulto\nIslam\nlinguaggio\n\
-  posizione\namore\nmatematica\nmetafora\nmalinteso\nmomento\numore\nbisogno\nobiettività\n\
-  parte del discorso\npassione\npace\ntranquillità\nfilosofia\npopolarità\nlibertà\
-  \ di stampa\nprivacy\nproblema\npsicologia\ncitazione\nreazione\nrealtà\nriferimento\n\
+abstract_questions: "azione\naspetto\naspirazione\nateismo\nautonomia\nbellezza\n
+  credenza\nbuddismo\nesaurimento\ninfantilismo\ncristianesimo\nintelligenza\ncliché\n
+  comfort\ncondivisione\nconnessione\npericolo\nmorte\nsorte\ndifferenza\ndifficoltà\n
+  sforzo\nelemento\ncrittografia\nuguaglianza\nstima\nesempio\nespressione\nfallimento\n
+  onestà\nfede\ndestino\ncaratteristica\nlibertà di parola\ntempo libero\nlibero arbitrio\n
+  libertà\ngeografia\nindovinare\narmonia\nodiare\nsalute\nsperanza\ndiritto umano\n
+  umiltà\numorismo\nidea\nimpatto\nimportanza\ninfinito\ninsulto\nIslam\nlinguaggio\n
+  posizione\namore\nmatematica\nmetafora\nmalinteso\nmomento\numore\nbisogno\nobiettività\n
+  parte del discorso\npassione\npace\ntranquillità\nfilosofia\npopolarità\nlibertà
+  di stampa\nprivacy\nproblema\npsicologia\ncitazione\nreazione\nrealtà\nriferimento\n
   rilassamento\nrispetto\nrisposta\nincolumità\nsoddisfazione\nsicurezza\nsenso dell'umorismo\n\
   forma\nsignificato\nastuzia\nconforto\nanima\nfatica\nlotta\nsimbolo\nsuccesso\n\
   tendenza\nverità\ncomprensione\nvacanza\nvittimismo\nbenessere\nsaggezza"
-classic-characters_questions: "Aladino\nAlice (da Alice nel paese delle meraviglie)\n\
-  Bambi\nGrande Lupo Cattivo\nCapitan Uncino\nChristopher Robin\nCenerentola\nLeone\
-  \ codardo\nD'Artagnan\nDorotea\nDracula\nDott. Watson\nEbenezer Scrooge\nEhiore\n\
-  Frankenstein\nGretel\nHansel\nHuckleberry Finn\nHumpty Dumpty\nJack e Jill\nPiccolo\
-  \ Bo Peep\nCappuccetto Rosso\nMowgli\nPeter Pan\nPeter Piper\nMaialino\nPinocchio\n\
-  Principe Azzurro\nRapunzel\nRegina Rossa\nRobinson Crusoe\nTremotino\nSpaventapasseri\n\
-  Sherlock Holmes\nSindbad il marinaio\nLa bella addormentata\nBiancaneve\nTarzan\n\
-  Il gatto del Cheshire\nIl principe ranocchio\nIl fantasma del Natale passato\nL'Omino\
-  \ di Pan di Zenzero\nIl gobbo di Notre Dame\nIl Ragno Itsy Bitsy\nLa Sirenetta\n\
-  Il Cappellaio Matto\nL'uomo dei muffin\nLa Regina di Cuori\nI sette nani\nLa regina\
-  \ della neve\nI tre topi ciechi\nI tre porcellini\nI tre moschettieri\nIl brutto\
-  \ anatroccolo\nTigro\nBoscaiolo di latta\nCampanellino\nTom Sawyer\nTweedledum e\
-  \ Tweedledee\nWinnie the Pooh\nMago di Oz\nZorro"
+classic-characters_questions: "Aladino\nAlice (da Alice nel paese delle meraviglie)\n
+  Bambi\nGrande Lupo Cattivo\nCapitan Uncino\nChristopher Robin\nCenerentola\nLeone
+  codardo\nD'Artagnan\nDorotea\nDracula\nDott. Watson\nEbenezer Scrooge\nEhiore\n
+  Frankenstein\nGretel\nHansel\nHuckleberry Finn\nHumpty Dumpty\nJack e Jill\nPiccolo
+  Bo Peep\nCappuccetto Rosso\nMowgli\nPeter Pan\nPeter Piper\nMaialino\nPinocchio\n
+  Principe Azzurro\nRapunzel\nRegina Rossa\nRobinson Crusoe\nTremotino\nSpaventapasseri\n
+  Sherlock Holmes\nSindbad il marinaio\nLa bella addormentata\nBiancaneve\nTarzan\n
+  Il gatto del Cheshire\nIl principe ranocchio\nIl fantasma del Natale passato\nL'Omino
+  di Pan di Zenzero\nIl gobbo di Notre Dame\nIl Ragno Itsy Bitsy\nLa Sirenetta\nIl
+  Cappellaio Matto\nL'uomo dei muffin\nLa Regina di Cuori\nI sette nani\nLa regina
+  della neve\nI tre topi ciechi\nI tre porcellini\nI tre moschettieri\nIl brutto anatroccolo\n
+  Tigro\nBoscaiolo di latta\nCampanellino\nTom Sawyer\nTweedledum e Tweedledee\nWinnie
+  the Pooh\nMago di Oz\nZorro"
 food-and-drink_name: Cibi e bevande
-classic-literature_questions: "A Christmas Carol\nLa principessa di Marte\nRacconto\
-  \ di due città\nLe avventure di Huckleberry Finn\nFavole di Esopo\nLe avventure\
-  \ di alice nel paese delle meraviglie\nAnna Karenina\nGiro del mondo in ottanta\
-  \ giorni\nBeowulf\nCenerentola\nDelitto e castigo\nDavid Copperfield\nDon Chisciotte\n\
-  Dracula\nEmma\nFrankenstein\nGrandi speranze\nI viaggi di Gulliver\nAmleto\nHansel\
-  \ e Gretel\nIvanhoe\nJack e la pianta di fagioli\nViaggio al centro della terra\n\
-  I Miserabili\nCappuccetto Rosso\nPiccole donne\nMacbeth\nMoby Dick\nOliver Twist\n\
-  Otello\nPeter Pan\nOrgoglio e pregiudizio\nRapunzel\nRobinson Crusoe\nRomeo e Giulietta\n\
-  Tremotino\nRagione e sentimento\nLa bella addormentata\nBiancaneve\nLe avventure\
-  \ di Sherlock Holmes\nLe avventure di Tom Sawyer\nIl gatto nero\nI fratelli Karamazov\n\
-  I racconti di Canterbury\nIl barile di Amontillado\nIl conte di Monte Cristo\nI\
-  \ vestiti nuovi dell'imperatore\nLa caduta della casa degli Usher\nIl principe ranocchio\n\
-  Il grande Gatsby\nIl gobbo di Notre Dame\nL'idiota\nIliade\nL'uomo invisibile\n\
-  Il libro della giungla\nLa Sirenetta\nIl mondo perduto\nLa metamorfosi\nL'usignolo\n\
-  Odissea\nIl ritratto di Dorian Gray\nLa principessa sul pisello\nIl corvo\nLa lettera\
-  \ scarlatta\nLo strano caso del dottor Jekill e mister Hyde\nIl cuore rivelatore\n\
-  I tre moschettieri\nLa macchina del tempo\nLa guerra dei mondi\nIl Meraviglioso\
-  \ Mago di Oz\nAttraverso lo specchio e quel che Alice vi trovò\n12 anni schiavo\n\
-  Ventimila leghe sotto i mari\nGuerra e Pace\nWinnie the Pooh\nCime tempestose"
+classic-literature_questions: "A Christmas Carol\nLa principessa di Marte\nRacconto
+  di due città\nLe avventure di Huckleberry Finn\nFavole di Esopo\nLe avventure di
+  alice nel paese delle meraviglie\nAnna Karenina\nGiro del mondo in ottanta giorni\n
+  Beowulf\nCenerentola\nDelitto e castigo\nDavid Copperfield\nDon Chisciotte\nDracula\n
+  Emma\nFrankenstein\nGrandi speranze\nI viaggi di Gulliver\nAmleto\nHansel e Gretel\n
+  Ivanhoe\nJack e la pianta di fagioli\nViaggio al centro della terra\nI Miserabili\n
+  Cappuccetto Rosso\nPiccole donne\nMacbeth\nMoby Dick\nOliver Twist\nOtello\nPeter
+  Pan\nOrgoglio e pregiudizio\nRapunzel\nRobinson Crusoe\nRomeo e Giulietta\nTremotino\n
+  Ragione e sentimento\nLa bella addormentata\nBiancaneve\nLe avventure di Sherlock
+  Holmes\nLe avventure di Tom Sawyer\nIl gatto nero\nI fratelli Karamazov\nI racconti
+  di Canterbury\nIl barile di Amontillado\nIl conte di Monte Cristo\nI vestiti nuovi
+  dell'imperatore\nLa caduta della casa degli Usher\nIl principe ranocchio\nIl grande
+  Gatsby\nIl gobbo di Notre Dame\nIliade\nIl libro della giungla\nLa Sirenetta\nIl
+  mondo perduto\nLa metamorfosi\nL'usignolo\nOdissea\nIl ritratto di Dorian Gray\n
+  La principessa sul pisello\nIl corvo\nLa lettera scarlatta\nLo strano caso del dottor
+  Jekill e mister Hyde\nIl cuore rivelatore\nI tre moschettieri\nLa macchina del tempo\n
+  La guerra dei mondi\nIl Meraviglioso Mago di Oz\nAttraverso lo specchio e quel che
+  Alice vi trovò\n12 anni schiavo\nVentimila leghe sotto i mari\nGuerra e Pace\nWinnie
+  the Pooh\nCime tempestose"
 historical-figures_name: Figure storiche
-idioms_questions: "Stare con le mani in mano\nMandare a quel paese\nOltre il danno\
-  \ la beffa\nPiove sul bagnato\nGallina vecchia fa buon brodo\nStringere i denti\n\
-  Fare il passo più lungo della gamba\nNella botte piccola c'è il vino buono\nNon\
-  \ ci piove\nDate a Cesare quel che è di Cesare\nDa che pulpito viene la predica\n\
-  Avere un diavolo per capello\nDonna barbuta, sempre piaciuta\nAvere il braccino\
-  \ corto\nAvere un asso nella manica\nChiodo scaccia chiodo\nTira più un pelo di\
-  \ donna che un carro di buoi\nDatti all'ippica\nPiù facile a dirsi che a farsi\n\
-  Mangiare come un maiale\nNon avere peli sulla lingua\nCadere dalle nuvole\nDi punto\
-  \ in bianco\nCon le mani nel sacco\nAffogare in un bicchier d'acqua\nAcqua alla\
-  \ gola\nA caval donato non si guarda in bocca\nA buon intenditor poche parole\n\
-  Tutto fumo e niente arrosto\nA mali estremi, estremi rimedi\nQuando il gioco si\
-  \ fa duro... i duri cominciano a giocare\nBisogna fare buon viso a cattivo gioco\n\
-  Le bugie hanno le gambe corte\nNon è tutto oro quel che luccica\nAnche l’occhio\
-  \ vuole la sua parte\nMorto un papa se ne fa un altro\nChi non risica non rosica\n\
-  Chi fa da sé fa per tre\nChi ha i denti non ha pane, e chi ha pane non ha i denti\n\
-  Uomo avvisato mezzo salvato\nChi va con lo zoppo impara a zoppicare\nChi semina\
-  \ vento raccoglie tempesta\nIl gioco è bello quando dura poco\nTra moglie e marito\
-  \ non mettere il dito\nNe uccide più la lingua che la spada\nMeglio soli che male\
-  \ accompagnati\nL’erba del vicino è sempre più verde\nL’appetito vien mangiando\n\
-  Il mondo è fatto a scale. C’è chi scende e c’è chi sale\nL’amore non è bello se\
-  \ non è litigarello\nChi è causa del suo mal pianga se stesso\nLa madre degli imbecilli\
-  \ è sempre incinta\nChi dorme non piglia pesci\nFatta la legge, trovato l’inganno\n\
-  Non è bello ciò che è bello ma è bello ciò che piace\nIl riso abbonda sulla bocca\
-  \ degli stolti\nChi disprezza compra\nA rubar poco si va in galera, a rubar tanto\
-  \ si fa carriera\nChi si fa i fatti suoi campa cent’anni\nOcchio non vede, cuore\
-  \ non duole\nRosso di sera, bel tempo si spera\nIl lupo perde il pelo ma non il\
-  \ vizio\nNon dire gatto se non ce l’hai nel sacco\nCan che abbaia non morde\nL’ospite\
-  \ è come il pesce: dopo tre giorni puzza\nChi tardi arriva male alloggia\nRidi,\
-  \ ridi, che la mamma ha fatto gli gnocchi\nMai piangere sul latte versato\nNon si\
-  \ può avere la botte piena e la moglie ubriaca\nTra il dire e il fare c’è di mezzo\
-  \ il mare\nChi si accontenta gode\nChi trova un amico trova un tesoro\nChi va a\
-  \ Roma perde la poltrona\nCercare l'ago in un pagliaio\nTrovare il pelo nell'uovo\n\
-  Non tutte le ciambelle escono col buco\nIl buon giorno si vede dal mattino\nChi\
-  \ troppo vuole nulla stringe\nTentar non nuoce\nRide bene chi ride ultimo\nGli ultimi\
-  \ saranno i primi\nChi non beve in compagnia o è un ladro o è una spia\nSe non è\
-  \ zuppa è pan bagnato\nTra i due litiganti il terzo gode\nTale padre, tale figlio\n\
-  Tanto va la gatta al lardo che ci lascia lo zampino\nFidarsi è bene, non fidarsi\
-  \ è meglio\nIl gioco non vale la candela\nChi tace acconsente\nL’abito non fa il\
-  \ monaco\nOgnuno tira l’acqua al suo mulino\nSbagliare è umano, perseverare è diabolico\n\
-  Chi ben comincia è a metà dell’opera\nPatti chiari amicizia lunga\nQuando il gatto\
-  \ non c’è i topi ballano\nMeglio tardi che mai\nChi va piano va sano e va lontano\n\
-  Ne è valsa la pena\nPuoi dirlo forte"
-jobs_questions: "contabile\nattore\nconduttore\narchitetto\nassistente\nastronauta\n\
-  autore\nbaby-sitter\npanettiere\nballerino classico\nbarbiere\ngiocatore di baseball\n\
-  giocatore di basket\nautista\nmaggiordomo\ncassiere\namministratore delegato\nchef\n\
-  clown\ncomico\ncompositore\nconsulente\ncuoco\nconsulente\nballerino\ncorriere\n\
-  dentista\nprogettista\ndetective\nsviluppatore\ndietologo\ndirettore\nmedico\nautista\n\
-  elettricista\ningegnere\nimprenditore\noculista\ncontadino\nstilista\nassistente\
-  \ di volo\nfioraio\nvigile del fuoco\ngiocatore di football\nspazzino\ngiardiniere\n\
-  medico generico\ngiocatore di golf\ngrafico\nguardia\nparrucchiere\naddetto alle\
-  \ pulizie\ngiornalista\navvocato\nbibliotecario\ndomestica\nmago\npostino\ntruccatore\n\
-  gestore\nmatematico\nmeccanico\nministro\nmodello\nmusicista\nbambinaia\nneurologo\n\
-  infermiere\npittore\nfarmacista\nfisico\ndrammaturgo\nidraulico\npoeta\npoliziotto\n\
-  politico\nsacerdote\nguardia carceraria\nprofessore\nprogrammatore\npsicologo\n\
-  agente immobiliare\naddetto alla reception\nriparatore\nricercatore\nvenditore\n\
-  scienziato\nsceneggiatore\ncalciatore\nartista di strada\ncontrofigura\nchirurgo\n\
+idioms_questions: "Stare con le mani in mano\nMandare a quel paese\nOltre il danno
+  la beffa\nPiove sul bagnato\nGallina vecchia fa buon brodo\nStringere i denti\n
+  Fare il passo più lungo della gamba\nNella botte piccola c'è il vino buono\nNon
+  ci piove\nDate a Cesare quel che è di Cesare\nDa che pulpito viene la predica\n
+  Avere un diavolo per capello\nDonna barbuta, sempre piaciuta\nAvere il braccino
+  corto\nAvere un asso nella manica\nChiodo scaccia chiodo\nTira più un pelo di donna
+  che un carro di buoi\nDatti all'ippica\nPiù facile a dirsi che a farsi\nMangiare
+  come un maiale\nNon avere peli sulla lingua\nCadere dalle nuvole\nDi punto in bianco\n
+  Con le mani nel sacco\nAffogare in un bicchier d'acqua\nAcqua alla gola\nA caval
+  donato non si guarda in bocca\nA buon intenditor poche parole\nTutto fumo e niente
+  arrosto\nA mali estremi, estremi rimedi\nQuando il gioco si fa duro... i duri cominciano
+  a giocare\nBisogna fare buon viso a cattivo gioco\nLe bugie hanno le gambe corte\n
+  Non è tutto oro quel che luccica\nAnche l’occhio vuole la sua parte\nMorto un papa
+  se ne fa un altro\nChi non risica non rosica\nChi fa da sé fa per tre\nChi ha i
+  denti non ha pane, e chi ha pane non ha i denti\nUomo avvisato mezzo salvato\nChi
+  va con lo zoppo impara a zoppicare\nChi semina vento raccoglie tempesta\nIl gioco
+  è bello quando dura poco\nTra moglie e marito non mettere il dito\nNe uccide più
+  la lingua che la spada\nMeglio soli che male accompagnati\nL’erba del vicino è sempre
+  più verde\nL’appetito vien mangiando\nIl mondo è fatto a scale. C’è chi scende e
+  c’è chi sale\nL’amore non è bello se non è litigarello\nChi è causa del suo mal
+  pianga se stesso\nLa madre degli imbecilli è sempre incinta\nChi dorme non piglia
+  pesci\nFatta la legge, trovato l’inganno\nNon è bello ciò che è bello ma è bello
+  ciò che piace\nIl riso abbonda sulla bocca degli stolti\nChi disprezza compra\n
+  A rubar poco si va in galera, a rubar tanto si fa carriera\nChi si fa i fatti suoi
+  campa cent’anni\nOcchio non vede, cuore non duole\nRosso di sera, bel tempo si spera\n
+  Il lupo perde il pelo ma non il vizio\nNon dire gatto se non ce l’hai nel sacco\n
+  Can che abbaia non morde\nL’ospite è come il pesce: dopo tre giorni puzza\nChi tardi
+  arriva male alloggia\nRidi, ridi, che la mamma ha fatto gli gnocchi\nMai piangere
+  sul latte versato\nNon si può avere la botte piena e la moglie ubriaca\nTra il dire
+  e il fare c’è di mezzo il mare\nChi si accontenta gode\nChi trova un amico trova
+  un tesoro\nChi va a Roma perde la poltrona\nCercare l'ago in un pagliaio\nTrovare
+  il pelo nell'uovo\nNon tutte le ciambelle escono col buco\nIl buon giorno si vede
+  dal mattino\nChi troppo vuole nulla stringe\nTentar non nuoce\nRide bene chi ride
+  ultimo\nGli ultimi saranno i primi\nChi non beve in compagnia o è un ladro o è una
+  spia\nSe non è zuppa è pan bagnato\nTra i due litiganti il terzo gode\nTale padre,
+  tale figlio\nTanto va la gatta al lardo che ci lascia lo zampino\nFidarsi è bene,
+  non fidarsi è meglio\nIl gioco non vale la candela\nChi tace acconsente\nL’abito
+  non fa il monaco\nOgnuno tira l’acqua al suo mulino\nSbagliare è umano, perseverare
+  è diabolico\nChi ben comincia è a metà dell’opera\nPatti chiari amicizia lunga\n
+  Quando il gatto non c’è i topi ballano\nMeglio tardi che mai\nChi va piano va sano
+  e va lontano\nNe è valsa la pena\nPuoi dirlo forte"
+jobs_questions: "contabile\nattore\nconduttore\narchitetto\nassistente\nastronauta\n
+  autore\nbaby-sitter\npanettiere\nballerino classico\nbarbiere\ngiocatore di baseball\n
+  giocatore di basket\nautista\nmaggiordomo\ncassiere\namministratore delegato\nchef\n
+  clown\ncomico\ncompositore\nconsulente\ncuoco\nconsulente\nballerino\ncorriere\n
+  dentista\nprogettista\ndetective\nsviluppatore\ndietologo\ndirettore\nmedico\nautista\n
+  elettricista\ningegnere\nimprenditore\noculista\ncontadino\nstilista\nassistente
+  di volo\nfioraio\nvigile del fuoco\ngiocatore di football\nspazzino\ngiardiniere\n
+  medico generico\ngiocatore di golf\ngrafico\nguardia\nparrucchiere\naddetto alle
+  pulizie\ngiornalista\navvocato\nbibliotecario\ndomestica\nmago\npostino\ntruccatore\n
+  gestore\nmatematico\nmeccanico\nministro\nmodello\nmusicista\nbambinaia\nneurologo\n
+  infermiere\npittore\nfarmacista\nfisico\ndrammaturgo\nidraulico\npoeta\npoliziotto\n
+  politico\nsacerdote\nguardia carceraria\nprofessore\nprogrammatore\npsicologo\n
+  agente immobiliare\naddetto alla reception\nriparatore\nricercatore\nvenditore\n
+  scienziato\nsceneggiatore\ncalciatore\nartista di strada\ncontrofigura\nchirurgo\n
   sarto\ntatuatore\ninsegnante\nguida turistica\nallenatore\ntraduttore\nveterinario\n\
   doppiatore\ncameriere"
-folk-melodies_questions: "Tarantella\nTanti auguri a te\nPerché è un bravo ragazzo\n\
-  Giro girotondo\nCiuri ciuri\nTanto pe’ cantà\nFunicolì funicolà\nBrilla, brilla\
-  \ la stellina\nRomagna mia\nO mia bela Madunina\nMary aveva un agnellino\nAmbarabà\
-  \ ciccì coccò\nJingle Bells\nAstro del ciel\nI dodici giorni del Natale\nAuguri\
-  \ di buon Natale\nInno alla gioia\nPer Elisa\nCoro nuziale\nIl pompiere paura non\
-  \ ne ha\nOh che bel castello\n44 gatti\nRapsodia in blu\nNella vecchia fattoria\n\
-  O albero di natale\nLe tagliatelle di Nonna Pina\nLa Peppina fa il caffé\nLa Befana\
-  \ vien di notte\nIl coccodrillo come fa?\nAve Maria\nI due liocorni\nCi vuole un\
-  \ fiore\nNinna nanna ninna oh\nTrenta giorni ha novembre\nBella ciao\n'O sole mio\n\
-  'O surdato 'nnammurato"
+folk-melodies_questions: "Tarantella\nTanti auguri a te\nPerché è un bravo ragazzo\n
+  Giro girotondo\nCiuri ciuri\nTanto pe’ cantà\nFunicolì funicolà\nBrilla, brilla
+  la stellina\nRomagna mia\nO mia bela Madunina\nMary aveva un agnellino\nAmbarabà
+  ciccì coccò\nJingle Bells\nAstro del ciel\nI dodici giorni del Natale\nAuguri di
+  buon Natale\nInno alla gioia\nPer Elisa\nCoro nuziale\nIl pompiere paura non ne
+  ha\nOh che bel castello\n44 gatti\nRapsodia in blu\nNella vecchia fattoria\nO albero
+  di natale\nLe tagliatelle di Nonna Pina\nLa Peppina fa il caffé\nLa Befana vien
+  di notte\nIl coccodrillo come fa?\nAve Maria\nI due liocorni\nCi vuole un fiore\n
+  Ninna nanna ninna oh\nTrenta giorni ha novembre\nBella ciao\n'O sole mio\n'O surdato
+  'nnammurato"
 folk-melodies_name: Melodie popolari
