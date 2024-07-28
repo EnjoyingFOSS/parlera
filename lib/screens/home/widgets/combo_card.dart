@@ -67,6 +67,7 @@ class ComboCard extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: Text(
               deck.name,
+              textAlign: TextAlign.center,
               style: mediaSize.width > LayoutHelper.breakpointXL
                   ? theme.textTheme.titleMedium
                   : theme.textTheme.titleSmall,

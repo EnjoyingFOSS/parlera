@@ -82,6 +82,7 @@ class SplashContent extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 16),
             child: Text(
               isOutOfTime ? l10n.txtTimesUp : l10n.lastQuestion,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 36.0,
                 fontWeight: FontWeight.bold,

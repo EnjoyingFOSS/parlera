@@ -44,6 +44,7 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
@@ -140,7 +141,8 @@ class GameContent extends StatelessWidget {
                                       decoration: ShapeDecoration(
                                         shape: const StadiumBorder(),
                                         color: gameSetup.deck?.color ??
-                                            gameSetup.gameSetupType.defaultColor,
+                                            gameSetup
+                                                .gameSetupType.defaultColor,
                                       ),
                                     )),
                                 Row(mainAxisSize: MainAxisSize.min, children: [
@@ -172,7 +174,7 @@ class GameContent extends StatelessWidget {
                                 child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Text(
+                              child: AutoSizeText(
                                 currentCard,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
@@ -183,7 +185,8 @@ class GameContent extends StatelessWidget {
                             )),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
+                            padding:
+                                const EdgeInsets.only(top: 20.0, bottom: 12.0),
                             child: Text(
                               secondsLeft,
                               style: const TextStyle(
